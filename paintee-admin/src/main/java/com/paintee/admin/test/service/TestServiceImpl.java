@@ -17,6 +17,7 @@ package com.paintee.admin.test.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.paintee.common.repository.entity.FollowExample;
 import com.paintee.common.repository.helper.FollowHelper;
 
 /**
@@ -48,6 +49,10 @@ public class TestServiceImpl implements TestService {
 	 @see com.paintee.admin.test.service.TestService#totalCount()
 	*/
 	public int totalCount() {
+//		FollowExample followExample = new FollowExample();
+//		FollowExample.Criteria where = followExample.createCriteria();
+//		followHelper.selectByExample(followExample);
+
 		return followHelper.selectTotalCount();
 	}
 }
