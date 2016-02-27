@@ -1,4 +1,4 @@
-create table user (
+create table TB_USER (
 	user_id varchar(30) primary key comment 'User 고유번호 (사용자가 만드는 건 아님)', 
 	password varchar(10) NOT NULL comment '비밀번호',
 	email varchar(50) NOT NULL comment 'email 주소(실제 사용자 ID)',
@@ -16,17 +16,17 @@ create table user (
 	user_status char(1) default 'N' comment '계정 상태(정상-N/정지-S/휴먼-Q)'
 );
 
-ALTER TABLE user COMMENT '회원';
+ALTER TABLE TB_USER COMMENT '회원';
 
-create table follow (
+create table TB_FOLLOW (
 	user_id varchar(30) not null comment 'Follow를 하는 사람 ID (follower)',
 	following varchar(30) not null comment 'Follow되는 대상 ID',
 	primary key (user_id, following)
 );
 
-ALTER TABLE follow COMMENT '팔로워';
+ALTER TABLE TB_FOLLOW COMMENT '팔로워';
 
-create  table purchase (
+create  table TB_PURCHASE (
 	user_id varchar(30) comment '구매한 사람의 id', 
 	painting_id varchar(30) comment '구매된 그림의 id', 
 	purchase_date datetime comment '구매된 날짜',
@@ -40,9 +40,9 @@ create  table purchase (
 	purchase_status char(1) comment '구매 진행 상태 (요청-R/발송-S/환불요청-R/삭제-D)'
 );
 
-ALTER TABLE purchase COMMENT '구매';
+ALTER TABLE TB_PURCHASE COMMENT '구매';
 
-create table reward( 
+create table TB_REWARD ( 
     user_id varchar(30) comment '리워드 요청자 id',
     account_no varchar(20) comment '입금 요청된 계좌번호',
     account_name varchar(30) comment '입금 요청된 계좌주 이름',
@@ -50,9 +50,9 @@ create table reward(
     reward_status char(1) comment '입금 진행 상태 (요청-R/비정상-A/완료-C)'
 );
 
-ALTER TABLE reward COMMENT '리워드';
+ALTER TABLE TB_REWARD COMMENT '리워드';
 
-create table painting (
+create table TB_PAINTING (
     painting_id varchar(30) comment '그림의 고유 ID',
     upload_date datetime comment '그림이 업로드 된 날짜',
     artist_id varchar(30) comment '그림을 올린 사람 ID',
@@ -67,21 +67,21 @@ create table painting (
     painting_status char(1) comment '현재 그림의 상태(정상-N/블라인드-B/삭제-D)'
 );
 
-ALTER TABLE painting COMMENT '페인팅';
+ALTER TABLE TB_PAINTING COMMENT '페인팅';
 
-create table new_painting (
+create table TB_NEW_PAINTING (
     painting_id varchar(30) primary key comment '그림의 고유 ID'
 );
 
-ALTER TABLE new_painting COMMENT '신규 페인팅';
+ALTER TABLE TB_NEW_PAINTING COMMENT '신규 페인팅';
 
-create table popular_painting (
+create table TB_POPULAR_PAINTING (
     painting_id varchar(30) primary key comment '그림의 고유 ID'
 );
 
-ALTER TABLE popular_painting COMMENT '인기 페인팅';
+ALTER TABLE TB_POPULAR_PAINTING COMMENT '인기 페인팅';
 
-create table login (
+create table TB_LOGIN (
 	seq int primary key auto_increment comment '로그인 구분 고유 번호',
     user_id varchar(30) comment '로그인 사용자 id',
 	hash    varchar(50) comment '사용자 구분 해쉬값',
@@ -89,6 +89,6 @@ create table login (
 	access_gubun  char(1) comment '접속 구분'
 );
 
-ALTER TABLE login COMMENT '로그인';
+ALTER TABLE TB_LOGIN COMMENT '로그인';
 
 
