@@ -49,6 +49,7 @@ public class TestServiceImpl implements TestService {
 	 @see com.paintee.admin.test.service.TestService#totalCount()
 	*/
 	public int totalCount() {
+		//Example 사용예제
 //		FollowExample followExample = new FollowExample();
 //		FollowExample.Criteria where = followExample.createCriteria();
 //		followHelper.selectByExample(followExample);
