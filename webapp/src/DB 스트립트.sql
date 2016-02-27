@@ -16,6 +16,7 @@ create table user (
 	user_status char(1) default 'N' comment '계정 상태(정상-N/정지-S/휴먼-Q)'
 );
 
+ALTER TABLE user COMMENT '회원';
 
 create table follow (
 	user_id varchar(30) not null comment 'Follow를 하는 사람 ID (follower)',
@@ -23,6 +24,7 @@ create table follow (
 	primary key (user_id, following)
 );
 
+ALTER TABLE follow COMMENT '팔로워';
 
 create  table purchase (
 	user_id varchar(30) comment '구매한 사람의 id', 
@@ -38,6 +40,7 @@ create  table purchase (
 	purchase_status char(1) comment '구매 진행 상태 (요청-R/발송-S/환불요청-R/삭제-D)'
 );
 
+ALTER TABLE purchase COMMENT '구매';
 
 create table reward( 
     user_id varchar(30) comment '리워드 요청자 id',
@@ -47,6 +50,7 @@ create table reward(
     reward_status char(1) comment '입금 진행 상태 (요청-R/비정상-A/완료-C)'
 );
 
+ALTER TABLE reward COMMENT '리워드';
 
 create table painting (
     painting_id varchar(30) comment '그림의 고유 ID',
@@ -63,16 +67,19 @@ create table painting (
     painting_status char(1) comment '현재 그림의 상태(정상-N/블라인드-B/삭제-D)'
 );
 
+ALTER TABLE painting COMMENT '페인팅';
 
 create table new_painting (
     painting_id varchar(30) primary key comment '그림의 고유 ID'
 );
 
+ALTER TABLE new_painting COMMENT '신규 페인팅';
 
 create table popular_painting (
     painting_id varchar(30) primary key comment '그림의 고유 ID'
 );
 
+ALTER TABLE popular_painting COMMENT '인기 페인팅';
 
 create table login (
 	seq int primary key auto_increment comment '로그인 구분 고유 번호',
@@ -81,4 +88,7 @@ create table login (
 	expire_date  date comment '로그인 유효 날짜',
 	access_gubun  char(1) comment '접속 구분'
 );
+
+ALTER TABLE login COMMENT '로그인';
+
 
