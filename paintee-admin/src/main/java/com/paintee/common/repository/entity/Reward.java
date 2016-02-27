@@ -3,6 +3,8 @@ package com.paintee.common.repository.entity;
 import com.paintee.common.object.BaseEntity;
 
 public class Reward extends BaseEntity {
+    private Integer seq;
+
     private String userId;
 
     private String accountNo;
@@ -12,6 +14,14 @@ public class Reward extends BaseEntity {
     private Integer earmRequestedMoney;
 
     private String rewardStatus;
+
+    public Integer getSeq() {
+        return seq;
+    }
+
+    public void setSeq(Integer seq) {
+        this.seq = seq;
+    }
 
     public String getUserId() {
         return userId;

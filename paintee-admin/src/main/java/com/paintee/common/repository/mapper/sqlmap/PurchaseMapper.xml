@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.paintee.common.repository.mapper.PurchaseMapper" >
   <resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.Purchase" >
+    <id column="seq" property="seq" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="VARCHAR" />
     <result column="painting_id" property="paintingId" jdbcType="VARCHAR" />
     <result column="purchase_date" property="purchaseDate" jdbcType="TIMESTAMP" />
@@ -73,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    "user_id", "painting_id", "purchase_date", "sentence", "private_at", "receiver_addr", 
+    "seq", "user_id", "painting_id", "purchase_date", "sentence", "private_at", "receiver_addr", 
     "sender_addr", "receiver_name", "sender_name", "location", "purchase_status"
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.PurchaseExample" >
@@ -91,6 +92,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from "tb_purchase"
+    where "seq" = #{seq,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from "tb_purchase"
+    where "seq" = #{seq,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.PurchaseExample" >
     delete from "tb_purchase"
     <if test="_parameter != null" >
@@ -98,18 +109,23 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.paintee.common.repository.entity.Purchase" >
-    insert into "tb_purchase" ("user_id", "painting_id", "purchase_date", 
-      "sentence", "private_at", "receiver_addr", 
-      "sender_addr", "receiver_name", "sender_name", 
-      "location", "purchase_status")
-    values (#{userId,jdbcType=VARCHAR}, #{paintingId,jdbcType=VARCHAR}, #{purchaseDate,jdbcType=TIMESTAMP}, 
-      #{sentence,jdbcType=VARCHAR}, #{privateAt,jdbcType=CHAR}, #{receiverAddr,jdbcType=VARCHAR}, 
-      #{senderAddr,jdbcType=VARCHAR}, #{receiverName,jdbcType=VARCHAR}, #{senderName,jdbcType=VARCHAR}, 
-      #{location,jdbcType=VARCHAR}, #{purchaseStatus,jdbcType=CHAR})
+    insert into "tb_purchase" ("seq", "user_id", "painting_id", 
+      "purchase_date", "sentence", "private_at", 
+      "receiver_addr", "sender_addr", "receiver_name", 
+      "sender_name", "location", "purchase_status"
+      )
+    values (#{seq,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{paintingId,jdbcType=VARCHAR}, 
+      #{purchaseDate,jdbcType=TIMESTAMP}, #{sentence,jdbcType=VARCHAR}, #{privateAt,jdbcType=CHAR}, 
+      #{receiverAddr,jdbcType=VARCHAR}, #{senderAddr,jdbcType=VARCHAR}, #{receiverName,jdbcType=VARCHAR}, 
+      #{senderName,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{purchaseStatus,jdbcType=CHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Purchase" >
     insert into "tb_purchase"
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seq != null" >
+        "seq",
+      </if>
       <if test="userId != null" >
         "user_id",
       </if>
@@ -145,6 +161,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
       <if test="userId != null" >
         #{userId,jdbcType=VARCHAR},
       </if>
@@ -189,6 +208,9 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update "tb_purchase"
     <set >
+      <if test="record.seq != null" >
+        "seq" = #{record.seq,jdbcType=INTEGER},
+      </if>
       <if test="record.userId != null" >
         "user_id" = #{record.userId,jdbcType=VARCHAR},
       </if>
@@ -229,7 +251,8 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update "tb_purchase"
-    set "user_id" = #{record.userId,jdbcType=VARCHAR},
+    set "seq" = #{record.seq,jdbcType=INTEGER},
+      "user_id" = #{record.userId,jdbcType=VARCHAR},
       "painting_id" = #{record.paintingId,jdbcType=VARCHAR},
       "purchase_date" = #{record.purchaseDate,jdbcType=TIMESTAMP},
       "sentence" = #{record.sentence,jdbcType=VARCHAR},
@@ -243,5 +266,59 @@
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.Purchase" >
+    update "tb_purchase"
+    <set >
+      <if test="userId != null" >
+        "user_id" = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="paintingId != null" >
+        "painting_id" = #{paintingId,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDate != null" >
+        "purchase_date" = #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sentence != null" >
+        "sentence" = #{sentence,jdbcType=VARCHAR},
+      </if>
+      <if test="privateAt != null" >
+        "private_at" = #{privateAt,jdbcType=CHAR},
+      </if>
+      <if test="receiverAddr != null" >
+        "receiver_addr" = #{receiverAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="senderAddr != null" >
+        "sender_addr" = #{senderAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverName != null" >
+        "receiver_name" = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="senderName != null" >
+        "sender_name" = #{senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        "location" = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseStatus != null" >
+        "purchase_status" = #{purchaseStatus,jdbcType=CHAR},
+      </if>
+    </set>
+    where "seq" = #{seq,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.Purchase" >
+    update "tb_purchase"
+    set "user_id" = #{userId,jdbcType=VARCHAR},
+      "painting_id" = #{paintingId,jdbcType=VARCHAR},
+      "purchase_date" = #{purchaseDate,jdbcType=TIMESTAMP},
+      "sentence" = #{sentence,jdbcType=VARCHAR},
+      "private_at" = #{privateAt,jdbcType=CHAR},
+      "receiver_addr" = #{receiverAddr,jdbcType=VARCHAR},
+      "sender_addr" = #{senderAddr,jdbcType=VARCHAR},
+      "receiver_name" = #{receiverName,jdbcType=VARCHAR},
+      "sender_name" = #{senderName,jdbcType=VARCHAR},
+      "location" = #{location,jdbcType=VARCHAR},
+      "purchase_status" = #{purchaseStatus,jdbcType=CHAR}
+    where "seq" = #{seq,jdbcType=INTEGER}
   </update>
 </mapper>

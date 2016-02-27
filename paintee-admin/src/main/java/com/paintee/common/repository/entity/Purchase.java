@@ -4,6 +4,8 @@ import com.paintee.common.object.BaseEntity;
 import java.util.Date;
 
 public class Purchase extends BaseEntity {
+    private Integer seq;
+
     private String userId;
 
     private String paintingId;
@@ -25,6 +27,14 @@ public class Purchase extends BaseEntity {
     private String location;
 
     private String purchaseStatus;
+
+    public Integer getSeq() {
+        return seq;
+    }
+
+    public void setSeq(Integer seq) {
+        this.seq = seq;
+    }
 
     public String getUserId() {
         return userId;

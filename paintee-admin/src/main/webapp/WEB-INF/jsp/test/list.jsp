@@ -5,7 +5,7 @@
 		<title>test</title>
 	</head>
 	<body>
-		${msg} world.
+		${msg} world.<br>
 		count:${count}
 	</body>
 </html>
