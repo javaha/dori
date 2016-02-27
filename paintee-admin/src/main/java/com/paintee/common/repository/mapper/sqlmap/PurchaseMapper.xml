@@ -1,38 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.paintee.common.repository.mapper.PurchaseMapper">
-  <resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.Purchase">
-    <result column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="painting_id" jdbcType="VARCHAR" property="paintingId" />
-    <result column="purchase_date" jdbcType="TIMESTAMP" property="purchaseDate" />
-    <result column="sentence" jdbcType="VARCHAR" property="sentence" />
-    <result column="private_at" jdbcType="CHAR" property="privateAt" />
-    <result column="receiver_addr" jdbcType="VARCHAR" property="receiverAddr" />
-    <result column="sender_addr" jdbcType="VARCHAR" property="senderAddr" />
-    <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
-    <result column="sender_name" jdbcType="VARCHAR" property="senderName" />
-    <result column="location" jdbcType="VARCHAR" property="location" />
-    <result column="purchase_status" jdbcType="CHAR" property="purchaseStatus" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.paintee.common.repository.mapper.PurchaseMapper" >
+  <resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.Purchase" >
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="painting_id" property="paintingId" jdbcType="VARCHAR" />
+    <result column="purchase_date" property="purchaseDate" jdbcType="TIMESTAMP" />
+    <result column="sentence" property="sentence" jdbcType="VARCHAR" />
+    <result column="private_at" property="privateAt" jdbcType="CHAR" />
+    <result column="receiver_addr" property="receiverAddr" jdbcType="VARCHAR" />
+    <result column="sender_addr" property="senderAddr" jdbcType="VARCHAR" />
+    <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
+    <result column="sender_name" property="senderName" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="purchase_status" property="purchaseStatus" jdbcType="CHAR" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -43,25 +43,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -72,32 +72,32 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     "user_id", "painting_id", "purchase_date", "sentence", "private_at", "receiver_addr", 
     "sender_addr", "receiver_name", "sender_name", "location", "purchase_status"
   </sql>
-  <select id="selectByExample" parameterType="com.paintee.common.repository.entity.PurchaseExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.PurchaseExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
     from "tb_purchase"
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.PurchaseExample">
+  <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.PurchaseExample" >
     delete from "tb_purchase"
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.paintee.common.repository.entity.Purchase">
+  <insert id="insert" parameterType="com.paintee.common.repository.entity.Purchase" >
     insert into "tb_purchase" ("user_id", "painting_id", "purchase_date", 
       "sentence", "private_at", "receiver_addr", 
       "sender_addr", "receiver_name", "sender_name", 
@@ -107,127 +107,127 @@
       #{senderAddr,jdbcType=VARCHAR}, #{receiverName,jdbcType=VARCHAR}, #{senderName,jdbcType=VARCHAR}, 
       #{location,jdbcType=VARCHAR}, #{purchaseStatus,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Purchase">
+  <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Purchase" >
     insert into "tb_purchase"
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
         "user_id",
       </if>
-      <if test="paintingId != null">
+      <if test="paintingId != null" >
         "painting_id",
       </if>
-      <if test="purchaseDate != null">
+      <if test="purchaseDate != null" >
         "purchase_date",
       </if>
-      <if test="sentence != null">
+      <if test="sentence != null" >
         "sentence",
       </if>
-      <if test="privateAt != null">
+      <if test="privateAt != null" >
         "private_at",
       </if>
-      <if test="receiverAddr != null">
+      <if test="receiverAddr != null" >
         "receiver_addr",
       </if>
-      <if test="senderAddr != null">
+      <if test="senderAddr != null" >
         "sender_addr",
       </if>
-      <if test="receiverName != null">
+      <if test="receiverName != null" >
         "receiver_name",
       </if>
-      <if test="senderName != null">
+      <if test="senderName != null" >
         "sender_name",
       </if>
-      <if test="location != null">
+      <if test="location != null" >
         "location",
       </if>
-      <if test="purchaseStatus != null">
+      <if test="purchaseStatus != null" >
         "purchase_status",
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
         #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="paintingId != null">
+      <if test="paintingId != null" >
         #{paintingId,jdbcType=VARCHAR},
       </if>
-      <if test="purchaseDate != null">
+      <if test="purchaseDate != null" >
         #{purchaseDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="sentence != null">
+      <if test="sentence != null" >
         #{sentence,jdbcType=VARCHAR},
       </if>
-      <if test="privateAt != null">
+      <if test="privateAt != null" >
         #{privateAt,jdbcType=CHAR},
       </if>
-      <if test="receiverAddr != null">
+      <if test="receiverAddr != null" >
         #{receiverAddr,jdbcType=VARCHAR},
       </if>
-      <if test="senderAddr != null">
+      <if test="senderAddr != null" >
         #{senderAddr,jdbcType=VARCHAR},
       </if>
-      <if test="receiverName != null">
+      <if test="receiverName != null" >
         #{receiverName,jdbcType=VARCHAR},
       </if>
-      <if test="senderName != null">
+      <if test="senderName != null" >
         #{senderName,jdbcType=VARCHAR},
       </if>
-      <if test="location != null">
+      <if test="location != null" >
         #{location,jdbcType=VARCHAR},
       </if>
-      <if test="purchaseStatus != null">
+      <if test="purchaseStatus != null" >
         #{purchaseStatus,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.paintee.common.repository.entity.PurchaseExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="com.paintee.common.repository.entity.PurchaseExample" resultType="java.lang.Integer" >
     select count(*) from "tb_purchase"
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     update "tb_purchase"
-    <set>
-      <if test="record.userId != null">
+    <set >
+      <if test="record.userId != null" >
         "user_id" = #{record.userId,jdbcType=VARCHAR},
       </if>
-      <if test="record.paintingId != null">
+      <if test="record.paintingId != null" >
         "painting_id" = #{record.paintingId,jdbcType=VARCHAR},
       </if>
-      <if test="record.purchaseDate != null">
+      <if test="record.purchaseDate != null" >
         "purchase_date" = #{record.purchaseDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.sentence != null">
+      <if test="record.sentence != null" >
         "sentence" = #{record.sentence,jdbcType=VARCHAR},
       </if>
-      <if test="record.privateAt != null">
+      <if test="record.privateAt != null" >
         "private_at" = #{record.privateAt,jdbcType=CHAR},
       </if>
-      <if test="record.receiverAddr != null">
+      <if test="record.receiverAddr != null" >
         "receiver_addr" = #{record.receiverAddr,jdbcType=VARCHAR},
       </if>
-      <if test="record.senderAddr != null">
+      <if test="record.senderAddr != null" >
         "sender_addr" = #{record.senderAddr,jdbcType=VARCHAR},
       </if>
-      <if test="record.receiverName != null">
+      <if test="record.receiverName != null" >
         "receiver_name" = #{record.receiverName,jdbcType=VARCHAR},
       </if>
-      <if test="record.senderName != null">
+      <if test="record.senderName != null" >
         "sender_name" = #{record.senderName,jdbcType=VARCHAR},
       </if>
-      <if test="record.location != null">
+      <if test="record.location != null" >
         "location" = #{record.location,jdbcType=VARCHAR},
       </if>
-      <if test="record.purchaseStatus != null">
+      <if test="record.purchaseStatus != null" >
         "purchase_status" = #{record.purchaseStatus,jdbcType=CHAR},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update "tb_purchase"
     set "user_id" = #{record.userId,jdbcType=VARCHAR},
       "painting_id" = #{record.paintingId,jdbcType=VARCHAR},
@@ -240,250 +240,7 @@
       "sender_name" = #{record.senderName,jdbcType=VARCHAR},
       "location" = #{record.location,jdbcType=VARCHAR},
       "purchase_status" = #{record.purchaseStatus,jdbcType=CHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.Purchase">
-    <result column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="painting_id" jdbcType="VARCHAR" property="paintingId" />
-    <result column="purchase_date" jdbcType="TIMESTAMP" property="purchaseDate" />
-    <result column="sentence" jdbcType="VARCHAR" property="sentence" />
-    <result column="private" jdbcType="CHAR" property="private" />
-    <result column="receiver_addr" jdbcType="VARCHAR" property="receiverAddr" />
-    <result column="sender_addr" jdbcType="VARCHAR" property="senderAddr" />
-    <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
-    <result column="sender_name" jdbcType="VARCHAR" property="senderName" />
-    <result column="location" jdbcType="VARCHAR" property="location" />
-    <result column="purchase_status" jdbcType="CHAR" property="purchaseStatus" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    "user_id", "painting_id", "purchase_date", "sentence", "private", "receiver_addr", 
-    "sender_addr", "receiver_name", "sender_name", "location", "purchase_status"
-  </sql>
-  <select id="selectByExample" parameterType="com.paintee.common.repository.entity.PurchaseExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from "tb_purchase"
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.PurchaseExample">
-    delete from "tb_purchase"
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.paintee.common.repository.entity.Purchase">
-    insert into "tb_purchase" ("user_id", "painting_id", "purchase_date", 
-      "sentence", "private", "receiver_addr", 
-      "sender_addr", "receiver_name", "sender_name", 
-      "location", "purchase_status")
-    values (#{userId,jdbcType=VARCHAR}, #{paintingId,jdbcType=VARCHAR}, #{purchaseDate,jdbcType=TIMESTAMP}, 
-      #{sentence,jdbcType=VARCHAR}, #{private,jdbcType=CHAR}, #{receiverAddr,jdbcType=VARCHAR}, 
-      #{senderAddr,jdbcType=VARCHAR}, #{receiverName,jdbcType=VARCHAR}, #{senderName,jdbcType=VARCHAR}, 
-      #{location,jdbcType=VARCHAR}, #{purchaseStatus,jdbcType=CHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Purchase">
-    insert into "tb_purchase"
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        "user_id",
-      </if>
-      <if test="paintingId != null">
-        "painting_id",
-      </if>
-      <if test="purchaseDate != null">
-        "purchase_date",
-      </if>
-      <if test="sentence != null">
-        "sentence",
-      </if>
-      <if test="private != null">
-        "private",
-      </if>
-      <if test="receiverAddr != null">
-        "receiver_addr",
-      </if>
-      <if test="senderAddr != null">
-        "sender_addr",
-      </if>
-      <if test="receiverName != null">
-        "receiver_name",
-      </if>
-      <if test="senderName != null">
-        "sender_name",
-      </if>
-      <if test="location != null">
-        "location",
-      </if>
-      <if test="purchaseStatus != null">
-        "purchase_status",
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="paintingId != null">
-        #{paintingId,jdbcType=VARCHAR},
-      </if>
-      <if test="purchaseDate != null">
-        #{purchaseDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="sentence != null">
-        #{sentence,jdbcType=VARCHAR},
-      </if>
-      <if test="private != null">
-        #{private,jdbcType=CHAR},
-      </if>
-      <if test="receiverAddr != null">
-        #{receiverAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="senderAddr != null">
-        #{senderAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="receiverName != null">
-        #{receiverName,jdbcType=VARCHAR},
-      </if>
-      <if test="senderName != null">
-        #{senderName,jdbcType=VARCHAR},
-      </if>
-      <if test="location != null">
-        #{location,jdbcType=VARCHAR},
-      </if>
-      <if test="purchaseStatus != null">
-        #{purchaseStatus,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.paintee.common.repository.entity.PurchaseExample" resultType="java.lang.Integer">
-    select count(*) from "tb_purchase"
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update "tb_purchase"
-    <set>
-      <if test="record.userId != null">
-        "user_id" = #{record.userId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.paintingId != null">
-        "painting_id" = #{record.paintingId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.purchaseDate != null">
-        "purchase_date" = #{record.purchaseDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.sentence != null">
-        "sentence" = #{record.sentence,jdbcType=VARCHAR},
-      </if>
-      <if test="record.private != null">
-        "private" = #{record.private,jdbcType=CHAR},
-      </if>
-      <if test="record.receiverAddr != null">
-        "receiver_addr" = #{record.receiverAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="record.senderAddr != null">
-        "sender_addr" = #{record.senderAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="record.receiverName != null">
-        "receiver_name" = #{record.receiverName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.senderName != null">
-        "sender_name" = #{record.senderName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.location != null">
-        "location" = #{record.location,jdbcType=VARCHAR},
-      </if>
-      <if test="record.purchaseStatus != null">
-        "purchase_status" = #{record.purchaseStatus,jdbcType=CHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update "tb_purchase"
-    set "user_id" = #{record.userId,jdbcType=VARCHAR},
-      "painting_id" = #{record.paintingId,jdbcType=VARCHAR},
-      "purchase_date" = #{record.purchaseDate,jdbcType=TIMESTAMP},
-      "sentence" = #{record.sentence,jdbcType=VARCHAR},
-      "private" = #{record.private,jdbcType=CHAR},
-      "receiver_addr" = #{record.receiverAddr,jdbcType=VARCHAR},
-      "sender_addr" = #{record.senderAddr,jdbcType=VARCHAR},
-      "receiver_name" = #{record.receiverName,jdbcType=VARCHAR},
-      "sender_name" = #{record.senderName,jdbcType=VARCHAR},
-      "location" = #{record.location,jdbcType=VARCHAR},
-      "purchase_status" = #{record.purchaseStatus,jdbcType=CHAR}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>

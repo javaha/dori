@@ -14,10 +14,13 @@
 */
 package com.paintee.admin.test.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.paintee.admin.test.service.TestService;
 
 /**
 @class TestController
@@ -36,6 +39,9 @@ com.paintee.admin.test.controller \n
 */
 @Controller(value="com.paintee.admin.test.TestController")
 public class TestController {
+	@Autowired
+	private TestService testService;
+
 	/**
 	 @fn test
 	 @brief 함수 간략한 설명 : test view 화면
@@ -46,6 +52,7 @@ public class TestController {
 	@RequestMapping(value="/admin/test/list", method={RequestMethod.GET})
 	public String test(Model model) {
 		model.addAttribute("msg", "hello ");
+		model.addAttribute("count", testService.totalCount());
 
 		return "test/list";
 	}

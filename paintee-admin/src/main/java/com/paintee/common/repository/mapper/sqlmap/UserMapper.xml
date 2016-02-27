@@ -1,42 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.paintee.common.repository.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.User">
-    <id column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="location" jdbcType="VARCHAR" property="location" />
-    <result column="upload_cnt" jdbcType="INTEGER" property="uploadCnt" />
-    <result column="post_cnt" jdbcType="INTEGER" property="postCnt" />
-    <result column="earn_total_money" jdbcType="INTEGER" property="earnTotalMoney" />
-    <result column="earn_reword_money" jdbcType="INTEGER" property="earnRewordMoney" />
-    <result column="resent_send_addr" jdbcType="VARCHAR" property="resentSendAddr" />
-    <result column="resent_send_name" jdbcType="VARCHAR" property="resentSendName" />
-    <result column="point" jdbcType="INTEGER" property="point" />
-    <result column="user_status" jdbcType="CHAR" property="userStatus" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.paintee.common.repository.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.User" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="upload_cnt" property="uploadCnt" jdbcType="INTEGER" />
+    <result column="post_cnt" property="postCnt" jdbcType="INTEGER" />
+    <result column="earn_total_money" property="earnTotalMoney" jdbcType="INTEGER" />
+    <result column="earn_reword_money" property="earnRewordMoney" jdbcType="INTEGER" />
+    <result column="resent_send_addr" property="resentSendAddr" jdbcType="VARCHAR" />
+    <result column="resent_send_name" property="resentSendName" jdbcType="VARCHAR" />
+    <result column="point" property="point" jdbcType="INTEGER" />
+    <result column="user_status" property="userStatus" jdbcType="CHAR" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -47,25 +47,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -76,43 +76,43 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     "user_id", "password", "email", "name", "introduce", "address", "location", "upload_cnt", 
     "post_cnt", "earn_total_money", "earn_reword_money", "resent_send_addr", "resent_send_name", 
     "point", "user_status"
   </sql>
-  <select id="selectByExample" parameterType="com.paintee.common.repository.entity.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.UserExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
     from "tb_user"
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
     from "tb_user"
     where "user_id" = #{userId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from "tb_user"
     where "user_id" = #{userId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.UserExample">
+  <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.UserExample" >
     delete from "tb_user"
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.paintee.common.repository.entity.User">
+  <insert id="insert" parameterType="com.paintee.common.repository.entity.User" >
     insert into "tb_user" ("user_id", "password", "email", 
       "name", "introduce", "address", 
       "location", "upload_cnt", "post_cnt", 
@@ -126,163 +126,163 @@
       #{resentSendName,jdbcType=VARCHAR}, #{point,jdbcType=INTEGER}, #{userStatus,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.User">
+  <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.User" >
     insert into "tb_user"
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
         "user_id",
       </if>
-      <if test="password != null">
+      <if test="password != null" >
         "password",
       </if>
-      <if test="email != null">
+      <if test="email != null" >
         "email",
       </if>
-      <if test="name != null">
+      <if test="name != null" >
         "name",
       </if>
-      <if test="introduce != null">
+      <if test="introduce != null" >
         "introduce",
       </if>
-      <if test="address != null">
+      <if test="address != null" >
         "address",
       </if>
-      <if test="location != null">
+      <if test="location != null" >
         "location",
       </if>
-      <if test="uploadCnt != null">
+      <if test="uploadCnt != null" >
         "upload_cnt",
       </if>
-      <if test="postCnt != null">
+      <if test="postCnt != null" >
         "post_cnt",
       </if>
-      <if test="earnTotalMoney != null">
+      <if test="earnTotalMoney != null" >
         "earn_total_money",
       </if>
-      <if test="earnRewordMoney != null">
+      <if test="earnRewordMoney != null" >
         "earn_reword_money",
       </if>
-      <if test="resentSendAddr != null">
+      <if test="resentSendAddr != null" >
         "resent_send_addr",
       </if>
-      <if test="resentSendName != null">
+      <if test="resentSendName != null" >
         "resent_send_name",
       </if>
-      <if test="point != null">
+      <if test="point != null" >
         "point",
       </if>
-      <if test="userStatus != null">
+      <if test="userStatus != null" >
         "user_status",
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
         #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
+      <if test="password != null" >
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="email != null">
+      <if test="email != null" >
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
+      <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="introduce != null">
+      <if test="introduce != null" >
         #{introduce,jdbcType=VARCHAR},
       </if>
-      <if test="address != null">
+      <if test="address != null" >
         #{address,jdbcType=VARCHAR},
       </if>
-      <if test="location != null">
+      <if test="location != null" >
         #{location,jdbcType=VARCHAR},
       </if>
-      <if test="uploadCnt != null">
+      <if test="uploadCnt != null" >
         #{uploadCnt,jdbcType=INTEGER},
       </if>
-      <if test="postCnt != null">
+      <if test="postCnt != null" >
         #{postCnt,jdbcType=INTEGER},
       </if>
-      <if test="earnTotalMoney != null">
+      <if test="earnTotalMoney != null" >
         #{earnTotalMoney,jdbcType=INTEGER},
       </if>
-      <if test="earnRewordMoney != null">
+      <if test="earnRewordMoney != null" >
         #{earnRewordMoney,jdbcType=INTEGER},
       </if>
-      <if test="resentSendAddr != null">
+      <if test="resentSendAddr != null" >
         #{resentSendAddr,jdbcType=VARCHAR},
       </if>
-      <if test="resentSendName != null">
+      <if test="resentSendName != null" >
         #{resentSendName,jdbcType=VARCHAR},
       </if>
-      <if test="point != null">
+      <if test="point != null" >
         #{point,jdbcType=INTEGER},
       </if>
-      <if test="userStatus != null">
+      <if test="userStatus != null" >
         #{userStatus,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.paintee.common.repository.entity.UserExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="com.paintee.common.repository.entity.UserExample" resultType="java.lang.Integer" >
     select count(*) from "tb_user"
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     update "tb_user"
-    <set>
-      <if test="record.userId != null">
+    <set >
+      <if test="record.userId != null" >
         "user_id" = #{record.userId,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null">
+      <if test="record.password != null" >
         "password" = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.email != null">
+      <if test="record.email != null" >
         "email" = #{record.email,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null">
+      <if test="record.name != null" >
         "name" = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.introduce != null">
+      <if test="record.introduce != null" >
         "introduce" = #{record.introduce,jdbcType=VARCHAR},
       </if>
-      <if test="record.address != null">
+      <if test="record.address != null" >
         "address" = #{record.address,jdbcType=VARCHAR},
       </if>
-      <if test="record.location != null">
+      <if test="record.location != null" >
         "location" = #{record.location,jdbcType=VARCHAR},
       </if>
-      <if test="record.uploadCnt != null">
+      <if test="record.uploadCnt != null" >
         "upload_cnt" = #{record.uploadCnt,jdbcType=INTEGER},
       </if>
-      <if test="record.postCnt != null">
+      <if test="record.postCnt != null" >
         "post_cnt" = #{record.postCnt,jdbcType=INTEGER},
       </if>
-      <if test="record.earnTotalMoney != null">
+      <if test="record.earnTotalMoney != null" >
         "earn_total_money" = #{record.earnTotalMoney,jdbcType=INTEGER},
       </if>
-      <if test="record.earnRewordMoney != null">
+      <if test="record.earnRewordMoney != null" >
         "earn_reword_money" = #{record.earnRewordMoney,jdbcType=INTEGER},
       </if>
-      <if test="record.resentSendAddr != null">
+      <if test="record.resentSendAddr != null" >
         "resent_send_addr" = #{record.resentSendAddr,jdbcType=VARCHAR},
       </if>
-      <if test="record.resentSendName != null">
+      <if test="record.resentSendName != null" >
         "resent_send_name" = #{record.resentSendName,jdbcType=VARCHAR},
       </if>
-      <if test="record.point != null">
+      <if test="record.point != null" >
         "point" = #{record.point,jdbcType=INTEGER},
       </if>
-      <if test="record.userStatus != null">
+      <if test="record.userStatus != null" >
         "user_status" = #{record.userStatus,jdbcType=CHAR},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update "tb_user"
     set "user_id" = #{record.userId,jdbcType=VARCHAR},
       "password" = #{record.password,jdbcType=VARCHAR},
@@ -299,427 +299,59 @@
       "resent_send_name" = #{record.resentSendName,jdbcType=VARCHAR},
       "point" = #{record.point,jdbcType=INTEGER},
       "user_status" = #{record.userStatus,jdbcType=CHAR}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.User" >
     update "tb_user"
-    <set>
-      <if test="password != null">
+    <set >
+      <if test="password != null" >
         "password" = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="email != null">
+      <if test="email != null" >
         "email" = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
+      <if test="name != null" >
         "name" = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="introduce != null">
+      <if test="introduce != null" >
         "introduce" = #{introduce,jdbcType=VARCHAR},
       </if>
-      <if test="address != null">
+      <if test="address != null" >
         "address" = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="location != null">
+      <if test="location != null" >
         "location" = #{location,jdbcType=VARCHAR},
       </if>
-      <if test="uploadCnt != null">
+      <if test="uploadCnt != null" >
         "upload_cnt" = #{uploadCnt,jdbcType=INTEGER},
       </if>
-      <if test="postCnt != null">
+      <if test="postCnt != null" >
         "post_cnt" = #{postCnt,jdbcType=INTEGER},
       </if>
-      <if test="earnTotalMoney != null">
+      <if test="earnTotalMoney != null" >
         "earn_total_money" = #{earnTotalMoney,jdbcType=INTEGER},
       </if>
-      <if test="earnRewordMoney != null">
+      <if test="earnRewordMoney != null" >
         "earn_reword_money" = #{earnRewordMoney,jdbcType=INTEGER},
       </if>
-      <if test="resentSendAddr != null">
+      <if test="resentSendAddr != null" >
         "resent_send_addr" = #{resentSendAddr,jdbcType=VARCHAR},
       </if>
-      <if test="resentSendName != null">
+      <if test="resentSendName != null" >
         "resent_send_name" = #{resentSendName,jdbcType=VARCHAR},
       </if>
-      <if test="point != null">
+      <if test="point != null" >
         "point" = #{point,jdbcType=INTEGER},
       </if>
-      <if test="userStatus != null">
+      <if test="userStatus != null" >
         "user_status" = #{userStatus,jdbcType=CHAR},
       </if>
     </set>
     where "user_id" = #{userId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.User">
-    update "tb_user"
-    set "password" = #{password,jdbcType=VARCHAR},
-      "email" = #{email,jdbcType=VARCHAR},
-      "name" = #{name,jdbcType=VARCHAR},
-      "introduce" = #{introduce,jdbcType=VARCHAR},
-      "address" = #{address,jdbcType=VARCHAR},
-      "location" = #{location,jdbcType=VARCHAR},
-      "upload_cnt" = #{uploadCnt,jdbcType=INTEGER},
-      "post_cnt" = #{postCnt,jdbcType=INTEGER},
-      "earn_total_money" = #{earnTotalMoney,jdbcType=INTEGER},
-      "earn_reword_money" = #{earnRewordMoney,jdbcType=INTEGER},
-      "resent_send_addr" = #{resentSendAddr,jdbcType=VARCHAR},
-      "resent_send_name" = #{resentSendName,jdbcType=VARCHAR},
-      "point" = #{point,jdbcType=INTEGER},
-      "user_status" = #{userStatus,jdbcType=CHAR}
-    where "user_id" = #{userId,jdbcType=VARCHAR}
-  </update>
-  <resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.User">
-    <id column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="location" jdbcType="VARCHAR" property="location" />
-    <result column="upload_cnt" jdbcType="INTEGER" property="uploadCnt" />
-    <result column="post_cnt" jdbcType="INTEGER" property="postCnt" />
-    <result column="earn_total_money" jdbcType="INTEGER" property="earnTotalMoney" />
-    <result column="earn_reword_money" jdbcType="INTEGER" property="earnRewordMoney" />
-    <result column="resent_send_addr" jdbcType="VARCHAR" property="resentSendAddr" />
-    <result column="resent_send_name" jdbcType="VARCHAR" property="resentSendName" />
-    <result column="point" jdbcType="INTEGER" property="point" />
-    <result column="user_status" jdbcType="CHAR" property="userStatus" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    "user_id", "password", "email", "name", "introduce", "address", "location", "upload_cnt", 
-    "post_cnt", "earn_total_money", "earn_reword_money", "resent_send_addr", "resent_send_name", 
-    "point", "user_status"
-  </sql>
-  <select id="selectByExample" parameterType="com.paintee.common.repository.entity.UserExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from "tb_user"
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from "tb_user"
-    where "user_id" = #{userId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from "tb_user"
-    where "user_id" = #{userId,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.UserExample">
-    delete from "tb_user"
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.paintee.common.repository.entity.User">
-    insert into "tb_user" ("user_id", "password", "email", 
-      "name", "introduce", "address", 
-      "location", "upload_cnt", "post_cnt", 
-      "earn_total_money", "earn_reword_money", "resent_send_addr", 
-      "resent_send_name", "point", "user_status"
-      )
-    values (#{userId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{location,jdbcType=VARCHAR}, #{uploadCnt,jdbcType=INTEGER}, #{postCnt,jdbcType=INTEGER}, 
-      #{earnTotalMoney,jdbcType=INTEGER}, #{earnRewordMoney,jdbcType=INTEGER}, #{resentSendAddr,jdbcType=VARCHAR}, 
-      #{resentSendName,jdbcType=VARCHAR}, #{point,jdbcType=INTEGER}, #{userStatus,jdbcType=CHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.User">
-    insert into "tb_user"
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        "user_id",
-      </if>
-      <if test="password != null">
-        "password",
-      </if>
-      <if test="email != null">
-        "email",
-      </if>
-      <if test="name != null">
-        "name",
-      </if>
-      <if test="introduce != null">
-        "introduce",
-      </if>
-      <if test="address != null">
-        "address",
-      </if>
-      <if test="location != null">
-        "location",
-      </if>
-      <if test="uploadCnt != null">
-        "upload_cnt",
-      </if>
-      <if test="postCnt != null">
-        "post_cnt",
-      </if>
-      <if test="earnTotalMoney != null">
-        "earn_total_money",
-      </if>
-      <if test="earnRewordMoney != null">
-        "earn_reword_money",
-      </if>
-      <if test="resentSendAddr != null">
-        "resent_send_addr",
-      </if>
-      <if test="resentSendName != null">
-        "resent_send_name",
-      </if>
-      <if test="point != null">
-        "point",
-      </if>
-      <if test="userStatus != null">
-        "user_status",
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="introduce != null">
-        #{introduce,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="location != null">
-        #{location,jdbcType=VARCHAR},
-      </if>
-      <if test="uploadCnt != null">
-        #{uploadCnt,jdbcType=INTEGER},
-      </if>
-      <if test="postCnt != null">
-        #{postCnt,jdbcType=INTEGER},
-      </if>
-      <if test="earnTotalMoney != null">
-        #{earnTotalMoney,jdbcType=INTEGER},
-      </if>
-      <if test="earnRewordMoney != null">
-        #{earnRewordMoney,jdbcType=INTEGER},
-      </if>
-      <if test="resentSendAddr != null">
-        #{resentSendAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="resentSendName != null">
-        #{resentSendName,jdbcType=VARCHAR},
-      </if>
-      <if test="point != null">
-        #{point,jdbcType=INTEGER},
-      </if>
-      <if test="userStatus != null">
-        #{userStatus,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.paintee.common.repository.entity.UserExample" resultType="java.lang.Integer">
-    select count(*) from "tb_user"
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update "tb_user"
-    <set>
-      <if test="record.userId != null">
-        "user_id" = #{record.userId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null">
-        "password" = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.email != null">
-        "email" = #{record.email,jdbcType=VARCHAR},
-      </if>
-      <if test="record.name != null">
-        "name" = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.introduce != null">
-        "introduce" = #{record.introduce,jdbcType=VARCHAR},
-      </if>
-      <if test="record.address != null">
-        "address" = #{record.address,jdbcType=VARCHAR},
-      </if>
-      <if test="record.location != null">
-        "location" = #{record.location,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uploadCnt != null">
-        "upload_cnt" = #{record.uploadCnt,jdbcType=INTEGER},
-      </if>
-      <if test="record.postCnt != null">
-        "post_cnt" = #{record.postCnt,jdbcType=INTEGER},
-      </if>
-      <if test="record.earnTotalMoney != null">
-        "earn_total_money" = #{record.earnTotalMoney,jdbcType=INTEGER},
-      </if>
-      <if test="record.earnRewordMoney != null">
-        "earn_reword_money" = #{record.earnRewordMoney,jdbcType=INTEGER},
-      </if>
-      <if test="record.resentSendAddr != null">
-        "resent_send_addr" = #{record.resentSendAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="record.resentSendName != null">
-        "resent_send_name" = #{record.resentSendName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.point != null">
-        "point" = #{record.point,jdbcType=INTEGER},
-      </if>
-      <if test="record.userStatus != null">
-        "user_status" = #{record.userStatus,jdbcType=CHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update "tb_user"
-    set "user_id" = #{record.userId,jdbcType=VARCHAR},
-      "password" = #{record.password,jdbcType=VARCHAR},
-      "email" = #{record.email,jdbcType=VARCHAR},
-      "name" = #{record.name,jdbcType=VARCHAR},
-      "introduce" = #{record.introduce,jdbcType=VARCHAR},
-      "address" = #{record.address,jdbcType=VARCHAR},
-      "location" = #{record.location,jdbcType=VARCHAR},
-      "upload_cnt" = #{record.uploadCnt,jdbcType=INTEGER},
-      "post_cnt" = #{record.postCnt,jdbcType=INTEGER},
-      "earn_total_money" = #{record.earnTotalMoney,jdbcType=INTEGER},
-      "earn_reword_money" = #{record.earnRewordMoney,jdbcType=INTEGER},
-      "resent_send_addr" = #{record.resentSendAddr,jdbcType=VARCHAR},
-      "resent_send_name" = #{record.resentSendName,jdbcType=VARCHAR},
-      "point" = #{record.point,jdbcType=INTEGER},
-      "user_status" = #{record.userStatus,jdbcType=CHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.User">
-    update "tb_user"
-    <set>
-      <if test="password != null">
-        "password" = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        "email" = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        "name" = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="introduce != null">
-        "introduce" = #{introduce,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null">
-        "address" = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="location != null">
-        "location" = #{location,jdbcType=VARCHAR},
-      </if>
-      <if test="uploadCnt != null">
-        "upload_cnt" = #{uploadCnt,jdbcType=INTEGER},
-      </if>
-      <if test="postCnt != null">
-        "post_cnt" = #{postCnt,jdbcType=INTEGER},
-      </if>
-      <if test="earnTotalMoney != null">
-        "earn_total_money" = #{earnTotalMoney,jdbcType=INTEGER},
-      </if>
-      <if test="earnRewordMoney != null">
-        "earn_reword_money" = #{earnRewordMoney,jdbcType=INTEGER},
-      </if>
-      <if test="resentSendAddr != null">
-        "resent_send_addr" = #{resentSendAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="resentSendName != null">
-        "resent_send_name" = #{resentSendName,jdbcType=VARCHAR},
-      </if>
-      <if test="point != null">
-        "point" = #{point,jdbcType=INTEGER},
-      </if>
-      <if test="userStatus != null">
-        "user_status" = #{userStatus,jdbcType=CHAR},
-      </if>
-    </set>
-    where "user_id" = #{userId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.User">
+  <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.User" >
     update "tb_user"
     set "password" = #{password,jdbcType=VARCHAR},
       "email" = #{email,jdbcType=VARCHAR},

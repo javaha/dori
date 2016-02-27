@@ -6,5 +6,6 @@
 	</head>
 	<body>
 		${msg} world.
+		count:${count}
 	</body>
 </html>
