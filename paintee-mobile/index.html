@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <title>Paintee</title>
+    <!-- CSS  -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900,500' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,700' rel='stylesheet' type='text/css'>
+    <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
+    <link href="css/swiper.css" type="text/css" rel="stylesheet"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+    <!--  화면이 스크롤되지 않도록 고정, 나중에 반응형으로 고정  -->
+    <div class="main_container swiper_container">
+        <div class="swiper-wrapper">        
+        <!--  상하 스크롤 또는 메뉴선택으로 변경되는 블록 [follow]  -->
+        <div class="mode_container swiper-slide" id="follow">
+            <div class="list_container swiper_container_follow">
+                <div class="home_btn" style="font-weight: 700">follow</div>
+                <div class="bottom_bar" style="background-color: hsl(200,60%,20%)"></div>
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-scrollbar swiper-scrollbar-follow"></div>
+                
+            </div>
+        </div>
+        <!--  상하 스크롤 또는 메뉴선택으로 변경되는 블록 [popular]  -->
+        <div class="mode_container swiper-slide" id="popular">
+            <div class="list_container swiper_container_popular">
+                <div class="home_btn" style="font-weight: 700">popular</div>
+                <div class="bottom_bar" style="background-color: hsl(330,60%,20%)"></div>
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-scrollbar swiper-scrollbar-popular"></div>
+ 
+            </div>
+        </div>
+        <!--  상하 스크롤 또는 메뉴선택으로 변경되는 블록 [new]  -->
+        <div class="mode_container swiper-slide" id="new">
+            <div class="list_container swiper_container_new">
+                <div class="home_btn" style="font-weight: 700">new</div>
+                <div class="bottom_bar" style="background-color: hsl(90,60%,20%)"></div>
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-scrollbar swiper-scrollbar-new"></div>
+ 
+            </div>
+        </div>
+        <!--  상하 스크롤 또는 메뉴선택으로 변경되는 블록 [my]  -->
+        <div class="mode_container swiper-slide" id="my">
+            <div class="list_container swiper_container_my">
+                <div class="home_btn" style="font-weight: 700">my</div>
+                <div class="bottom_bar" style="background-color: hsl(250,60%,20%)"></div>
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-scrollbar swiper-scrollbar-my"></div>
+            </div>
+        </div>
+        </div>
+        <!--   side menu     -->
+        <div id="side_menu">
+            <div class="side_menu_login"></div>
+            <div class="side_menu_major" id="menu_follow">Follow</div>
+            <div class="side_menu_major" id="menu_popular">Popular</div>
+            <div class="side_menu_major" id="menu_new">New</div>
+            <div class="side_menu_major" id="menu_my">My</div>
+            <div class="side_menu_margin"></div>
+            <div class="side_menu_minor" id="menu_upload">upload</div>
+            <div class="side_menu_minor" id="menu_reward">reward</div>
+            <div class="side_menu_minor">about</div>
+            <div class="side_menu_minor">search</div>
+            <div class="side_menu_btn"><i class="material-icons" style="font-size:24px">menu</i></div>
+            <div class="side_menu_close"><i class="material-icons" style="font-size:24px">close</i></div>
+            <div class="side_menu_bottom">
+                <div class="side_menu_lang">En | Ko</div>
+                <div class="side_menu_copyright">Copyright ⓒ paintee. Inc.,</div>
+            </div>
+        </div>        
+        <div class="modal"></div>
+        <div id="fullscreen_btn"><i class="material-icons" style="font-size:24px">fullscreen</i></div>
+    </div>
+    
+    <!--  상세화면  -->
+    <div class="detail">
+    </div>
+    
+    <!--  아래는 팝업화면으로 처리  -->
+    <div class="base_position">    
+    <!--   구매 화면   -->
+    <div class="purchase_container">
+        <div class="purchase_box">
+            <div class="purchase_box_left">
+                <div class="purchase_box_top">your sentence</div>
+                <div class="purchase_box_middle" style="text-align: right">
+                    <span class="character_counter">0/200</span>
+                    <textarea class="sentence_textarea" length="200"></textarea>
+                    <input type="checkbox"> private
+                </div>
+                <div class="purchase_box_bottom">
+                    <div class="purchase_like_btn"><i class="material-icons">favorite</i><div class="purchase_btn_text"> like without postcard</div></div>
+                    <div class="purchase_next_btn"><div class="purchase_btn_text">address </div><i class="material-icons">keyboard_arrow_right</i></div>
+                </div>
+            </div>
+            <div class="purchase_box_right">
+                <div class="purchase_box_top">address</div>
+                <div class="purchase_box_middle">
+                    <div class="purchase_col_title">sender</div>
+                    <div class="purchase_col_name">
+                        <select class="purchase_select">
+                            <option value="1">your ID</option>
+                            <option value="2">Paintee</option>
+                            <option value="3">Direct Input</option>
+                        </select>
+                    </div>
+                    <div class="purchase_col_input"></div>
+
+                    <div class="purchase_col_title">addressee</div>
+                    <div class="purchase_col_name">
+                        <input type="text" class="purchase_input" placeholder="name">
+                    </div>
+                    <div class="purchase_col_input">
+                        <input type="text" class="purchase_input" placeholder="address 1">
+                        <input type="text" class="purchase_input" placeholder="address 2">
+                        <input type="text" class="purchase_input" placeholder="city" style="width: 30%">
+                        <input type="text" class="purchase_input" placeholder="zip code" style="width: 30%">
+                        <select class="purchase_select" style="width: 30%">
+                            <option value="1">Korea</option>
+                            <option value="2">USA</option>
+                            <option value="3">China</option>
+                            <option value="3">Japan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="purchase_box_bottom">
+                    <div class="purchase_prev_btn"><i class="material-icons">keyboard_arrow_left</i><div class="purchase_btn_text"> Sentence</div></div>
+                    <div class="purchase_pay_btn"><div class="purchase_btn_text">Payment </div><i class="material-icons">payment</i></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="return_btn"><i class="material-icons">keyboard_backspace</i></div>
+    </div>
+    
+    
+    <!--  업로드 화면  -->
+    <div class="upload_container">
+        <div class="upload_box"></div>
+        <div class="return_btn"><i class="material-icons">keyboard_backspace</i></div>
+    </div>
+        
+    <!--  리워드 화면  -->
+    <div class="reward_container">
+        <div class="reward_box"></div>
+        <div class="return_btn"><i class="material-icons">keyboard_backspace</i></div>
+    </div>
+    
+    <!--  팔로우/팔로워 화면  -->
+    <div class="people_container">
+        <div class="people_box"></div>
+        <div class="return_btn"><i class="material-icons">keyboard_backspace</i></div>
+    </div>    
+        
+    </div>
+    
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/swiper.jquery.min.js"></script>
+    <script src="js/jquery.touchSwipe.min.js"></script>
+    <script src="js/init.js"></script>
+
+</body>
+</html>

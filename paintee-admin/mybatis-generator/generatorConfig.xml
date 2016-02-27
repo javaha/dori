@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+	<classPathEntry location="D:\project\repositories\paintee\paintee-admin\src\mybatis-generator\mysql-connector-java-5.1.38.jar" />
+
+	<context id="paintee-admin-context">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+ 		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/paintee" userId="admin" password="1234" />
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.paintee.common.entity" targetProject="paintee-admin\src\main\java" />
+		<sqlMapGenerator targetPackage="com.paintee.common.repository.mapper.sqlmap" targetProject="paintee-admin\src\main\java" />
+		<javaClientGenerator targetPackage="com.paintee.common.repository.mapper" targetProject="paintee-admin\src\main\java" type="XMLMAPPER" />
+
+<!-- 
+		<table schema="" tableName="TB_TEST" domainObjectName="Test" delimitIdentifiers="true" delimitAllColumns="true" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" selectByExampleQueryId="true" selectByPrimaryKeyQueryId="true">
+			<property name="enableSubPackages" value="true" />
+			<property name="rootClass" value="com.paintee.common.object.BaseEntity" />
+			<property name="trimStrings" value="true" />
+		</table>
+-->
+	</context>
+
+</generatorConfiguration>
