@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paintee.common.repository.helper.FollowHelper">
+	<resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.FollowKey" extends="com.paintee.common.repository.mapper.FollowMapper.BaseResultMap">
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		"user_id", "following"
+	</sql>
+  
+  	<select id="selectTotalCount" resultType="java.lang.Integer">
+  		SELECT
+  			COUNT(user_id)
+  		FROM tb_follow
+  	</select>
+</mapper>

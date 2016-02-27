@@ -31,7 +31,7 @@ create  table TB_PURCHASE (
 	painting_id varchar(30) comment '구매된 그림의 id', 
 	purchase_date datetime comment '구매된 날짜',
 	sentence varchar(200) comment '구매하면서 작성된 한마디',
-	private char(1) comment 'sentence의 공개/비공개 여부',
+	private_at char(1) comment 'sentence의 공개/비공개 여부',
 	receiver_addr varchar(200) comment '엽서 수신자 주소',
 	sender_addr varchar(30) comment '엽서 발신자 주소',
 	receiver_name varchar(200) comment '엽서 수신자 이름',
