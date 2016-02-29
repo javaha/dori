@@ -27,14 +27,7 @@ var followSwiper = new Swiper('.swiper_container_follow', {
     scrollbar: '.swiper-scrollbar-follow',
     scrollbarHide: true
 })
-var popularSwiper = new Swiper('.swiper_container_popular', {
-    slidesPerView: 'auto',
-    centeredSlides: true,
-    spaceBetween: mainWidth*0.05,
-    mousewheelControl : true,
-    scrollbar: '.swiper-scrollbar-popular',
-    scrollbarHide: true
-})
+
 var newSwiper = new Swiper('.swiper_container_new', {
     slidesPerView: 'auto',
     centeredSlides: true,
@@ -127,16 +120,7 @@ function initFollow(userID){
     }
 }
 
-function initPopular(){
-    var popularHome = new Home();
-    popularHome.setTitle("Popular");
-    popularHome.setExplain("가장 인기있는 그림입니다.");
-    popularHome.setContents(totalPainting());
-    popularSwiper.appendSlide(popularHome.buildStructure());
-    delete popularHome;
 
-    addPainting(popularSwiper, 0, "popular");
-}
 
 function initNew(){
     var newHome = new Home();
@@ -283,14 +267,13 @@ function addPainting(swiper, currentIndex, type){
 }
 
 followSwiper.on("onSlideChangeStart", function(swiper){if(userID!=="")addPainting(swiper, swiper.activeIndex, "follow")});
-popularSwiper.on("onSlideChangeStart", function(swiper){addPainting(swiper, swiper.activeIndex, "popular")});
+
 newSwiper.on("onSlideChangeStart", function(swiper){addPainting(swiper, swiper.activeIndex, "new")});
 mySwiper.on("onSlideChangeStart", function(swiper){if(userID!=="")addPainting(swiper, swiper.activeIndex, "my")});
 
 
 // 최초 5개 미리 생성
 initFollow(userID);
-initPopular();
 initNew();
 initMy(userID);
 initMenu(userID);
@@ -344,7 +327,7 @@ function listLock(swiper){
 }
 mainSwiper.on("onTransitionEnd", function(mainSwiper){mainLock(mainSwiper)});
 followSwiper.on("onTransitionEnd", function(swiper){listLock(swiper)});
-popularSwiper.on("onTransitionEnd", function(swiper){listLock(swiper)});
+
 newSwiper.on("onTransitionEnd", function(swiper){listLock(swiper)});
 mySwiper.on("onTransitionEnd", function(swiper){listLock(swiper)});
 
@@ -422,9 +405,7 @@ function selectMenu(index){
 $("#menu_follow").click(function(){
     selectMenu(0);
 });
-$("#menu_popular").click(function(){
-    selectMenu(1);
-});
+
 $("#menu_new").click(function(){
     selectMenu(2);
 });
@@ -443,7 +424,6 @@ $("#menu_reward").click(function(){
 // 초기 설정들
 // 가로휠방지 && 페이지네이션숨김 && 위로스와이프방지
 followSwiper.disableMousewheelControl();
-popularSwiper.disableMousewheelControl();
 newSwiper.disableMousewheelControl();
 mySwiper.disableMousewheelControl();
 mainSwiper.lockSwipeToPrev();
@@ -503,7 +483,6 @@ $(".home_btn").click(function(){
      }
  }
 followSwiper.on("onSetTranslate", function(swiper, translate){swipeToMenu(swiper, translate)});
-popularSwiper.on("onSetTranslate", function(swiper, translate){swipeToMenu(swiper, translate)});
 newSwiper.on("onSetTranslate", function(swiper, translate){swipeToMenu(swiper, translate)});
 mySwiper.on("onSetTranslate", function(swiper, translate){swipeToMenu(swiper, translate)});
 
