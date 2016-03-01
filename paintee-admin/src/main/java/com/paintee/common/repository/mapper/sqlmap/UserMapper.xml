@@ -17,6 +17,7 @@
     <result column="resent_send_name" property="resentSendName" jdbcType="VARCHAR" />
     <result column="point" property="point" jdbcType="INTEGER" />
     <result column="user_status" property="userStatus" jdbcType="CHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -79,7 +80,7 @@
   <sql id="Base_Column_List" >
     "user_id", "password", "email", "name", "introduce", "address", "location", "upload_cnt", 
     "post_cnt", "earn_total_money", "earn_reword_money", "resent_send_addr", "resent_send_name", 
-    "point", "user_status"
+    "point", "user_status", "created_date"
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.UserExample" >
     select
@@ -117,14 +118,14 @@
       "name", "introduce", "address", 
       "location", "upload_cnt", "post_cnt", 
       "earn_total_money", "earn_reword_money", "resent_send_addr", 
-      "resent_send_name", "point", "user_status"
-      )
+      "resent_send_name", "point", "user_status", 
+      "created_date")
     values (#{userId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{location,jdbcType=VARCHAR}, #{uploadCnt,jdbcType=INTEGER}, #{postCnt,jdbcType=INTEGER}, 
       #{earnTotalMoney,jdbcType=INTEGER}, #{earnRewordMoney,jdbcType=INTEGER}, #{resentSendAddr,jdbcType=VARCHAR}, 
-      #{resentSendName,jdbcType=VARCHAR}, #{point,jdbcType=INTEGER}, #{userStatus,jdbcType=CHAR}
-      )
+      #{resentSendName,jdbcType=VARCHAR}, #{point,jdbcType=INTEGER}, #{userStatus,jdbcType=CHAR}, 
+      #{createdDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.User" >
     insert into "tb_user"
@@ -174,6 +175,9 @@
       <if test="userStatus != null" >
         "user_status",
       </if>
+      <if test="createdDate != null" >
+        "created_date",
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -220,6 +224,9 @@
       </if>
       <if test="userStatus != null" >
         #{userStatus,jdbcType=CHAR},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -277,6 +284,9 @@
       <if test="record.userStatus != null" >
         "user_status" = #{record.userStatus,jdbcType=CHAR},
       </if>
+      <if test="record.createdDate != null" >
+        "created_date" = #{record.createdDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -298,7 +308,8 @@
       "resent_send_addr" = #{record.resentSendAddr,jdbcType=VARCHAR},
       "resent_send_name" = #{record.resentSendName,jdbcType=VARCHAR},
       "point" = #{record.point,jdbcType=INTEGER},
-      "user_status" = #{record.userStatus,jdbcType=CHAR}
+      "user_status" = #{record.userStatus,jdbcType=CHAR},
+      "created_date" = #{record.createdDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -348,6 +359,9 @@
       <if test="userStatus != null" >
         "user_status" = #{userStatus,jdbcType=CHAR},
       </if>
+      <if test="createdDate != null" >
+        "created_date" = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where "user_id" = #{userId,jdbcType=VARCHAR}
   </update>
@@ -366,7 +380,8 @@
       "resent_send_addr" = #{resentSendAddr,jdbcType=VARCHAR},
       "resent_send_name" = #{resentSendName,jdbcType=VARCHAR},
       "point" = #{point,jdbcType=INTEGER},
-      "user_status" = #{userStatus,jdbcType=CHAR}
+      "user_status" = #{userStatus,jdbcType=CHAR},
+      "created_date" = #{createdDate,jdbcType=TIMESTAMP}
     where "user_id" = #{userId,jdbcType=VARCHAR}
   </update>
 </mapper>

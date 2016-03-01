@@ -1,5 +1,6 @@
 package com.paintee.common.repository.mapper;
 
+import com.paintee.common.repository.entity.Follow;
 import com.paintee.common.repository.entity.FollowExample;
 import com.paintee.common.repository.entity.FollowKey;
 import java.util.List;
@@ -12,13 +13,19 @@ public interface FollowMapper {
 
     int deleteByPrimaryKey(FollowKey key);
 
-    int insert(FollowKey record);
+    int insert(Follow record);
 
-    int insertSelective(FollowKey record);
+    int insertSelective(Follow record);
 
-    List<FollowKey> selectByExample(FollowExample example);
+    List<Follow> selectByExample(FollowExample example);
 
-    int updateByExampleSelective(@Param("record") FollowKey record, @Param("example") FollowExample example);
+    Follow selectByPrimaryKey(FollowKey key);
 
-    int updateByExample(@Param("record") FollowKey record, @Param("example") FollowExample example);
+    int updateByExampleSelective(@Param("record") Follow record, @Param("example") FollowExample example);
+
+    int updateByExample(@Param("record") Follow record, @Param("example") FollowExample example);
+
+    int updateByPrimaryKeySelective(Follow record);
+
+    int updateByPrimaryKey(Follow record);
 }

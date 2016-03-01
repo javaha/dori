@@ -1,6 +1,7 @@
 package com.paintee.common.repository.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserExample {
@@ -1101,6 +1102,66 @@ public class UserExample {
 
         public Criteria andUserStatusNotBetween(String value1, String value2) {
             addCriterion("\"user_status\" not between", value1, value2, "userStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateIsNull() {
+            addCriterion("\"created_date\" is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateIsNotNull() {
+            addCriterion("\"created_date\" is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateEqualTo(Date value) {
+            addCriterion("\"created_date\" =", value, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateNotEqualTo(Date value) {
+            addCriterion("\"created_date\" <>", value, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateGreaterThan(Date value) {
+            addCriterion("\"created_date\" >", value, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("\"created_date\" >=", value, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateLessThan(Date value) {
+            addCriterion("\"created_date\" <", value, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateLessThanOrEqualTo(Date value) {
+            addCriterion("\"created_date\" <=", value, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateIn(List<Date> values) {
+            addCriterion("\"created_date\" in", values, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateNotIn(List<Date> values) {
+            addCriterion("\"created_date\" not in", values, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateBetween(Date value1, Date value2) {
+            addCriterion("\"created_date\" between", value1, value2, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateNotBetween(Date value1, Date value2) {
+            addCriterion("\"created_date\" not between", value1, value2, "createdDate");
             return (Criteria) this;
         }
     }

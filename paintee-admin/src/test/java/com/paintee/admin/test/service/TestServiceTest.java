@@ -10,13 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations ={"classpath:context-paintee-admin-repository.xml",
-									"file:src/main/webapp/WEB-INF/paintee-admin-servlet.xml",
-									"classpath:mybatis-config-paintee-admin-repository.xml"})
+									"classpath:mybatis-config-paintee-admin-repository.xml",
+									"file:src/main/webapp/WEB-INF/paintee-admin-servlet.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
 public class TestServiceTest {
 	private final static Logger logger = LoggerFactory.getLogger(TestServiceTest.class);
-	
+
 	@Autowired
 	private DataSource dataSource;
 

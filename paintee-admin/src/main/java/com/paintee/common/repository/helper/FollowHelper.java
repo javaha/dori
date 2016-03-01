@@ -7,7 +7,7 @@
 | Package | com.paintee.common.repository.helper |    
 | Project name | paintee-admin |    
 | Type name | FollowHelper |    
-| Company | SAMSUNG | 
+| Company | Paintee | 
 | Create Date | 2016 2016. 2. 27. 오후 5:57:00 |
 | Author | Administrator |
 | File Version | v1.0 |
@@ -23,7 +23,7 @@ com.paintee.common.repository.helper \n
  @section 클래스작성정보
     |    항  목       |      내  용       |
     | :-------------: | -------------   |
-    | Company | SAMSUNG |
+    | Company | Paintee |
     | Author | Administrator |
     | Date | 2016. 2. 27. 오후 5:57:00 |
     | Class Version | v1.0 |

@@ -19,6 +19,7 @@
 	<!-- transaction setting -->
 	<tx:annotation-driven />
 
+	<util:properties id="config" location="classpath:config.properties" />
 	<util:properties id="properties" location="classpath:paintee-admin-repository.properties" />
  	<context:property-placeholder properties-ref="properties"/>
  

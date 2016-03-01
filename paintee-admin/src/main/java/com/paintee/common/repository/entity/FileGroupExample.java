@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class FollowExample {
+public class FileGroupExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public FollowExample() {
+    public FileGroupExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -105,143 +105,133 @@ public class FollowExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andUserIdIsNull() {
-            addCriterion("\"user_id\" is null");
+        public Criteria andSeqIsNull() {
+            addCriterion("\"seq\" is null");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdIsNotNull() {
-            addCriterion("\"user_id\" is not null");
+        public Criteria andSeqIsNotNull() {
+            addCriterion("\"seq\" is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdEqualTo(String value) {
-            addCriterion("\"user_id\" =", value, "userId");
+        public Criteria andSeqEqualTo(Long value) {
+            addCriterion("\"seq\" =", value, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotEqualTo(String value) {
-            addCriterion("\"user_id\" <>", value, "userId");
+        public Criteria andSeqNotEqualTo(Long value) {
+            addCriterion("\"seq\" <>", value, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThan(String value) {
-            addCriterion("\"user_id\" >", value, "userId");
+        public Criteria andSeqGreaterThan(Long value) {
+            addCriterion("\"seq\" >", value, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThanOrEqualTo(String value) {
-            addCriterion("\"user_id\" >=", value, "userId");
+        public Criteria andSeqGreaterThanOrEqualTo(Long value) {
+            addCriterion("\"seq\" >=", value, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLessThan(String value) {
-            addCriterion("\"user_id\" <", value, "userId");
+        public Criteria andSeqLessThan(Long value) {
+            addCriterion("\"seq\" <", value, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLessThanOrEqualTo(String value) {
-            addCriterion("\"user_id\" <=", value, "userId");
+        public Criteria andSeqLessThanOrEqualTo(Long value) {
+            addCriterion("\"seq\" <=", value, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLike(String value) {
-            addCriterion("\"user_id\" like", value, "userId");
+        public Criteria andSeqIn(List<Long> values) {
+            addCriterion("\"seq\" in", values, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotLike(String value) {
-            addCriterion("\"user_id\" not like", value, "userId");
+        public Criteria andSeqNotIn(List<Long> values) {
+            addCriterion("\"seq\" not in", values, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdIn(List<String> values) {
-            addCriterion("\"user_id\" in", values, "userId");
+        public Criteria andSeqBetween(Long value1, Long value2) {
+            addCriterion("\"seq\" between", value1, value2, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotIn(List<String> values) {
-            addCriterion("\"user_id\" not in", values, "userId");
+        public Criteria andSeqNotBetween(Long value1, Long value2) {
+            addCriterion("\"seq\" not between", value1, value2, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdBetween(String value1, String value2) {
-            addCriterion("\"user_id\" between", value1, value2, "userId");
+        public Criteria andGroupNameIsNull() {
+            addCriterion("\"group_name\" is null");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotBetween(String value1, String value2) {
-            addCriterion("\"user_id\" not between", value1, value2, "userId");
+        public Criteria andGroupNameIsNotNull() {
+            addCriterion("\"group_name\" is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFollowingIsNull() {
-            addCriterion("\"following\" is null");
+        public Criteria andGroupNameEqualTo(String value) {
+            addCriterion("\"group_name\" =", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andFollowingIsNotNull() {
-            addCriterion("\"following\" is not null");
+        public Criteria andGroupNameNotEqualTo(String value) {
+            addCriterion("\"group_name\" <>", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andFollowingEqualTo(String value) {
-            addCriterion("\"following\" =", value, "following");
+        public Criteria andGroupNameGreaterThan(String value) {
+            addCriterion("\"group_name\" >", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andFollowingNotEqualTo(String value) {
-            addCriterion("\"following\" <>", value, "following");
+        public Criteria andGroupNameGreaterThanOrEqualTo(String value) {
+            addCriterion("\"group_name\" >=", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andFollowingGreaterThan(String value) {
-            addCriterion("\"following\" >", value, "following");
+        public Criteria andGroupNameLessThan(String value) {
+            addCriterion("\"group_name\" <", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andFollowingGreaterThanOrEqualTo(String value) {
-            addCriterion("\"following\" >=", value, "following");
+        public Criteria andGroupNameLessThanOrEqualTo(String value) {
+            addCriterion("\"group_name\" <=", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andFollowingLessThan(String value) {
-            addCriterion("\"following\" <", value, "following");
+        public Criteria andGroupNameLike(String value) {
+            addCriterion("\"group_name\" like", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andFollowingLessThanOrEqualTo(String value) {
-            addCriterion("\"following\" <=", value, "following");
+        public Criteria andGroupNameNotLike(String value) {
+            addCriterion("\"group_name\" not like", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andFollowingLike(String value) {
-            addCriterion("\"following\" like", value, "following");
+        public Criteria andGroupNameIn(List<String> values) {
+            addCriterion("\"group_name\" in", values, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andFollowingNotLike(String value) {
-            addCriterion("\"following\" not like", value, "following");
+        public Criteria andGroupNameNotIn(List<String> values) {
+            addCriterion("\"group_name\" not in", values, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andFollowingIn(List<String> values) {
-            addCriterion("\"following\" in", values, "following");
+        public Criteria andGroupNameBetween(String value1, String value2) {
+            addCriterion("\"group_name\" between", value1, value2, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andFollowingNotIn(List<String> values) {
-            addCriterion("\"following\" not in", values, "following");
-            return (Criteria) this;
-        }
-
-        public Criteria andFollowingBetween(String value1, String value2) {
-            addCriterion("\"following\" between", value1, value2, "following");
-            return (Criteria) this;
-        }
-
-        public Criteria andFollowingNotBetween(String value1, String value2) {
-            addCriterion("\"following\" not between", value1, value2, "following");
+        public Criteria andGroupNameNotBetween(String value1, String value2) {
+            addCriterion("\"group_name\" not between", value1, value2, "groupName");
             return (Criteria) this;
         }
 

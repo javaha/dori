@@ -7,7 +7,7 @@
 | Package | com.paintee.mobile.test.controller |    
 | Project name | paintee-admin |    
 | Type name | TestController |    
-| Company | SAMSUNG | 
+| Company | Paintee | 
 | Create Date | 2016 2016. 2. 27. 오후 4:38:55 |
 | Author | Administrator |
 | File Version | v1.0 |
@@ -19,9 +19,15 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.paintee.common.file.service.FileInfoGenerator;
+import com.paintee.common.repository.entity.FileInfo;
 
 /**
 @class TestController
@@ -30,7 +36,7 @@ com.paintee.mobile.test.controller \n
  @section 클래스작성정보
     |    항  목       |      내  용       |
     | :-------------: | -------------   |
-    | Company | SAMSUNG |
+    | Company | Paintee |
     | Author | Administrator |
     | Date | 2016. 2. 27. 오후 4:38:55 |
     | Class Version | v1.0 |
@@ -39,9 +45,14 @@ com.paintee.mobile.test.controller \n
  - 상세설명 은 여기에 기입해 주세요.
  -# 여기는 리스트로 표시됩니다.
 */
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController(value="com.paintee.mobile.test.TestController")
 public class TestController {
 	private final static Logger logger = LoggerFactory.getLogger(TestController.class);
+
+	@Autowired
+	private FileInfoGenerator fileInfoGenerator;
+
 	/**
 	 @fn test
 	 @brief 함수 간략한 설명 : json 데이터 전송 테스트용 json 데이터 전송
@@ -55,6 +66,24 @@ public class TestController {
 		
 		resultMap.put("test", "aaa");
 		resultMap.put("ccc", 1);
+
+		return resultMap;
+	}
+
+	@RequestMapping(value="/ajax/upload", method={RequestMethod.POST})
+	public Map<String, Object> testUpload(TestVO testVO) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		logger.debug("testUpload");
+
+		MultipartFile painteeFile = testVO.getPainteeFile();
+		//첨부파일 업로드시
+		if (painteeFile != null && !painteeFile.isEmpty()) {
+			FileInfo fileInfo = fileInfoGenerator.makeFileInfo(painteeFile, null, testVO.getDisplayName());
+			logger.debug("fileInfo:{}", fileInfo);
+		}
+
+		resultMap.put("errorMsg", "aaa");
+		resultMap.put("errorNo", 0);
 
 		return resultMap;
 	}

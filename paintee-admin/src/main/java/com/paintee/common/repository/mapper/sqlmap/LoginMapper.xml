@@ -101,17 +101,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.paintee.common.repository.entity.Login" >
-    insert into "tb_login" ("seq", "user_id", "hash", 
-      "expire_date", "access_gubun")
-    values (#{seq,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{hash,jdbcType=VARCHAR}, 
-      #{expireDate,jdbcType=DATE}, #{accessGubun,jdbcType=CHAR})
+    <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into "tb_login" ("user_id", "hash", "expire_date", 
+      "access_gubun")
+    values (#{userId,jdbcType=VARCHAR}, #{hash,jdbcType=VARCHAR}, #{expireDate,jdbcType=DATE}, 
+      #{accessGubun,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Login" >
+    <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into "tb_login"
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="seq != null" >
-        "seq",
-      </if>
       <if test="userId != null" >
         "user_id",
       </if>
@@ -126,9 +129,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="seq != null" >
-        #{seq,jdbcType=INTEGER},
-      </if>
       <if test="userId != null" >
         #{userId,jdbcType=VARCHAR},
       </if>

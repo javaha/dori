@@ -8,6 +8,7 @@
     <result column="account_name" property="accountName" jdbcType="VARCHAR" />
     <result column="earm_requested_money" property="earmRequestedMoney" jdbcType="INTEGER" />
     <result column="reward_status" property="rewardStatus" jdbcType="CHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +69,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    "seq", "user_id", "account_no", "account_name", "earm_requested_money", "reward_status"
+    "seq", "user_id", "account_no", "account_name", "earm_requested_money", "reward_status", 
+    "created_date"
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.RewardExample" >
     select
@@ -102,19 +104,22 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.paintee.common.repository.entity.Reward" >
-    insert into "tb_reward" ("seq", "user_id", "account_no", 
-      "account_name", "earm_requested_money", "reward_status"
+    <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into "tb_reward" ("user_id", "account_no", "account_name", 
+      "earm_requested_money", "reward_status", "created_date"
       )
-    values (#{seq,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{accountNo,jdbcType=VARCHAR}, 
-      #{accountName,jdbcType=VARCHAR}, #{earmRequestedMoney,jdbcType=INTEGER}, #{rewardStatus,jdbcType=CHAR}
+    values (#{userId,jdbcType=VARCHAR}, #{accountNo,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, 
+      #{earmRequestedMoney,jdbcType=INTEGER}, #{rewardStatus,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Reward" >
+    <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into "tb_reward"
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="seq != null" >
-        "seq",
-      </if>
       <if test="userId != null" >
         "user_id",
       </if>
@@ -130,11 +135,11 @@
       <if test="rewardStatus != null" >
         "reward_status",
       </if>
+      <if test="createdDate != null" >
+        "created_date",
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="seq != null" >
-        #{seq,jdbcType=INTEGER},
-      </if>
       <if test="userId != null" >
         #{userId,jdbcType=VARCHAR},
       </if>
@@ -149,6 +154,9 @@
       </if>
       <if test="rewardStatus != null" >
         #{rewardStatus,jdbcType=CHAR},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -179,6 +187,9 @@
       <if test="record.rewardStatus != null" >
         "reward_status" = #{record.rewardStatus,jdbcType=CHAR},
       </if>
+      <if test="record.createdDate != null" >
+        "created_date" = #{record.createdDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -191,7 +202,8 @@
       "account_no" = #{record.accountNo,jdbcType=VARCHAR},
       "account_name" = #{record.accountName,jdbcType=VARCHAR},
       "earm_requested_money" = #{record.earmRequestedMoney,jdbcType=INTEGER},
-      "reward_status" = #{record.rewardStatus,jdbcType=CHAR}
+      "reward_status" = #{record.rewardStatus,jdbcType=CHAR},
+      "created_date" = #{record.createdDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -214,6 +226,9 @@
       <if test="rewardStatus != null" >
         "reward_status" = #{rewardStatus,jdbcType=CHAR},
       </if>
+      <if test="createdDate != null" >
+        "created_date" = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where "seq" = #{seq,jdbcType=INTEGER}
   </update>
@@ -223,7 +238,8 @@
       "account_no" = #{accountNo,jdbcType=VARCHAR},
       "account_name" = #{accountName,jdbcType=VARCHAR},
       "earm_requested_money" = #{earmRequestedMoney,jdbcType=INTEGER},
-      "reward_status" = #{rewardStatus,jdbcType=CHAR}
+      "reward_status" = #{rewardStatus,jdbcType=CHAR},
+      "created_date" = #{createdDate,jdbcType=TIMESTAMP}
     where "seq" = #{seq,jdbcType=INTEGER}
   </update>
 </mapper>
