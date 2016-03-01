@@ -35,9 +35,17 @@
 			<property name="enableSubPackages" value="true" />
 			<property name="rootClass" value="com.paintee.common.object.BaseEntity" />
 			<property name="trimStrings" value="true" />
+			<generatedKey column="seq" sqlStatement="MySql" identity="true" />
 		</table>
 
 		<table schema="" tableName="TB_REWARD" domainObjectName="Reward" delimitIdentifiers="true" delimitAllColumns="true" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" selectByExampleQueryId="true" selectByPrimaryKeyQueryId="true">
+			<property name="enableSubPackages" value="true" />
+			<property name="rootClass" value="com.paintee.common.object.BaseEntity" />
+			<property name="trimStrings" value="true" />
+			<generatedKey column="seq" sqlStatement="MySql" identity="true" />
+		</table>
+
+		<table schema="" tableName="TB_PAINTING" domainObjectName="Painting" delimitIdentifiers="true" delimitAllColumns="true" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" selectByExampleQueryId="true" selectByPrimaryKeyQueryId="true">
 			<property name="enableSubPackages" value="true" />
 			<property name="rootClass" value="com.paintee.common.object.BaseEntity" />
 			<property name="trimStrings" value="true" />
@@ -47,7 +55,22 @@
 			<property name="enableSubPackages" value="true" />
 			<property name="rootClass" value="com.paintee.common.object.BaseEntity" />
 			<property name="trimStrings" value="true" />
+			<generatedKey column="seq" sqlStatement="MySql" identity="true" />
 		</table>
+
+		<table schema="" tableName="TB_FILE_GROUP" domainObjectName="FileGroup" delimitIdentifiers="true" delimitAllColumns="true" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" selectByExampleQueryId="true" selectByPrimaryKeyQueryId="true">
+			<property name="enableSubPackages" value="true" />
+			<property name="rootClass" value="com.paintee.common.object.BaseEntity" />
+			<property name="trimStrings" value="true" />
+			<generatedKey column="seq" sqlStatement="MySql" identity="true" />
+		</table>
+
+		<table schema="" tableName="TB_FILE_INFO" domainObjectName="FileInfo" delimitIdentifiers="true" delimitAllColumns="true" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" selectByExampleQueryId="true" selectByPrimaryKeyQueryId="true">
+			<property name="enableSubPackages" value="true" />
+			<property name="rootClass" value="com.paintee.common.object.BaseEntity" />
+			<property name="trimStrings" value="true" />
+		</table>
+ 
 	</context>
 
 </generatorConfiguration>
