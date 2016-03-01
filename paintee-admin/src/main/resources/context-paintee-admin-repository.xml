@@ -20,15 +20,7 @@
 	<tx:annotation-driven />
 
 	<util:properties id="properties" location="classpath:paintee-admin-repository.properties" />
-
- 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:paintee-admin-repository.properties</value>
-            </list>
-        </property> 
-        <property name="ignoreUnresolvablePlaceholders" value="true"/>
-    </bean>	
+ 	<context:property-placeholder properties-ref="properties"/>
  
 	<!-- mybatis Setting -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">

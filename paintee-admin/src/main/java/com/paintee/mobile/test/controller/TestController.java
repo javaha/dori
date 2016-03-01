@@ -17,6 +17,8 @@ package com.paintee.mobile.test.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +41,7 @@ com.paintee.mobile.test.controller \n
 */
 @RestController(value="com.paintee.mobile.test.TestController")
 public class TestController {
+	private final static Logger logger = LoggerFactory.getLogger(TestController.class);
 	/**
 	 @fn test
 	 @brief 함수 간략한 설명 : json 데이터 전송 테스트용 json 데이터 전송
