@@ -76,9 +76,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    "painting_id", "upload_date", "artist_id", "artist_name", "sentence", "location", 
-    "posted_num", "posted_people_cnt", "original_size", "view_cnt", "share_cnt", "file_group_seq", 
-    "painting_status", "created_date"
+    painting_id, upload_date, artist_id, artist_name, sentence, location, posted_num, 
+    posted_people_cnt, original_size, view_cnt, share_cnt, file_group_seq, painting_status, 
+    created_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.PaintingExample" >
     select
@@ -87,7 +87,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from "tb_painting"
+    from tb_painting
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -98,25 +98,25 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from "tb_painting"
-    where "painting_id" = #{paintingId,jdbcType=VARCHAR}
+    from tb_painting
+    where painting_id = #{paintingId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from "tb_painting"
-    where "painting_id" = #{paintingId,jdbcType=VARCHAR}
+    delete from tb_painting
+    where painting_id = #{paintingId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.PaintingExample" >
-    delete from "tb_painting"
+    delete from tb_painting
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.paintee.common.repository.entity.Painting" >
-    insert into "tb_painting" ("painting_id", "upload_date", "artist_id", 
-      "artist_name", "sentence", "location", 
-      "posted_num", "posted_people_cnt", "original_size", 
-      "view_cnt", "share_cnt", "file_group_seq", 
-      "painting_status", "created_date")
+    insert into tb_painting (painting_id, upload_date, artist_id, 
+      artist_name, sentence, location, 
+      posted_num, posted_people_cnt, original_size, 
+      view_cnt, share_cnt, file_group_seq, 
+      painting_status, created_date)
     values (#{paintingId,jdbcType=VARCHAR}, #{uploadDate,jdbcType=TIMESTAMP}, #{artistId,jdbcType=VARCHAR}, 
       #{artistName,jdbcType=VARCHAR}, #{sentence,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
       #{postedNum,jdbcType=INTEGER}, #{postedPeopleCnt,jdbcType=INTEGER}, #{originalSize,jdbcType=VARCHAR}, 
@@ -124,49 +124,49 @@
       #{paintingStatus,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Painting" >
-    insert into "tb_painting"
+    insert into tb_painting
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="paintingId != null" >
-        "painting_id",
+        painting_id,
       </if>
       <if test="uploadDate != null" >
-        "upload_date",
+        upload_date,
       </if>
       <if test="artistId != null" >
-        "artist_id",
+        artist_id,
       </if>
       <if test="artistName != null" >
-        "artist_name",
+        artist_name,
       </if>
       <if test="sentence != null" >
-        "sentence",
+        sentence,
       </if>
       <if test="location != null" >
-        "location",
+        location,
       </if>
       <if test="postedNum != null" >
-        "posted_num",
+        posted_num,
       </if>
       <if test="postedPeopleCnt != null" >
-        "posted_people_cnt",
+        posted_people_cnt,
       </if>
       <if test="originalSize != null" >
-        "original_size",
+        original_size,
       </if>
       <if test="viewCnt != null" >
-        "view_cnt",
+        view_cnt,
       </if>
       <if test="shareCnt != null" >
-        "share_cnt",
+        share_cnt,
       </if>
       <if test="fileGroupSeq != null" >
-        "file_group_seq",
+        file_group_seq,
       </if>
       <if test="paintingStatus != null" >
-        "painting_status",
+        painting_status,
       </if>
       <if test="createdDate != null" >
-        "created_date",
+        created_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -215,55 +215,55 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.paintee.common.repository.entity.PaintingExample" resultType="java.lang.Integer" >
-    select count(*) from "tb_painting"
+    select count(*) from tb_painting
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update "tb_painting"
+    update tb_painting
     <set >
       <if test="record.paintingId != null" >
-        "painting_id" = #{record.paintingId,jdbcType=VARCHAR},
+        painting_id = #{record.paintingId,jdbcType=VARCHAR},
       </if>
       <if test="record.uploadDate != null" >
-        "upload_date" = #{record.uploadDate,jdbcType=TIMESTAMP},
+        upload_date = #{record.uploadDate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.artistId != null" >
-        "artist_id" = #{record.artistId,jdbcType=VARCHAR},
+        artist_id = #{record.artistId,jdbcType=VARCHAR},
       </if>
       <if test="record.artistName != null" >
-        "artist_name" = #{record.artistName,jdbcType=VARCHAR},
+        artist_name = #{record.artistName,jdbcType=VARCHAR},
       </if>
       <if test="record.sentence != null" >
-        "sentence" = #{record.sentence,jdbcType=VARCHAR},
+        sentence = #{record.sentence,jdbcType=VARCHAR},
       </if>
       <if test="record.location != null" >
-        "location" = #{record.location,jdbcType=VARCHAR},
+        location = #{record.location,jdbcType=VARCHAR},
       </if>
       <if test="record.postedNum != null" >
-        "posted_num" = #{record.postedNum,jdbcType=INTEGER},
+        posted_num = #{record.postedNum,jdbcType=INTEGER},
       </if>
       <if test="record.postedPeopleCnt != null" >
-        "posted_people_cnt" = #{record.postedPeopleCnt,jdbcType=INTEGER},
+        posted_people_cnt = #{record.postedPeopleCnt,jdbcType=INTEGER},
       </if>
       <if test="record.originalSize != null" >
-        "original_size" = #{record.originalSize,jdbcType=VARCHAR},
+        original_size = #{record.originalSize,jdbcType=VARCHAR},
       </if>
       <if test="record.viewCnt != null" >
-        "view_cnt" = #{record.viewCnt,jdbcType=INTEGER},
+        view_cnt = #{record.viewCnt,jdbcType=INTEGER},
       </if>
       <if test="record.shareCnt != null" >
-        "share_cnt" = #{record.shareCnt,jdbcType=INTEGER},
+        share_cnt = #{record.shareCnt,jdbcType=INTEGER},
       </if>
       <if test="record.fileGroupSeq != null" >
-        "file_group_seq" = #{record.fileGroupSeq,jdbcType=BIGINT},
+        file_group_seq = #{record.fileGroupSeq,jdbcType=BIGINT},
       </if>
       <if test="record.paintingStatus != null" >
-        "painting_status" = #{record.paintingStatus,jdbcType=CHAR},
+        painting_status = #{record.paintingStatus,jdbcType=CHAR},
       </if>
       <if test="record.createdDate != null" >
-        "created_date" = #{record.createdDate,jdbcType=TIMESTAMP},
+        created_date = #{record.createdDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -271,85 +271,85 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update "tb_painting"
-    set "painting_id" = #{record.paintingId,jdbcType=VARCHAR},
-      "upload_date" = #{record.uploadDate,jdbcType=TIMESTAMP},
-      "artist_id" = #{record.artistId,jdbcType=VARCHAR},
-      "artist_name" = #{record.artistName,jdbcType=VARCHAR},
-      "sentence" = #{record.sentence,jdbcType=VARCHAR},
-      "location" = #{record.location,jdbcType=VARCHAR},
-      "posted_num" = #{record.postedNum,jdbcType=INTEGER},
-      "posted_people_cnt" = #{record.postedPeopleCnt,jdbcType=INTEGER},
-      "original_size" = #{record.originalSize,jdbcType=VARCHAR},
-      "view_cnt" = #{record.viewCnt,jdbcType=INTEGER},
-      "share_cnt" = #{record.shareCnt,jdbcType=INTEGER},
-      "file_group_seq" = #{record.fileGroupSeq,jdbcType=BIGINT},
-      "painting_status" = #{record.paintingStatus,jdbcType=CHAR},
-      "created_date" = #{record.createdDate,jdbcType=TIMESTAMP}
+    update tb_painting
+    set painting_id = #{record.paintingId,jdbcType=VARCHAR},
+      upload_date = #{record.uploadDate,jdbcType=TIMESTAMP},
+      artist_id = #{record.artistId,jdbcType=VARCHAR},
+      artist_name = #{record.artistName,jdbcType=VARCHAR},
+      sentence = #{record.sentence,jdbcType=VARCHAR},
+      location = #{record.location,jdbcType=VARCHAR},
+      posted_num = #{record.postedNum,jdbcType=INTEGER},
+      posted_people_cnt = #{record.postedPeopleCnt,jdbcType=INTEGER},
+      original_size = #{record.originalSize,jdbcType=VARCHAR},
+      view_cnt = #{record.viewCnt,jdbcType=INTEGER},
+      share_cnt = #{record.shareCnt,jdbcType=INTEGER},
+      file_group_seq = #{record.fileGroupSeq,jdbcType=BIGINT},
+      painting_status = #{record.paintingStatus,jdbcType=CHAR},
+      created_date = #{record.createdDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.Painting" >
-    update "tb_painting"
+    update tb_painting
     <set >
       <if test="uploadDate != null" >
-        "upload_date" = #{uploadDate,jdbcType=TIMESTAMP},
+        upload_date = #{uploadDate,jdbcType=TIMESTAMP},
       </if>
       <if test="artistId != null" >
-        "artist_id" = #{artistId,jdbcType=VARCHAR},
+        artist_id = #{artistId,jdbcType=VARCHAR},
       </if>
       <if test="artistName != null" >
-        "artist_name" = #{artistName,jdbcType=VARCHAR},
+        artist_name = #{artistName,jdbcType=VARCHAR},
       </if>
       <if test="sentence != null" >
-        "sentence" = #{sentence,jdbcType=VARCHAR},
+        sentence = #{sentence,jdbcType=VARCHAR},
       </if>
       <if test="location != null" >
-        "location" = #{location,jdbcType=VARCHAR},
+        location = #{location,jdbcType=VARCHAR},
       </if>
       <if test="postedNum != null" >
-        "posted_num" = #{postedNum,jdbcType=INTEGER},
+        posted_num = #{postedNum,jdbcType=INTEGER},
       </if>
       <if test="postedPeopleCnt != null" >
-        "posted_people_cnt" = #{postedPeopleCnt,jdbcType=INTEGER},
+        posted_people_cnt = #{postedPeopleCnt,jdbcType=INTEGER},
       </if>
       <if test="originalSize != null" >
-        "original_size" = #{originalSize,jdbcType=VARCHAR},
+        original_size = #{originalSize,jdbcType=VARCHAR},
       </if>
       <if test="viewCnt != null" >
-        "view_cnt" = #{viewCnt,jdbcType=INTEGER},
+        view_cnt = #{viewCnt,jdbcType=INTEGER},
       </if>
       <if test="shareCnt != null" >
-        "share_cnt" = #{shareCnt,jdbcType=INTEGER},
+        share_cnt = #{shareCnt,jdbcType=INTEGER},
       </if>
       <if test="fileGroupSeq != null" >
-        "file_group_seq" = #{fileGroupSeq,jdbcType=BIGINT},
+        file_group_seq = #{fileGroupSeq,jdbcType=BIGINT},
       </if>
       <if test="paintingStatus != null" >
-        "painting_status" = #{paintingStatus,jdbcType=CHAR},
+        painting_status = #{paintingStatus,jdbcType=CHAR},
       </if>
       <if test="createdDate != null" >
-        "created_date" = #{createdDate,jdbcType=TIMESTAMP},
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where "painting_id" = #{paintingId,jdbcType=VARCHAR}
+    where painting_id = #{paintingId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.Painting" >
-    update "tb_painting"
-    set "upload_date" = #{uploadDate,jdbcType=TIMESTAMP},
-      "artist_id" = #{artistId,jdbcType=VARCHAR},
-      "artist_name" = #{artistName,jdbcType=VARCHAR},
-      "sentence" = #{sentence,jdbcType=VARCHAR},
-      "location" = #{location,jdbcType=VARCHAR},
-      "posted_num" = #{postedNum,jdbcType=INTEGER},
-      "posted_people_cnt" = #{postedPeopleCnt,jdbcType=INTEGER},
-      "original_size" = #{originalSize,jdbcType=VARCHAR},
-      "view_cnt" = #{viewCnt,jdbcType=INTEGER},
-      "share_cnt" = #{shareCnt,jdbcType=INTEGER},
-      "file_group_seq" = #{fileGroupSeq,jdbcType=BIGINT},
-      "painting_status" = #{paintingStatus,jdbcType=CHAR},
-      "created_date" = #{createdDate,jdbcType=TIMESTAMP}
-    where "painting_id" = #{paintingId,jdbcType=VARCHAR}
+    update tb_painting
+    set upload_date = #{uploadDate,jdbcType=TIMESTAMP},
+      artist_id = #{artistId,jdbcType=VARCHAR},
+      artist_name = #{artistName,jdbcType=VARCHAR},
+      sentence = #{sentence,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      posted_num = #{postedNum,jdbcType=INTEGER},
+      posted_people_cnt = #{postedPeopleCnt,jdbcType=INTEGER},
+      original_size = #{originalSize,jdbcType=VARCHAR},
+      view_cnt = #{viewCnt,jdbcType=INTEGER},
+      share_cnt = #{shareCnt,jdbcType=INTEGER},
+      file_group_seq = #{fileGroupSeq,jdbcType=BIGINT},
+      painting_status = #{paintingStatus,jdbcType=CHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP}
+    where painting_id = #{paintingId,jdbcType=VARCHAR}
   </update>
 </mapper>

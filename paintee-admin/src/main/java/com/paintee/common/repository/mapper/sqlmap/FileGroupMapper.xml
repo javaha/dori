@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    "seq", "group_name", "created_date"
+    seq, group_name, created_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.FileGroupExample" >
     select
@@ -74,7 +74,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from "tb_file_group"
+    from tb_file_group
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,15 +85,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from "tb_file_group"
-    where "seq" = #{seq,jdbcType=BIGINT}
+    from tb_file_group
+    where seq = #{seq,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from "tb_file_group"
-    where "seq" = #{seq,jdbcType=BIGINT}
+    delete from tb_file_group
+    where seq = #{seq,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.FileGroupExample" >
-    delete from "tb_file_group"
+    delete from tb_file_group
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -102,20 +102,20 @@
     <selectKey resultType="java.lang.Long" keyProperty="seq" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into "tb_file_group" ("group_name", "created_date")
+    insert into tb_file_group (group_name, created_date)
     values (#{groupName,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.FileGroup" >
     <selectKey resultType="java.lang.Long" keyProperty="seq" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into "tb_file_group"
+    insert into tb_file_group
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="groupName != null" >
-        "group_name",
+        group_name,
       </if>
       <if test="createdDate != null" >
-        "created_date",
+        created_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -128,22 +128,22 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.paintee.common.repository.entity.FileGroupExample" resultType="java.lang.Integer" >
-    select count(*) from "tb_file_group"
+    select count(*) from tb_file_group
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update "tb_file_group"
+    update tb_file_group
     <set >
       <if test="record.seq != null" >
-        "seq" = #{record.seq,jdbcType=BIGINT},
+        seq = #{record.seq,jdbcType=BIGINT},
       </if>
       <if test="record.groupName != null" >
-        "group_name" = #{record.groupName,jdbcType=VARCHAR},
+        group_name = #{record.groupName,jdbcType=VARCHAR},
       </if>
       <if test="record.createdDate != null" >
-        "created_date" = #{record.createdDate,jdbcType=TIMESTAMP},
+        created_date = #{record.createdDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -151,30 +151,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update "tb_file_group"
-    set "seq" = #{record.seq,jdbcType=BIGINT},
-      "group_name" = #{record.groupName,jdbcType=VARCHAR},
-      "created_date" = #{record.createdDate,jdbcType=TIMESTAMP}
+    update tb_file_group
+    set seq = #{record.seq,jdbcType=BIGINT},
+      group_name = #{record.groupName,jdbcType=VARCHAR},
+      created_date = #{record.createdDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.FileGroup" >
-    update "tb_file_group"
+    update tb_file_group
     <set >
       <if test="groupName != null" >
-        "group_name" = #{groupName,jdbcType=VARCHAR},
+        group_name = #{groupName,jdbcType=VARCHAR},
       </if>
       <if test="createdDate != null" >
-        "created_date" = #{createdDate,jdbcType=TIMESTAMP},
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where "seq" = #{seq,jdbcType=BIGINT}
+    where seq = #{seq,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.FileGroup" >
-    update "tb_file_group"
-    set "group_name" = #{groupName,jdbcType=VARCHAR},
-      "created_date" = #{createdDate,jdbcType=TIMESTAMP}
-    where "seq" = #{seq,jdbcType=BIGINT}
+    update tb_file_group
+    set group_name = #{groupName,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP}
+    where seq = #{seq,jdbcType=BIGINT}
   </update>
 </mapper>

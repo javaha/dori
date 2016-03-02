@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.paintee.common.file.service.FileInfoGenerator;
 import com.paintee.common.repository.entity.FileInfo;
+import com.paintee.mobile.test.service.TestService;
 
 /**
 @class TestController
@@ -52,6 +53,9 @@ public class TestController {
 	@Autowired
 	private FileInfoGenerator fileInfoGenerator;
 
+	@Autowired
+	private TestService testService;
+
 	/**
 	 @fn test
 	 @brief 함수 간략한 설명 : json 데이터 전송 테스트용 json 데이터 전송
@@ -75,11 +79,15 @@ public class TestController {
 		logger.debug("testUpload");
 
 		MultipartFile painteeFile = testVO.getPainteeFile();
+		FileInfo fileInfo = null;
+
 		//첨부파일 업로드시
 		if (painteeFile != null && !painteeFile.isEmpty()) {
-			FileInfo fileInfo = fileInfoGenerator.makeFileInfo(painteeFile, null, testVO.getDisplayName());
+			fileInfo = fileInfoGenerator.makeFileInfo(painteeFile, null, testVO.getDisplayName());
 			logger.debug("fileInfo:{}", fileInfo);
 		}
+
+		testService.saveFileInfo(fileInfo);
 
 		resultMap.put("errorMsg", "aaa");
 		resultMap.put("errorNo", 0);
