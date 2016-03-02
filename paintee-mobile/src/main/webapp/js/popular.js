@@ -1,6 +1,4 @@
-/**
- * 
- */
+// list container 시작  
 var popularSwiper = new Swiper('.swiper_container_popular', {
     slidesPerView: 'auto',
     centeredSlides: true,
