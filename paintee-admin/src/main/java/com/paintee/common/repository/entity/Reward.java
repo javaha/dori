@@ -1,6 +1,7 @@
 package com.paintee.common.repository.entity;
 
 import com.paintee.common.object.BaseEntity;
+import java.util.Date;
 
 public class Reward extends BaseEntity {
     private Integer seq;
@@ -14,6 +15,8 @@ public class Reward extends BaseEntity {
     private Integer earmRequestedMoney;
 
     private String rewardStatus;
+
+    private Date createdDate;
 
     public Integer getSeq() {
         return seq;
@@ -61,5 +64,13 @@ public class Reward extends BaseEntity {
 
     public void setRewardStatus(String rewardStatus) {
         this.rewardStatus = rewardStatus;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 }

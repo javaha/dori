@@ -1,6 +1,7 @@
 package com.paintee.common.repository.entity;
 
 import com.paintee.common.object.BaseEntity;
+import java.util.Date;
 
 public class User extends BaseEntity {
     private String userId;
@@ -32,6 +33,8 @@ public class User extends BaseEntity {
     private Integer point;
 
     private String userStatus;
+
+    private Date createdDate;
 
     public String getUserId() {
         return userId;
@@ -151,5 +154,13 @@ public class User extends BaseEntity {
 
     public void setUserStatus(String userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 }

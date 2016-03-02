@@ -28,6 +28,8 @@ public class Purchase extends BaseEntity {
 
     private String purchaseStatus;
 
+    private Date createdDate;
+
     public Integer getSeq() {
         return seq;
     }
@@ -122,5 +124,13 @@ public class Purchase extends BaseEntity {
 
     public void setPurchaseStatus(String purchaseStatus) {
         this.purchaseStatus = purchaseStatus;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 }

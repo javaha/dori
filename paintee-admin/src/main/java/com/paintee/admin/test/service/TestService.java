@@ -7,7 +7,7 @@
 | Package | com.paintee.admin.test.service |    
 | Project name | paintee-admin |    
 | Type name | TestService |    
-| Company | SAMSUNG | 
+| Company | Paintee | 
 | Create Date | 2016 2016. 2. 27. 오후 6:16:39 |
 | Author | Administrator |
 | File Version | v1.0 |
@@ -21,7 +21,7 @@ com.paintee.admin.test.service \n
  @section 클래스작성정보
     |    항  목       |      내  용       |
     | :-------------: | -------------   |
-    | Company | SAMSUNG |
+    | Company | Paintee |
     | Author | Administrator |
     | Date | 2016. 2. 27. 오후 6:16:39 |
     | Class Version | v1.0 |

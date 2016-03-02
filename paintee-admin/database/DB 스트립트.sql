@@ -13,12 +13,14 @@ create table TB_USER (
 	resent_send_addr varchar(200) comment '최근 보낸 주소',
 	resent_send_name varchar(30) comment '최근 보낸 이름',
 	point int comment '엽서를 구매할 수 있는 포인트',
-	user_status char(1) default 'N' comment '계정 상태(정상-N/정지-S/휴먼-Q)'
+	user_status char(1) default 'N' comment '계정 상태(정상-N/정지-S/휴먼-Q)',
+    created_date datetime default now() comment '생성일시'
 ) comment = '회원';
 
 create table TB_FOLLOW (
 	user_id varchar(30) not null comment 'Follow를 하는 사람 ID (follower)',
 	following varchar(30) not null comment 'Follow되는 대상 ID',
+    created_date datetime default now() comment '생성일시',
 	primary key (user_id, following)
 ) COMMENT = '팔로워';
 
@@ -34,7 +36,8 @@ create  table TB_PURCHASE (
 	receiver_name varchar(200) comment '엽서 수신자 이름',
 	sender_name varchar(30) comment '엽서 발신자 이름',
 	location varchar(40) comment '구매자의 국가',
-	purchase_status char(1) comment '구매 진행 상태 (요청-R/발송-S/환불요청-R/삭제-D)'
+	purchase_status char(1) comment '구매 진행 상태 (요청-R/발송-S/환불요청-R/삭제-D)',
+    created_date datetime default now() comment '생성일시'
 ) COMMENT = '구매';
 
 create table TB_REWARD ( 
@@ -43,7 +46,8 @@ create table TB_REWARD (
     account_no varchar(20) comment '입금 요청된 계좌번호',
     account_name varchar(30) comment '입금 요청된 계좌주 이름',
     earm_requested_money int comment '입금 요청된 금액',
-    reward_status char(1) comment '입금 진행 상태 (요청-R/비정상-A/완료-C)'
+    reward_status char(1) comment '입금 진행 상태 (요청-R/비정상-A/완료-C)',
+    created_date datetime default now() comment '생성일시'
 ) COMMENT = '리워드';
 
 create table TB_PAINTING (
@@ -58,8 +62,11 @@ create table TB_PAINTING (
     original_size varchar(10) comment '원본 이미지의 size',
     view_cnt int comment '조회수',
     share_cnt int comment 'share 버튼을 통해 공유된 횟수',
-    painting_status char(1) comment '현재 그림의 상태(정상-N/블라인드-B/삭제-D)'
+    file_group_seq bigint comment '첨부파일 그룹 아이디',
+    painting_status char(1) comment '현재 그림의 상태(정상-N/블라인드-B/삭제-D)',
+    created_date datetime default now() comment '생성일시'
 ) COMMENT = '페인팅';
+
 
 create table TB_NEW_PAINTING (
 	seq int primary key auto_increment comment '신규 페인팅 고유 번호',
@@ -78,3 +85,25 @@ create table TB_LOGIN (
 	expire_date  date comment '로그인 유효 날짜',
 	access_gubun  char(1) comment '접속 구분'
 ) COMMENT = '로그인';
+
+create table TB_FILE_GROUP (
+    seq bigint not null auto_increment comment '파일그룹아이디',
+    group_name varchar(255) comment '그룹명',
+    created_date datetime default now() comment '생성일자',
+    primary key (seq)
+) COMMENT = '파일 그룹';
+
+create table TB_FILE_INFO (
+    id varchar(255) not null comment '파일 아이디',
+    file_group_seq bigint not null comment '파일그룹아이디',
+    content_type varchar(255) comment '파일 mime type',
+    extension varchar(255) comment '파일 확장자',
+    name varchar(255) comment '서버저장 파일명(확장자 제외)',
+    ori_name varchar(255) comment '사용자가 업로드한 파일명(확장자 포함)',
+    display_name varchar(255) comment '화면표시용 파일명',
+    path varchar(255) comment '파일명과 절대경로를 제외한 파일 경로',
+    size bigint comment '파일 용량',
+    created_date datetime default now() comment '생성일자',
+    last_modified_date datetime default now() comment '수정일자',
+    primary key (id)
+) COMMENT = '파일 정보';

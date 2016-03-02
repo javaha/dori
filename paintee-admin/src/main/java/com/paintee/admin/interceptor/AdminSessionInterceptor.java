@@ -7,7 +7,7 @@
 | Package | com.paintee.admin.intercepetor |    
 | Project name | paintee-admin |    
 | Type name | AdminSessionInterceptor |    
-| Company | SAMSUNG | 
+| Company | Paintee | 
 | Create Date | 2016 2016. 2. 27. 오후 4:34:43 |
 | Author | Administrator |
 | File Version | v1.0 |
@@ -31,7 +31,7 @@ com.paintee.admin.intercepetor \n
  @section 클래스작성정보
     |    항  목       |      내  용       |
     | :-------------: | -------------   |
-    | Company | SAMSUNG |
+    | Company | Paintee |
     | Author | Administrator |
     | Date | 2016. 2. 27. 오후 4:34:43 |
     | Class Version | v1.0 |

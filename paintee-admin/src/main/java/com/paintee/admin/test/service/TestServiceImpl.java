@@ -7,7 +7,7 @@
 | Package | com.paintee.admin.test.service |    
 | Project name | paintee-admin |    
 | Type name | TestServiceImpl |    
-| Company | SAMSUNG | 
+| Company | Paintee | 
 | Create Date | 2016 2016. 2. 27. 오후 6:16:52 |
 | Author | Administrator |
 | File Version | v1.0 |
@@ -17,7 +17,6 @@ package com.paintee.admin.test.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.paintee.common.repository.entity.FollowExample;
 import com.paintee.common.repository.helper.FollowHelper;
 
 /**
@@ -27,7 +26,7 @@ com.paintee.admin.test.service \n
  @section 클래스작성정보
     |    항  목       |      내  용       |
     | :-------------: | -------------   |
-    | Company | SAMSUNG |
+    | Company | Paintee |
     | Author | Administrator |
     | Date | 2016. 2. 27. 오후 6:16:52 |
     | Class Version | v1.0 |

@@ -7,7 +7,7 @@
 | Package | com.paintee.common.object |    
 | Project name | paintee-admin |    
 | Type name | BaseEntity |    
-| Company | SAMSUNG | 
+| Company | Paintee | 
 | Create Date | 2016 2016. 2. 27. 오후 3:56:54 |
 | Author | Administrator |
 | File Version | v1.0 |
@@ -28,7 +28,7 @@ com.paintee.common.object \n
  @section 클래스작성정보
     |    항  목       |      내  용       |
     | :-------------: | -------------   |
-    | Company | SAMSUNG |
+    | Company | Paintee |
     | Author | Administrator |
     | Date | 2016. 2. 27. 오후 3:56:54 |
     | Class Version | v1.0 |

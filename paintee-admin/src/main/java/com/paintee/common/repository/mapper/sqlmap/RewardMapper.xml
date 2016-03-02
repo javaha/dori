@@ -8,6 +8,7 @@
     <result column="account_name" property="accountName" jdbcType="VARCHAR" />
     <result column="earm_requested_money" property="earmRequestedMoney" jdbcType="INTEGER" />
     <result column="reward_status" property="rewardStatus" jdbcType="CHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    "seq", "user_id", "account_no", "account_name", "earm_requested_money", "reward_status"
+    seq, user_id, account_no, account_name, earm_requested_money, reward_status, created_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.RewardExample" >
     select
@@ -77,7 +78,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from "tb_reward"
+    from tb_reward
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,53 +89,56 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from "tb_reward"
-    where "seq" = #{seq,jdbcType=INTEGER}
+    from tb_reward
+    where seq = #{seq,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from "tb_reward"
-    where "seq" = #{seq,jdbcType=INTEGER}
+    delete from tb_reward
+    where seq = #{seq,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.RewardExample" >
-    delete from "tb_reward"
+    delete from tb_reward
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.paintee.common.repository.entity.Reward" >
-    insert into "tb_reward" ("seq", "user_id", "account_no", 
-      "account_name", "earm_requested_money", "reward_status"
+    <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_reward (user_id, account_no, account_name, 
+      earm_requested_money, reward_status, created_date
       )
-    values (#{seq,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{accountNo,jdbcType=VARCHAR}, 
-      #{accountName,jdbcType=VARCHAR}, #{earmRequestedMoney,jdbcType=INTEGER}, #{rewardStatus,jdbcType=CHAR}
+    values (#{userId,jdbcType=VARCHAR}, #{accountNo,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, 
+      #{earmRequestedMoney,jdbcType=INTEGER}, #{rewardStatus,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Reward" >
-    insert into "tb_reward"
+    <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_reward
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="seq != null" >
-        "seq",
-      </if>
       <if test="userId != null" >
-        "user_id",
+        user_id,
       </if>
       <if test="accountNo != null" >
-        "account_no",
+        account_no,
       </if>
       <if test="accountName != null" >
-        "account_name",
+        account_name,
       </if>
       <if test="earmRequestedMoney != null" >
-        "earm_requested_money",
+        earm_requested_money,
       </if>
       <if test="rewardStatus != null" >
-        "reward_status",
+        reward_status,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="seq != null" >
-        #{seq,jdbcType=INTEGER},
-      </if>
       <if test="userId != null" >
         #{userId,jdbcType=VARCHAR},
       </if>
@@ -150,34 +154,40 @@
       <if test="rewardStatus != null" >
         #{rewardStatus,jdbcType=CHAR},
       </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.paintee.common.repository.entity.RewardExample" resultType="java.lang.Integer" >
-    select count(*) from "tb_reward"
+    select count(*) from tb_reward
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update "tb_reward"
+    update tb_reward
     <set >
       <if test="record.seq != null" >
-        "seq" = #{record.seq,jdbcType=INTEGER},
+        seq = #{record.seq,jdbcType=INTEGER},
       </if>
       <if test="record.userId != null" >
-        "user_id" = #{record.userId,jdbcType=VARCHAR},
+        user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.accountNo != null" >
-        "account_no" = #{record.accountNo,jdbcType=VARCHAR},
+        account_no = #{record.accountNo,jdbcType=VARCHAR},
       </if>
       <if test="record.accountName != null" >
-        "account_name" = #{record.accountName,jdbcType=VARCHAR},
+        account_name = #{record.accountName,jdbcType=VARCHAR},
       </if>
       <if test="record.earmRequestedMoney != null" >
-        "earm_requested_money" = #{record.earmRequestedMoney,jdbcType=INTEGER},
+        earm_requested_money = #{record.earmRequestedMoney,jdbcType=INTEGER},
       </if>
       <if test="record.rewardStatus != null" >
-        "reward_status" = #{record.rewardStatus,jdbcType=CHAR},
+        reward_status = #{record.rewardStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.createdDate != null" >
+        created_date = #{record.createdDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -185,45 +195,50 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update "tb_reward"
-    set "seq" = #{record.seq,jdbcType=INTEGER},
-      "user_id" = #{record.userId,jdbcType=VARCHAR},
-      "account_no" = #{record.accountNo,jdbcType=VARCHAR},
-      "account_name" = #{record.accountName,jdbcType=VARCHAR},
-      "earm_requested_money" = #{record.earmRequestedMoney,jdbcType=INTEGER},
-      "reward_status" = #{record.rewardStatus,jdbcType=CHAR}
+    update tb_reward
+    set seq = #{record.seq,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      account_no = #{record.accountNo,jdbcType=VARCHAR},
+      account_name = #{record.accountName,jdbcType=VARCHAR},
+      earm_requested_money = #{record.earmRequestedMoney,jdbcType=INTEGER},
+      reward_status = #{record.rewardStatus,jdbcType=CHAR},
+      created_date = #{record.createdDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.Reward" >
-    update "tb_reward"
+    update tb_reward
     <set >
       <if test="userId != null" >
-        "user_id" = #{userId,jdbcType=VARCHAR},
+        user_id = #{userId,jdbcType=VARCHAR},
       </if>
       <if test="accountNo != null" >
-        "account_no" = #{accountNo,jdbcType=VARCHAR},
+        account_no = #{accountNo,jdbcType=VARCHAR},
       </if>
       <if test="accountName != null" >
-        "account_name" = #{accountName,jdbcType=VARCHAR},
+        account_name = #{accountName,jdbcType=VARCHAR},
       </if>
       <if test="earmRequestedMoney != null" >
-        "earm_requested_money" = #{earmRequestedMoney,jdbcType=INTEGER},
+        earm_requested_money = #{earmRequestedMoney,jdbcType=INTEGER},
       </if>
       <if test="rewardStatus != null" >
-        "reward_status" = #{rewardStatus,jdbcType=CHAR},
+        reward_status = #{rewardStatus,jdbcType=CHAR},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where "seq" = #{seq,jdbcType=INTEGER}
+    where seq = #{seq,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.Reward" >
-    update "tb_reward"
-    set "user_id" = #{userId,jdbcType=VARCHAR},
-      "account_no" = #{accountNo,jdbcType=VARCHAR},
-      "account_name" = #{accountName,jdbcType=VARCHAR},
-      "earm_requested_money" = #{earmRequestedMoney,jdbcType=INTEGER},
-      "reward_status" = #{rewardStatus,jdbcType=CHAR}
-    where "seq" = #{seq,jdbcType=INTEGER}
+    update tb_reward
+    set user_id = #{userId,jdbcType=VARCHAR},
+      account_no = #{accountNo,jdbcType=VARCHAR},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      earm_requested_money = #{earmRequestedMoney,jdbcType=INTEGER},
+      reward_status = #{rewardStatus,jdbcType=CHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP}
+    where seq = #{seq,jdbcType=INTEGER}
   </update>
 </mapper>
