@@ -27,7 +27,7 @@ create table TB_FOLLOW (
 create  table TB_PURCHASE (
 	seq int primary key auto_increment comment '구매 고유 번호',
 	user_id varchar(30) comment '구매한 사람의 id', 
-	painting_id varchar(30) comment '구매된 그림의 id', 
+	painting_id varchar(64) comment '구매된 그림의 id', 
 	purchase_date datetime comment '구매된 날짜',
 	sentence varchar(200) comment '구매하면서 작성된 한마디',
 	private_at char(1) comment 'sentence의 공개/비공개 여부',
@@ -51,7 +51,7 @@ create table TB_REWARD (
 ) COMMENT = '리워드';
 
 create table TB_PAINTING (
-    painting_id varchar(30) primary key comment '그림의 고유 ID',
+    painting_id varchar(64) primary key comment '그림의 고유 ID',
     upload_date datetime comment '그림이 업로드 된 날짜',
     artist_id varchar(30) comment '그림을 올린 사람 ID',
     artist_name varchar(30) comment '그림을 올린 사람 이름',
@@ -70,12 +70,12 @@ create table TB_PAINTING (
 
 create table TB_NEW_PAINTING (
 	seq int primary key auto_increment comment '신규 페인팅 고유 번호',
-    painting_id varchar(30) comment '그림의 고유 ID'
+    painting_id varchar(64) comment '그림의 고유 ID'
 ) COMMENT = '신규 페인팅';
 
 create table TB_POPULAR_PAINTING (
 	seq int primary key auto_increment comment '인기 페인팅 고유 번호',
-    painting_id varchar(30) comment '그림의 고유 ID'
+    painting_id varchar(64) comment '그림의 고유 ID'
 ) COMMENT = '인기 페인팅';
 
 create table TB_LOGIN (
