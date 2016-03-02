@@ -48,7 +48,7 @@
 
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/**" />
+			<mvc:mapping path="/api/**" />
 			<mvc:exclude-mapping path="/css/**" />
 			<mvc:exclude-mapping path="/font-awesome/**" />
 			<mvc:exclude-mapping path="/fonts/**" />
