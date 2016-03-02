@@ -45,7 +45,6 @@ com.paintee.mobile.test.controller \n
  - 상세설명 은 여기에 기입해 주세요.
  -# 여기는 리스트로 표시됩니다.
 */
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController(value="com.paintee.mobile.test.TestController")
 public class TestController {
 	private final static Logger logger = LoggerFactory.getLogger(TestController.class);
@@ -60,7 +59,7 @@ public class TestController {
 	 - 함수의 상세 설명 : json 데이터 전송 테스트용 json 데이터 전송
 	 @return 
 	*/
-	@RequestMapping(value="/ajax/test", method={RequestMethod.GET})
+	@RequestMapping(value="/api/test", method={RequestMethod.GET})
 	public Map<String, Object> test() {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
@@ -70,7 +69,7 @@ public class TestController {
 		return resultMap;
 	}
 
-	@RequestMapping(value="/ajax/upload", method={RequestMethod.POST})
+	@RequestMapping(value="/api/upload", method={RequestMethod.POST})
 	public Map<String, Object> testUpload(TestVO testVO) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		logger.debug("testUpload");

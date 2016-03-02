@@ -47,7 +47,7 @@ com.paintee.common.file.controller \n
  - 첨부파일 관련 공통 rest controller
 */
 @RestController("com.paintee.common.file.controller.FileRestController")
-@RequestMapping(value = "/ajax/cmm")
+@RequestMapping(value = "/api/cmm")
 public class FileRestController {
 	private final static Logger logger = LoggerFactory.getLogger(FileRestController.class);
 

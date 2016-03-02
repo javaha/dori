@@ -29,7 +29,7 @@
     		upload: function () {
 				var form = new FormData($('#uploadForm').get(0));
 
-				AjaxCall.callMultipart("http://localhost:8080/ajax/upload", form, FileuploadController.uploadRes);
+				AjaxCall.callMultipart("http://localhost:8080/api/upload", form, FileuploadController.uploadRes);
     		},
     		uploadRes: function (result, status) {
     			console.log(result);
