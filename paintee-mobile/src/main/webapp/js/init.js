@@ -11,10 +11,7 @@ var boxWidth;
 var boxHeight;
 var boxStatus="";
 
-var apiUrl="http://localhost:8080/api";
-	apiUrl="http://localhost:8090/api";
-var imageUrl="http://localhost:8080";
-    imageUrl="http://localhost:8090";
+var imageUrl="http://localhost:8090";
 var apiUrl=imageUrl+"/api";
 
 setWidth();
