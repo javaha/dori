@@ -1,6 +1,13 @@
 // 상세화면의 구조
-function DetailStructure(index){
+function DetailStructure(index, fileId, artistName, artstId, artistSentence, uploadDate, postedNum){
     this.index          = index;
+
+    this.fileId          = fileId;
+    this.artistName     = artistName;
+    this.artstId        = artstId;
+    this.artistSentence = artistSentence;
+    this.uploadDate     = uploadDate;
+    this.postedNum      = postedNum;
 
     this.detail             =$(".detail");
 
@@ -43,25 +50,25 @@ DetailStructure.prototype   ={
     setArtist   : function(artistName){
         this.detailArtistBtn.html(artistName);
     },
-    setFollow   : function(index){
+    setFollow   : function(artstId){
         this.detailArtistFollow.append('<i class="material-icons" style="font-size:12px">star</i> follow artist');
     },
     setSentence : function(artistSentence){
         this.detailArtistSentence.html(artistSentence);
     },
-    setDate     : function(index){
-        this.detailArtistDate.html("05. May");
+    setDate     : function(uploadDate){
+        this.detailArtistDate.html(uploadDate);
     },
     setPostedNum: function(postedNum){
         this.detailPostbarPostedNum.html(postedNum);
     },
     buildDetail : function(){
-        this.setBG(this.index);
-        this.setArtist(this.index);
-        this.setFollow(this.index);
-        this.setSentence(this.index);
-        this.setDate(this.index);
-        this.setPostedNum(this.index);
+        this.setBG(this.fileId);
+        this.setArtist(this.artistName);
+        this.setFollow(this.artstId);
+        this.setSentence(this.artistSentence);
+        this.setDate(this.uploadDate);
+        this.setPostedNum(this.postedNum);
 
         this.detailBgContainer.append(this.detailBgImg);
 
@@ -106,19 +113,25 @@ var postedLockBreakpoint;
 var DetailController = {
 	//디테일화면에서 보여질 데이터 조회
 	getDetailData: function (paintingId, index, color, colorDark) {
-		AjaxCall.call("http://localhost:8080/api/painting/"+paintingId, null, "GET", DetailController.getDetailDataRes);
+		//TODO:임시로 paintingId 를 변경함.
+		paintingId = "b0645fc6-a7bb-4f61-a133-d29ae45c48fe";
+		AjaxCall.call(apiUrl+"/painting/"+paintingId, null, "GET", DetailController.getDetailDataRes);
 	},
 	getDetailDataRes: function (result, status, paintingId, index, color, colorDark) {
-		 initDetail(index);
-		 setDetailLayout();
+		console.log(result);
 
-		 $(".detail").show().css("top", 200);
-		 $(".detail").animate({top: 0, opacity: 1}, 200);
-		 $(".detail_bg_container").css("background-color", "hsl("+color+")");
-		 $(".detail_bg_bottom").css("background-color", "hsla("+colorDark+", 1)");
-		 $(".detail_artist").css("background-color", "hsla("+colorDark+", 0.7)");
-		 $(".detail_postbar").css("background-color", "hsla("+colorDark+", 1)");
-		 lockPosted(detailSwiper);
+		//loadDetail 에서 하던내용
+		initDetail(index, result);
+		setDetailLayout();
+
+		$(".detail").show().css("top", 200);
+		$(".detail").animate({top: 0, opacity: 1}, 200);
+		$(".detail_bg_container").css("background-color", "hsl("+color+")");
+		$(".detail_bg_bottom").css("background-color", "hsla("+colorDark+", 1)");
+		$(".detail_artist").css("background-color", "hsla("+colorDark+", 0.7)");
+		$(".detail_postbar").css("background-color", "hsla("+colorDark+", 1)");
+
+		lockPosted(detailSwiper);
 	}
 }
 
@@ -128,13 +141,14 @@ function loadDetail(index, color, colorDark){
 }
 
 //디테일화면 초기화
-function initDetail(index){
+function initDetail(index, paintingInfo){
  isDetail = true;
  postedLock = true;
  postedObj = new Array();
  postedIndex = new Array();
 
- this.detailStructure = new DetailStructure(index);
+ //this.detailStructure = new DetailStructure(index);
+ this.detailStructure = new DetailStructure(index, paintingInfo.fileId, paintingInfo.artistName, paintingInfo.artistId, paintingInfo.sentence, paintingInfo.uploadDate, paintingInfo.postedNum);
  this.detailStructure.buildDetail();
 
  this.detailSwiper = new Swiper('.swiper_container_detail', {
@@ -337,5 +351,35 @@ DetailStructure.prototype   ={
         this.detail.append(this.detailPostBtn);
         this.detail.append(this.detailScroll);
     }
+}
+
+
+//디테일화면 초기화
+function initDetail(index){
+ isDetail = true;
+ postedLock = true;
+ postedObj = new Array();
+ postedIndex = new Array();
+
+ this.detailStructure = new DetailStructure(index);
+ this.detailStructure.buildDetail();
+
+ this.detailSwiper = new Swiper('.swiper_container_detail', {
+     direction: 'vertical',
+     slidesPerView: 'auto',
+     centeredSlides: false,
+     freeMode: false,
+     freeModeMomentumRatio: 0.4,
+     freeModeMomentumBounceRatio: 0.5,
+     mousewheelControl : true,
+     scrollbar: '.swiper-scrollbar-detail',
+     scrollbarHide: true
+ });
+ this.detailSwiper.on("onSliderMove", function(swiper){
+     changeMode(swiper);
+ });
+ this.detailSwiper.on("onSetTranslate", function(swiper){
+     changeMode(swiper);
+ });
 }
 */
