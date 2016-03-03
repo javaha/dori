@@ -112,10 +112,10 @@ var postedLockBreakpoint;
 
 var DetailController = {
 	//디테일화면에서 보여질 데이터 조회
-	getDetailData: function (paintingId, index, color, colorDark) {
+	getDetailData: function (index, color, colorDark) {
 		//TODO:임시로 paintingId 를 변경함.
-		paintingId = "b0645fc6-a7bb-4f61-a133-d29ae45c48fe";
-		AjaxCall.call(apiUrl+"/painting/"+paintingId, null, "GET", DetailController.getDetailDataRes);
+		var paintingId = "b0645fc6-a7bb-4f61-a133-d29ae45c48fe";
+		AjaxCall.call(apiUrl+"/painting/"+paintingId, null, "GET", function(result, status) { DetailController.getDetailDataRes(result, status, paintingId, index, color, colorDark); });
 	},
 	getDetailDataRes: function (result, status, paintingId, index, color, colorDark) {
 		console.log(result);
