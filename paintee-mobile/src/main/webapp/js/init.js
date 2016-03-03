@@ -12,7 +12,7 @@ var boxHeight;
 var boxStatus="";
 
 var apiUrl="http://localhost:8080/api";
-
+	apiUrl="http://localhost:8090/api";
 setWidth();
 
 // main container 시작
