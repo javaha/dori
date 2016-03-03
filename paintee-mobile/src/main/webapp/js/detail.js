@@ -45,7 +45,7 @@ function DetailStructure(index, fileId, artistName, artstId, artistSentence, upl
 
 DetailStructure.prototype   ={
     setBG       : function(fileId){
-        this.detailBgImg.attr("src", apiUrl+"/cmm/file/view/"+fileId);
+        this.detailBgImg.attr("src", imageUrl+"/cmm/file/view/"+fileId);
     },
     setArtist   : function(artistName){
         this.detailArtistBtn.html(artistName);
