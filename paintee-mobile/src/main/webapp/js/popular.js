@@ -1,3 +1,14 @@
+$(document).ready(function () {
+	AjaxCall.callJson(
+		"http://localhost:8090/api/popularIndex", 
+		"", 
+		"GET", 
+		function (result) {
+			console.log(result);
+		}
+	);
+});
+ 
 // list container 시작  
 var popularSwiper = new Swiper('.swiper_container_popular', {
     slidesPerView: 'auto',
@@ -18,6 +29,11 @@ function initPopular(){
     delete popularHome;
 
     addPainting(popularSwiper, 0, "popular");
+}
+
+//전체그림/전체좋아요 숫자설정
+function totalPainting(){
+    return $("<div>").html("<span id='popularCount'>1776</span>명이 paintee에서 좋아하는 그림을 찾았습니다.");
 }
 
 popularSwiper.on("onSlideChangeStart", function(swiper){addPainting(swiper, swiper.activeIndex, "popular")});
