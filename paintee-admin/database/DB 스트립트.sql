@@ -75,7 +75,8 @@ create table TB_NEW_PAINTING (
 
 create table TB_POPULAR_PAINTING (
 	seq int primary key auto_increment comment '인기 페인팅 고유 번호',
-    painting_id varchar(64) comment '그림의 고유 ID'
+    painting_id varchar(64) comment '그림의 고유 ID',
+    purchase_count int comment '그림 구매 숫자'
 ) COMMENT = '인기 페인팅';
 
 create table TB_LOGIN (
