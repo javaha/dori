@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	AjaxCall.callJson(
+	AjaxCall.call(
 		"http://localhost:8090/api/popularIndex", 
 		"", 
 		"GET", 
