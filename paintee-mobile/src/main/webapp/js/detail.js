@@ -1,10 +1,10 @@
 // 상세화면의 구조
-function DetailStructure(index, fileId, artistName, artstId, artistSentence, uploadDate, postedNum){
+function DetailStructure(index, fileId, artistName, artistId, artistSentence, uploadDate, postedNum){
     this.index          = index;
 
     this.fileId          = fileId;
     this.artistName     = artistName;
-    this.artstId        = artstId;
+    this.artistId       = artistId;
     this.artistSentence = artistSentence;
     this.uploadDate     = uploadDate;
     this.postedNum      = postedNum;
@@ -50,8 +50,9 @@ DetailStructure.prototype   ={
     setArtist   : function(artistName){
         this.detailArtistBtn.html(artistName);
     },
-    setFollow   : function(artstId){
-        this.detailArtistFollow.append('<i class="material-icons" style="font-size:12px">star</i> follow artist');
+    setFollow   : function(artistId){
+        this.detailArtistFollow.append('<i class="material-icons" style="font-size:12px">star</i> follow '+artistId);
+        this.detailArtistFollow.on('click', function() { DetailController.artistFollow(artistId); });
     },
     setSentence : function(artistSentence){
         this.detailArtistSentence.html(artistSentence);
@@ -65,7 +66,7 @@ DetailStructure.prototype   ={
     buildDetail : function(){
         this.setBG(this.fileId);
         this.setArtist(this.artistName);
-        this.setFollow(this.artstId);
+        this.setFollow(this.artistId);
         this.setSentence(this.artistSentence);
         this.setDate(this.uploadDate);
         this.setPostedNum(this.postedNum);
@@ -132,6 +133,17 @@ var DetailController = {
 		$(".detail_postbar").css("background-color", "hsla("+colorDark+", 1)");
 
 		lockPosted(detailSwiper);
+	},
+	artistFollow: function(artistId) {
+		AjaxCall.call(apiUrl+"/user/"+artistId+"/follow", null, "POST", function(result, status) { DetailController.artistFollowRes(result, status, artistId); });
+	},
+	artistFollowRes: function(result, status, artistId) {
+		console.log(artistId);
+		if(result.errorNo == 0) {
+			alert(artistId+' 님을 Follow 하였습니다.');
+		} else if(result.errorNo == 501){
+			alert(artistId+' 님은 이미 Follow 되어있습니다.');
+		}
 	}
 }
 

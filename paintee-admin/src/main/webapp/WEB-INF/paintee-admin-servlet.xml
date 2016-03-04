@@ -38,8 +38,8 @@
 
 	<mvc:cors>
 		<mvc:mapping path="/api/**"
-						allowed-origins="http://localhost:9080,http://localhost:8090"
-						allowed-methods="GET, PUT, POST, DELETE"
+						allowed-origins="http://localhost:9080, http://localhost:8090"
+						allowed-methods="GET, PUT, POST, DELETE, OPTIONS"
 						allowed-headers=""
 						exposed-headers=""
 						allow-credentials="false"

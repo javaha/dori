@@ -30,5 +30,14 @@ com.paintee.mobile.user.service \n
  - 사용자 service
 */
 public interface UserService {
-
+	/**
+	 @fn follow
+	 @brief 함수 간략한 설명 : followId 의 사용자가 followingId 사용자를 follow 한다.
+	 @remark
+	 - 함수의 상세 설명 : followId 의 사용자가 followingId 사용자를 follow 한다.
+	 @param followId
+	 @param followingId
+	 @return 
+	*/
+	public int follow(String followId, String followingId);
 }

@@ -9,6 +9,11 @@
 		</param-value>
 	</context-param>
 
+	<init-param>
+		<param-name>dispatchOptionsRequest</param-name>
+		<param-value>true</param-value>
+	</init-param>
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>

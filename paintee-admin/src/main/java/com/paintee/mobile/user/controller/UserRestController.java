@@ -49,8 +49,17 @@ public class UserRestController {
 	@Autowired
 	private UserService userService;
 
+	/**
+	 @fn follow
+	 @brief 함수 간략한 설명 : followId 의 사용자가 followingId 사용자를 follow 한다.
+	 @remark
+	 - 함수의 상세 설명 : followId 의 사용자가 followingId 사용자를 follow 한다.
+	 @param followingId
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value="/api/user/{followingId}/follow", method={RequestMethod.POST})
-	public Map<String, Object> following(@PathVariable String followingId) throws Exception {
+	public Map<String, Object> follow(@PathVariable String followingId) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
 
 		int errorNo = 0;
@@ -58,6 +67,8 @@ public class UserRestController {
 
 		//TODO: 로그인 hash 구현시 hash 에 해당하는 사용자 id 를 넣어주어야 함.
 		String followId = "dori";
+
+		errorNo = userService.follow(followId, followingId);
 
 		resultMap.put("errorNo", errorNo);
 		resultMap.put("errorMsg", errorMsg);
