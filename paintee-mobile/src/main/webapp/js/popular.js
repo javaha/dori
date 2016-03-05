@@ -75,29 +75,6 @@ PopularController.prototype = {
 		} 
 	}
 };
-/*
-var PopularController = {
-	getListData: function (startRow) {
-		AjaxCall.call(apiUrl + "/popularIndex/" + startRow, 
-			"", 
-			"GET", 
-			function (result) {
-				PopularController.getListDataRes(result);			
-			}
-		);
-	},	
-	getListDataRes: function (result) {
-		console.log(result);
-		$("#popular_count").text(result.count);
-		addPainting(popularSwiper, 0, "popular");
-		for (var index in result.list) {
-			addPainting(popularSwiper, 1, "popular", result.list[index]);
-		} 
-		// 최초 5개 미리 생성
-		
-	}
-};
-*/
 
 //각각의 home 화면 설정
 function initPopular(){
