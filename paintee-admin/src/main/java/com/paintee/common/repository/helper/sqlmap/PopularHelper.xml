@@ -3,7 +3,7 @@
 <mapper namespace="com.paintee.common.repository.helper.PopularHelper">
 	<resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.vo.PopularVO" extends="com.paintee.common.repository.mapper.PaintingMapper.BaseResultMap">
 	</resultMap>
-  
+
 	<!-- 구매일자가 120일 미만인 그림중에서 많이 팔린 순으로 가져오기 -->
   	<select id="selectPopularPaintingList" resultMap="BaseResultMap">
 		select a.artist_id, a.artist_name, 

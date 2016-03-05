@@ -1,4 +1,4 @@
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('aa', 'a1',  '테스트1',  1,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4801',  3,  1, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('aa', 'a1',  '테스트1',  1,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4801',  23,  1, 'N');
 insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('ab', 'a2',  '테스트2',  2,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4802',  0,  0, 'N');
 insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('ac', 'a3',  '테스트3',  3,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4803',  0,  0, 'N');
 insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('ad', 'a4',  '테스트4',  4,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4804',  1,  1, 'N');
@@ -14,9 +14,29 @@ insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload
 
 
 insert into TB_PURCHASE(user_id, painting_id, purchase_date, sentence, private_at, purchase_status) values 
-('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다', 'Y', 'S'),
-('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-02', '%Y-%m-%d'), '테스트 중입니다', 'Y', 'S'),
-('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'Y', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-02', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
+('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다', 'N', 'S'),
 ('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4804', STR_TO_DATE('2016-03-04', '%Y-%m-%d'), '테스트 중입니다', 'Y', 'S'),
 ('aa', 'b0645fc6-a7bb-4f61-a133-d29ae45c4805', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다', 'Y', 'S'),
 ('ab', 'b0645fc6-a7bb-4f61-a133-d29ae45c4807', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다', 'Y', 'S'),

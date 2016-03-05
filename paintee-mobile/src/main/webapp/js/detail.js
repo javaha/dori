@@ -1,6 +1,6 @@
 // 상세화면의 구조
 function DetailStructure(paintingId, fileId, artistName, artistId, artistSentence, uploadDate, postedNum){
-    this.paintingId          = paintingId;
+    this.paintingId     = paintingId;
 
     this.fileId          = fileId;
     this.artistName     = artistName;
@@ -52,7 +52,7 @@ DetailStructure.prototype   ={
     },
     setFollow   : function(artistId){
         this.detailArtistFollow.append('<i class="material-icons" style="font-size:12px">star</i> follow '+artistId);
-        this.detailArtistFollow.on('click', function() { DetailController.artistFollow(artistId); });
+        this.detailArtistFollow.on('click', function() { new DetailController().artistFollow(artistId); });
     },
     setSentence : function(artistSentence){
         this.detailArtistSentence.html(artistSentence);
@@ -111,13 +111,22 @@ var postedObj = new Array();
 var postedIndex = new Array();
 var postedLockBreakpoint;
 
-var DetailController = {
+//화면이 최초 생성시 swiper 에 detail-margin, detail-artist, detail-postbar 3 의 slide 가 미리 등록되어 진다.
+var initPostedSlideCnt = 3;
+
+var selectedPaintingId;
+
+function DetailController() {
+}
+
+DetailController.prototype = {
 	//디테일화면에서 보여질 데이터 조회
 	getDetailData: function (paintingId, color, colorDark) {
-		AjaxCall.call(apiUrl+"/painting/"+paintingId, null, "GET", function(result, status) { DetailController.getDetailDataRes(result, status, paintingId, color, colorDark); });
+		var controller = this;
+
+		AjaxCall.call(apiUrl+"/painting/"+paintingId, null, "GET", function (result, status) { controller.getDetailDataRes(result, status, paintingId, color, colorDark); });
 	},
 	getDetailDataRes: function (result, status, paintingId, color, colorDark) {
-		console.log(result);
 
 		//loadDetail 에서 하던내용
 		initDetail(paintingId, result);
@@ -133,7 +142,9 @@ var DetailController = {
 		lockPosted(detailSwiper);
 	},
 	artistFollow: function(artistId) {
-		AjaxCall.call(apiUrl+"/user/"+artistId+"/follow", null, "POST", function(result, status) { DetailController.artistFollowRes(result, status, artistId); });
+		var controller = this;
+
+		AjaxCall.call(apiUrl+"/user/"+artistId+"/follow", null, "POST", function(result, status) { controller.artistFollowRes(result, status, artistId); });
 	},
 	artistFollowRes: function(result, status, artistId) {
 		console.log(artistId);
@@ -143,11 +154,12 @@ var DetailController = {
 			alert(artistId+' 님은 이미 Follow 되어있습니다.');
 		}
 	}
-}
+};
 
 //디테일화면 표시
-function loadDetail(paintingId, color, colorDark){
-	DetailController.getDetailData(paintingId, color, colorDark);
+function loadDetail(paintingId, color, colorDark) {
+	selectedPaintingId = paintingId;
+	new DetailController().getDetailData(paintingId, color, colorDark);
 }
 
 //디테일화면 초기화
@@ -255,22 +267,25 @@ function unlockPosted(swiper){
 }
 
 //Detail화면의 댓글 구조
-function Posted(index){
- this.index      =index;
- this.container  =$("<div>").addClass("detail_posted swiper-slide").html("posted by ").css("background-color", "hsl("+colorDark+")");
- this.postee     =$("<div>").addClass("detail_postee_btn");
- this.sentence   =$("<div>").addClass("detail_posted_sentence").css("width", mainWidth*0.96);
+function Posted(purchaseSeq, userId, userSentence){
+ this.purchaseSeq =purchaseSeq;
+ this.userId = userId;
+ this.userSentence = userSentence;
+
+ this.container   =$("<div>").addClass("detail_posted swiper-slide").html("posted by ").css("background-color", "hsl("+colorDark+")");
+ this.postee      =$("<div>").addClass("detail_postee_btn");
+ this.sentence    =$("<div>").addClass("detail_posted_sentence").css("width", mainWidth*0.96);
 }
 Posted.prototype = {
- setPostee:      function(index){
-     this.postee.html("postee");
+ setPostee:      function(userId){
+     this.postee.html(userId);
  },
- setSentence:    function(index){
-     this.sentence.html("여기서는 구매한 사람들이 남긴 한마디들을<br>볼수있을거야");
+ setSentence:    function(userSentence){
+     this.sentence.html(userSentence);
  },
  buildPosted:    function(){
-     this.setPostee(this.index);
-     this.setSentence(this.index);
+     this.setPostee(this.userId);
+     this.setSentence(this.userSentence);
      this.container.append(this.postee);
      this.container.append(this.sentence);
 
@@ -278,28 +293,82 @@ Posted.prototype = {
  }
 }
 
+var isBlock = false;
+
+function PostedController() {
+	this.swiper = '';
+}
+PostedController.prototype = {
+	getPostedData: function(startRow, rowPerPage, swiper) {
+		var controller = this;
+
+		if(!isBlock) {
+			isBlock = true;
+
+			this.swiper = swiper;
+			AjaxCall.call(apiUrl+"/posted?paintingId="+selectedPaintingId+"&startRow="+startRow+"&rowPerPage="+rowPerPage, null, "GET", function (result, status) { controller.getPostedDataRes(result, status); } );
+		}
+	},
+	getPostedDataRes: function(result, status) {
+
+		for (var index in result.list) {
+			addPosted(this.swiper, result.list[index]);
+		}
+
+		isBlock = false;
+	}
+}
+
+function addPosted(swiper, postedInfo) {
+	var newPosted = new Posted(postedInfo.purchaseSeq, postedInfo.userId, postedInfo.sentence);
+	postedObj[swiper.slides.length-initPostedSlideCnt] = newPosted.buildPosted();
+	postedIndex.push(swiper.slides.length);
+	delete newPosted;
+
+	swiper.appendSlide(postedObj[swiper.slides.length-initPostedSlideCnt]);
+}
+
 //Detail화면의 댓글 무한스크롤 (10개씩 추가)
 function callPosted(swiper){
- var isPostedEnd;
- if(swiper.slides.length<swiper.activeIndex+10 && swiper.slides.length<=20){
-     for(swiper.slides.length ; swiper.slides.length < swiper.activeIndex+10 ;){
-         if(swiper.slides.length > 20){
-             break;
-         }
-         if(!postedObj[swiper.slides.length-3]){
-             var newPosted = new Posted(swiper.slides.length-3);
-             postedObj[swiper.slides.length-3] = newPosted.buildPosted();
-             postedIndex.push(swiper.slides.length);
-             delete newPosted;
-         }
-         swiper.appendSlide(postedObj[swiper.slides.length-3]);
-     }
- }
+	var isPostedEnd;
+	console.log(swiper.slides.length+":"+swiper.activeIndex);
+
+	var rowPerPage = 5;
+	var detailPostedCnt = swiper.slides.length - initPostedSlideCnt;
+
+	//console.log("detailPostedCnt:"+detailPostedCnt+", "+((swiper.activeIndex+2) - initPostedSlideCnt));
+	if(detailPostedCnt == 0 || detailPostedCnt == ((swiper.activeIndex+3) - initPostedSlideCnt)) {//현재 화면에 출력된 slide 중 가장 마지막 slide 호출시 rowPerPage 만큼 데이터를 요청한다.
+		new PostedController().getPostedData(detailPostedCnt, rowPerPage, swiper);
+	}
+/*
+	if(swiper.slides.length<swiper.activeIndex+10 && swiper.slides.length<=20){
+		for(swiper.slides.length ; swiper.slides.length < swiper.activeIndex+10 ;){
+			if(swiper.slides.length > 20){
+				break;
+			}
+			if(!postedObj[swiper.slides.length-3]){
+				var newPosted = new Posted(swiper.slides.length-3);
+				postedObj[swiper.slides.length-3] = newPosted.buildPosted();
+				postedIndex.push(swiper.slides.length);
+				delete newPosted;
+			}
+		swiper.appendSlide(postedObj[swiper.slides.length-3]);
+		}
+	}
+*/
 }
 
 //Detail화면의 댓글 지우기
 function hidePosted(swiper){
- swiper.removeSlide(postedIndex);
+/*	var tot = swiper.slides.length;
+	var removeIndex = tot-1;
+
+	for(var i=removeIndex; i > 3; i--) {
+		swiper.removeSlide(removeIndex);
+	}*/
+	//swiper.removeSlide(postedObj);
+	swiper.removeSlide(postedIndex);
+	//$(".detail_posted").remove();
 }
 
 /* ori
