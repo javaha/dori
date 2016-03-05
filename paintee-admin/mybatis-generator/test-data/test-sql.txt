@@ -10,7 +10,7 @@ insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload
 insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('aj', 'a10', '테스트10', 10, now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4810',  1,  1, 'N');
 insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('ak', 'a11', '테스트11', 11, now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4811',  2,  2, 'N');
 insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('al', 'a12', '테스트12', 12, now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4812',  2,  2, 'N');
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('am', 'a13', '테스트13', 13, now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4813',  9,  6, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('am', 'a13', '테스트13', 13, now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4813',  1,  1, 'N');
 
 
 insert into TB_PURCHASE(user_id, painting_id, purchase_date, sentence, private_at, purchase_status) values 
