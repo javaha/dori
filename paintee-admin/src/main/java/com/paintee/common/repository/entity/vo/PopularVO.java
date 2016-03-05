@@ -14,7 +14,6 @@
 */
 package com.paintee.common.repository.entity.vo;
 
-import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.repository.entity.Painting;
 
 /**

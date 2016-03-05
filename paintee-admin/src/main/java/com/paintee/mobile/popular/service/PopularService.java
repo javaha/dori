@@ -16,8 +16,7 @@ package com.paintee.mobile.popular.service;
 
 import java.util.Map;
 
-import com.paintee.common.repository.entity.FileInfo;
-import com.paintee.common.repository.entity.vo.PopularSearchVO;
+import com.paintee.common.repository.entity.vo.PaintingSearchVO;
 
 /**
 @class TestService
@@ -38,13 +37,13 @@ com.paintee.mobile.test.service \n
 public interface PopularService {
 	
 	/**
-	 @fn getPurchaseInfo
+	 @fn getPopularInfo
 	 @brief 함수 간략한 설명 : 인기구매그림 정보
 	 @remark
-	 - 함수의 상세 설명 : 많이 구입된 그림의 초기 정보를 조회한다.
+	 - 함수의 상세 설명 : 많이 구입된 그림의 정보를 조회한다.
 	 @param 
 	 @return
 	 @throws Exception 
 	*/
-	public Map<String, Object> getPurchaseInfo(PopularSearchVO popular) throws Exception;
+	public Map<String, Object> getPopularInfo(PaintingSearchVO popular) throws Exception;
 }

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.repository.entity.FileInfoExample;
 import com.paintee.common.repository.entity.PurchaseExample;
-import com.paintee.common.repository.entity.vo.PopularSearchVO;
+import com.paintee.common.repository.entity.vo.PaintingSearchVO;
 import com.paintee.common.repository.entity.vo.PopularVO;
 import com.paintee.common.repository.helper.FileInfoHelper;
 import com.paintee.common.repository.helper.PopularHelper;
@@ -48,16 +48,16 @@ public class PopularServiceImpl implements PopularService {
 	private FileInfoHelper fileInfoHelper;
 	
 	@Override
-	public Map<String, Object> getPurchaseInfo(PopularSearchVO search) throws Exception {
+	public Map<String, Object> getPopularInfo(PaintingSearchVO search) throws Exception {
 		PurchaseExample example = new PurchaseExample();
 		PurchaseExample.Criteria where =  example.createCriteria();
 		where.andPurchaseStatusEqualTo("S");
 		
 		int count = purchaseHelper.countByExample(example);
-		System.out.println("전체 개수 : " + count);
+		logger.debug("전체 개수 : " + count);
 		
 		List<PopularVO> list = popularHelper.selectPopularPaintingList(search);
-		System.out.println("list : " + list);
+		logger.debug("list : " + list);
 		
 		//파일정보 조회
 		for (PopularVO popular : list) {

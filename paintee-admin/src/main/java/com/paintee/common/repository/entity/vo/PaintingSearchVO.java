@@ -1,9 +1,9 @@
 /**
-@file PopularVO.java
+@file PaintingSearchVO.java
 @section 파일생성정보
 |    항  목       |      내  용       |
 | :-------------: | -------------   |
-| File name | PopularVO.java |    
+| File name | PaintingSearchVO.java |    
 | Package | com.paintee.common.repository.entity.vo |    
 | Project name | paintee-admin |    
 | Type name | PopularVO |    
@@ -17,7 +17,7 @@ package com.paintee.common.repository.entity.vo;
 import com.paintee.common.repository.entity.FileInfo;
 
 /**
-@class PopularSearchVO
+@class PaintingSearchVO
 com.paintee.common.repository.entity.vo \n
    ㄴ PopularSearchVO.java
  @section 클래스작성정보
@@ -32,7 +32,7 @@ com.paintee.common.repository.entity.vo \n
  - 상세설명 은 여기에 기입해 주세요.
  -# 여기는 리스트로 표시됩니다.
 */
-public class PopularSearchVO extends PagingVO {
+public class PaintingSearchVO extends PagingVO {
 	
     private String paintingStatus;
 	private FileInfo fileInfo;

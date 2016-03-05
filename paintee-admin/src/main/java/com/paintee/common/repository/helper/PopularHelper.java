@@ -16,7 +16,7 @@ package com.paintee.common.repository.helper;
 
 import java.util.List;
 
-import com.paintee.common.repository.entity.vo.PopularSearchVO;
+import com.paintee.common.repository.entity.vo.PaintingSearchVO;
 import com.paintee.common.repository.entity.vo.PopularVO;
 
 /**
@@ -36,5 +36,5 @@ com.paintee.common.repository.helper \n
  -# 여기는 리스트로 표시됩니다.
 */
 public interface PopularHelper {
-	List<PopularVO> selectPopularPaintingList(PopularSearchVO popular);
+	List<PopularVO> selectPopularPaintingList(PaintingSearchVO popular);
 }
