@@ -12,6 +12,7 @@ var boxHeight;
 var boxStatus="";
 
 var imageUrl="http://localhost:8090";
+//var imageUrl="http://192.168.0.10:8090";
 var apiUrl=imageUrl+"/api";
 
 setWidth();
@@ -230,7 +231,7 @@ function addPainting(swiper, currentIndex, type, listData){
     newSlide.setPostedNumber(listData.postedPeopleCnt);
     newSlide.setDate(toEngDateStr(listData.uploadDate));
     newSlide.setArtist(listData.artistName);
-    newSlide.setPainting(listData.paintingId, "http://localhost:8090/cmm/file/view/" + listData.fileId);
+    newSlide.setPainting(listData.paintingId, imageUrl + "/cmm/file/view/" + listData.fileId);
     if (type=="follow") {
         newSlide.setColor("hsl(200,60%,20%)");
     } else if (type=="popular") {
@@ -451,7 +452,6 @@ sideMenu.swipe({
     }
 });
 
-
 //side menu에 이벤트 설정
 function selectMenu(index){
     if(currentSwiper!==""){
@@ -547,71 +547,6 @@ function toggleFullScreen() {
     }
 }
 
-// 구매화면으로 이동
-function purchase(){
-    $(".purchase_container").show();
-    $(".purchase_pay_btn").click(function(){payment()});
-    purchaseStatus = "sentence";
-    setWidth();
-}
-
-function setPurchase(){
-    if(mainWidth<500){
-        purchaseWidth = mainWidth*0.9;
-        if(purchaseStatus!="address"){
-            $(".purchase_box").css("left", mainWidth*0.1);
-            $(".purchase_next_btn").show();   
-        }else{
-            $(".purchase_box").css("left", -purchaseWidth);
-            $(".purchase_prev_btn").show();
-        }
-    }else if(mainWidth<950){
-        purchaseWidth = 450;
-        if(purchaseStatus!="address"){
-            $(".purchase_box").css("left", mainWidth*0.1);
-            $(".purchase_next_btn").show();
-        }else{
-            $(".purchase_box").css("left", mainWidth*0.9-900);
-            $(".purchase_prev_btn").show();
-        }
-    }else{
-        purchaseWidth = 450;
-        $(".purchase_box").css("left", (mainWidth-900)/2);
-        $(".purchase_next_btn").hide();
-        $(".purchase_prev_btn").hide();
-    }
-    $(".purchase_box").width(purchaseWidth*2);
-    $(".purchase_box_left").width(purchaseWidth);            
-    $(".purchase_box_right").width(purchaseWidth);
-}
-
-$(".purchase_next_btn").click(function(){
-    purchaseStatus="address";
-    if(mainWidth<500){
-        $(".purchase_box").css("left", -purchaseWidth);
-        $(".purchase_next_btn").hide();
-        $(".purchase_prev_btn").show();
-    }else if(mainWidth<950){
-        $(".purchase_box").css("left", mainWidth*0.9-900);
-        $(".purchase_next_btn").hide();
-        $(".purchase_prev_btn").show();
-    }
-})
-$(".purchase_prev_btn").click(function(){
-    purchaseStatus="sentence";
-    if(mainWidth<500){
-        purchaseWidth = mainWidth*0.9;
-        $(".purchase_box").css("left", mainWidth*0.1);
-        $(".purchase_next_btn").show();
-        $(".purchase_prev_btn").hide();
-    }else if(mainWidth<950){
-        purchaseWidth = 450;
-        $(".purchase_box").css("left", mainWidth*0.1);
-        $(".purchase_next_btn").show();
-        $(".purchase_prev_btn").hide();
-    }
-})
-
 // 결재화면
 function payment(){
     purchaseStatus = "";
@@ -681,7 +616,6 @@ function completePayment(){
     })
     delete payment;
 }
-
 
 // 업로드/리워드가 표시되는 팝업창 사이즈 설정
 function setBox(){
@@ -930,14 +864,6 @@ $(".return_btn").click(function(){
     $(".popup_container").hide();
     purchaseStatus = "";
     boxStatus = "";
-})
-$(".purchase_container").click(function(){
-    $(".purchase_container").hide();
-    purchaseStatus = "";
-    boxStatus = "";
-})
-$(".purchase_box").click(function(e){
-    e.stopPropagation();
 })
 $(".popup_container").click(function(){
     $(".purchase_container").hide();
