@@ -170,7 +170,7 @@ function initMy(userID){
 
 // 그림 목록 화면
 function Structure(index){
-
+		
         this.index              =index;
         this.container          =$("<div>").addClass("list_contents swiper-slide");
 
@@ -198,19 +198,19 @@ Structure.prototype = {
         setDate:            function(date){
                                 this.listInfoDate.html(date)
                             },
-        setPainting:        function(){
+        setPainting:        function(paintingId, imageUrl){
                                     if(mainWidth<729){
                                         this.listPainting.css({"width": mainWidth*0.8, "height": mainWidth*10/9});
                                     }else{
                                         this.listPainting.css({"width": "648px", "height": "900px"});
                                     }
-                                this.listPainting.css("background-image", "url(p"+(this.index%5)+".png");
+                                this.listPainting.css("background-image", "url(" + imageUrl + ")");
                                 this.listPainting.swipe({
                                     swipeUp:function(){
-                                        loadDetail($(this).attr("index"), color, colorDark);
+                                        loadDetail(paintingId, color, colorDark);
                                     },
                                     tap:function(){
-                                        loadDetail($(this).attr("index"), color, colorDark);
+                                        loadDetail(paintingId, color, colorDark);
                                     },
                                     threshold:10
                                 });
@@ -219,11 +219,10 @@ Structure.prototype = {
                                 this.bottom.css("background-color", color);
                                 this.listPostBtn.css("color", color);
                             },
-        setArtist:          function(){
-                                this.listArtist.html("artist"+this.index);
+        setArtist:          function(name){
+                                this.listArtist.html(name);
                             },
         buildStructure:     function(){
-                                this.setPainting();
                                 this.listInfoRow_1.append(this.listInfoSentence);
                                 this.listInfo.append(this.listInfoRow_1);
                                 this.listInfoRow_2.append(this.listInfoPosted);
@@ -240,30 +239,27 @@ Structure.prototype = {
 }
 
 // 현재 슬라이드 위치에서 앞으로 5개의 슬라이드가 없으면 새로 생성 (무한스크롤)
-function addPainting(swiper, currentIndex, type){
-    if(swiper.slides.length<currentIndex+5 && swiper.slides.length<=20){
-        for(swiper.slides.length ; swiper.slides.length < currentIndex+5 ;){
-            if(swiper.slides.length > 20){
-                break;
-            }
-            var newSlide = new Structure(swiper.slides.length);
-            newSlide.setSentence(newSlide.index+"번째 그림에 대한 설명입니다. <br> 200자 까지 적을 수 있습니다.", "wrighter");
-            newSlide.setPostedNumber(newSlide.index);
-            newSlide.setDate("11. Nov");
-            newSlide.setArtist();
-            if(type=="follow"){
-                newSlide.setColor("hsl(200,60%,20%)");
-            }else if(type=="popular"){
-                newSlide.setColor("hsl(330,60%,20%)");
-            }else if(type=="new"){
-                newSlide.setColor("hsl(90,60%,20%)");
-            }else if(type=="my"){
-                newSlide.setColor("hsl(250,60%,20%)");
-            }
-            swiper.appendSlide(newSlide.buildStructure());
-            delete newSlide;    
-        }
+function addPainting(swiper, currentIndex, type, listData){
+	
+	if (!listData) { return; }
+	
+	var newSlide = new Structure(swiper.slides.length);
+    newSlide.setSentence(listData.sentence, listData.artistName);
+    newSlide.setPostedNumber(listData.postedPeopleCnt);
+    newSlide.setDate(toEngDateStr(listData.uploadDate));
+    newSlide.setArtist(listData.artistName);
+    newSlide.setPainting(listData.paintingId, "http://localhost:8090/cmm/file/view/" + listData.fileId);
+    if (type=="follow") {
+        newSlide.setColor("hsl(200,60%,20%)");
+    } else if (type=="popular") {
+        newSlide.setColor("hsl(330,60%,20%)");
+    } else if (type=="new") {
+        newSlide.setColor("hsl(90,60%,20%)");
+    } else if (type=="my") {
+        newSlide.setColor("hsl(250,60%,20%)");
     }
+    swiper.appendSlide(newSlide.buildStructure());
+    delete newSlide;    
 }
 
 followSwiper.on("onSlideChangeStart", function(swiper){if(userID!=="")addPainting(swiper, swiper.activeIndex, "follow")});

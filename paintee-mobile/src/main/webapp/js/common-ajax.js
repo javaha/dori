@@ -131,6 +131,21 @@ var AjaxCall = {
 	}
 };
 
+var convertEngMonth = function (mon){
+	if     (mon == '1')    	return 'Jan';
+	else if(mon == '2')		return 'Feb';
+	else if(mon == '3')		return 'Mar';
+	else if(mon == '4')		return 'Apr';
+	else if(mon == '5')		return 'May';
+	else if(mon == '6')		return 'Jun';
+	else if(mon == '7')		return 'Jul';
+	else if(mon == '8')		return 'Aug';
+	else if(mon == '9')		return 'Sep';
+	else if(mon == '10')	return 'Oct';
+	else if(mon == '11')	return 'Nov';
+	else if(mon == '12')	return 'Dec';
+}
+
 var toDate = function (timestamp) {
 	var date = new Date(timestamp);
 	var year = date.getFullYear();
@@ -147,6 +162,11 @@ var toDate = function (timestamp) {
 	return retVal;
 };
 
+var toEngDateStr = function (timestamp) {
+	var date = new Date(timestamp);
+	return date.getDate() + ". " + convertEngMonth(date.getMonth() + 1);
+};
+ 
 var toDateTime = function (timestamp) {
 	var date = new Date(timestamp);
 	var year = date.getFullYear();
