@@ -31,14 +31,7 @@ var followSwiper = new Swiper('.swiper_container_follow', {
     scrollbar: '.swiper-scrollbar-follow',
     scrollbarHide: true
 })
-var newSwiper = new Swiper('.swiper_container_new', {
-    slidesPerView: 'auto',
-    centeredSlides: true,
-    spaceBetween: mainWidth*0.05,
-    mousewheelControl : true,
-    scrollbar: '.swiper-scrollbar-new',
-    scrollbarHide: true
-})
+
 var mySwiper = new Swiper('.swiper_container_my', {
     slidesPerView: 'auto',
     centeredSlides: true,
@@ -120,17 +113,6 @@ function initFollow(userID){
         
         addPainting(followSwiper, 0, "follow");
     }
-}
-
-function initNew(){
-    var newHome = new Home();
-    newHome.setTitle("new");
-    newHome.setExplain("새로 올라온 그림입니다.");
-    newHome.setContents(totalPosted());
-    newSwiper.appendSlide(newHome.buildStructure());
-    delete newHome;
-
-    addPainting(newSwiper, 0, "new");
 }
 
 function initMy(userID){
@@ -263,7 +245,6 @@ function addPainting(swiper, currentIndex, type, listData){
 }
 
 followSwiper.on("onSlideChangeStart", function(swiper){if(userID!=="")addPainting(swiper, swiper.activeIndex, "follow")});
-newSwiper.on("onSlideChangeStart", function(swiper){addPainting(swiper, swiper.activeIndex, "new")});
 mySwiper.on("onSlideChangeStart", function(swiper){if(userID!=="")addPainting(swiper, swiper.activeIndex, "my")});
 
 
@@ -350,7 +331,6 @@ function hidePersonal(){
 
 // 최초 5개 미리 생성
 initFollow(userID);
-initNew();
 initMy(userID);
 initMenu(userID);
 
@@ -407,7 +387,6 @@ function listLock(swiper){
 }
 mainSwiper.on("onTransitionEnd", function(mainSwiper){mainLock(mainSwiper)});
 followSwiper.on("onTransitionEnd", function(swiper){listLock(swiper)});
-newSwiper.on("onTransitionEnd", function(swiper){listLock(swiper)});
 mySwiper.on("onTransitionEnd", function(swiper){listLock(swiper)});
 
 
@@ -485,9 +464,6 @@ function selectMenu(index){
 $("#menu_follow").click(function(){
     selectMenu(0);
 });
-$("#menu_new").click(function(){
-    selectMenu(2);
-});
 $("#menu_my").click(function(){
     selectMenu(3);
 });
@@ -503,7 +479,6 @@ $("#menu_reward").click(function(){
 // 초기 설정들
 // 가로휠방지 && 페이지네이션숨김 && 위로스와이프방지
 followSwiper.disableMousewheelControl();
-newSwiper.disableMousewheelControl();
 mySwiper.disableMousewheelControl();
 mainSwiper.lockSwipeToPrev();
 $(".swiper-scrollbar").hide();
@@ -539,13 +514,6 @@ function btnToggle(btn){
     $(btn).toggleClass("home_btn_inactive");
 }
 
-// 전체그림/전체좋아요 숫자설정
-function totalPosted(){
-    var contents = $("<div>");
-    contents.html("195개 그림이 paintee에 있습니다.")
-    return contents;
-}
-
 // list의 맨앞으로 되돌아가기 버튼
 $(".home_btn").click(function(){
     currentSwiper.slideTo(0);
@@ -558,7 +526,6 @@ $(".home_btn").click(function(){
      }
  }
 followSwiper.on("onSetTranslate", function(swiper, translate){swipeToMenu(swiper, translate)});
-newSwiper.on("onSetTranslate", function(swiper, translate){swipeToMenu(swiper, translate)});
 mySwiper.on("onSetTranslate", function(swiper, translate){swipeToMenu(swiper, translate)});
 
 // 모바일 웹브라우져를 전체화면으로 표시
