@@ -1,6 +1,6 @@
 // 상세화면의 구조
-function DetailStructure(index, fileId, artistName, artistId, artistSentence, uploadDate, postedNum){
-    this.index          = index;
+function DetailStructure(paintingId, fileId, artistName, artistId, artistSentence, uploadDate, postedNum){
+    this.paintingId          = paintingId;
 
     this.fileId          = fileId;
     this.artistName     = artistName;
@@ -113,16 +113,14 @@ var postedLockBreakpoint;
 
 var DetailController = {
 	//디테일화면에서 보여질 데이터 조회
-	getDetailData: function (index, color, colorDark) {
-		//TODO:임시로 paintingId 를 변경함.
-		var paintingId = "b0645fc6-a7bb-4f61-a133-d29ae45c48fe";
-		AjaxCall.call(apiUrl+"/painting/"+paintingId, null, "GET", function(result, status) { DetailController.getDetailDataRes(result, status, paintingId, index, color, colorDark); });
+	getDetailData: function (paintingId, color, colorDark) {
+		AjaxCall.call(apiUrl+"/painting/"+paintingId, null, "GET", function(result, status) { DetailController.getDetailDataRes(result, status, paintingId, color, colorDark); });
 	},
-	getDetailDataRes: function (result, status, paintingId, index, color, colorDark) {
+	getDetailDataRes: function (result, status, paintingId, color, colorDark) {
 		console.log(result);
 
 		//loadDetail 에서 하던내용
-		initDetail(index, result);
+		initDetail(paintingId, result);
 		setDetailLayout();
 
 		$(".detail").show().css("top", 200);
@@ -148,19 +146,19 @@ var DetailController = {
 }
 
 //디테일화면 표시
-function loadDetail(index, color, colorDark){
-	DetailController.getDetailData(index, color, colorDark);
+function loadDetail(paintingId, color, colorDark){
+	DetailController.getDetailData(paintingId, color, colorDark);
 }
 
 //디테일화면 초기화
-function initDetail(index, paintingInfo){
+function initDetail(paintingId, paintingInfo){
  isDetail = true;
  postedLock = true;
  postedObj = new Array();
  postedIndex = new Array();
 
  //this.detailStructure = new DetailStructure(index);
- this.detailStructure = new DetailStructure(index, paintingInfo.fileId, paintingInfo.artistName, paintingInfo.artistId, paintingInfo.sentence, paintingInfo.uploadDate, paintingInfo.postedNum);
+ this.detailStructure = new DetailStructure(paintingId, paintingInfo.fileId, paintingInfo.artistName, paintingInfo.artistId, paintingInfo.sentence, paintingInfo.uploadDate, paintingInfo.postedNum);
  this.detailStructure.buildDetail();
 
  this.detailSwiper = new Swiper('.swiper_container_detail', {
