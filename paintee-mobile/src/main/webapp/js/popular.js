@@ -57,8 +57,8 @@ PopularController.prototype = {
 	getListData: function (startRow) {
 		this.startRow = startRow;
 		var controller = this;
-		AjaxCall.call(apiUrl + "/popularIndex/" + startRow, 
-			"", 
+		AjaxCall.call(apiUrl + "/popularIndex", 
+			"startRow=" + startRow, 
 			"GET", 
 			function (result) {
 				controller.getListDataRes(result);			
@@ -66,7 +66,7 @@ PopularController.prototype = {
 		);
 	},
 	getListDataRes: function (result) {
-		console.log(result);
+		console.log(result + "this.startRow : " + this.startRow);
 		if (!this.startRow) {
 			$("#popular_count").text(result.count);
 		}

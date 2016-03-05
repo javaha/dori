@@ -50,8 +50,8 @@ NewController.prototype = {
 	getListData: function (startRow) {
 		this.startRow = startRow;
 		var controller = this;
-		AjaxCall.call(apiUrl + "/newIndex/" + startRow, 
-			"", 
+		AjaxCall.call(apiUrl + "/newIndex", 
+			"startRow=" + startRow, 
 			"GET", 
 			function (result) {
 				controller.getListDataRes(result);			

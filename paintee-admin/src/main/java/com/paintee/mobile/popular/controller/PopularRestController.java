@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paintee.common.repository.entity.vo.PaintingSearchVO;
@@ -47,8 +48,8 @@ public class PopularRestController {
 	@Autowired
 	private PopularService popularService;
 	
-	@RequestMapping(value="/api/popularIndex/{startRow}", method={RequestMethod.GET})
-	public Map<String, Object> index(@PathVariable int startRow) throws Exception {
+	@RequestMapping(value="/api/popularIndex", method={RequestMethod.GET})
+	public Map<String, Object> index(@RequestParam(name="startRow", required=false, defaultValue="0") Integer startRow) throws Exception {
 		
 		// 데이터 조건 설정
 		PaintingSearchVO search = new PaintingSearchVO();
