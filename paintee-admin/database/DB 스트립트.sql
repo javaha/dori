@@ -39,7 +39,7 @@ create  table TB_PURCHASE (
 	receiver_name varchar(200) comment '엽서 수신자 이름',
 	sender_name varchar(30) comment '엽서 발신자 이름',
 	location varchar(40) comment '구매자의 국가',
-	purchase_status char(1) comment '구매 진행 상태 (요청-R/발송-S/환불요청-R/삭제-D)',
+	purchase_status char(1) default 'C' comment '구매 진행 상태 (요청-C/발송-S/환불요청-R/삭제-D)',
     created_date datetime default now() comment '생성일시'
 ) COMMENT = '구매';
 
