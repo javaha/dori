@@ -1,6 +1,6 @@
 create table TB_USER (
 	user_id varchar(30) primary key comment 'User 고유번호 (사용자가 만드는 건 아님)', 
-	password varchar(10) NOT NULL comment '비밀번호',
+	password varchar(255) NOT NULL comment '비밀번호',
 	email varchar(50) NOT NULL comment 'email 주소(실제 사용자 ID)',
 	name varchar(30) NOT NULL comment '표시되는 이름(중복 허용)',
 	introduce varchar(600) comment '소갯말',
@@ -86,7 +86,7 @@ create table TB_LOGIN (
 	seq int primary key auto_increment comment '로그인 구분 고유 번호',
     user_id varchar(30) comment '로그인 사용자 id',
 	hash    varchar(64) comment '사용자 구분 해쉬값',
-	expire_date  date comment '로그인 유효 날짜',
+	expire_date  datetime comment '로그인 유효 날짜',
 	access_gubun  char(1) comment '접속 구분'
 ) COMMENT = '로그인';
 

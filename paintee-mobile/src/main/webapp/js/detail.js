@@ -52,7 +52,6 @@ DetailStructure.prototype   ={
     },
     setFollow   : function(artistId){
         this.detailArtistFollow.append('<i class="material-icons" style="font-size:12px">star</i> follow '+artistId);
-        this.detailArtistFollow.on('click', function() { new DetailController().artistFollow(artistId); });
     },
     setSentence : function(artistSentence){
         this.detailArtistSentence.html(artistSentence);
@@ -101,6 +100,15 @@ DetailStructure.prototype   ={
         this.detail.append(this.detailContainer);
         this.detail.append(this.detailPostBtn);
         this.detail.append(this.detailScroll);
+
+        //follow 버튼 이벤트
+        this.detailArtistFollow.on('click', function() { new DetailController().artistFollow(this.artistId); });
+
+        //소셜 공유 이벤트
+        this.sociconFacebook    =$("<span>").addClass("social_btn").addClass("socicon-facebook");
+        this.sociconTwitter     =$("<span>").addClass("social_btn").addClass("socicon-twitter");
+        this.sociconInstagram   =$("<span>").addClass("social_btn").addClass("socicon-instagram");
+        this.sociconPinterest   =$("<span>").addClass("social_btn").addClass("socicon-pinterest");
     }
 }
 
