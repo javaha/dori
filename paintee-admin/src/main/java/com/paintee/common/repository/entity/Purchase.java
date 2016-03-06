@@ -16,7 +16,13 @@ public class Purchase extends BaseEntity {
 
     private String privateAt;
 
-    private String receiverAddr;
+    private String receiverBasicAddr;
+
+    private String receiverDetailAddr;
+
+    private String receiverZipcode;
+
+    private String receiverCity;
 
     private String senderAddr;
 
@@ -78,12 +84,36 @@ public class Purchase extends BaseEntity {
         this.privateAt = privateAt;
     }
 
-    public String getReceiverAddr() {
-        return receiverAddr;
+    public String getReceiverBasicAddr() {
+        return receiverBasicAddr;
     }
 
-    public void setReceiverAddr(String receiverAddr) {
-        this.receiverAddr = receiverAddr;
+    public void setReceiverBasicAddr(String receiverBasicAddr) {
+        this.receiverBasicAddr = receiverBasicAddr;
+    }
+
+    public String getReceiverDetailAddr() {
+        return receiverDetailAddr;
+    }
+
+    public void setReceiverDetailAddr(String receiverDetailAddr) {
+        this.receiverDetailAddr = receiverDetailAddr;
+    }
+
+    public String getReceiverZipcode() {
+        return receiverZipcode;
+    }
+
+    public void setReceiverZipcode(String receiverZipcode) {
+        this.receiverZipcode = receiverZipcode;
+    }
+
+    public String getReceiverCity() {
+        return receiverCity;
+    }
+
+    public void setReceiverCity(String receiverCity) {
+        this.receiverCity = receiverCity;
     }
 
     public String getSenderAddr() {

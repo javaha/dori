@@ -8,7 +8,10 @@
     <result column="purchase_date" property="purchaseDate" jdbcType="TIMESTAMP" />
     <result column="sentence" property="sentence" jdbcType="VARCHAR" />
     <result column="private_at" property="privateAt" jdbcType="CHAR" />
-    <result column="receiver_addr" property="receiverAddr" jdbcType="VARCHAR" />
+    <result column="receiver_basic_addr" property="receiverBasicAddr" jdbcType="VARCHAR" />
+    <result column="receiver_detail_addr" property="receiverDetailAddr" jdbcType="VARCHAR" />
+    <result column="receiver_zipcode" property="receiverZipcode" jdbcType="VARCHAR" />
+    <result column="receiver_city" property="receiverCity" jdbcType="VARCHAR" />
     <result column="sender_addr" property="senderAddr" jdbcType="VARCHAR" />
     <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
     <result column="sender_name" property="senderName" jdbcType="VARCHAR" />
@@ -75,8 +78,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    seq, user_id, painting_id, purchase_date, sentence, private_at, receiver_addr, sender_addr, 
-    receiver_name, sender_name, location, purchase_status, created_date
+    seq, user_id, painting_id, purchase_date, sentence, private_at, receiver_basic_addr, 
+    receiver_detail_addr, receiver_zipcode, receiver_city, sender_addr, receiver_name, 
+    sender_name, location, purchase_status, created_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.PurchaseExample" >
     select
@@ -114,12 +118,14 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into tb_purchase (user_id, painting_id, purchase_date, 
-      sentence, private_at, receiver_addr, 
+      sentence, private_at, receiver_basic_addr, 
+      receiver_detail_addr, receiver_zipcode, receiver_city, 
       sender_addr, receiver_name, sender_name, 
       location, purchase_status, created_date
       )
     values (#{userId,jdbcType=VARCHAR}, #{paintingId,jdbcType=VARCHAR}, #{purchaseDate,jdbcType=TIMESTAMP}, 
-      #{sentence,jdbcType=VARCHAR}, #{privateAt,jdbcType=CHAR}, #{receiverAddr,jdbcType=VARCHAR}, 
+      #{sentence,jdbcType=VARCHAR}, #{privateAt,jdbcType=CHAR}, #{receiverBasicAddr,jdbcType=VARCHAR}, 
+      #{receiverDetailAddr,jdbcType=VARCHAR}, #{receiverZipcode,jdbcType=VARCHAR}, #{receiverCity,jdbcType=VARCHAR}, 
       #{senderAddr,jdbcType=VARCHAR}, #{receiverName,jdbcType=VARCHAR}, #{senderName,jdbcType=VARCHAR}, 
       #{location,jdbcType=VARCHAR}, #{purchaseStatus,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP}
       )
@@ -145,8 +151,17 @@
       <if test="privateAt != null" >
         private_at,
       </if>
-      <if test="receiverAddr != null" >
-        receiver_addr,
+      <if test="receiverBasicAddr != null" >
+        receiver_basic_addr,
+      </if>
+      <if test="receiverDetailAddr != null" >
+        receiver_detail_addr,
+      </if>
+      <if test="receiverZipcode != null" >
+        receiver_zipcode,
+      </if>
+      <if test="receiverCity != null" >
+        receiver_city,
       </if>
       <if test="senderAddr != null" >
         sender_addr,
@@ -183,8 +198,17 @@
       <if test="privateAt != null" >
         #{privateAt,jdbcType=CHAR},
       </if>
-      <if test="receiverAddr != null" >
-        #{receiverAddr,jdbcType=VARCHAR},
+      <if test="receiverBasicAddr != null" >
+        #{receiverBasicAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDetailAddr != null" >
+        #{receiverDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZipcode != null" >
+        #{receiverZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null" >
+        #{receiverCity,jdbcType=VARCHAR},
       </if>
       <if test="senderAddr != null" >
         #{senderAddr,jdbcType=VARCHAR},
@@ -233,8 +257,17 @@
       <if test="record.privateAt != null" >
         private_at = #{record.privateAt,jdbcType=CHAR},
       </if>
-      <if test="record.receiverAddr != null" >
-        receiver_addr = #{record.receiverAddr,jdbcType=VARCHAR},
+      <if test="record.receiverBasicAddr != null" >
+        receiver_basic_addr = #{record.receiverBasicAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverDetailAddr != null" >
+        receiver_detail_addr = #{record.receiverDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverZipcode != null" >
+        receiver_zipcode = #{record.receiverZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverCity != null" >
+        receiver_city = #{record.receiverCity,jdbcType=VARCHAR},
       </if>
       <if test="record.senderAddr != null" >
         sender_addr = #{record.senderAddr,jdbcType=VARCHAR},
@@ -267,7 +300,10 @@
       purchase_date = #{record.purchaseDate,jdbcType=TIMESTAMP},
       sentence = #{record.sentence,jdbcType=VARCHAR},
       private_at = #{record.privateAt,jdbcType=CHAR},
-      receiver_addr = #{record.receiverAddr,jdbcType=VARCHAR},
+      receiver_basic_addr = #{record.receiverBasicAddr,jdbcType=VARCHAR},
+      receiver_detail_addr = #{record.receiverDetailAddr,jdbcType=VARCHAR},
+      receiver_zipcode = #{record.receiverZipcode,jdbcType=VARCHAR},
+      receiver_city = #{record.receiverCity,jdbcType=VARCHAR},
       sender_addr = #{record.senderAddr,jdbcType=VARCHAR},
       receiver_name = #{record.receiverName,jdbcType=VARCHAR},
       sender_name = #{record.senderName,jdbcType=VARCHAR},
@@ -296,8 +332,17 @@
       <if test="privateAt != null" >
         private_at = #{privateAt,jdbcType=CHAR},
       </if>
-      <if test="receiverAddr != null" >
-        receiver_addr = #{receiverAddr,jdbcType=VARCHAR},
+      <if test="receiverBasicAddr != null" >
+        receiver_basic_addr = #{receiverBasicAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDetailAddr != null" >
+        receiver_detail_addr = #{receiverDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZipcode != null" >
+        receiver_zipcode = #{receiverZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null" >
+        receiver_city = #{receiverCity,jdbcType=VARCHAR},
       </if>
       <if test="senderAddr != null" >
         sender_addr = #{senderAddr,jdbcType=VARCHAR},
@@ -327,7 +372,10 @@
       purchase_date = #{purchaseDate,jdbcType=TIMESTAMP},
       sentence = #{sentence,jdbcType=VARCHAR},
       private_at = #{privateAt,jdbcType=CHAR},
-      receiver_addr = #{receiverAddr,jdbcType=VARCHAR},
+      receiver_basic_addr = #{receiverBasicAddr,jdbcType=VARCHAR},
+      receiver_detail_addr = #{receiverDetailAddr,jdbcType=VARCHAR},
+      receiver_zipcode = #{receiverZipcode,jdbcType=VARCHAR},
+      receiver_city = #{receiverCity,jdbcType=VARCHAR},
       sender_addr = #{senderAddr,jdbcType=VARCHAR},
       receiver_name = #{receiverName,jdbcType=VARCHAR},
       sender_name = #{senderName,jdbcType=VARCHAR},
