@@ -673,6 +673,33 @@ body{
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.purchase_input2{
+    box-sizing: border-box;
+    width: 65%;
+    background-color: rgb(240,240,240);
+    border: 0;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: rgb(30,30,30);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.purchase_button{
+    display: inline-block;
+    padding: .5em 1em;
+    margin: .4em .15em;
+    border: 1px solid #ccc;
+    border-color: #dbdbdb #d2d2d2 #b2b2b2 #d2d2d3;
+    cursor: pointer;
+    color: #464646;
+    border-radius: .2em;
+    vertical-align: middle;
+    font-size: 1em;
+    line-height: 1.25em;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#f2f2f2));
+}
+
 .purchase_select{
     box-sizing: border-box;
     width: 100%;

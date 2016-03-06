@@ -1,5 +1,6 @@
 package com.paintee.mobile.popular.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,10 @@ public class PopularServiceImpl implements PopularService {
 	public Map<String, Object> getPopularInfo(PaintingSearchVO search) throws Exception {
 		PurchaseExample example = new PurchaseExample();
 		PurchaseExample.Criteria where =  example.createCriteria();
-		where.andPurchaseStatusEqualTo("S");
+		List<String> sList = new ArrayList<>();
+		sList.add("C");  // 요청
+		sList.add("S");  // 발송
+		where.andPurchaseStatusIn(sList);
 		
 		int count = purchaseHelper.countByExample(example);
 		logger.debug("전체 개수 : " + count);

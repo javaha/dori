@@ -84,6 +84,30 @@ $(".purchase_box").click(function(e){
     e.stopPropagation();
 });
 
+$("[name=location]").change(function(e){
+	console.log("change");
+	switch ($("[name=location]").val()) {
+	case "1":
+		setPostUI("KOREA");
+		break;
+	default:
+		setPostUI("NOKOREA");
+		break;
+	}
+	e.stopPropagation();
+});
+
+function setPostUI(type) {
+	var className = "purchase_input";
+	var styleName = "none";
+	if (type == 'KOREA') {
+		className = "purchase_input2";
+		styleName = "inline";
+	}
+	$("[name=receiverBasicAddr]").attr("class", className);
+	$("#postSearch").css("display", styleName);
+}
+
 //결재화면
 /**
  * noPostCard 일 경우 발송없이 결재
@@ -149,7 +173,7 @@ PurchaseController.prototype = {
 		var data = {
 			userId: 'aa',
 			paintingId: paintingId,
-			sentence: $("[name=sentence]").val(),
+			sentence: sentence,
 			privateAt: ($("[name=privateAt]").prop("checked")) ? "Y" : "N",
 			receiverBasicAddr: $("[name=receiverBasicAddr]").val(),
 			receiverDetailAddr: $("[name=receiverDetailAddr]").val(),
@@ -158,7 +182,7 @@ PurchaseController.prototype = {
 			receiverName: $("[name=receiverName]").val(),
 			senderName: $("[name=senderName]").val(),
 			location: $("[name=location]").val(),
-			purchaseStatus: "R"
+			purchaseStatus: "C"
 		};
 
 		AjaxCall.call(apiUrl + "/purchase", 
