@@ -1,5 +1,5 @@
 create table TB_USER (
-	user_id varchar(30) primary key comment 'User 고유번호 (사용자가 만드는 건 아님)', 
+	user_id varchar(64) primary key comment 'User 고유번호 (사용자가 만드는 건 아님)', 
 	password varchar(255) NOT NULL comment '비밀번호',
 	email varchar(50) NOT NULL comment 'email 주소(실제 사용자 ID)',
 	name varchar(30) NOT NULL comment '표시되는 이름(중복 허용)',
@@ -18,15 +18,15 @@ create table TB_USER (
 ) comment = '회원';
 
 create table TB_FOLLOW (
-	user_id varchar(30) not null comment 'Follow를 하는 사람 ID (follower)',
-	following varchar(30) not null comment 'Follow되는 대상 ID',
+	user_id varchar(64) not null comment 'Follow를 하는 사람 ID (follower)',
+	following varchar(64) not null comment 'Follow되는 대상 ID',
     created_date datetime default now() comment '생성일시',
 	primary key (user_id, following)
 ) COMMENT = '팔로워';
 
 create  table TB_PURCHASE (
 	seq int primary key auto_increment comment '구매 고유 번호',
-	user_id varchar(30) comment '구매한 사람의 id', 
+	user_id varchar(64) comment '구매한 사람의 id', 
 	painting_id varchar(64) comment '구매된 그림의 id', 
 	purchase_date datetime default now() comment '구매된 날짜',
 	sentence varchar(200) comment '구매하면서 작성된 한마디',
@@ -45,7 +45,7 @@ create  table TB_PURCHASE (
 
 create table TB_REWARD ( 
 	seq int primary key auto_increment comment '리워드 고유 번호',
-    user_id varchar(30) comment '리워드 요청자 id',
+    user_id varchar(64) comment '리워드 요청자 id',
     account_no varchar(20) comment '입금 요청된 계좌번호',
     account_name varchar(30) comment '입금 요청된 계좌주 이름',
     earm_requested_money int comment '입금 요청된 금액',
@@ -56,7 +56,7 @@ create table TB_REWARD (
 create table TB_PAINTING (
     painting_id varchar(64) primary key comment '그림의 고유 ID',
     upload_date datetime comment '그림이 업로드 된 날짜',
-    artist_id varchar(30) comment '그림을 올린 사람 ID',
+    artist_id varchar(64) comment '그림을 올린 사람 ID',
     artist_name varchar(30) comment '그림을 올린 사람 이름',
     sentence varchar(600) comment '그림 소갯말', 
     location varchar(40) comment '업로드한 사람의 국가',
@@ -84,7 +84,7 @@ create table TB_POPULAR_PAINTING (
 
 create table TB_LOGIN (
 	seq int primary key auto_increment comment '로그인 구분 고유 번호',
-    user_id varchar(30) comment '로그인 사용자 id',
+    user_id varchar(64) comment '로그인 사용자 id',
 	hash    varchar(256) comment '사용자 구분 해쉬값',
 	expire_date  datetime comment '로그인 유효 날짜',
 	access_gubun  char(1) comment '접속 구분 (Android App-A/Web Application-W/IOS-I)'
@@ -98,7 +98,7 @@ create table TB_FILE_GROUP (
 ) COMMENT = '파일 그룹';
 
 create table TB_FILE_INFO (
-    id varchar(255) not null comment '파일 아이디',
+    id varchar(64) not null comment '파일 아이디',
     file_group_seq bigint not null comment '파일그룹아이디',
     content_type varchar(255) comment '파일 mime type',
     extension varchar(255) comment '파일 확장자',
