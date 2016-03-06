@@ -173,7 +173,7 @@ PurchaseController.prototype = {
 		var data = {
 			userId: 'aa',
 			paintingId: paintingId,
-			sentence: sentence,
+			sentence: $("[name=sentence]").val(),
 			privateAt: ($("[name=privateAt]").prop("checked")) ? "Y" : "N",
 			receiverBasicAddr: $("[name=receiverBasicAddr]").val(),
 			receiverDetailAddr: $("[name=receiverDetailAddr]").val(),
