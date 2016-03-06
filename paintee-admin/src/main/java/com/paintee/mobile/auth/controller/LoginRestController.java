@@ -76,8 +76,9 @@ public class LoginRestController {
 			resultMap.put("errorNo", 402);
 		} else {
 			resultMap = loginService.login(userLoginVO);
-
+/* TODO: 사용자 화면에서 처리하기로 함.
 			int resultCode = Integer.parseInt(String.valueOf(resultMap.get("errorNo")).trim());
+
 			if(resultCode == 0) {
 				int cookieMaxAge = expireDay*24*60*60;
 				String domain = "localhost";
@@ -119,7 +120,7 @@ public class LoginRestController {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			}*/
 		}
 
 		return resultMap;
