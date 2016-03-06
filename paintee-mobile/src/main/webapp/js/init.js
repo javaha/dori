@@ -14,7 +14,7 @@ var boxStatus="";
 var userInfo = getUserInfoCookie();
 
 if(userInfo) {
-	userID = userInfo.userId;
+	userID = userInfo.email;
 } else {
 	userID = '';
 }
