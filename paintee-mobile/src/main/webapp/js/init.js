@@ -403,21 +403,6 @@ function initMenu(userID){
     }
 }
 
-// 로그인과 함께 다시 side menu 초기화
-function logIn(){
-    console.log("log in!!!");
-    $(".login_container").hide();
-    userID = "asummer";
-    initFollow(userID);
-    initMy(userID);
-    initMenu(userID);
-
-    mainSwiper.slideTo(0);
-    mainSwiper.unlockSwipes();
-    mainSwiper.lockSwipeToPrev();
-}
-
-
 // side menu 이동
 sideMenu = $("#side_menu");
 function sideOn(){

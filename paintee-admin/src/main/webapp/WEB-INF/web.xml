@@ -9,11 +9,6 @@
 		</param-value>
 	</context-param>
 
-	<init-param>
-		<param-name>dispatchOptionsRequest</param-name>
-		<param-value>true</param-value>
-	</init-param>
-
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -40,6 +35,16 @@
 		<servlet-name>paintee-admin</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+	<filter>
+		<filter-name>httpPutFormFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>httpPutFormFilter</filter-name>
+		<servlet-name>paintee-admin</servlet-name>
+	</filter-mapping>
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>

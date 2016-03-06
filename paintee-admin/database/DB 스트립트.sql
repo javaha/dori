@@ -85,9 +85,9 @@ create table TB_POPULAR_PAINTING (
 create table TB_LOGIN (
 	seq int primary key auto_increment comment '로그인 구분 고유 번호',
     user_id varchar(30) comment '로그인 사용자 id',
-	hash    varchar(64) comment '사용자 구분 해쉬값',
+	hash    varchar(256) comment '사용자 구분 해쉬값',
 	expire_date  datetime comment '로그인 유효 날짜',
-	access_gubun  char(1) comment '접속 구분'
+	access_gubun  char(1) comment '접속 구분 (Android App-A/Web Application-W/IOS-I)'
 ) COMMENT = '로그인';
 
 create table TB_FILE_GROUP (
