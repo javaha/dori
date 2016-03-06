@@ -11,6 +11,16 @@ var boxWidth;
 var boxHeight;
 var boxStatus="";
 
+var userInfo = getUserInfoCookie();
+
+if(userInfo) {
+	userID = userInfo.userId;
+} else {
+	userID = '';
+}
+
+console.log('userID:'+userID);
+
 var imageUrl="http://localhost:8090";
 //var imageUrl="http://192.168.0.10:8090";
 var apiUrl=imageUrl+"/api";

@@ -201,7 +201,7 @@ var getUserInfoCookie = function() {
 	var start = cookieData.indexOf(cName);
 	var cValue = '';
 
-	if(start != -1){
+	if(start != -1) {
 		start += cName.length;
 
 		var end = cookieData.indexOf(';', start);
@@ -213,7 +213,11 @@ var getUserInfoCookie = function() {
 		cValue = cookieData.substring(start, end);
 	}
 
-	var userInfo = JSON.parse(unescape(cValue));
+	var userInfo = null;
+
+	if(cValue != null && cValue != '') {
+		userInfo = JSON.parse(unescape(cValue));
+	}
 	console.log(userInfo);
 	return userInfo;
 };
