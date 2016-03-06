@@ -28,7 +28,7 @@ create  table TB_PURCHASE (
 	seq int primary key auto_increment comment '구매 고유 번호',
 	user_id varchar(30) comment '구매한 사람의 id', 
 	painting_id varchar(64) comment '구매된 그림의 id', 
-	purchase_date datetime comment '구매된 날짜',
+	purchase_date datetime default now() comment '구매된 날짜',
 	sentence varchar(200) comment '구매하면서 작성된 한마디',
 	private_at char(1) comment 'sentence의 공개/비공개 여부',
 	receiver_basic_addr varchar(200) comment '엽서 수신자 기본 주소',
