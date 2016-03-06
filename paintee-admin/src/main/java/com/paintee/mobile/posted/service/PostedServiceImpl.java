@@ -24,13 +24,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.paintee.common.repository.entity.FileInfo;
-import com.paintee.common.repository.entity.FileInfoExample;
 import com.paintee.common.repository.entity.Purchase;
 import com.paintee.common.repository.entity.PurchaseExample;
-import com.paintee.common.repository.entity.vo.PopularVO;
+import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.PostedSearchVO;
 import com.paintee.common.repository.helper.PurchaseHelper;
+import com.paintee.common.repository.helper.UserHelper;
 
 /**
 @class PostedServiceImpl
@@ -53,6 +52,9 @@ public class PostedServiceImpl implements PostedService {
 
 	@Autowired
 	private PurchaseHelper purchaseHelper;
+
+	@Autowired
+	private UserHelper userHelper;
 
 	/**
 	 @fn 
@@ -78,9 +80,12 @@ public class PostedServiceImpl implements PostedService {
 
 		//파일정보 조회
 		for (Purchase purchase : list) {
+			User user = userHelper.selectByPrimaryKey(purchase.getUserId());
+
 			Map<String, Object> tmpMap = new HashMap<>();
 			tmpMap.put("purchaseSeq", purchase.getSeq());
 			tmpMap.put("userId", purchase.getUserId());
+			tmpMap.put("userName", user.getName());
 			tmpMap.put("sentence", purchase.getSentence());
 
 			resultList.add(tmpMap);

@@ -51,7 +51,7 @@ DetailStructure.prototype   ={
         this.detailArtistBtn.html(artistName);
     },
     setFollow   : function(artistId){
-        this.detailArtistFollow.append('<i class="material-icons" style="font-size:12px">star</i> follow '+artistId);
+        this.detailArtistFollow.append('<i class="material-icons" style="font-size:12px">star</i> follow artist');
     },
     setSentence : function(artistSentence){
         this.detailArtistSentence.html(artistSentence);
@@ -101,8 +101,12 @@ DetailStructure.prototype   ={
         this.detail.append(this.detailPostBtn);
         this.detail.append(this.detailScroll);
 
+        var detailController = new DetailController();
+
+        console.log(this.artistId);
+
         //follow 버튼 이벤트
-        this.detailArtistFollow.on('click', function() { new DetailController().artistFollow(this.artistId); });
+        this.detailArtistFollow.on('click', function() { detailController.artistFollow(this.artistId); });
 
         //소셜 공유 이벤트
         this.sociconFacebook    =$("<span>").addClass("social_btn").addClass("socicon-facebook");
@@ -122,7 +126,10 @@ var postedLockBreakpoint;
 //화면이 최초 생성시 swiper 에 detail-margin, detail-artist, detail-postbar 3 의 slide 가 미리 등록되어 진다.
 var initPostedSlideCnt = 3;
 
+//현재 그림 정보를 위한 변수들
 var selectedPaintingId;
+var selectedArtistId;
+var selectedArtistName;
 
 function DetailController() {
 }
@@ -152,14 +159,16 @@ DetailController.prototype = {
 	artistFollow: function(artistId) {
 		var controller = this;
 
-		AjaxCall.call(apiUrl+"/user/"+artistId+"/follow", null, "POST", function(result, status) { controller.artistFollowRes(result, status, artistId); });
+		console.log("artistFollow=>artistId:"+artistId);
+		console.log("artistFollow=>selectedArtistId:"+selectedArtistId);
+		AjaxCall.call(apiUrl+"/user/"+selectedArtistId+"/follow", null, "POST", function(result, status) { controller.artistFollowRes(result, status); });
 	},
-	artistFollowRes: function(result, status, artistId) {
-		console.log(artistId);
+	artistFollowRes: function(result, status) {
+		console.log(selectedArtistId);
 		if(result.errorNo == 0) {
-			alert(artistId+' 님을 Follow 하였습니다.');
+			alert(selectedArtistName+' 님을 Follow 하였습니다.');
 		} else if(result.errorNo == 501){
-			alert(artistId+' 님은 이미 Follow 되어있습니다.');
+			alert(selectedArtistName+' 님은 이미 Follow 되어있습니다.');
 		}
 	}
 };
@@ -176,6 +185,9 @@ function initDetail(paintingId, paintingInfo){
  postedLock = true;
  postedObj = new Array();
  postedIndex = new Array();
+
+ selectedArtistId = paintingInfo.artistId;
+ selectedArtistName = paintingInfo.artistName;
 
  //this.detailStructure = new DetailStructure(index);
  this.detailStructure = new DetailStructure(paintingId, paintingInfo.fileId, paintingInfo.artistName, paintingInfo.artistId, paintingInfo.sentence, paintingInfo.uploadDate, paintingInfo.postedNum);
@@ -275,9 +287,10 @@ function unlockPosted(swiper){
 }
 
 //Detail화면의 댓글 구조
-function Posted(purchaseSeq, userId, userSentence){
+function Posted(purchaseSeq, userId, userName, userSentence){
  this.purchaseSeq =purchaseSeq;
  this.userId = userId;
+ this.userName = userName;
  this.userSentence = userSentence;
 
  this.container   =$("<div>").addClass("detail_posted swiper-slide").html("posted by ").css("background-color", "hsl("+colorDark+")");
@@ -285,14 +298,14 @@ function Posted(purchaseSeq, userId, userSentence){
  this.sentence    =$("<div>").addClass("detail_posted_sentence").css("width", mainWidth*0.96);
 }
 Posted.prototype = {
- setPostee:      function(userId){
-     this.postee.html(userId);
+ setPostee:      function(userName){
+     this.postee.html(userName);
  },
  setSentence:    function(userSentence){
      this.sentence.html(userSentence);
  },
  buildPosted:    function(){
-     this.setPostee(this.userId);
+     this.setPostee(this.userName);
      this.setSentence(this.userSentence);
      this.container.append(this.postee);
      this.container.append(this.sentence);
@@ -328,7 +341,7 @@ PostedController.prototype = {
 }
 
 function addPosted(swiper, postedInfo) {
-	var newPosted = new Posted(postedInfo.purchaseSeq, postedInfo.userId, postedInfo.sentence);
+	var newPosted = new Posted(postedInfo.purchaseSeq, postedInfo.userId, postedInfo.userName, postedInfo.sentence);
 	postedObj[swiper.slides.length-initPostedSlideCnt] = newPosted.buildPosted();
 	postedIndex.push(swiper.slides.length);
 	delete newPosted;
