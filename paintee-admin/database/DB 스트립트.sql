@@ -34,7 +34,7 @@ create  table TB_PURCHASE (
 	receiver_basic_addr varchar(200) comment '엽서 수신자 기본 주소',
 	receiver_detail_addr varchar(200) comment '엽서 수신자 상세 주소',
 	receiver_zipcode varchar(200) comment '엽서 수신자 우편번호',
-	receiver_ city varchar(200) comment '엽서 수신자 도시명',
+	receiver_city varchar(200) comment '엽서 수신자 도시명',
 	sender_addr varchar(30) comment '엽서 발신자 주소',
 	receiver_name varchar(200) comment '엽서 수신자 이름',
 	sender_name varchar(30) comment '엽서 발신자 이름',
