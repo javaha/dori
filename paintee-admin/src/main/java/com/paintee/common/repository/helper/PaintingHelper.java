@@ -14,6 +14,7 @@
 */
 package com.paintee.common.repository.helper;
 
+import com.paintee.common.repository.entity.Painting;
 import com.paintee.common.repository.mapper.PaintingMapper;
 
 /**
@@ -32,5 +33,13 @@ com.paintee.common.repository.helper \n
  - 그림에 대한 helper
 */
 public interface PaintingHelper extends PaintingMapper {
-
+	
+	/**
+	 @fn updatePaintingPurchaseInfo
+	 @brief 함수 간략한 설명 : 그림의 구매 정보를 업데이트
+	 @remark
+	 - 함수의 상세 설명 : 그림의 구매 카운트 및 구매자 카운트 정보를 증가시킨다.
+	 @param painting 
+	*/
+	public void updatePaintingPurchaseInfo(Painting painting);
 }

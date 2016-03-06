@@ -152,7 +152,7 @@ function initMy(userID){
 
 
 // 그림 목록 화면
-function Structure(index){
+function Structure(index, paintingId){
 		
         this.index              =index;
         this.container          =$("<div>").addClass("list_contents swiper-slide");
@@ -168,7 +168,7 @@ function Structure(index){
 
         this.bottom             =$("<div>").addClass("bottom_bar");
         this.listArtist         =$("<div>").addClass("list_artist_btn").click(function(){showPersonal("artist"+index)});
-        this.listPostBtn        =$("<div>").addClass("list_post_btn").html("post it").click(function(){purchase()});
+        this.listPostBtn        =$("<div>").addClass("list_post_btn").html("post it").click(function(){purchase(paintingId)});
 
 }
 Structure.prototype = {
@@ -226,7 +226,7 @@ function addPainting(swiper, currentIndex, type, listData){
 	
 	if (!listData) { return; }
 	
-	var newSlide = new Structure(swiper.slides.length);
+	var newSlide = new Structure(swiper.slides.length, listData.paintingId);
     newSlide.setSentence(listData.sentence, listData.artistName);
     newSlide.setPostedNumber(listData.postedPeopleCnt);
     newSlide.setDate(toEngDateStr(listData.uploadDate));
@@ -532,75 +532,6 @@ function toggleFullScreen() {
     }
 }
 
-// 결재화면
-function payment(){
-    purchaseStatus = "";
-    boxStatus = "payment";
-    $(".purchase_container").hide();
-    $(".payment_container").show();
-    initPayment();
-    setBox();
-}
-
-function Payment(){
-    this.title      = $("<div>").addClass("payment_title").addClass("popup_title");
-    this.contents   = $("<div>").addClass("payment_contents").addClass("popup_contents");
-    this.bottom     = $("<div>").addClass("payment_bottom").addClass("popup_bottom");
-    this.sociconFacebook    =$("<span>").addClass("social_btn").addClass("socicon-facebook");
-    this.sociconTwitter     =$("<span>").addClass("social_btn").addClass("socicon-twitter");
-    this.sociconInstagram   =$("<span>").addClass("social_btn").addClass("socicon-instagram");
-    this.sociconPinterest   =$("<span>").addClass("social_btn").addClass("socicon-pinterest");
-
-}
-
-Payment.prototype = {
-    setTitle    : function(title){
-        $(this.title).html(title);
-    },
-    setContents : function(contents){
-        $(this.contents).html(contents);
-    },
-    setBottom   : function(bottom){
-        $(this.bottom).html(bottom);
-    },
-    buildPayment : function(){
-        $(".payment_box").append(this.title);
-        $(".payment_box").append(this.contents);
-        $(".payment_box").append(this.bottom);
-    }
-}
-
-function initPayment(){
-    $(".payment_box").empty();
-    var payment = new Payment();
-    payment.setTitle("Payment");
-    payment.setContents("<span class='reward_money'>$2</span><br>추가적인 배송료나 포장비가 없습니다.<br>어디든 $2면 충분합니다.<br><br><br>구매한 $2의 일부는 작가에게 후원금으로 지급됩니다. <br>아름다운 그림을 나눠준 작가에게 큰 힘이 되어주세요.<br><br>아래 구매버튼을 눌러 결재를 계속하세요.");
-    payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><i class='material-icons'>edit</i><div class='purchase_btn_text'>edit address</div></div><div class='popup_btn payment_btn'><div class='purchase_btn_text'>Payment </div><i class='material-icons'>payment</i></div>");
-    payment.buildPayment();
-    $(".payment_btn").click(function(){
-        completePayment();
-    })
-    delete payment;
-}
-
-function completePayment(){
-    $(".payment_box").empty();
-    var payment = new Payment();
-    payment.setTitle("Thanks!");
-    payment.setContents("곧 엽서가 발송됩니다.<br>하지만, 기다리세요, 조금 더 시간이 걸립니다.<br>구매한 엽서는 우편을 통해 배송됩니다. 우편은 충분히 빠르지 않습니다.<br>기다린 만큼 더 큰 기쁨이 될 수 있습니다.<br><br><br><b>Post한 그림을 친구들과 함께 하세요.</b><br><br>");
-    payment.contents.append(payment.sociconFacebook.css("color", "rgb(80,80,80)"));
-    payment.contents.append(payment.sociconTwitter.css("color", "rgb(80,80,80)"));
-    payment.contents.append(payment.sociconInstagram.css("color", "rgb(80,80,80)"));
-    payment.contents.append(payment.sociconPinterest.css("color", "rgb(80,80,80)"));
-    payment.setBottom("<div class='popup_btn payment_btn'><div class='purchase_btn_text'>Go to my history </div><i class='material-icons'>person</i></div>");
-    payment.buildPayment();
-    $(".payment_btn").click(function(){
-        $(".popup_container").hide();
-        selectMenu(3);
-        mySwiper.slideTo(1);
-    })
-    delete payment;
-}
 
 // 업로드/리워드가 표시되는 팝업창 사이즈 설정
 function setBox(){
@@ -670,6 +601,7 @@ function failUpload(){
     })
     delete uploadFail;
 }
+
 function successUpload(){
     $(".upload_box").empty();
     var uploadSuccess = new Upload();
@@ -845,6 +777,8 @@ $(".help_login_btn").click(function(){
 });
 // 팝업 닫기
 $(".return_btn").click(function(){
+	// 구매 정보 초기화
+	resetPurchase();
     $(".purchase_container").hide();
     $(".popup_container").hide();
     purchaseStatus = "";

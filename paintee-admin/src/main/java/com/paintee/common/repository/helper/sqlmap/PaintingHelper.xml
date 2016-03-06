@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paintee.common.repository.helper.PaintingHelper">
+	<!-- 그림의 구매정보를 업데이트 -->
+  	<update id="updatePaintingPurchaseInfo">
+		update tb_painting
+		   set posted_num = posted_num + 1
+			<if test = "postedPeopleCnt != null">
+			   ,posted_people_cnt = posted_people_cnt + 1
+			</if>				
+		 where painting_id = #{paintingId}
+  	</update>
+</mapper>

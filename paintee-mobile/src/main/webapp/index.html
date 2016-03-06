@@ -93,7 +93,6 @@
     
     <!--  아래는 팝업화면으로 처리  -->
     <div class="base_position"> 
-        
     <!--   구매 화면   -->
     <div class="purchase_container">
         <div class="purchase_box">
@@ -101,8 +100,8 @@
                 <div class="purchase_box_top">your sentence</div>
                 <div class="purchase_box_middle" style="text-align: right">
                     <span class="character_counter">0/200</span>
-                    <textarea class="sentence_textarea" length="200"></textarea>
-                    <input type="checkbox"> private
+                    <textarea name="sentence" class="sentence_textarea" length="200"></textarea>
+                    <input type="checkbox" id="privateAt" name="privateAt"> private
                 </div>
                 <div class="purchase_box_bottom">
                     <div class="purchase_like_btn"><i class="material-icons">favorite</i><div class="purchase_btn_text"> like without postcard</div></div>
@@ -114,7 +113,7 @@
                 <div class="purchase_box_middle">
                     <div class="purchase_col_title">sender</div>
                     <div class="purchase_col_name">
-                        <input type="text" class="purchase_input" placeholder="name">
+                        <input type="text" id="senderName" name="senderName" class="purchase_input" placeholder="name">
                     </div>
                     <!-- 
                     <div class="purchase_col_name">
@@ -129,14 +128,14 @@
 
                     <div class="purchase_col_title">addressee</div>
                     <div class="purchase_col_name">
-                        <input type="text" class="purchase_input" placeholder="name">
+                        <input type="text" id="receiverName" name="receiverName" class="purchase_input" placeholder="name">
                     </div>
                     <div class="purchase_col_input">
-                        <input type="text" class="purchase_input" placeholder="address 1">
-                        <input type="text" class="purchase_input" placeholder="address 2">
-                        <input type="text" class="purchase_input" placeholder="city" style="width: 30%">
-                        <input type="text" class="purchase_input" placeholder="zip code" style="width: 30%">
-                        <select class="purchase_select" style="width: 30%">
+                        <input type="text" name="receiverBasicAddr" class="purchase_input" placeholder="address 1">
+                        <input type="text" name="receiverDetailAddr" class="purchase_input" placeholder="address 2">
+                        <input type="text" name="receiverCity" class="purchase_input" placeholder="city" style="width: 30%">
+                        <input type="text" name="receiverZipcode" class="purchase_input" placeholder="zip code" style="width: 30%">
+                        <select name="location" class="purchase_select" style="width: 30%">
                             <option value="1">Korea</option>
                             <option value="2">USA</option>
                             <option value="3">China</option>
@@ -151,7 +150,7 @@
             </div>
         </div>
         <div class="return_btn"><i class="material-icons">close</i></div>
-    </div>
+	</div>
     <!--  결재 화면  -->
     <div class="popup_container payment_container">
         <div class="popup_box payment_box"></div>
