@@ -104,9 +104,10 @@ DetailStructure.prototype   ={
         var detailController = new DetailController();
 
         console.log(this.artistId);
-
+        
+        var picArtistId = this.artistId;
         //follow 버튼 이벤트
-        this.detailArtistFollow.on('click', function() { detailController.artistFollow(this.artistId); });
+        this.detailArtistFollow.on('click', function() { detailController.artistFollow(picArtistId); });
 
         //소셜 공유 이벤트
         this.sociconFacebook    =$("<span>").addClass("social_btn").addClass("socicon-facebook");
