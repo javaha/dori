@@ -166,7 +166,7 @@ var toEngDateStr = function (timestamp) {
 	var date = new Date(timestamp);
 	return date.getDate() + ". " + convertEngMonth(date.getMonth() + 1);
 };
- 
+
 var toDateTime = function (timestamp) {
 	var date = new Date(timestamp);
 	var year = date.getFullYear();
@@ -181,6 +181,41 @@ var toDateTime = function (timestamp) {
 		+ (min < 10 ? "0" + min : min)
 		+ ":" + (sec < 10 ? "0" + sec : sec);
 	return retVal;
+};
+
+var setUserInfoCookie = function(userInfo) {
+	var cDay = 7;
+	var cName = "userInfo";
+	var cValue = JSON.stringify(userInfo);
+	var expire = new Date();
+	expire.setDate(expire.getDate() + cDay);
+	cookies = 'userInfo=' + escape(cValue) + '; path=/ ';
+	console.log(cookies);
+	if(typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
+	document.cookie = cookies;
+};
+
+var getUserInfoCookie = function() {
+	var cName = 'userInfo=';
+	var cookieData = document.cookie;
+	var start = cookieData.indexOf(cName);
+	var cValue = '';
+
+	if(start != -1){
+		start += cName.length;
+
+		var end = cookieData.indexOf(';', start);
+
+		if(end == -1) {
+			end = cookieData.length;
+		}
+
+		cValue = cookieData.substring(start, end);
+	}
+
+	var userInfo = JSON.parse(unescape(cValue));
+	console.log(userInfo);
+	return userInfo;
 };
 
 Date.prototype.timestampToDate = function () {

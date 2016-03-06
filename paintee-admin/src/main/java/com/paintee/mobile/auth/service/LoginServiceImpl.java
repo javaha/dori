@@ -76,6 +76,7 @@ public class LoginServiceImpl implements LoginService {
 		UserExample.Criteria where = userExamplem.createCriteria();
 		where.andEmailEqualTo(userLoginVO.getEmail());
 		where.andPasswordEqualTo(Sha512Encrypt.hash(userLoginVO.getPassword()));
+		where.andUserStatusEqualTo("N");
 
 		List<User> userList = userHelper.selectByExample(userExamplem);
 
