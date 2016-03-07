@@ -38,9 +38,9 @@
 
 	<mvc:cors>
 		<mvc:mapping path="/api/**"
-						allowed-origins="http://localhost:8080, http://localhost:8090"
+						allowed-origins="http://localhost:8080, http://localhost:8090, http://192.168.1.31:8080"
 						allowed-methods="GET, PUT, POST, DELETE, OPTIONS"
-						allowed-headers=""
+						allowed-headers="origin, content-type, accept"
 						exposed-headers=""
 						allow-credentials="false"
 						max-age="3600" />

@@ -8,10 +8,14 @@ var AjaxCall = {
 			async: true,
 			cache: false,
 			success: successFunc,
-			data: (data ? data : ""),
+			data: (data ? JSON.stringify(data) : ""),
 			dataType: "json",
+			contentType: "application/json",
 			error: function (jqXHR, textStatus, errorThrown) {
-				//console.log(jqXHR.responseText);
+				console.log(jqXHR);
+				console.log(jqXHR.responseText);
+				console.log(textStatus);
+				console.log(errorThrown);
 
 				if (jqXHR.responseText != null) {
 					try {
@@ -62,17 +66,14 @@ var AjaxCall = {
 				return;
 			}
 		};
+
+		if(type == "DELETE" || type == 'PUT') {
+			option.contentType = "application/json";
+			option.data = JSON.stringify(data);
+		}
+
 		$.ajax(option);
 		return;
-	},
-	callReturn: function (url, data, type) {
-		var response = "";
-		AjaxCall.call(url, data, type, function (result, status) {
-			if (status == "success") {
-				response = result;
-			}
-		});
-		return response;
 	},
 	callMultipart: function(url, data, successFunc) {
 		$.ajax({
@@ -84,6 +85,7 @@ var AjaxCall = {
 			data: data,
 			async: true,
 			cache: false,
+			"data-ajax": "false",
 			success: function(result, status) {
 				successFunc(result, status);
 			},
@@ -194,7 +196,17 @@ var setUserInfoCookie = function(userInfo) {
 	if(typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
 	document.cookie = cookies;
 };
-
+var clearUserInfoCookie = function() {
+	var cDay = -7;
+	var cName = "userInfo";
+	var cValue = '';
+	var expire = new Date();
+	expire.setDate(expire.getDate() + cDay);
+	cookies = 'userInfo=' + escape(cValue) + '; path=/ ';
+	console.log(cookies);
+	if(typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
+	document.cookie = cookies;
+};
 var getUserInfoCookie = function() {
 	var cName = 'userInfo=';
 	var cookieData = document.cookie;

@@ -21,7 +21,8 @@ if(userInfo) {
 
 console.log('userID:'+userID);
 
-var imageUrl="http://localhost:8090";
+//var imageUrl="http://localhost:8090";
+var imageUrl="http://192.168.1.31:8090";
 //var imageUrl="http://192.168.0.10:8090";
 var apiUrl=imageUrl+"/api";
 
@@ -409,7 +410,8 @@ function initMenu(userID){
     }else{
         sideLogin.empty()
         sideLogin.append($("<div>").addClass("side_menu_login_id").html(userID));
-        sideLogin.append($("<div>").html("edit | logout").click(function(){showProfile()}));
+//        sideLogin.append($("<div>").html("edit | logout").click(function(){showProfile()}));
+        sideLogin.append($("<div>").html("edit | logout").click(function(){logout()}));
     }
 }
 
@@ -765,26 +767,6 @@ function showProfile(){
     $(".profile_container").show();
 }
 
-// 로그인 화면
-function showLogin(){
-    $(".login_container").show();
-}
-
-$(".login_btn_main").click(function(){
-    logIn();
-});
-$(".login_signup_btn").click(function(){
-    $(".signup_container").show();
-});
-$(".signup_login_btn").click(function(){
-    $(".signup_container").hide();
-});
-$(".login_help").click(function(){
-    $(".loginhelp_container").show();
-});
-$(".help_login_btn").click(function(){
-    $(".loginhelp_container").hide();
-});
 // 팝업 닫기
 $(".return_btn").click(function(){
 	// 구매 정보 초기화

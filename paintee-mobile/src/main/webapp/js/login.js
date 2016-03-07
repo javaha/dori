@@ -58,6 +58,14 @@ function logIn(){
     mainSwiper.lockSwipeToPrev();*/
 }
 
+function logout() {
+    console.log("log out!!!");
+
+    clearUserInfoCookie();
+    
+    location.href="/";
+}
+
 //로그인 화면
 function showLogin(){
  $(".login_container").show();

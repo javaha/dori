@@ -14,18 +14,16 @@
 */
 package com.paintee.mobile.auth.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -67,7 +65,7 @@ public class LoginRestController {
 	 @return 
 	*/
 	@RequestMapping(value = "/api/login", method = {RequestMethod.POST})
-	public Map<String, Object> login(UserLoginVO userLoginVO, HttpServletResponse response) {
+	public Map<String, Object> login(@RequestBody UserLoginVO userLoginVO, HttpServletResponse response) {
 		Map<String, Object> resultMap = new HashMap<>();
 
 		if(userLoginVO.getEmail() == null || userLoginVO.getEmail().trim().length() == 0) {

@@ -35,14 +35,14 @@
 		<servlet-name>paintee-admin</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	<!-- put, patch HttpMethod 필터 -->
 	<filter>
-		<filter-name>httpPutFormFilter</filter-name>
+		<filter-name>HttpPutFormContentFilter</filter-name>
 		<filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
 	</filter>
-	
+
 	<filter-mapping>
-		<filter-name>httpPutFormFilter</filter-name>
+		<filter-name>HttpPutFormContentFilter</filter-name>
 		<servlet-name>paintee-admin</servlet-name>
 	</filter-mapping>
 
