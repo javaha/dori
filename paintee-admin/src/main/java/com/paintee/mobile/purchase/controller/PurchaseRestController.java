@@ -55,10 +55,10 @@ public class PurchaseRestController {
 	@RequestMapping(value="/api/purchase", method={RequestMethod.POST})
 	public Map<String, Object> addPurchase(@RequestBody Purchase purchase) throws Exception {
 		logger.debug(purchase.toString());
-		
+
 		// 구매관련 정보 등록
 		purchaseService.addPurchase(purchase);
-		
+
 		Map<String, Object> result = new HashMap<>();
 		result.put("msg", "success");
 		return result;

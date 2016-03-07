@@ -14,6 +14,8 @@
 */
 package com.paintee.mobile.interceptor;
 
+import java.io.OutputStream;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,6 +23,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.paintee.mobile.auth.service.LoginService;
 
 /**
 @class TokenInterceptor
@@ -39,6 +43,50 @@ com.paintee.mobile.interceptor \n
 */
 public class TokenInterceptor extends HandlerInterceptorAdapter {
 	private final static Logger logger = LoggerFactory.getLogger(TokenInterceptor.class);
+
+	private LoginService loginService;
+
+	public void setLoginService(LoginService loginService) {
+		this.loginService = loginService;
+	}
+
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		logger.info("preHandle executed");
+
+		String requestMethod = request.getMethod();
+
+		logger.debug("request method:{}", requestMethod);
+
+
+		if(requestMethod != null && requestMethod.equals("OPTIONS")) {
+			return super.preHandle(request, response, handler);
+		}
+
+		boolean isEffective = false;
+
+		String painteeHash = request.getHeader("X-PAINTEE-HASH");
+		logger.debug("painteeHash:{}", painteeHash);
+
+		if(painteeHash != null) {
+			isEffective = loginService.hashCheck(painteeHash);
+		}
+		logger.debug("isEffective:{}", isEffective);
+
+		if(isEffective) {
+			return super.preHandle(request, response, handler);
+		} else {
+			response.setStatus(401);
+			String returnMessage = "{\"errorNo\":9999, \"errorMsg\":\"Do not logined.\"}";
+
+			OutputStream os = response.getOutputStream();
+			os.write(returnMessage.getBytes());
+			os.flush();
+			os.close();
+		}
+
+		return true;
+	}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {

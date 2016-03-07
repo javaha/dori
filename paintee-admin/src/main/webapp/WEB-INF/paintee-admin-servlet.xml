@@ -39,8 +39,8 @@
 	<mvc:cors>
 		<mvc:mapping path="/api/**"
 						allowed-origins="http://localhost:8080, http://localhost:8090, http://192.168.1.31:8080, http://192.168.0.10:8090"
-						allowed-methods="GET, PUT, POST, DELETE, OPTIONS"
-						allowed-headers="origin, accept, Content-Type, Content-Range, Content-Disposition, Content-Description"
+						allowed-methods="GET, PUT, POST, DELETE"
+						allowed-headers="origin, accept, content-type, X-PAINTEE-HASH"
 						exposed-headers=""
 						allow-credentials="false"
 						max-age="3600" />
@@ -49,13 +49,19 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/api/**" />
+			<mvc:exclude-mapping path="/api/login" />
+			<mvc:exclude-mapping path="/api/newIndex" />
+			<mvc:exclude-mapping path="/api/popularIndex" />
+			<mvc:exclude-mapping path="/api/painting/**" />
 			<mvc:exclude-mapping path="/css/**" />
 			<mvc:exclude-mapping path="/font-awesome/**" />
 			<mvc:exclude-mapping path="/fonts/**" />
 			<mvc:exclude-mapping path="/img/**" />
 			<mvc:exclude-mapping path="/js/**" />
 			<mvc:exclude-mapping path="/favicon.ico" />
-			<bean class="com.paintee.mobile.interceptor.TokenInterceptor"/>
+			<bean class="com.paintee.mobile.interceptor.TokenInterceptor">
+				<property name="loginService" ref="com.paintee.mobile.auth.service.LoginServiceImpl" />
+			</bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	<mvc:interceptors>

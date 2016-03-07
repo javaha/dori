@@ -14,6 +14,7 @@
 */
 package com.paintee.mobile.auth.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.paintee.common.repository.entity.Login;
+import com.paintee.common.repository.entity.LoginExample;
 import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.UserExample;
 import com.paintee.common.repository.entity.vo.UserLoginVO;
@@ -107,5 +109,31 @@ public class LoginServiceImpl implements LoginService {
 		}
 
 		return resultMap;
+	}
+
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : hash 에 대한 유효성 검증
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : hash 에 대한 유효성 검증
+	 @see com.paintee.mobile.auth.service.LoginService#hashCheck(java.lang.String)
+	*/
+	public boolean hashCheck(String painteeHash) {
+		boolean result = false;
+
+		logger.debug("painteeHash:{}", painteeHash);
+
+		LoginExample loginExample = new LoginExample();
+		LoginExample.Criteria where = loginExample.createCriteria();
+		where.andHashEqualTo(painteeHash);
+		where.andExpireDateGreaterThanOrEqualTo(new Date());
+
+		List<Login> loginList = loginHelper.selectByExample(loginExample);
+
+		if(loginList != null && loginList.size() > 0) {
+			result = true;
+		}
+
+		return result;
 	}
 }

@@ -20,6 +20,9 @@ LogInController.prototype = {
 			console.log(result);
 			setUserInfoCookie(result);
 
+			//login 후 cookie 를 페이지에 적용하기 위하여 새로고침해야함.
+			location.href = "/";
+/*
 		    $(".login_container").hide();
 
 		    userID = result.email;
@@ -30,7 +33,7 @@ LogInController.prototype = {
 
 		    mainSwiper.slideTo(0);
 		    mainSwiper.unlockSwipes();
-		    mainSwiper.lockSwipeToPrev();
+		    mainSwiper.lockSwipeToPrev();*/
 		} else if(result.errorNo == 401 || result.errorNo == 402 || result.errorNo == 404) {
 			alert('이메일과 비밀번호를 확인하세요.');
 		}

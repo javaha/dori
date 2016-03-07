@@ -43,4 +43,14 @@ public interface LoginService {
 	 @return 
 	*/
 	public Map<String, Object> login(UserLoginVO userLoginVO);
+	
+	/**
+	 @fn hashCheck
+	 @brief 함수 간략한 설명 : hash 에 대한 유효성 검증
+	 @remark
+	 - 함수의 상세 설명 : hash 에 대한 유효성 검증
+	 @param painteeHash
+	 @return 
+	*/
+	public boolean hashCheck(String painteeHash);
 }

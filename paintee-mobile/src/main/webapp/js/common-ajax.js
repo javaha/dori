@@ -11,6 +11,11 @@ var AjaxCall = {
 			data: (data ? JSON.stringify(data) : ""),
 			dataType: "json",
 			contentType: "application/json",
+			beforeSend: function(xhr){
+				if(userInfo) {
+					xhr.setRequestHeader('X-PAINTEE-HASH', userInfo.hash);
+				}
+			},
 			error: function (jqXHR, textStatus, errorThrown) {
 				console.log(jqXHR);
 				console.log(jqXHR.responseText);
@@ -67,11 +72,7 @@ var AjaxCall = {
 			}
 		};
 
-		if(type == "DELETE" || type == 'PUT') {
-			option.contentType = "application/json";
-			option.data = JSON.stringify(data);
-		}
-
+		console.log(option);
 		$.ajax(option);
 		return;
 	},

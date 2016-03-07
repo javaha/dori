@@ -21,8 +21,8 @@ if(userInfo) {
 
 console.log('userID:'+userID);
 
-//var imageUrl="http://localhost:8090";
-var imageUrl="http://192.168.1.31:8090";
+var imageUrl="http://localhost:8090";
+//var imageUrl="http://192.168.1.31:8090";
 //var imageUrl="http://192.168.0.10:8090";
 var apiUrl=imageUrl+"/api";
 
