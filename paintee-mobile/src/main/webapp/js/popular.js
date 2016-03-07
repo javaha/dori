@@ -14,7 +14,7 @@ popularSwiper.on("onSlideChangeStart", function(swiper){
 	var slidesCnt = swiper.slides.length - 1;
 	// 만약, 현재 선택한 슬라이드가 로딩된 슬라이드의 수보다 하나 작을 경우 서버에 5개의 그림을 재요청
 	console.log(swiper.slides.length + "-" + swiper.activeIndex);
-	if (slidesCnt - 1 <= swiper.activeIndex) {
+	if (slidesCnt - 1 <= swiper.activeIndex && slidesCnt < 100) {
 		var controller = new PopularController();
 		controller.getListData(slidesCnt);
 	}
@@ -57,8 +57,8 @@ PopularController.prototype = {
 	getListData: function (startRow) {
 		this.startRow = startRow;
 		var controller = this;
-		AjaxCall.call(apiUrl + "/popularIndex", 
-			"startRow=" + startRow, 
+		AjaxCall.call(apiUrl + "/popularIndex?startRow=" + startRow,
+			null, 
 			"GET", 
 			function (result) {
 				controller.getListDataRes(result);			
@@ -72,6 +72,9 @@ PopularController.prototype = {
 		}
 		for (var index in result.list) {
 			addPainting(popularSwiper, 1, "popular", result.list[index]);
+			if (popularSwiper.slides.length > 100) {
+				break;
+			}
 		} 
 	}
 };
