@@ -45,6 +45,14 @@
 		<filter-name>HttpPutFormContentFilter</filter-name>
 		<servlet-name>paintee-admin</servlet-name>
 	</filter-mapping>
+	<filter>
+		<filter-name>hiddenmethodfilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>hiddenmethodfilter</filter-name>
+		<servlet-name>paintee-name</servlet-name>
+	</filter-mapping>
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>

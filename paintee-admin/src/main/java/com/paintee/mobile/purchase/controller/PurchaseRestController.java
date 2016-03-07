@@ -20,6 +20,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,7 +53,7 @@ public class PurchaseRestController {
 	private PurchaseService purchaseService;
 	
 	@RequestMapping(value="/api/purchase", method={RequestMethod.POST})
-	public Map<String, Object> addPurchase(Purchase purchase) throws Exception {
+	public Map<String, Object> addPurchase(@RequestBody Purchase purchase) throws Exception {
 		logger.debug(purchase.toString());
 		
 		// 구매관련 정보 등록

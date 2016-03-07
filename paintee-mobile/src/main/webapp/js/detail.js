@@ -13,7 +13,7 @@ function DetailStructure(paintingId, fileId, artistName, artistId, artistSentenc
 
     this.detailBgContainer  =$("<div>").addClass("detail_bg_container");
     this.detailBgImg        =$("<img>").addClass("detail_bg_img");
-    this.detailBgBottom     =$("<div>").addClass("detail_bg_bottom")
+    this.detailBgBottom     =$("<div>").addClass("detail_bg_bottom");
 
     this.detailContainer    =$("<div>").addClass("detail_container").addClass("swiper_container_detail");
     this.wrapper            =$("<div>").addClass("swiper-wrapper");
@@ -43,7 +43,7 @@ function DetailStructure(paintingId, fileId, artistName, artistId, artistSentenc
     this.returnBtn          =$("<div>").addClass("return_btn").append($("<i>").addClass("material-icons").html("keyboard_backspace"));
 }
 
-DetailStructure.prototype   ={
+DetailStructure.prototype = {
     setBG       : function(fileId){
         this.detailBgImg.attr("src", imageUrl+"/cmm/file/view/"+fileId);
     },
