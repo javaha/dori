@@ -75,7 +75,7 @@ public class TestController {
 	}
 
 	@RequestMapping(value="/api/upload", method={RequestMethod.POST})
-	public Map<String, Object> testUpload(@RequestBody TestVO testVO) throws Exception {
+	public Map<String, Object> testUpload(TestVO testVO) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		logger.debug("testUpload");
 
