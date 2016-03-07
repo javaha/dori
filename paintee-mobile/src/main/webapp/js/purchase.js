@@ -2,6 +2,12 @@
 function purchase(paintingId){
 	console.log("purchase : " + paintingId);
     $(".purchase_container").show();
+    
+    // 기존 설정된 이벤트 제거
+    $(".purchase_pay_btn").off("click");
+    $(".purchase_like_btn").off("click");
+    
+    // 클릭 이벤트 설정
     $(".purchase_pay_btn" ).click(function(){payment(paintingId)});
     // 좋아요 버튼일 경우 카드 발송하지 않는다 : 현재 미정임
     $(".purchase_like_btn").click(function(){payment(paintingId, true)});
@@ -103,22 +109,97 @@ function setPostUI(type) {
 	if (type == 'KOREA') {
 		className = "purchase_input2";
 		styleName = "inline";
+//		$("[name=receiverBasicAddr]").attr("readOnly", "readOnly");
 	}
 	$("[name=receiverBasicAddr]").attr("class", className);
 	$("#postSearch").css("display", styleName);
 }
 
+// 구매시의 한마디 
+$("[name=sentence]").keyup(function () {
+    // 남은 글자 수를 구합니다.
+    var inputLength = $(this).val().length;
+    var remain = 200 - inputLength;
+
+    $('#pSentenceCount').html(inputLength);
+    if (remain >= 0) {
+        $('#pSentenceCount').css('color', 'black');
+    } else {
+        $('#pSentenceCount').css('color', 'red');
+    }
+});
+
+$("[name=sentence]").blur(function () {
+	var enter = getEnterCount($("[name=sentence]"));
+	if (enter > 5) {
+		alert("줄바꿈은 5회까지 가능합니다. ");
+	}
+});
+
 //결재화면
 /**
- * noPostCard 일 경우 발송없이 결재
+ * 차후 구현 예정
+ * noPostCard의 값이 있는 경우 발송없이 결재
  */
 function payment(paintingId, noPostCard){
+	// 구매입력 항목 체크
+	if (!validPurchase()) { return false; }
+	
     purchaseStatus = "";
     boxStatus = "payment";
+    console.log(1);
     $(".purchase_container").hide();
+    console.log(2);
     $(".payment_container").show();
+    console.log(3);
     initPayment(paintingId);
+    console.log(4);
     setBox();
+}
+
+function validPurchase() {
+	if ($("[name=sentence]").val().trim().length == 0) {
+		alert("한마디를 입력하세요");
+		$("[name=sentence]").focus();
+		return false;
+	}
+	
+	var enter = getEnterCount($("[name=sentence]"));
+	if (enter > 5) {
+		alert("줄바꿈은 5회까지 가능합니다.");
+		$("[name=sentence]").focus();
+		return false;
+	}
+	
+	if ($("[name=senderName]").val().trim().length == 0) {
+		alert("보내는 사람을 입력하세요");
+		$("[name=senderName]").focus();
+		return false;
+	}
+	if ($("[name=receiverName]").val().trim().length == 0) {
+		alert("보내는 사람을 입력하세요");
+		$("[name=receiverName]").focus();
+		return false;
+	}
+	if ($("[name=receiverBasicAddr]").val().trim().length == 0) {
+		alert("주소를 입력하세요");
+		$("[name=receiverBasicAddr]").focus();
+		return false;
+	}
+	/*
+	if ($("[name=receiverCity]").val().trim().length == 0) {
+		alert("도시명을 입력하세요");
+		$("[name=receiverCity]").focus();
+		return false;
+	}
+	*/
+	if ($("[name=receiverZipcode]").val().trim().length == 0) {
+		alert("우편번호를 입력하세요");
+		$("[name=receiverZipcode]").focus();
+		return false;
+	}
+	
+	return true;
 }
 
 function Payment(){
@@ -129,7 +210,6 @@ function Payment(){
     this.sociconTwitter     =$("<span>").addClass("social_btn").addClass("socicon-twitter");
     this.sociconInstagram   =$("<span>").addClass("social_btn").addClass("socicon-instagram");
     this.sociconPinterest   =$("<span>").addClass("social_btn").addClass("socicon-pinterest");
-
 }
 
 Payment.prototype = {
@@ -167,6 +247,7 @@ function PurchaseController() {
 
 PurchaseController.prototype = {
 	addPurchase: function (paintingId) {
+		console.log("addPurchase");
 		var controller = this;
 		
 		// userId는 로그인 후 쿠키에서 가져와서 처리하도록 해야함
@@ -215,6 +296,7 @@ function resetPurchase() {
 	$("[name=receiverName]").val("")
 	$("[name=senderName]").val("");
 	$("[name=location]").val("");
+	$('#pSentenceCount').html(0);
 }
 
 function completePayment(){
