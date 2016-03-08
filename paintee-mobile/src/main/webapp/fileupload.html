@@ -24,12 +24,13 @@
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="/js/common-ajax.js"></script>
+    <script src="/js/init.js"></script>
     <script type="text/javascript">
     	var FileuploadController = {
     		upload: function () {
 				var form = new FormData($('#uploadForm').get(0));
 
-				AjaxCall.callMultipart("http://localhost:8080/api/upload", form, FileuploadController.uploadRes);
+				AjaxCall.callMultipart(apiUrl+"/upload", form, FileuploadController.uploadRes);
     		},
     		uploadRes: function (result, status) {
     			console.log(result);

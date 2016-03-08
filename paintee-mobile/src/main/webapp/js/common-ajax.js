@@ -86,7 +86,11 @@ var AjaxCall = {
 			data: data,
 			async: true,
 			cache: false,
-			"data-ajax": "false",
+			beforeSend: function(xhr){
+				if(userInfo) {
+					xhr.setRequestHeader('X-PAINTEE-HASH', userInfo.hash);
+				}
+			},
 			success: function(result, status) {
 				successFunc(result, status);
 			},
