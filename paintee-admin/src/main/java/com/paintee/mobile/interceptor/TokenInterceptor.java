@@ -14,8 +14,6 @@
 */
 package com.paintee.mobile.interceptor;
 
-import java.io.OutputStream;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.paintee.mobile.auth.service.LoginService;
+import com.paintee.mobile.exception.UnauthorizedException;
 
 /**
 @class TokenInterceptor
@@ -76,16 +75,8 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
 		if(isEffective) {
 			return super.preHandle(request, response, handler);
 		} else {
-			response.setStatus(401);
-			String returnMessage = "{\"errorNo\":9999, \"errorMsg\":\"Do not logined.\"}";
-
-			OutputStream os = response.getOutputStream();
-			os.write(returnMessage.getBytes());
-			os.flush();
-			os.close();
+			throw new UnauthorizedException("9999", "Do not logined.");
 		}
-
-		return true;
 	}
 
 	@Override

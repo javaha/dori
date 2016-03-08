@@ -56,13 +56,13 @@ var AjaxCall = {
 					} catch (e) {
 						alert(e.message);
 						alert(jqXHR.responseText);
-						alert('response not null == Error == \n' +
+						alert('response not null == Error1 == \n' +
 							'code : ' + jqXHR.status + '\n' +
 							'statusText : ' + jqXHR.statusText
 						);
 					}
 				} else {
-					alert('=== Error === \n' +
+					alert('=== Error2 === \n' +
 						'code : ' + jqXHR.status + '\n' +
 						'statusText : ' + jqXHR.statusText
 					);
