@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.paintee.mobile.interceptor.TokenInterceptor;
+import com.paintee.mobile.support.interceptor.TokenInterceptor;
 
 /**
 @class AdminSessionInterceptor

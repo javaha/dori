@@ -16,6 +16,7 @@ package com.paintee.mobile.auth.service;
 
 import java.util.Map;
 
+import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.UserLoginVO;
 
 /**
@@ -53,4 +54,14 @@ public interface LoginService {
 	 @return 
 	*/
 	public boolean hashCheck(String painteeHash);
+
+	/**
+	 @fn getUser
+	 @brief 함수 간략한 설명 : hash 정보를 사용하여 해당 사용자 정보 조회
+	 @remark
+	 - 함수의 상세 설명 : hash 정보를 사용하여 해당 사용자 정보 조회
+	 @param painteeHash
+	 @return 
+	*/
+	public User getUser(String painteeHash);
 }

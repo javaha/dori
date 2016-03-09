@@ -4,7 +4,7 @@
 |    항  목       |      내  용       |
 | :-------------: | -------------   |
 | File name | TokenInterceptor.java |    
-| Package | com.paintee.mobile.interceptor |    
+| Package | com.paintee.mobile.support.interceptor |    
 | Project name | paintee-admin |    
 | Type name | TokenInterceptor |    
 | Company | Paintee | 
@@ -12,7 +12,7 @@
 | Author | Administrator |
 | File Version | v1.0 |
 */
-package com.paintee.mobile.interceptor;
+package com.paintee.mobile.support.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,11 +23,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.paintee.mobile.auth.service.LoginService;
-import com.paintee.mobile.exception.UnauthorizedException;
+import com.paintee.mobile.support.exception.UnauthorizedException;
 
 /**
 @class TokenInterceptor
-com.paintee.mobile.interceptor \n
+com.paintee.mobile.support.interceptor \n
    ㄴ TokenInterceptor.java
  @section 클래스작성정보
     |    항  목       |      내  용       |

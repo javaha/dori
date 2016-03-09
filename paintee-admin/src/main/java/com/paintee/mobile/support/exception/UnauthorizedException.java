@@ -4,7 +4,7 @@
 |	항  목	   |	  내  용	   |
 | :-------------: | -------------   |
 | File name | UnauthorizedException.java |	
-| Package | com.paintee.mobile.exception |	
+| Package | com.paintee.mobile.support.exception |	
 | Project name | paintee-admin |	
 | Type name | UnauthorizedException |	
 | Company | Paintee | 
@@ -12,11 +12,11 @@
 | Author | Administrator |
 | File Version | v1.0 |
 */
-package com.paintee.mobile.exception;
+package com.paintee.mobile.support.exception;
 
 /**
 @class UnauthorizedException
-com.paintee.mobile.exception \n
+com.paintee.mobile.support.exception \n
    ㄴ UnauthorizedException.java
  @section 클래스작성정보
 	|	항  목	   |	  내  용	   |

@@ -1,4 +1,4 @@
-package com.paintee.mobile.advice;
+package com.paintee.mobile.support.advice;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,19 +11,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.paintee.mobile.exception.UnauthorizedException;
+import com.paintee.mobile.support.exception.UnauthorizedException;
 
 /**
 @class GlobalExceptionAdvice
-com.paintee.mobile.advice \n
+com.paintee.mobile.support.advice \n
    ㄴ GlobalExceptionAdvice.java
  @section 클래스작성정보
 	|	항  목	   |	  내  용	   |

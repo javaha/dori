@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.paintee.mobile.support.obejct.LoginedUserVO;
 import com.paintee.mobile.user.service.UserService;
 
 /**
@@ -59,14 +60,15 @@ public class UserRestController {
 	 @throws Exception 
 	*/
 	@RequestMapping(value="/api/user/{followingId}/follow", method={RequestMethod.POST})
-	public Map<String, Object> follow(@PathVariable String followingId) throws Exception {
+	public Map<String, Object> follow(@PathVariable String followingId, LoginedUserVO loginedUserVO) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
 
+		logger.debug("loginedUserVO:{}", loginedUserVO);
 		int errorNo = 0;
 		String errorMsg = "";
 
 		//TODO: 로그인 hash 구현시 hash 에 해당하는 사용자 id 를 넣어주어야 함.
-		String followId = "dori";
+		String followId = loginedUserVO.getUserId();
 
 		errorNo = userService.follow(followId, followingId);
 

@@ -136,4 +136,30 @@ public class LoginServiceImpl implements LoginService {
 
 		return result;
 	}
+
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : hash 정보를 사용하여 해당 사용자 정보 조회
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : hash 정보를 사용하여 해당 사용자 정보 조회
+	 @see com.paintee.mobile.auth.service.LoginService#getUser(java.lang.String)
+	*/
+	public User getUser(String painteeHash) {
+		User user = null;
+
+		LoginExample loginExample = new LoginExample();
+		LoginExample.Criteria where = loginExample.createCriteria();
+		where.andHashEqualTo(painteeHash);
+		where.andExpireDateGreaterThanOrEqualTo(new Date());
+
+		List<Login> loginList = loginHelper.selectByExample(loginExample);
+
+		if(loginList != null && loginList.size() > 0) {
+			Login login = loginList.get(0);
+
+			user = userHelper.selectByPrimaryKey(login.getUserId());
+		}
+
+		return user;
+	}
 }

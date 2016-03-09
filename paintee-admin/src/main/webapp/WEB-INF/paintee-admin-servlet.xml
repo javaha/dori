@@ -18,7 +18,15 @@
 						http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.2.xsd
 						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
-	<mvc:annotation-driven content-negotiation-manager="cnManager"/>
+
+	<mvc:annotation-driven content-negotiation-manager="cnManager">
+		<mvc:argument-resolvers>
+			<bean class="com.paintee.mobile.support.resolver.UserHandlerMethodArgumentResolver">
+				<property name="loginService" ref="com.paintee.mobile.auth.service.LoginServiceImpl" />
+			</bean>
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+
 	<context:annotation-config />
 
 	<context:component-scan base-package="com.paintee.admin,com.paintee.mobile,com.paintee.common">
@@ -59,7 +67,7 @@
 			<mvc:exclude-mapping path="/img/**" />
 			<mvc:exclude-mapping path="/js/**" />
 			<mvc:exclude-mapping path="/favicon.ico" />
-			<bean class="com.paintee.mobile.interceptor.TokenInterceptor">
+			<bean class="com.paintee.mobile.support.interceptor.TokenInterceptor">
 				<property name="loginService" ref="com.paintee.mobile.auth.service.LoginServiceImpl" />
 			</bean>
 		</mvc:interceptor>
