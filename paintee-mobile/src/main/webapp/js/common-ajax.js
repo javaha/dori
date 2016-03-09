@@ -33,6 +33,8 @@ var AjaxCall = {
 
 								$(location).attr('href', url);
 							} else if (object.errorNo == 9999) {
+								clearUserInfoCookie();
+
 								alert(object.errorMsg);
 
 								$(location).attr('href', contextPath + '/');
@@ -45,6 +47,8 @@ var AjaxCall = {
 
 								$(opener.location).attr('href', url);
 							} else if (object.errorNo == 9999) {
+								clearUserInfoCookie();
+
 								alert(object.errorMsg);
 
 								$(location).attr('href', contextPath + '/');
