@@ -25,16 +25,17 @@ var AjaxCall = {
 				if (jqXHR.responseText != null) {
 					try {
 						var object = JSON.parse(jqXHR.responseText);
+						var contextPath = object.contextPath?object.contextPath:'';
 
 						if (opener == null) {
 							if (object.errorNo == 500) {
-								var url = object.contextPath + "/common/error/500.html";
+								var url = contextPath + "/common/error/500.html";
 
 								$(location).attr('href', url);
 							} else if (object.errorNo == 9999) {
 								alert(object.errorMsg);
 
-								$(location).attr('href', object.contextPath + '/');
+								$(location).attr('href', contextPath + '/');
 							} else {
 								$(location).attr('href', object.redirectUrl);
 							}
@@ -46,7 +47,7 @@ var AjaxCall = {
 							} else if (object.errorNo == 9999) {
 								alert(object.errorMsg);
 
-								$(location).attr('href', object.contextPath + '/');
+								$(location).attr('href', contextPath + '/');
 							} else {
 								$(opener.location).attr('href', object.redirectUrl);
 							}
@@ -99,10 +100,11 @@ var AjaxCall = {
 				if (jqXHR.responseText != null) {
 					try {
 						var object = JSON.parse(jqXHR.responseText);
+						var contextPath = object.contextPath?object.contextPath:'';
 
 						if (opener == null) {
 							if (object.errorNo == 500) {
-								var url = object.contextPath + "/common/error/500.html";
+								var url = contextPath + "/common/error/500.html";
 
 								$(location).attr('href', url);
 							} else {
@@ -110,7 +112,7 @@ var AjaxCall = {
 							}
 						} else {
 							if (object.errorNo == 500) {
-								var url = object.contextPath + "/common/error/500.html";
+								var url = contextPath + "/common/error/500.html";
 
 								$(opener.location).attr('href', url);
 							} else {

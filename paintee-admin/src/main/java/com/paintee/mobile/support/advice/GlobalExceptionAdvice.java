@@ -113,6 +113,7 @@ public class GlobalExceptionAdvice {
 
         responseMap.put("errorNo", ue.getErrorNo());
         responseMap.put("errorMsg", ue.getMessage());
+        responseMap.put("contextPath", request.getContextPath());
 
     	return responseMap;
     }
