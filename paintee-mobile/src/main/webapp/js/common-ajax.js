@@ -26,7 +26,7 @@ var AjaxCall = {
 					try {
 						var object = JSON.parse(jqXHR.responseText);
 
-						if (object == null) {
+						if (opener == null) {
 							if (object.errorNo == 500) {
 								var url = object.contextPath + "/common/error/500.html";
 
@@ -34,7 +34,7 @@ var AjaxCall = {
 							} else if (object.errorNo == 9999) {
 								alert(object.errorMsg);
 
-								$(location).attr('href', '/');
+								$(location).attr('href', object.contextPath + '/');
 							} else {
 								$(location).attr('href', object.redirectUrl);
 							}
@@ -46,7 +46,7 @@ var AjaxCall = {
 							} else if (object.errorNo == 9999) {
 								alert(object.errorMsg);
 
-								$(location).attr('href', '/');
+								$(location).attr('href', object.contextPath + '/');
 							} else {
 								$(opener.location).attr('href', object.redirectUrl);
 							}

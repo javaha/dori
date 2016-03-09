@@ -60,9 +60,7 @@ public class UserHandlerMethodArgumentResolver implements HandlerMethodArgumentR
 	*/
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
-		boolean result = LoginedUserVO.class.isAssignableFrom(parameter.getParameterType());
-		logger.debug("supportsParameter:{}", result);
-		return result;
+		return LoginedUserVO.class.isAssignableFrom(parameter.getParameterType());
 	}
 
 	/**
@@ -78,7 +76,6 @@ public class UserHandlerMethodArgumentResolver implements HandlerMethodArgumentR
 		LoginedUserVO loginedUserVO = null;
 
 		String painteeHash = webRequest.getHeader("X-PAINTEE-HASH");
-		logger.debug("painteeHash:{}", painteeHash);
 
 		if(painteeHash != null) {
 			boolean isEffective = loginService.hashCheck(painteeHash);
@@ -89,7 +86,6 @@ public class UserHandlerMethodArgumentResolver implements HandlerMethodArgumentR
 				User user = loginService.getUser(painteeHash);
 
 				BeanUtils.copyProperties(loginedUserVO, user);
-				logger.debug("loginedUserVO:{}", loginedUserVO);
 			}
 		}
 
