@@ -1,54 +1,54 @@
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-6256a1', 'a01',  '테스트1',  1,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4801',  23,  1, 'N');
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-6256a2', 'a02',  '테스트2',  2,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4802',  0,  0, 'N');
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-6256a3', 'a03',  '테스트3',  3,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4803',  0,  0, 'N');
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-6256a4', 'a04',  '테스트4',  4,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4804',  1,  1, 'N');
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-6256a5', 'a05',  '테스트5',  5,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4805',  1,  1, 'N');
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-6256a6', 'a06',  '테스트6',  6,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4806',  0,  0, 'N');
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-6256a7', 'a07',  '테스트7',  7,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4807',  2,  1, 'N');
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-6256a8', 'a08',  '테스트8',  8,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4808',  0,  0, 'N');
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-6256a9', 'a09',  '테스트9',  9,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4809',  2,  1, 'N');
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-6256a0', 'a10', '테스트10', 10, now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4810',  1,  1, 'N');
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-6256aa', 'a11', '테스트11', 11, now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4811',  2,  2, 'N');
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-6256ab', 'a12', '테스트12', 12, now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4812',  2,  2, 'N');
-insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-6256ac', 'a13', '테스트13', 13, now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4813',  1,  1, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-c48016256a1', 'a01',  '테스트1',  1,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4801',  23,  1, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-c48016256a2', 'a02',  '테스트2',  2,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4802',  0,  0, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-c48016256a3', 'a03',  '테스트3',  3,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4803',  0,  0, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-c48016256a4', 'a04',  '테스트4',  4,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4804',  1,  1, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-c48016256a5', 'a05',  '테스트5',  5,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4805',  1,  1, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-c48016256a6', 'a06',  '테스트6',  6,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4806',  0,  0, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-c48016256a7', 'a07',  '테스트7',  7,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4807',  2,  1, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-c48016256a8', 'a08',  '테스트8',  8,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4808',  0,  0, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-c48016256a9', 'a09',  '테스트9',  9,  now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4809',  2,  1, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-c48016256a0', 'a10', '테스트10', 10, now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4810',  1,  1, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-c48016256aa', 'a11', '테스트11', 11, now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4811',  2,  2, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-c48016256ab', 'a12', '테스트12', 12, now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4812',  2,  2, 'N');
+insert into tb_painting(artist_id, artist_name, sentence, file_group_seq, upload_date, painting_id, posted_num, posted_people_cnt, painting_status) values('f98377b9-e250-48ce-9d01-c48016256ac', 'a13', '테스트13', 13, now(), 'b0645fc6-a7bb-4f61-a133-d29ae45c4813',  1,  1, 'N');
 
 
 insert into TB_PURCHASE(user_id, painting_id, purchase_date, sentence, private_at, purchase_status) values 
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다0', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-02', '%Y-%m-%d'), '테스트 중입니다1', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다2', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다3', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다4', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다5', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다6', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다7', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다8', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다9', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다10', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다11', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다12', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다13', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다14', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다15', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다16', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다17', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다18', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다19', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다20', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다21', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다22', 'N', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4804', STR_TO_DATE('2016-03-04', '%Y-%m-%d'), '테스트 중입니다23', 'Y', 'S'),
-('f98377b9-e250-48ce-9d01-6256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4805', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다24', 'Y', 'S'),
-('f98377b9-e250-48ce-9d01-6256a2', 'b0645fc6-a7bb-4f61-a133-d29ae45c4807', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다25', 'Y', 'S'),
-('f98377b9-e250-48ce-9d01-6256a2', 'b0645fc6-a7bb-4f61-a133-d29ae45c4807', STR_TO_DATE('2016-03-02', '%Y-%m-%d'), '테스트 중입니다26', 'Y', 'S'),
-('f98377b9-e250-48ce-9d01-6256a3', 'b0645fc6-a7bb-4f61-a133-d29ae45c4809', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다27', 'Y', 'S'),
-('f98377b9-e250-48ce-9d01-6256a3', 'b0645fc6-a7bb-4f61-a133-d29ae45c4809', STR_TO_DATE('2016-03-04', '%Y-%m-%d'), '테스트 중입니다28', 'Y', 'S'),
-('f98377b9-e250-48ce-9d01-6256a4', 'b0645fc6-a7bb-4f61-a133-d29ae45c4810', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다29', 'Y', 'S'),
-('f98377b9-e250-48ce-9d01-6256a2', 'b0645fc6-a7bb-4f61-a133-d29ae45c4811', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다30', 'Y', 'S'),
-('f98377b9-e250-48ce-9d01-6256a2', 'b0645fc6-a7bb-4f61-a133-d29ae45c4812', STR_TO_DATE('2016-03-02', '%Y-%m-%d'), '테스트 중입니다31', 'Y', 'S'),
-('f98377b9-e250-48ce-9d01-6256a3', 'b0645fc6-a7bb-4f61-a133-d29ae45c4813', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다32', 'Y', 'S'),
-('f98377b9-e250-48ce-9d01-6256a3', 'b0645fc6-a7bb-4f61-a133-d29ae45c4811', STR_TO_DATE('2016-03-04', '%Y-%m-%d'), '테스트 중입니다33', 'Y', 'S'),
-('f98377b9-e250-48ce-9d01-6256a4', 'b0645fc6-a7bb-4f61-a133-d29ae45c4812', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다34', 'Y', 'S');
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다0', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-02', '%Y-%m-%d'), '테스트 중입니다1', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다2', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다3', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다4', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다5', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다6', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다7', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다8', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다9', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다10', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다11', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다12', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다13', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다14', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다15', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다16', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다17', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다18', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다19', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다20', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다21', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4801', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다22', 'N', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4804', STR_TO_DATE('2016-03-04', '%Y-%m-%d'), '테스트 중입니다23', 'Y', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a1', 'b0645fc6-a7bb-4f61-a133-d29ae45c4805', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다24', 'Y', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a2', 'b0645fc6-a7bb-4f61-a133-d29ae45c4807', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다25', 'Y', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a2', 'b0645fc6-a7bb-4f61-a133-d29ae45c4807', STR_TO_DATE('2016-03-02', '%Y-%m-%d'), '테스트 중입니다26', 'Y', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a3', 'b0645fc6-a7bb-4f61-a133-d29ae45c4809', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다27', 'Y', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a3', 'b0645fc6-a7bb-4f61-a133-d29ae45c4809', STR_TO_DATE('2016-03-04', '%Y-%m-%d'), '테스트 중입니다28', 'Y', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a4', 'b0645fc6-a7bb-4f61-a133-d29ae45c4810', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다29', 'Y', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a2', 'b0645fc6-a7bb-4f61-a133-d29ae45c4811', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다30', 'Y', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a2', 'b0645fc6-a7bb-4f61-a133-d29ae45c4812', STR_TO_DATE('2016-03-02', '%Y-%m-%d'), '테스트 중입니다31', 'Y', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a3', 'b0645fc6-a7bb-4f61-a133-d29ae45c4813', STR_TO_DATE('2016-03-03', '%Y-%m-%d'), '테스트 중입니다32', 'Y', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a3', 'b0645fc6-a7bb-4f61-a133-d29ae45c4811', STR_TO_DATE('2016-03-04', '%Y-%m-%d'), '테스트 중입니다33', 'Y', 'S'),
+('f98377b9-e250-48ce-9d01-c48016256a4', 'b0645fc6-a7bb-4f61-a133-d29ae45c4812', STR_TO_DATE('2016-03-01', '%Y-%m-%d'), '테스트 중입니다34', 'Y', 'S');
 
 
 insert into `tb_file_group`(`seq`,`group_name`,`created_date`) values (1,'TB_FILE_INFO', now());
@@ -81,18 +81,17 @@ insert into `tb_file_info`(`id`,`file_group_seq`,`content_type`,`extension`,`nam
 
 --password 는 1111이다.
 insert into `tb_user`(`user_id`,`password`,`email`,`name`,`introduce`,`address`,`location`,`upload_cnt`,`post_cnt`,`earn_total_money`,`earn_reword_money`,`resent_send_addr`,`resent_send_name`,`point`,`user_status`,`created_date`) values 
-('f98377b9-e250-48ce-9d01-6256d1','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','test@a.com','아무개',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
-('f98377b9-e250-48ce-9d01-6256a1','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','aa@a.com','a01',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
-('f98377b9-e250-48ce-9d01-6256a2','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ab@a.com','a02',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
-('f98377b9-e250-48ce-9d01-6256a3','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ac@a.com','a03',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
-('f98377b9-e250-48ce-9d01-6256a4','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ad@a.com','a04',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
-('f98377b9-e250-48ce-9d01-6256a5','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ae@a.com','a05',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
-('f98377b9-e250-48ce-9d01-6256a6','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','af@a.com','a06',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
-('f98377b9-e250-48ce-9d01-6256a7','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ag@a.com','a07',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
-('f98377b9-e250-48ce-9d01-6256a8','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ah@a.com','a08',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
-('f98377b9-e250-48ce-9d01-6256a9','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ai@a.com','a09',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
-('f98377b9-e250-48ce-9d01-6256a0','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','aj@a.com','a10',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
-('f98377b9-e250-48ce-9d01-6256aa','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ak@a.com','a11',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
-('f98377b9-e250-48ce-9d01-6256ab','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','al@a.com','a12',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
-('f98377b9-e250-48ce-9d01-6256ac','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','am@a.com','a13',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45');
-
+('f98377b9-e250-48ce-9d01-c48016256d1','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','test@a.com','아무개',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
+('f98377b9-e250-48ce-9d01-c48016256a1','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','aa@a.com','a01',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
+('f98377b9-e250-48ce-9d01-c48016256a2','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ab@a.com','a02',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
+('f98377b9-e250-48ce-9d01-c48016256a3','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ac@a.com','a03',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
+('f98377b9-e250-48ce-9d01-c48016256a4','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ad@a.com','a04',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
+('f98377b9-e250-48ce-9d01-c48016256a5','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ae@a.com','a05',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
+('f98377b9-e250-48ce-9d01-c48016256a6','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','af@a.com','a06',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
+('f98377b9-e250-48ce-9d01-c48016256a7','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ag@a.com','a07',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
+('f98377b9-e250-48ce-9d01-c48016256a8','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ah@a.com','a08',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
+('f98377b9-e250-48ce-9d01-c48016256a9','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ai@a.com','a09',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
+('f98377b9-e250-48ce-9d01-c48016256a0','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','aj@a.com','a10',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
+('f98377b9-e250-48ce-9d01-c48016256aa','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ak@a.com','a11',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
+('f98377b9-e250-48ce-9d01-c48016256ab','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','al@a.com','a12',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
+('f98377b9-e250-48ce-9d01-c48016256ac','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','am@a.com','a13',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45');
