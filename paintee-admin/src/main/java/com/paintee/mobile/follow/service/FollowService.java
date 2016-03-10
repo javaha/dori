@@ -14,6 +14,11 @@
 */
 package com.paintee.mobile.follow.service;
 
+import java.util.Map;
+
+import com.paintee.common.repository.entity.vo.FollowSearchVO;
+import com.paintee.common.repository.entity.vo.FollowVO;
+
 /**
 @class FollowService
 com.paintee.mobile.follow.service \n
@@ -30,5 +35,25 @@ com.paintee.mobile.follow.service \n
  - follow service
 */
 public interface FollowService {
+
+	/**
+	 @fn getFollowPaintingInfo
+	 @brief 함수 간략한 설명 : 인덱스 페이지의 follow 정보를 조회
+	 @remark
+	 - 함수의 상세 설명 : 로그인한 사용자의 following 한 사용자들의 업로드 및 구매 그림 정보를 조회한다.
+	 @param search
+	 @return 
+	*/
+	public Map<String, Object> getFollowPaintingInfo(FollowSearchVO search);
+
+	/**
+	 @fn getFollowCount
+	 @brief 함수 간략한 설명 : 팔로잉과 팔로워의 카운트
+	 @remark
+	 - 함수의 상세 설명 : 로그인 사용자의 팔로잉과 팔로워의 카운트를 조회한다.
+	 @param search
+	 @return 
+	*/
+	public FollowVO getFollowCount(FollowSearchVO search);
 
 }

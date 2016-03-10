@@ -14,7 +14,7 @@
 */
 package com.paintee.common.repository.entity.vo;
 
-import com.paintee.common.repository.entity.FollowKey;
+import com.paintee.common.repository.entity.Painting;
 
 /**
 @class FollowVO
@@ -32,6 +32,42 @@ com.paintee.common.repository.entity.vo \n
  - 상세설명 은 여기에 기입해 주세요.
  -# 여기는 리스트로 표시됩니다.
 */
-public class FollowVO extends FollowKey {
+public class FollowVO extends Painting {
+	
+	private String sentenceName;
+	private String fileId;
+	private Integer followsCount;
+	private Integer followingCount;
+	
+	public String getSentenceName() {
+		return sentenceName;
+	}
 
+	public void setSentenceName(String sentenceName) {
+		this.sentenceName = sentenceName;
+	}
+
+	public String getFileId() {
+		return fileId;
+	}
+
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
+	}
+
+	public Integer getFollowsCount() {
+		return followsCount;
+	}
+
+	public void setFollowsCount(Integer followsCount) {
+		this.followsCount = followsCount;
+	}
+
+	public Integer getFollowingCount() {
+		return followingCount;
+	}
+
+	public void setFollowingCount(Integer followingCount) {
+		this.followingCount = followingCount;
+	}
 }

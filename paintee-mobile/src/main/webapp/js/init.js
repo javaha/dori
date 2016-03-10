@@ -23,7 +23,7 @@ console.log('userID:'+userID);
 
 var imageUrl="http://localhost:8090";
 //var imageUrl="http://192.168.1.31:8090";
-//var imageUrl="http://192.168.0.10:8090";
+//var imageUrl="http://192.168.43.63:8090";
 var apiUrl=imageUrl+"/api";
 
 setWidth();
@@ -35,15 +35,6 @@ var mainSwiper = new Swiper('.swiper_container', {
 });
 
 // list container 시작        
-var followSwiper = new Swiper('.swiper_container_follow', {
-    slidesPerView: 'auto',
-    centeredSlides: true,
-    spaceBetween: mainWidth*0.05,
-    mousewheelControl : true,
-    scrollbar: '.swiper-scrollbar-follow',
-    scrollbarHide: true
-})
-
 var mySwiper = new Swiper('.swiper_container_my', {
     slidesPerView: 'auto',
     centeredSlides: true,
@@ -96,37 +87,6 @@ Home.prototype = {
 }
 
 // 각각의 home 화면 설정
-function initFollow(userID){
-    if(userID==""){
-        var welcome = new Home();
-        welcome.setTitle("Welcome!");
-        welcome.setExplain("환영합니다.<br>그림을 엽서로 보내거나 받아보세요.");
-        welcome.hidePrev();
-        followSwiper.appendSlide(welcome.buildStructure());
-        $("#menu_follow").addClass("side_menu_major_inactive");
-        delete welcome;
-    }else{
-        followSwiper.removeAllSlides();
-        var followHome = new Home();
-        var content1 =
-            $("<div>").addClass("home_btn_follow").html("follows ").append($("<b>").html(" 12")).click(function(){initFollows()});
-        var content2 =
-            $("<div>").addClass("home_btn_follow").html("following ").append($("<b>").html(" 21")).click(function(){initFollowing()});
-        followHome.setTitle("Follow");
-        followHome.setExplain("가까운 사람들의 그림입니다.");
-        followHome.setContents(content1);
-        followHome.setContents(content2);
-        followHome.hidePrev();
-        followSwiper.appendSlide(followHome.buildStructure());
-        delete followHome;
-        delete content1;
-        delete content2;
-        $("#menu_follow").removeClass("side_menu_major_inactive");
-        
-        addPainting(followSwiper, 0, "follow");
-    }
-}
-
 function initMy(userID){
     if(userID==""){
         var myHome = new Home();
@@ -238,7 +198,7 @@ function addPainting(swiper, currentIndex, type, listData){
 	if (!listData) { return; }
 	
 	var newSlide = new Structure(swiper.slides.length, listData.paintingId);
-    newSlide.setSentence(listData.sentence, listData.artistName);
+    newSlide.setSentence(listData.sentence, listData.sentenceName ? listData.sentenceName : listData.artistName);
     newSlide.setPostedNumber(listData.postedPeopleCnt);
     newSlide.setDate(toEngDateStr(listData.uploadDate));
     newSlide.setArtist(listData.artistName);
@@ -256,13 +216,9 @@ function addPainting(swiper, currentIndex, type, listData){
     delete newSlide;    
 }
 
-followSwiper.on("onSlideChangeStart", function(swiper){if(userID!=="")addPainting(swiper, swiper.activeIndex, "follow")});
 mySwiper.on("onSlideChangeStart", function(swiper){if(userID!=="")addPainting(swiper, swiper.activeIndex, "my")});
 
-
-
 // 개인페이지 생성
-
 var personal = "";
 var isPersonal = false;
 
@@ -342,10 +298,8 @@ function hidePersonal(){
 }
 
 // 최초 5개 미리 생성
-initFollow(userID);
 initMy(userID);
 initMenu(userID);
-
 
 // mainSwiper의 첫항목과 마지막항목에서 스와이프 방지
 function mainLock(mainSwiper){
@@ -398,7 +352,6 @@ function listLock(swiper){
     }
 }
 mainSwiper.on("onTransitionEnd", function(mainSwiper){mainLock(mainSwiper)});
-followSwiper.on("onTransitionEnd", function(swiper){listLock(swiper)});
 mySwiper.on("onTransitionEnd", function(swiper){listLock(swiper)});
 
 
@@ -458,9 +411,6 @@ function selectMenu(index){
     mainSwiper.slideTo(index);
 }
 
-$("#menu_follow").click(function(){
-    selectMenu(0);
-});
 $("#menu_my").click(function(){
     selectMenu(3);
 });
@@ -475,7 +425,6 @@ $("#menu_reward").click(function(){
 
 // 초기 설정들
 // 가로휠방지 && 페이지네이션숨김 && 위로스와이프방지
-followSwiper.disableMousewheelControl();
 mySwiper.disableMousewheelControl();
 mainSwiper.lockSwipeToPrev();
 $(".swiper-scrollbar").hide();
@@ -522,7 +471,6 @@ $(".home_btn").click(function(){
          sideOn();
      }
  }
-followSwiper.on("onSetTranslate", function(swiper, translate){swipeToMenu(swiper, translate)});
 mySwiper.on("onSetTranslate", function(swiper, translate){swipeToMenu(swiper, translate)});
 
 // 모바일 웹브라우져를 전체화면으로 표시
@@ -601,6 +549,7 @@ function initUpload(){
     })
     delete upload;
 }
+
 function failUpload(){
     $(".upload_box").empty();
     var uploadFail = new Upload();
@@ -675,88 +624,6 @@ function checkReward(){
     reward.setContents('아래 계좌로 지금 받을 수 있는 <b>$53.25</b> 에<br>reward <b>수수료 $5</b>를 제외한<br><br><span class="reward_money">$48.25</span> 이 입금됩니다.<br><br><br><select class="purchase_select" style="width:50%"><option value="1">City Bank</option></select><br><br><input type="text" class="purchase_input" placeholder="name of account holder"><br><input type="text" class="purchase_input" placeholder="account"><br>계좌명과 계좌번호를 정확하게 입력해주세요.<br>계좌명이 정확하지 않을 경우, 입금에 장애가 있을 수 있습니다.');
     reward.setBottom("<div class='popup_btn upload_btn'><div class='purchase_btn_text'>Done </div><i class='material-icons'>done</i></div>");
     reward.buildUpload();
-}
-
-// 팔로우즈/팔로잉 화면
-function People(){
-    this.title      = $("<div>").addClass("people_title").addClass("popup_title");
-    this.contents   = $("<div>").addClass("people_contents").addClass("popup_contents");
-}
-
-People.prototype = {
-    setTitle    : function(title){
-        $(this.title).html(title);
-    },
-    buildUpload : function(){
-        $(".people_box").append(this.title);
-        $(".people_box").append(this.contents);
-    }
-}
-
-function Following(){
-    this.following  = $("<div>").addClass("people_list");
-    this.name       = $("<div>").addClass("people_list_name");
-    this.btn        = $("<div>").addClass("people_list_remove").html("<div class='people_list_btn_text'></div><i class='material-icons'>clear</i>");
-    this.build      = function(name){
-                        $(this.name).html(name);
-                        $(this.following).append(this.name);
-                        $(this.following).append(this.btn);
-                        return this.following;
-                    }
-}
-
-function addFollowing(name){
-        var adder = new Following();
-        $(adder.build(name)).appendTo($(".people_contents"));
-        delete adder;
-}
-
-function Follows(){
-    this.follows   = $("<div>").addClass("people_list");
-    this.name       = $("<div>").addClass("people_list_name");
-    this.btn        = $("<div>").addClass("people_list_add").html("<div class='people_list_btn_text'> </div><i class='material-icons'>add</i>");
-    this.freind     = $("<div>").addClass("people_list_add").html("<div class='people_list_btn_text'> </div><i class='material-icons' style='color:rgba(120,120,120,0.5)'>done</i>");
-    this.build      = function(name, isfriend){
-                        $(this.name).html(name);
-                        $(this.follows).append(this.name);
-                        if(isfriend){
-                            $(this.follows).append(this.freind);   
-                        }else{
-                            $(this.follows).append(this.btn); 
-                        }
-                        return this.follows;
-                    }
-}
-
-function addFollows(name, isfriend){
-        var adder = new Follows();
-        $(adder.build(name, isfriend)).appendTo($(".people_contents"));
-        delete adder;
-}
-
-function initFollows(){
-    setBox();
-    $(".people_container").show();
-    $(".people_box").empty();
-    var people = new People();
-    people.setTitle("Follows");
-    people.buildUpload();
-    for(var i=0 ; i<20 ; i++){
-        addFollows("name", i%3);
-    }
-}
-
-function initFollowing(){
-    boxStatus = "people";
-    setBox();
-    $(".people_container").show();
-    $(".people_box").empty();
-    var people = new People();
-    people.setTitle("Following");
-    people.buildUpload();
-    for(var i=0 ; i<20 ; i++){
-        addFollowing("name");
-    }
 }
 
 // 프로필 수정화면

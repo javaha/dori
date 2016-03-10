@@ -49,7 +49,6 @@ public class NewPaintingRestController {
 	
 	@RequestMapping(value="/api/newIndex", method={RequestMethod.GET})
 	public Map<String, Object> index(@RequestParam(name="startRow", required=false, defaultValue="0") Integer startRow) throws Exception {
-		
 		// 데이터 조건 설정
 		PaintingSearchVO search = new PaintingSearchVO();
 		search.setStartRow(startRow);
