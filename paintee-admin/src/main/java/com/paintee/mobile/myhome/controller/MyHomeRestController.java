@@ -27,9 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.paintee.common.repository.entity.vo.FollowSearchVO;
 import com.paintee.common.repository.entity.vo.MyHomeSearchVO;
-import com.paintee.common.repository.entity.vo.MyHomeVO;
 import com.paintee.mobile.myhome.service.MyHomeService;
 import com.paintee.mobile.support.obejct.LoginedUserVO;
 
@@ -55,58 +53,21 @@ public class MyHomeRestController {
 	@Autowired
 	private MyHomeService myhomeService;
 
-	@RequestMapping(value="/api/index/myhome/count", method=RequestMethod.GET)
-	public Map<String, Object> myhomeCount(LoginedUserVO loginedUserVO) throws Exception {
-		
-		Map<String, Object> resultMap = new HashMap<>();
-		logger.debug("loginedUserVO:{}", loginedUserVO);
-		int errorNo = 0;
-		String errorMsg = "";
-		
-		// 로그인 사용자 아이디
-		String userId = loginedUserVO.getUserId();
-		
-		// 데이터 조건 설정
-		MyHomeSearchVO search = new MyHomeSearchVO();
-		
-		// 요청, 발송 상태
-		List<String> purchaseStatusList = new ArrayList<>();
-		purchaseStatusList.add("C");
-		purchaseStatusList.add("S");
-		search.setPurchaseStatusList(purchaseStatusList);
-		
-		// 로그인 사용자 아이디
-		search.setUserId(userId);
-		
-		MyHomeVO myhome = myhomeService.getMyHomeCount(search);
-		resultMap.put("myhome", myhome);
-		resultMap.put("errorNo", errorNo);
-		resultMap.put("errorMsg", errorMsg);
-
-		return resultMap;
-	}
-	
-	@RequestMapping(value="/api/index/myhome/list", method=RequestMethod.GET)
-	public Map<String, Object> paintingList(LoginedUserVO loginedUserVO, 
-			@RequestParam(name="startRow", required=false, defaultValue="0") Integer startRow) 
+	@RequestMapping(value="/api/index/myhome/info", method=RequestMethod.GET)
+	public Map<String, Object> myhomeInfo(LoginedUserVO loginedUserVO, MyHomeSearchVO search) 
 					throws Exception {
 		
 		Map<String, Object> resultMap = new HashMap<>();
-
 		logger.debug("loginedUserVO:{}", loginedUserVO);
-		logger.debug("startRow:{}", startRow);
-		
+		logger.debug("search:{}", search);
+
 		int errorNo = 0;
 		String errorMsg = "";
 		
 		// 로그인 사용자 아이디
 		String userId = loginedUserVO.getUserId();
 		
-		// 데이터 조건 설정
-		MyHomeSearchVO search = new MyHomeSearchVO();
-		
 		// 요청 데이터 페이징 정보
-		search.setStartRow(startRow);
 		search.setRowPerPage(5);
 		
 		// 요청, 발송 상태
@@ -118,12 +79,16 @@ public class MyHomeRestController {
 		// 로그인 사용자 아이디
 		search.setUserId(userId);
 		
+		// 목록에서 버튼 토글시 처리위해 항목 분리
+		search.setArtistId(userId);
 		resultMap = myhomeService.getMyHomePaintingInfo(search);
 		
+		// 에러정보
 		resultMap.put("errorNo", errorNo);
 		resultMap.put("errorMsg", errorMsg);
-
+		
 		return resultMap;
 	}
 	
+
 }

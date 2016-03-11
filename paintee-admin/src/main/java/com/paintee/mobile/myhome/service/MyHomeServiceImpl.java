@@ -59,6 +59,14 @@ public class MyHomeServiceImpl implements MyHomeService {
 	@Override
 	public Map<String, Object> getMyHomePaintingInfo(MyHomeSearchVO searchVO) {
 		
+		// 목록 사용 카운트
+		MyHomeVO myhomeCnt = myhomeHelper.selectMyHomeCount(searchVO);
+		
+		// 목록 리스트 
+		// 만약 화면에서 업로드 부분을 비활성화 시켰다면
+		if (searchVO.getUpload().equalsIgnoreCase("N")) searchVO.setArtistId("");
+		// 만약 화면에서 포스트 부분을 비활성화 시켰다면
+		if (searchVO.getPost  ().equalsIgnoreCase("N")) searchVO.setUserId("");
 		
 		List<MyHomeVO> list = myhomeHelper.selectMyHomePaintingList(searchVO);
 		logger.debug("list ::: {}", list);
@@ -78,14 +86,10 @@ public class MyHomeServiceImpl implements MyHomeService {
 		}
 		
 		Map<String, Object> result = new HashMap<>();
-//		result.put("count", count);
+		result.put("myhomeCnt", myhomeCnt);
 		result.put("list", list);
+		result.put("uploadClass", searchVO.getUpload());
+		result.put("postClass", searchVO.getPost());
 		return result;
 	}
-
-	@Override
-	public MyHomeVO getMyHomeCount(MyHomeSearchVO search) {
-		return myhomeHelper.selectMyHomeCount(search);
-	}
-
 }

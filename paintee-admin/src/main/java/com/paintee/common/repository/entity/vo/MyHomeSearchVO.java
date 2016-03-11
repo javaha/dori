@@ -40,6 +40,9 @@ public class MyHomeSearchVO extends PagingVO {
 
 	private List<String> purchaseStatusList;
 	
+	private String upload;
+	private String post;
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -62,5 +65,21 @@ public class MyHomeSearchVO extends PagingVO {
 
 	public void setPurchaseStatusList(List<String> purchaseStatusList) {
 		this.purchaseStatusList = purchaseStatusList;
+	}
+
+	public String getUpload() {
+		return upload;
+	}
+
+	public void setUpload(String upload) {
+		this.upload = upload;
+	}
+
+	public String getPost() {
+		return post;
+	}
+
+	public void setPost(String post) {
+		this.post = post;
 	}
 }

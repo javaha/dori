@@ -41,20 +41,10 @@ public interface MyHomeService {
 	 @fn getFollowPaintingInfo
 	 @brief 함수 간략한 설명 : 인덱스 페이지의 follow 정보를 조회
 	 @remark
-	 - 함수의 상세 설명 : 로그인한 사용자의 following 한 사용자들의 업로드 및 구매 그림 정보를 조회한다.
+	 - 함수의 상세 설명 : 로그인 사용자의 팔로잉과 팔로워의 카운트를 조회한다.
+	                         로그인한 사용자의 following 한 사용자들의 업로드 및 구매 그림 정보를 조회한다.
 	 @param search
 	 @return 
 	*/
 	public Map<String, Object> getMyHomePaintingInfo(MyHomeSearchVO search);
-
-	/**
-	 @fn getFollowCount
-	 @brief 함수 간략한 설명 : 팔로잉과 팔로워의 카운트
-	 @remark
-	 - 함수의 상세 설명 : 로그인 사용자의 팔로잉과 팔로워의 카운트를 조회한다.
-	 @param search
-	 @return 
-	*/
-	public MyHomeVO getMyHomeCount(MyHomeSearchVO search);
-
 }

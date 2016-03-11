@@ -20,7 +20,7 @@ mySwiper.on("onSlideChangeStart", function(swiper) {
 		// 만약, 현재 선택한 슬라이드가 로딩된 슬라이드의 수보다 하나 작을 경우 서버에 5개의 그림을 재요청
 		console.log(swiper.slides.length + "-" + swiper.activeIndex);
 		if (slidesCnt - 1 <= swiper.activeIndex && slidesCnt < 100) {
-			new MyHomeController().getListData(slidesCnt);
+			new MyHomeController().getHomeInfo(slidesCnt);
 		}
 	}
 });
@@ -42,39 +42,44 @@ mySwiper.on("onSetTranslate", function(swiper, translate) {
 });
 
 function MyHomeController() {
+	this.startRow = 0;
+	this.post = true;
+	this.upload = true;
 }
 
 MyHomeController.prototype = {
-	getHomeCount : function () {
+	getHomeInfo : function (startRow) {
+		
+		var upload = ($("#uploadBtn").hasClass("home_btn_inactive")) ? "N" : "Y";
+		var post   = ($("#postBtn"  ).hasClass("home_btn_inactive")) ? "N" : "Y";
+		console.log(upload + "---" + post);
+		this.startRow = startRow;
 		var controller = this;
 		AjaxCall.call(
-			apiUrl + "/index/myhome/count", 
+			apiUrl + "/index/myhome/info?startRow=" + startRow + "&upload=" + upload + "&post=" + post, 
 			null,
 			"GET", 
 			function(result) {
-				controller.getHomeCountRes(result);
+				controller.getHomeInfoRes(result);
 			}
 		);
 	}, 	
-	getHomeCountRes : function (result) {
-		setMyHome(result);
-	}, 	
-	getListData : function(startRow) {
-		var controller = this;
-		AjaxCall.call(
-			apiUrl + "/index/myhome/list?startRow=" + startRow, null,
-			"GET", 
-			function(result) {
-				controller.getListDataRes(result);
-			}
-		);
-	},
-	getListDataRes : function(result) {
+	getHomeInfoRes : function (result) {
+		// 처음 로딩시에만 메인화면 구성
+		if (this.startRow == 0) {
+			setMyHome(result);
+			console.log("result.uploadClass : " + result.uploadClass);
+			console.log("result.postClass : " + result.postClass);
+			
+			if (result.uploadClass == "N") $("#uploadBtn").addClass("home_btn_inactive");
+			if (result.postClass   == "N") $("#postBtn"  ).addClass("home_btn_inactive");
+		}
+		
 		for ( var index in result.list) {
 			addPainting(mySwiper, 1, "my", result.list[index]);
-			if (mySwiper.slides.length > 100) {
-				break;
-			}
+//			if (mySwiper.slides.length > 100) {
+//				break;
+//			}
 		}
 	}
 };
@@ -93,7 +98,8 @@ function initMy(){
         delete logInBtn;
     }else{
 		// 로그인 상태일 경우 홈카운트 가져오기
-		new MyHomeController().getHomeCount();
+    	// 테이블에서 가져올 데이터의 시작 위치를 처음 로딩시 0번째 부터 조회
+		new MyHomeController().getHomeInfo(0);
     }
 }
 
@@ -103,25 +109,23 @@ function setMyHome(result) {
     myHome.setTitle("my");
     myHome.setExplain("내가 올리거나 포스트한 그림입니다.<br>여기에 자신을 소개할 문구를 넣어주세요. <i class='material-icons' style='font-size:1em'>create</i>");
     var content1 =
-        $("<div>").addr("id", "uploadBtn").addClass("home_btn_my").html("uploaded ").append($("<b>").html(" " + result.myhome.uploadCount))
+        $("<div>").attr("id", "uploadBtn").addClass("home_btn_my").html("uploaded ").append($("<b>").html(" " + result.myhomeCnt.uploadCount))
     var content2 =
-        $("<div>").addr("id", "postBtn").addClass("home_btn_my").html("posted ").append($("<b>").html(" " + result.myhome.postCount))
+        $("<div>").attr("id", "postBtn").addClass("home_btn_my").html("posted ").append($("<b>").html(" " + result.myhomeCnt.postCount))
     content1.click(function(){
-    	
     	btnToggle(this);
+    	new MyHomeController().getHomeInfo(0);
     });
     content2.click(function(){
-    	
     	btnToggle(this)
+    	new MyHomeController().getHomeInfo(0);
     });
     myHome.hideNext();
     myHome.setContents(content1);
     myHome.setContents(content2);
     mySwiper.appendSlide(myHome.buildStructure());
+    
     delete myHome;
     delete content1;
     delete content2;
-	
-	// 테이블에서 가져올 데이터의 시작 위치를 처음 로딩시 0번째 부터 조회
-	new MyHomeController().getListData(0);
 }

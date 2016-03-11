@@ -1,5 +1,11 @@
 // 구매화면으로 이동
 function purchase(paintingId){
+	
+	if (userID == "") {
+		showLogin();
+		return ;
+	} 
+	
 	// console.log("purchase : " + paintingId);
     $(".purchase_container").show();
     
@@ -252,7 +258,7 @@ PurchaseController.prototype = {
 		
 		// userId는 로그인 후 쿠키에서 가져와서 처리하도록 해야함
 		var data = {
-			userId: 'aa',
+			userId: userID,
 			paintingId: paintingId,
 			sentence: $("[name=sentence]").val(),
 			privateAt: ($("[name=privateAt]").prop("checked")) ? "Y" : "N",

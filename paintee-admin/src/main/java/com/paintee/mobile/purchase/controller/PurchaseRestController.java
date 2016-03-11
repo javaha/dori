@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.paintee.common.repository.entity.Purchase;
 import com.paintee.mobile.purchase.service.PurchaseService;
+import com.paintee.mobile.support.obejct.LoginedUserVO;
 
 /**
 @class PurchaseController
@@ -53,9 +54,12 @@ public class PurchaseRestController {
 	private PurchaseService purchaseService;
 	
 	@RequestMapping(value="/api/purchase", method={RequestMethod.POST})
-	public Map<String, Object> addPurchase(@RequestBody Purchase purchase) throws Exception {
+	public Map<String, Object> addPurchase(@RequestBody Purchase purchase, LoginedUserVO loginedUserVO) throws Exception {
 		logger.debug(purchase.toString());
 
+		// 로그인 사용자의 구매자 아이디 입력
+		purchase.setUserId(loginedUserVO.getUserId());
+		
 		// 구매관련 정보 등록
 		purchaseService.addPurchase(purchase);
 
