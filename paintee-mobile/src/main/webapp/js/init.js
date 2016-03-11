@@ -34,16 +34,6 @@ var mainSwiper = new Swiper('.swiper_container', {
     mousewheelControl : true
 });
 
-// list container 시작        
-var mySwiper = new Swiper('.swiper_container_my', {
-    slidesPerView: 'auto',
-    centeredSlides: true,
-    spaceBetween: mainWidth*0.05,
-    mousewheelControl : true,
-    scrollbar: '.swiper-scrollbar-my',
-    scrollbarHide: true
-})
-
 // 각각의 home 화면 (follow/popular/new/my)
 function Home(){
         this.container  =$("<div>").addClass("home_container swiper-slide");
@@ -85,42 +75,6 @@ Home.prototype = {
                             return this.container;
                         }
 }
-
-// 각각의 home 화면 설정
-function initMy(userID){
-    if(userID==""){
-        var myHome = new Home();
-        var logInBtn = $("<div>").addClass("login_btn").html("Log in").click(function(){showLogin()});
-        myHome.setTitle("my");
-        myHome.setExplain("로그인해서 나와 팔로워의 그림을 확인하세요<br><br><br>");
-        myHome.hideNext();
-        myHome.setContents(logInBtn);
-        mySwiper.appendSlide(myHome.buildStructure());
-        delete myHome;
-        delete logInBtn;
-    }else{
-        mySwiper.removeAllSlides();
-        var myHome = new Home();
-        myHome.setTitle("my");
-        myHome.setExplain("내가 올리거나 포스트한 그림입니다.<br>여기에 자신을 소개할 문구를 넣어주세요. <i class='material-icons' style='font-size:1em'>create</i>");
-        var content1 =
-            $("<div>").addClass("home_btn_my").html("uploaded ").append($("<b>").html(" 5"))
-        var content2 =
-            $("<div>").addClass("home_btn_my").html("posted ").append($("<b>").html(" 14"))
-        content1.click(function(){btnToggle(this)});
-        content2.click(function(){btnToggle(this)});
-        myHome.hideNext();
-        myHome.setContents(content1);
-        myHome.setContents(content2);
-        mySwiper.appendSlide(myHome.buildStructure());
-        delete myHome;
-        delete content1;
-        delete content2;
-
-        addPainting(mySwiper, 0, "my");   
-    }
-}
-
 
 // 그림 목록 화면
 function Structure(index, paintingId){
@@ -216,8 +170,6 @@ function addPainting(swiper, currentIndex, type, listData){
     delete newSlide;    
 }
 
-mySwiper.on("onSlideChangeStart", function(swiper){if(userID!=="")addPainting(swiper, swiper.activeIndex, "my")});
-
 // 개인페이지 생성
 var personal = "";
 var isPersonal = false;
@@ -298,7 +250,6 @@ function hidePersonal(){
 }
 
 // 최초 5개 미리 생성
-initMy(userID);
 initMenu(userID);
 
 // mainSwiper의 첫항목과 마지막항목에서 스와이프 방지
@@ -352,8 +303,6 @@ function listLock(swiper){
     }
 }
 mainSwiper.on("onTransitionEnd", function(mainSwiper){mainLock(mainSwiper)});
-mySwiper.on("onTransitionEnd", function(swiper){listLock(swiper)});
-
 
 // side menu 초기설정
 function initMenu(userID){
@@ -411,9 +360,6 @@ function selectMenu(index){
     mainSwiper.slideTo(index);
 }
 
-$("#menu_my").click(function(){
-    selectMenu(3);
-});
 $("#menu_upload").click(function(){
     upload();
     sideOff();
@@ -425,7 +371,6 @@ $("#menu_reward").click(function(){
 
 // 초기 설정들
 // 가로휠방지 && 페이지네이션숨김 && 위로스와이프방지
-mySwiper.disableMousewheelControl();
 mainSwiper.lockSwipeToPrev();
 $(".swiper-scrollbar").hide();
 $(".home_btn").hide()
@@ -471,7 +416,6 @@ $(".home_btn").click(function(){
          sideOn();
      }
  }
-mySwiper.on("onSetTranslate", function(swiper, translate){swipeToMenu(swiper, translate)});
 
 // 모바일 웹브라우져를 전체화면으로 표시
 $("#fullscreen_btn").click(function(){toggleFullScreen()});

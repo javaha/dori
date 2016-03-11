@@ -53,6 +53,7 @@ public class TestServiceImpl implements TestService {
 //		FollowExample.Criteria where = followExample.createCriteria();
 //		followHelper.selectByExample(followExample);
 
-		return followHelper.selectTotalCount();
+//		return followHelper.selectTotalCount();
+		return 1;
 	}
 }
