@@ -25,10 +25,13 @@ import org.springframework.stereotype.Service;
 
 import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.repository.entity.FileInfoExample;
+import com.paintee.common.repository.entity.Follow;
+import com.paintee.common.repository.entity.FollowExample;
 import com.paintee.common.repository.entity.vo.FollowSearchVO;
 import com.paintee.common.repository.entity.vo.FollowVO;
 import com.paintee.common.repository.helper.FileInfoHelper;
 import com.paintee.common.repository.helper.FollowHelper;
+import com.paintee.common.repository.helper.UserHelper;
 
 /**
 @class FollowServiceImpl
@@ -87,4 +90,24 @@ public class FollowServiceImpl implements FollowService {
 		return followHelper.selectFollowCount(search);
 	}
 
+	
+	@Override
+	public List<FollowVO> getFollowsList(FollowSearchVO search) {
+		return followHelper.selectFollowsList(search);
+	}
+	
+	@Override
+	public List<FollowVO> getFollowingList(FollowSearchVO search) {
+		return followHelper.selectFollowingList(search);
+	}
+
+	@Override
+	public void addFollows(Follow follow) {
+		followHelper.insertFollowByName(follow);
+	}
+
+	@Override
+	public void delFollows(Follow follow) {
+		followHelper.deleteFollowByName(follow);
+	}
 }

@@ -16,6 +16,7 @@ package com.paintee.common.repository.helper;
 
 import java.util.List;
 
+import com.paintee.common.repository.entity.Follow;
 import com.paintee.common.repository.entity.vo.FollowSearchVO;
 import com.paintee.common.repository.entity.vo.FollowVO;
 import com.paintee.common.repository.mapper.FollowMapper;
@@ -39,6 +40,9 @@ com.paintee.common.repository.helper \n
 */
 public interface FollowHelper extends FollowMapper {
 	public List<FollowVO> selectFollowPaintingList(FollowSearchVO searchVO);
-	
 	public FollowVO selectFollowCount(FollowSearchVO search);
+	public List<FollowVO> selectFollowsList(FollowSearchVO searchVO);
+	public List<FollowVO> selectFollowingList(FollowSearchVO searchVO);
+	public void insertFollowByName(Follow follow);
+	public void deleteFollowByName(Follow follow);
 }

@@ -83,6 +83,79 @@ FollowController.prototype = {
 				break;
 			}
 		}
+	},
+	getFollowsList : function() {
+		console.log("FollowController.getFollowsList ");
+
+		var controller = this;
+		AjaxCall.call(
+			apiUrl + "/index/follows",
+			null,
+			"GET", 
+			function(result) {
+				controller.getFollowsListRes(result);
+			}
+		);
+	},
+	getFollowsListRes : function(result) {
+		console.log("FollowController.getFollowsListRes ::: " + JSON.stringify(result));
+		for ( var index in result.list) {
+			addFollows(result.list[index].followsName, result.list[index].followsCount);
+		}
+	},
+	getFollowingList : function() {
+		console.log("FollowController.getFollowingList ");
+
+		var controller = this;
+		AjaxCall.call(
+			apiUrl + "/index/following",
+			null,
+			"GET", 
+			function(result) {
+				controller.getFollowngListRes(result);
+			}
+		);
+	},
+	getFollowngListRes : function(result) {
+		console.log("FollowController.getFollowngListRes ::: " + JSON.stringify(result));
+		for ( var index in result.list) {
+			addFollowing(result.list[index].followingName);
+		}
+	},
+	addFollow : function(btn, name) {
+		console.log("FollowController.addFollow ");
+		this.btn = btn;
+		var controller = this;
+		AjaxCall.call(
+				apiUrl + "/index/follows",
+				{following: name},
+				"POST", 
+				function(result) {
+					controller.addFollowRes(result);
+				}
+		);
+	},
+	addFollowRes : function(result) {
+		// 추가한 사용자의 추가버튼을 비활성화 시키고 스타일을 변경 처리함
+		this.btn.off("click");  // 이벤트 제거
+		this.btn.find("i").css("color", "rgba(120,120,120,0.5)").html("done");
+	},
+	delFollowing : function(following, name) {
+		console.log("FollowController.delFollowing ");
+		this.following = following;
+		var controller = this;
+		AjaxCall.call(
+				apiUrl + "/index/following/" + name,
+				"", 
+				"DELETE", 
+				function(result) {
+					controller.delFollowingRes(result);
+				}
+		);
+	},
+	delFollowingRes : function(result) {
+		// 화면에서 선택한 사용자의 이름을 제거
+		this.following.remove();
 	}
 };
 
@@ -107,14 +180,17 @@ function setFollowHome(result) {
 	followSwiper.removeAllSlides();
 	var followHome = new Home();
 	var content1 = $("<div>").addClass("home_btn_follow").html("follows ")
-			.append($("<b>").html(" " + result.follow.followsCount)).click(function() {
-				initFollows()
-			});
-	var content2 = $("<div>").addClass("home_btn_follow")
-			.html("following ").append($("<b>").html(" " + result.follow.followingCount)).click(
-					function() {
-						initFollowing()
-					});
+				   .append($("<b>").html(" " + result.follow.followsCount))
+				   .click(function() {
+				        initFollows();
+				   });
+
+	var content2 = $("<div>").addClass("home_btn_follow").html("following ")
+	               .append($("<b>").html(" " + result.follow.followingCount))
+	               .click(function() {
+					    initFollowing();
+				   });
+	
 	followHome.setTitle("Follow");
 	followHome.setExplain("가까운 사람들의 그림입니다.");
 	followHome.setContents(content1);
@@ -130,36 +206,10 @@ function setFollowHome(result) {
 	new FollowController().getListData(0);
 }
 
-function initFollowing() {
-	boxStatus = "people";
-	setBox();
-	$(".people_container").show();
-	$(".people_box").empty();
-	var people = new People();
-	people.setTitle("Following");
-	people.buildUpload();
-	for (var i = 0; i < 20; i++) {
-		addFollowing("name");
-	}
-}
-
-function initFollows() {
-	setBox();
-	$(".people_container").show();
-	$(".people_box").empty();
-	var people = new People();
-	people.setTitle("Follows");
-	people.buildUpload();
-	for (var i = 0; i < 20; i++) {
-		addFollows("name", i % 3);
-	}
-}
-
-// 팔로우즈/팔로잉 화면
+//팔로우즈/팔로잉 화면
 function People() {
 	this.title = $("<div>").addClass("people_title").addClass("popup_title");
-	this.contents = $("<div>").addClass("people_contents").addClass(
-			"popup_contents");
+	this.contents = $("<div>").addClass("people_contents").addClass("popup_contents");
 }
 
 People.prototype = {
@@ -172,10 +222,19 @@ People.prototype = {
 	}
 }
 
-function addFollowing(name) {
-	var adder = new Following();
-	$(adder.build(name)).appendTo($(".people_contents"));
-	delete adder;
+/**
+ * 나를 팔로잉 하는 사람들의 목록
+ */
+function initFollows() {
+	setBox();
+	$(".people_container").show();
+	$(".people_box").empty();
+	var people = new People();
+	people.setTitle("Follows");
+	people.buildUpload();
+	
+	// 나를 팔로우한 목록 요청
+	new FollowController().getFollowsList();
 }
 
 function addFollows(name, isfriend) {
@@ -187,14 +246,10 @@ function addFollows(name, isfriend) {
 function Follows() {
 	this.follows = $("<div>").addClass("people_list");
 	this.name = $("<div>").addClass("people_list_name");
-	this.btn = $("<div>")
-			.addClass("people_list_add")
-			.html(
-					"<div class='people_list_btn_text'> </div><i class='material-icons'>add</i>");
-	this.freind = $("<div>")
-			.addClass("people_list_add")
-			.html(
-					"<div class='people_list_btn_text'> </div><i class='material-icons' style='color:rgba(120,120,120,0.5)'>done</i>");
+	this.btn = $("<div>").addClass("people_list_add")
+			             .html("<div class='people_list_btn_text'> </div><i class='material-icons'>add</i>");
+	this.freind = $("<div>").addClass("people_list_add")
+			                .html("<div class='people_list_btn_text'> </div><i class='material-icons' style='color:rgba(120,120,120,0.5)'>done</i>");
 	this.build = function(name, isfriend) {
 		$(this.name).html(name);
 		$(this.follows).append(this.name);
@@ -203,21 +258,51 @@ function Follows() {
 		} else {
 			$(this.follows).append(this.btn);
 		}
+		var btn = this.btn;
+		this.btn.click(function () {
+			popName = "followPop";
+			new FollowController().addFollow(btn, name);
+		});
+		
 		return this.follows;
 	}
+}
+
+function initFollowing() {
+	boxStatus = "people";
+	setBox();
+	$(".people_container").show();
+	$(".people_box").empty();
+	var people = new People();
+	people.setTitle("Following");
+	people.buildUpload();
+	
+	// 내가 팔로우한 목록 요청
+	new FollowController().getFollowingList();
+}
+
+function addFollowing(name) {
+	var adder = new Following();
+	$(adder.build(name)).appendTo($(".people_contents"));
+	delete adder;
 }
 
 function Following() {
 	this.following = $("<div>").addClass("people_list");
 	this.name = $("<div>").addClass("people_list_name");
-	this.btn = $("<div>")
-			.addClass("people_list_remove")
-			.html(
-					"<div class='people_list_btn_text'></div><i class='material-icons'>clear</i>");
+	this.btn = $("<div>").addClass("people_list_remove")
+			             .html("<div class='people_list_btn_text'></div><i class='material-icons'>clear</i>");
 	this.build = function(name) {
 		$(this.name).html(name);
 		$(this.following).append(this.name);
 		$(this.following).append(this.btn);
+		
+		var following = this.following;
+		this.btn.click(function () {
+			popName = "followPop";
+			new FollowController().delFollowing(following, name);
+		});
+		
 		return this.following;
 	}
 }

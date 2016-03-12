@@ -6,7 +6,7 @@
 
 	<!-- 구매일자가 120일 미만인 그림중에서 많이 팔린 순으로 가져오기 -->
   	<select id="selectPopularPaintingList" resultMap="BaseResultMap">
-		select a.artist_id, a.artist_name, 
+		select a.artist_id, (select name from tb_user where user_id = a.artist_id) artist_name,
 		       a.sentence, a.file_group_seq, 
 		       a.upload_date, a.painting_id, 
 		       a.posted_num, a.posted_people_cnt

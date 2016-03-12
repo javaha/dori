@@ -38,6 +38,8 @@ public class FollowVO extends Painting {
 	private String fileId;
 	private Integer followsCount;
 	private Integer followingCount;
+	private String followsName;
+	private String followingName;
 	
 	public String getSentenceName() {
 		return sentenceName;
@@ -69,5 +71,21 @@ public class FollowVO extends Painting {
 
 	public void setFollowingCount(Integer followingCount) {
 		this.followingCount = followingCount;
+	}
+
+	public String getFollowsName() {
+		return followsName;
+	}
+
+	public void setFollowsName(String followsName) {
+		this.followsName = followsName;
+	}
+
+	public String getFollowingName() {
+		return followingName;
+	}
+
+	public void setFollowingName(String followingName) {
+		this.followingName = followingName;
 	}
 }

@@ -14,8 +14,10 @@
 */
 package com.paintee.mobile.follow.service;
 
+import java.util.List;
 import java.util.Map;
 
+import com.paintee.common.repository.entity.Follow;
 import com.paintee.common.repository.entity.vo.FollowSearchVO;
 import com.paintee.common.repository.entity.vo.FollowVO;
 
@@ -56,4 +58,41 @@ public interface FollowService {
 	*/
 	public FollowVO getFollowCount(FollowSearchVO search);
 
+	/**
+	 @fn getFollowsList
+	 @brief 함수 간략한 설명 : 로그인한 사용자를 팔로우한 사용자 목록 
+	 @remark
+	 - 함수의 상세 설명 :  로그인한 사용자를 팔로우한 사용자 목록
+	 @param search
+	 @return 
+	*/
+	public List<FollowVO> getFollowsList(FollowSearchVO search);
+	
+	/**
+	 @fn getFollowsList
+	 @brief 함수 간략한 설명 : 로그인한 사용자가 팔로우한 사용자 목록 
+	 @remark
+	 - 함수의 상세 설명 :  로그인한 사용자를 팔로우한 사용자 목록
+	 @param search
+	 @return 
+	 */
+	public List<FollowVO> getFollowingList(FollowSearchVO search);
+
+	/**
+	 @fn addFollows
+	 @brief 함수 간략한 설명 : 로그인 사용자의 follow를 추가
+	 @remark
+	 - 함수의 상세 설명 : 로그인한 사용자의 follow를 추가
+	 @param search 
+	*/
+	public void addFollows(Follow follow);
+
+	/**
+	 @fn delFollows
+	 @brief 함수 간략한 설명 : 로그인 사용자의 follow 대상자를 삭제
+	 @remark
+	 - 함수의 상세 설명 : 로그인 사용자의 follow 대상자를 삭제
+	 @param follow 
+	*/
+	public void delFollows(Follow follow);
 }

@@ -10,6 +10,7 @@ var purchaseStatus="";
 var boxWidth;
 var boxHeight;
 var boxStatus="";
+var popName="";
 
 var userInfo = getUserInfoCookie();
 
@@ -590,6 +591,13 @@ $(".return_btn").click(function(){
 $(".popup_container").click(function(){
     $(".purchase_container").hide();
     $(".popup_container").hide();
+    console.log(".popup_container ------------------------" + popName);
+    switch (popName) {
+    case "followPop":
+    	initFollow();  // Follow 팝업이 닫힐 때 새로 로딩한다.
+    	break;
+    }
+    popName = "";  // 다시 초기화
 })
 $(".popup_box").click(function(e){
     e.stopPropagation();

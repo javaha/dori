@@ -3,6 +3,8 @@
 <mapper namespace="com.paintee.common.repository.helper.FollowHelper">
 	<resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.vo.FollowVO" extends="com.paintee.common.repository.mapper.PaintingMapper.BaseResultMap">
 	    <result column="sentence_name" property="sentenceName" />
+	    <result column="follows_name" property="followsName" />
+	    <result column="following_name" property="followingName" />
 	    <result column="follows_count" property="followsCount" />
 	    <result column="following_count" property="followingCount" />
 	</resultMap>
@@ -48,4 +50,37 @@
   	            (select count(*) from tb_follow where following = #{userId}) as follows_count
            from dual
   	</select>    	
+  	
+  	<!-- 로그인한 사용자를 팔로잉한 사용자의 목록을 조회 -->
+  	<select id="selectFollowsList" resultMap="BaseResultMap">
+		select user_id, 
+			   (select name from tb_user where user_id = a.user_id) follows_name, 
+			   (select count(*)
+				  from tb_follow
+				 where user_id = #{userId}
+				   and following = a.user_id) follows_count
+		  from tb_follow a
+		 where following = #{userId}
+  	</select>
+  	
+  	<!-- 로그인한 사용자가 팔로잉한 사용자의 목록을 조회 -->
+  	<select id="selectFollowingList" resultMap="BaseResultMap">
+		SELECT following user_id, 
+			   (select name from tb_user where user_id = a.following) following_name
+		  FROM tb_follow a
+		 WHERE user_id = #{userId}
+  	</select>
+  	
+  	<!-- 로그인 사용자의 팔로워를 추가 -->
+  	<insert id="insertFollowByName">
+  	    insert into tb_follow(user_id, following)
+  	    values(#{userId}, (select user_id from tb_user where name = #{following}))
+  	</insert>
+  	
+  	<!-- 로그인 사용자의 팔로워를 삭제 -->
+  	<insert id="deleteFollowByName">
+  	    delete from tb_follow
+  	     where user_id = #{userId}
+  	       and following = (select user_id from tb_user where name = #{following})
+  	</insert>
 </mapper>

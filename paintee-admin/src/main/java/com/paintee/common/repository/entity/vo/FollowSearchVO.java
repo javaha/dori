@@ -39,6 +39,8 @@ public class FollowSearchVO extends PagingVO {
 	private String privateAt;
 	
 	private List<String> purchaseStatusList;
+
+	private String followName;
 	
 	public String getUserId() {
 		return userId;
@@ -63,4 +65,13 @@ public class FollowSearchVO extends PagingVO {
 	public void setPurchaseStatusList(List<String> purchaseStatusList) {
 		this.purchaseStatusList = purchaseStatusList;
 	}
+
+	public String getFollowName() {
+		return followName;
+	}
+
+	public void setFollowName(String followName) {
+		this.followName = followName;
+	}
+	
 }
