@@ -1105,6 +1105,76 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andSnsTypeIsNull() {
+            addCriterion("sns_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnsTypeIsNotNull() {
+            addCriterion("sns_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnsTypeEqualTo(String value) {
+            addCriterion("sns_type =", value, "snsType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnsTypeNotEqualTo(String value) {
+            addCriterion("sns_type <>", value, "snsType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnsTypeGreaterThan(String value) {
+            addCriterion("sns_type >", value, "snsType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnsTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("sns_type >=", value, "snsType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnsTypeLessThan(String value) {
+            addCriterion("sns_type <", value, "snsType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnsTypeLessThanOrEqualTo(String value) {
+            addCriterion("sns_type <=", value, "snsType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnsTypeLike(String value) {
+            addCriterion("sns_type like", value, "snsType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnsTypeNotLike(String value) {
+            addCriterion("sns_type not like", value, "snsType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnsTypeIn(List<String> values) {
+            addCriterion("sns_type in", values, "snsType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnsTypeNotIn(List<String> values) {
+            addCriterion("sns_type not in", values, "snsType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnsTypeBetween(String value1, String value2) {
+            addCriterion("sns_type between", value1, value2, "snsType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnsTypeNotBetween(String value1, String value2) {
+            addCriterion("sns_type not between", value1, value2, "snsType");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatedDateIsNull() {
             addCriterion("created_date is null");
             return (Criteria) this;

@@ -38,7 +38,7 @@ function DetailStructure(paintingId, fileId, artistName, artistId, artistSentenc
     this.detailPostbarPostnum=$("<div>").addClass("detail_postbar_postnum");
     this.detailPostbarPostedNum=$("<span>").addClass("list_info_posted_num");
 
-    this.detailPostBtn      =$("<div>").addClass("detail_post_btn").html("post it").click(function(){purchase()});
+    this.detailPostBtn      =$("<div>").addClass("detail_post_btn").html("post it").click(function(){purchase(paintingId)});
     this.detailScroll       =$("<div>").addClass("swiper-scrollbar").addClass("swiper-scrollbar-detail");
     this.returnBtn          =$("<div>").addClass("return_btn").append($("<i>").addClass("material-icons").html("keyboard_backspace"));
 }

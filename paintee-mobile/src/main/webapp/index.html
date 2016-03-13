@@ -82,7 +82,7 @@
                 </div>
                 <div class="side_menu_copyright">Copyright ⓒ paintee. Inc.,</div>
             </div>
-        </div>        
+        </div>
         <div class="modal"></div>
         <div id="fullscreen_btn"><i class="material-icons" style="font-size:24px">fullscreen</i></div>
     </div>
@@ -259,15 +259,17 @@
             Paintee
         </div>
         <div class="account_box">
-            <input type="text" class="account_form signup_id" placeholder="Enter email address">
-            <input type="password" class="account_form signup_pw" placeholder="Enter passward">
-            <input type="password" class="account_form signup_pw" placeholder="Repeat passward">
-            <input type="text" class="account_form signup_username" placeholder="username">
+        	<form id="signupForm" name="signupForm" method="POST">
+            <input type="text" id="signupUserId" name="signupUserId" class="account_form signup_id" placeholder="Enter email address" value="javahaja@hotmail.com">
+            <input type="password" id="signupUserPassword" name="signupUserPassword" class="account_form signup_pw" placeholder="Enter passward" value="1111">
+            <input type="password" id="signupConfirmPassord" name="signupConfirmPassord" class="account_form signup_pw" placeholder="Repeat passward" value="1111">
+            <input type="text" id="signupUserName" name="signupUserName" class="account_form signup_username" placeholder="username" value="javadori">
+            </form>
         </div>
         <div class="account_middle signup_terms">
             By signing up, you agree to our <b>Terms & Policy.</b>
         </div>
-        <div class="signup_btn">
+        <div id="signup_btn" class="signup_btn">
             Sign Up
         </div>
         <div class="signup_social_btn">
@@ -311,6 +313,7 @@
     <script src="js/purchase.js"></script>
     <script src="js/detail.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/signup.js"></script>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?1"></script>
     <script src="js/daumAddrApi.js"></script>
 

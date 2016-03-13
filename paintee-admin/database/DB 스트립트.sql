@@ -13,7 +13,8 @@ create table TB_USER (
 	resent_send_addr varchar(200) comment '최근 보낸 주소',
 	resent_send_name varchar(30) comment '최근 보낸 이름',
 	point int  default 0 comment '엽서를 구매할 수 있는 포인트',
-	user_status char(1) default 'N' comment '계정 상태(정상-N/정지-S/휴먼-Q)',
+	user_status char(1) default 'T' comment '계정 상태(임시(회원가입후 email confirm 전)-T/정상(회원가입후 email confirm 후)-N/정지-S/휴먼-Q)',
+	sns_type char(1) comment '쇼셜을 통한 회원가입 (F-facebook, T-twitter)',
     created_date datetime default now() comment '생성일시'
 ) comment = '회원';
 
@@ -111,3 +112,10 @@ create table TB_FILE_INFO (
     last_modified_date datetime default now() comment '수정일자',
     primary key (id)
 ) COMMENT = '파일 정보';
+
+create table TB_CONFIRM_HASH (
+	seq int primary key auto_increment comment '고유 번호',
+    user_id varchar(64) comment '사용자 id',
+	hash    varchar(256) comment 'confirm 해쉬값',
+	expire_date  datetime comment 'hash 유효 날짜'
+) COMMENT = '회원가입 후 계정활성화를 위한 hash 정보';

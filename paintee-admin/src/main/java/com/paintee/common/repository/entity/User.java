@@ -34,6 +34,8 @@ public class User extends BaseEntity {
 
     private String userStatus;
 
+    private String snsType;
+
     private Date createdDate;
 
     public String getUserId() {
@@ -154,6 +156,14 @@ public class User extends BaseEntity {
 
     public void setUserStatus(String userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public String getSnsType() {
+        return snsType;
+    }
+
+    public void setSnsType(String snsType) {
+        this.snsType = snsType;
     }
 
     public Date getCreatedDate() {

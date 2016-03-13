@@ -20,3 +20,11 @@ function getEnterCount(obj) {
 	}
 	return enter;
 }	
+
+function validEmail(v) {
+	if(!/\w{1,}[@][\w\-]{1,}([.]([\w\-]{1,})){1,3}$/.test(v)) {
+		alert("바른 이메일 주소를 입력하셔야 합니다.");
+		return false;
+	}
+	return true;
+}
