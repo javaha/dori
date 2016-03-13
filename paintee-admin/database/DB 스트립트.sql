@@ -6,13 +6,13 @@ create table TB_USER (
 	introduce varchar(600) comment '소갯말',
 	address varchar(200) comment '주소',
 	location varchar(40) comment '국가',
-	upload_cnt int comment 'Upload 한 전체 숫자',
-	post_cnt int comment 'Post 한 전체 숫자',
-	earn_total_money int comment '수익의 전체 금액',
-	earn_reword_money int comment '리워드로 받은 전체 금액',
+	upload_cnt int comment default 0 'Upload 한 전체 숫자',
+	post_cnt int comment default 0 'Post 한 전체 숫자',
+	earn_total_money int default 0 comment '수익의 전체 금액',
+	earn_reword_money int default 0  comment '리워드로 받은 전체 금액',
 	resent_send_addr varchar(200) comment '최근 보낸 주소',
 	resent_send_name varchar(30) comment '최근 보낸 이름',
-	point int comment '엽서를 구매할 수 있는 포인트',
+	point int  default 0 comment '엽서를 구매할 수 있는 포인트',
 	user_status char(1) default 'N' comment '계정 상태(정상-N/정지-S/휴먼-Q)',
     created_date datetime default now() comment '생성일시'
 ) comment = '회원';
