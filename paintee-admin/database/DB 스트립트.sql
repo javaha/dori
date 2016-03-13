@@ -47,10 +47,11 @@ create  table TB_PURCHASE (
 create table TB_REWARD ( 
 	seq int primary key auto_increment comment '리워드 고유 번호',
     user_id varchar(64) comment '리워드 요청자 id',
+    bank varchar(8) comment '입금 요청된 은행',
     account_no varchar(20) comment '입금 요청된 계좌번호',
     account_name varchar(30) comment '입금 요청된 계좌주 이름',
     earm_requested_money int comment '입금 요청된 금액',
-    reward_status char(1) comment '입금 진행 상태 (요청-R/비정상-A/완료-C)',
+    reward_status char(1) default 'R' comment '입금 진행 상태 (요청-R/비정상-A/완료-C)',
     created_date datetime default now() comment '생성일시'
 ) COMMENT = '리워드';
 
@@ -119,3 +120,12 @@ create table TB_CONFIRM_HASH (
 	hash    varchar(256) comment 'confirm 해쉬값',
 	expire_date  datetime comment 'hash 유효 날짜'
 ) COMMENT = '회원가입 후 계정활성화를 위한 hash 정보';
+
+create table TB_CODE (
+    code_value varchar(8) not null comment '코드 값',
+	code_name  varchar(30) not null comment '코드 이름',
+    code_group varchar(20) not null comment '코드 그룹',
+    use_yn     char(1) not null  default 'Y'  comment '사용 여부',
+    created_date datetime default now() comment '생성일시',
+    primary key (code_value)
+) COMMENT = '코드';

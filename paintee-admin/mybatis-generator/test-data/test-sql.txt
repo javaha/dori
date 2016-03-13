@@ -95,3 +95,6 @@ insert into `tb_user`(`user_id`,`password`,`email`,`name`,`introduce`,`address`,
 ('f98377b9-e250-48ce-9d01-c48016256aa','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ak@a.com','a11',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
 ('f98377b9-e250-48ce-9d01-c48016256ab','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','al@a.com','a12',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45'),
 ('f98377b9-e250-48ce-9d01-c48016256ac','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','am@a.com','a13',null,null,null,null,null,null,null,null,null,null,'N','2016-03-06 14:33:45');
+
+insert into tb_code(code_value, code_name, code_group) values('1', 'City Bank', 'bank');
+insert into tb_code(code_value, code_name, code_group) values('2', 'Kb Bank', 'bank');
