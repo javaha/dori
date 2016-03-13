@@ -56,6 +56,20 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Autowired
 	private PaintingHelper paintingHelper;
 	
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 그림 구매시 해야할 일
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 
+	   1. 구매테이블에 데이터를 입력한다.
+	   2. 회원 테이블 정보 업데이트 
+	      - 구매한 그림의 사용자의 수익 전체 금액(earn_total_money) 증가
+	      - 로그인한 사용자의 구매카운트(post_cnt) 증가
+	   3. 그림 테이블 정보 업데이트 
+	      - posted_num 무조건 1 증가, 
+	      - posted_people_cnt (구매 테이블에 해당 사용자가 구매한적이 있는지 확인 후 증가 시킴)   
+	 @see com.paintee.mobile.purchase.service.PurchaseService#addPurchase(com.paintee.common.repository.entity.Purchase)
+	*/
 	@Override
 	public void addPurchase(Purchase purchase) throws Exception {
 		
@@ -75,7 +89,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 		// 회원 테이블 정보 추가 - 구매카운트(post_cnt), 수익 전체 금액(earn_total_money)
 		User user = new User();
 		user.setUserId(userId);
-		userHelper.updateUserPurchaseInfo(user);
+		userHelper.updateUserPostCnt(user);
+		userHelper.updateUserEarnTotalMoney(purchase);
 		
 		// 그림 테이블 정보 업데이트 - posted_num 무조건 1 증가, posted_people_cnt (구매 테이블에 해당 사용자가 산적이 있는지 확인 후 증가 시킴)
 		Painting painting = new Painting();

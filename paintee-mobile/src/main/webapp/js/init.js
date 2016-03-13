@@ -518,59 +518,6 @@ function successUpload(){
     delete uploadSuccess;
 }
 
-// 리워드화면
-function reward(){
-    boxStatus = "reward";
-    $(".reward_container").show();
-    initReward();
-    setBox();
-}
-
-function Reward(){
-    this.title      = $("<div>").addClass("reward_title").addClass("popup_title");
-    this.contents   = $("<div>").addClass("reward_contents").addClass("popup_contents");
-    this.bottom     = $("<div>").addClass("reward_bottom").addClass("popup_bottom");
-}
-
-Reward.prototype = {
-    setTitle    : function(title){
-        $(this.title).html(title);
-    },
-    setContents : function(contents){
-        $(this.contents).html(contents);
-    },
-    setBottom   : function(bottom){
-        $(this.bottom).html(bottom);
-    },
-    buildUpload : function(){
-        $(".reward_box").append(this.title);
-        $(".reward_box").append(this.contents);
-        $(".reward_box").append(this.bottom);
-    }
-}
-
-function initReward(){
-    $(".reward_box").empty();
-    var reward = new Reward();
-    reward.setTitle("Reward");
-    reward.setContents("당신의 그림이 post될 때 마다 reward가 쌓입니다.<br> 지금까지 253회 post된 당신이 얻은 총 Reward는<br><span class='reward_money'>$63.25 </span>입니다.<br><br><br>지금 Reward를 신청하면 남은 <b>$53.25 </b>에<br><b>수수료 $5</b>가 제외된 금액을 받을 수 있습니다.<br>");
-    reward.setBottom("<div class='popup_btn reward_btn'><div class='purchase_btn_text'>Get reward now </div><i class='material-icons'>attach_money</i></div>");
-    reward.buildUpload();
-    $(".reward_btn").click(function(){
-        checkReward();
-    })
-    delete reward;
-}
-
-function checkReward(){
-    $(".reward_box").empty();
-    var reward = new Reward();
-    reward.setTitle("Reward");
-    reward.setContents('아래 계좌로 지금 받을 수 있는 <b>$53.25</b> 에<br>reward <b>수수료 $5</b>를 제외한<br><br><span class="reward_money">$48.25</span> 이 입금됩니다.<br><br><br><select class="purchase_select" style="width:50%"><option value="1">City Bank</option></select><br><br><input type="text" class="purchase_input" placeholder="name of account holder"><br><input type="text" class="purchase_input" placeholder="account"><br>계좌명과 계좌번호를 정확하게 입력해주세요.<br>계좌명이 정확하지 않을 경우, 입금에 장애가 있을 수 있습니다.');
-    reward.setBottom("<div class='popup_btn upload_btn'><div class='purchase_btn_text'>Done </div><i class='material-icons'>done</i></div>");
-    reward.buildUpload();
-}
-
 // 프로필 수정화면
 function showProfile(){
     boxStatus = "profile";
@@ -587,7 +534,7 @@ $(".return_btn").click(function(){
     $(".popup_container").hide();
     purchaseStatus = "";
     boxStatus = "";
-})
+});
 $(".popup_container").click(function(){
     $(".purchase_container").hide();
     $(".popup_container").hide();
@@ -598,7 +545,7 @@ $(".popup_container").click(function(){
     	break;
     }
     popName = "";  // 다시 초기화
-})
+});
 $(".popup_box").click(function(e){
     e.stopPropagation();
-})
+});
