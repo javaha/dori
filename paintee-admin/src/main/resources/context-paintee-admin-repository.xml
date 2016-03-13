@@ -43,13 +43,6 @@
 		<property name="removeAbandoned" value="${jdbc.removeAbandoned}" />			
 	</bean>
 
-		<!-- transaction setting -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
 	<!-- mybatis scan setting -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />

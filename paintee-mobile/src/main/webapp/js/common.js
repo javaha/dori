@@ -21,10 +21,32 @@ function getEnterCount(obj) {
 	return enter;
 }	
 
-function validEmail(v) {
-	if(!/\w{1,}[@][\w\-]{1,}([.]([\w\-]{1,})){1,3}$/.test(v)) {
-		alert("바른 이메일 주소를 입력하셔야 합니다.");
+function chkEmail(v) {
+	var regEmail = /\w{1,}[@][\w\-]{1,}([.]([\w\-]{1,})){1,3}$/;
+
+	if(!regEmail.test(v)) {
 		return false;
 	}
+
+	return true;
+}
+
+function chkPassword(str){
+	var regPassword = /^.*(?=.{8,12})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+
+	if(!regPassword.test(str)) {
+		return false;
+	}
+
+	return true;
+}
+
+function chkAlphaNum(str){
+	var regAlphaNum = /^[A-Za-z0-9+]{4,12}$/;
+
+	if(!regAlphaNum.test(str)) {
+		return false;
+	}
+
 	return true;
 }

@@ -16,7 +16,11 @@ public class MailServiceTest {
 
 	@Test
 	public void test() {
-		mailService.sendMail("javahaja@hotmail.com", "ddddd", "cccccccccccccc");
+		try {
+			mailService.sendMail("javahaja@hotmail.com", "ddddd", "cccccccccccccc");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

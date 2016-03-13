@@ -38,6 +38,7 @@ public interface MailService {
 	 @param to
 	 @param subject
 	 @param text 
+	 @throws Exception 
 	*/
-	public void sendMail(String to, String subject, String text);
+	public void sendMail(String to, String subject, String text) throws Exception;
 }

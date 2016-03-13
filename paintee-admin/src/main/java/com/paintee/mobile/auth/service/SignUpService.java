@@ -39,8 +39,9 @@ public interface SignUpService {
 	 - 함수의 상세 설명 : 회원가입
 	 @param user
 	 @return 
+	 @throws Exception
 	*/
-	public boolean registUser(User user);
+	public boolean registUser(User user) throws Exception;
 
 	/**
 	 @fn confirmHsh
@@ -49,6 +50,17 @@ public interface SignUpService {
 	 - 함수의 상세 설명 : hash 정보를 통해 사용자계정을 활성화시킨다.(0:정상, 1:해당 정보를 찾지 못한경우, 2:expire date 가 지난경우)
 	 @param hash
 	 @return 
+	 @throws Exception
 	*/
-	public int confirmHsh(String hash);
+	public int confirmHsh(String hash) throws Exception;
+	
+	/**
+	 @fn checkDuplicate
+	 @brief 함수 간략한 설명 : email, user name 중복 체크
+	 @remark
+	 - 함수의 상세 설명 : email, user name 중복 체크
+	 @param user
+	 @return 
+	*/
+	public int checkDuplicate(User user);
 }

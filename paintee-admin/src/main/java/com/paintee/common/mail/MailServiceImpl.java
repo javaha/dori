@@ -22,7 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
@@ -58,7 +57,7 @@ public class MailServiceImpl implements MailService {
 	 - 오버라이드 함수의 상세 설명 : email 발송
 	 @see com.paintee.common.mail.MailService#sendMail(java.lang.String, java.lang.String, java.lang.String)
 	*/
-	public void sendMail(String to, String subject, String text) {
+	public void sendMail(String to, String subject, String text) throws Exception {
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			message.setSubject(subject, "UTF-8");
@@ -69,6 +68,7 @@ public class MailServiceImpl implements MailService {
 			mailSender.send(message);
 		} catch(Exception e) {
 			logger.error(e.getMessage(), e);
+			throw e;
 		}
 	}
 }

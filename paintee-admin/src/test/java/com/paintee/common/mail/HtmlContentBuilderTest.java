@@ -21,7 +21,11 @@ public class HtmlContentBuilderTest {
 		confirmMailVO.setConfirmUrl("http://naver.com");
 		confirmMailVO.setSenderName("sender");
 		System.out.println("1111");
-		System.out.println(htmlContentBuilder.getSignupConfirmMail(confirmMailVO));
+		try {
+			System.out.println(htmlContentBuilder.getSignupConfirmMail(confirmMailVO));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

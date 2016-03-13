@@ -47,7 +47,7 @@
 	<mvc:cors>
 		<mvc:mapping path="/api/**"
 						allowed-origins="*"
-						allowed-methods="GET, PUT, POST, DELETE"
+						allowed-methods="GET, PUT, POST, DELETE, OPTIONS"
 						allowed-headers="origin, accept, content-type, X-PAINTEE-HASH"
 						exposed-headers=""
 						allow-credentials="false"
@@ -58,6 +58,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/api/**" />
 			<mvc:exclude-mapping path="/api/signup" />
+			<mvc:exclude-mapping path="/api/signup/**" />
 			<mvc:exclude-mapping path="/api/login" />
 			<mvc:exclude-mapping path="/api/newIndex" />
 			<mvc:exclude-mapping path="/api/popularIndex" />
@@ -137,5 +138,12 @@
 			</list>
 		</property>
 	</bean>
+
+	<!-- transaction setting -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 </beans>

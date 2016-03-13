@@ -61,9 +61,10 @@ public class SingnUpRestController {
 	 @param userLoginVO
 	 @param response
 	 @return 
+	 @throws Exception
 	*/
 	@RequestMapping(value = "/api/signup", method = {RequestMethod.POST})
-	public Map<String, Object> signup(@RequestBody User user, HttpServletResponse response) {
+	public Map<String, Object> signup(@RequestBody User user, HttpServletResponse response) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
 
 		boolean result = signUpService.registUser(user);
@@ -83,12 +84,34 @@ public class SingnUpRestController {
 	 @param hash
 	 @param response
 	 @return 
+	 @throws Exception
 	*/
 	@RequestMapping(value = "/api/signup/confirm/{hash}", method = {RequestMethod.GET})
-	public Map<String, Object> signup(@PathVariable String hash, HttpServletResponse response) {
+	public Map<String, Object> signup(@PathVariable String hash, HttpServletResponse response) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
 
 		int errorNo = signUpService.confirmHsh(hash);
+
+		resultMap.put("errorNo", errorNo);
+
+		return resultMap;
+	}
+
+	/**
+	 @fn duplicate
+	 @brief 함수 간략한 설명 : 
+	 @remark
+	 - 함수의 상세 설명 : 
+	 @param user
+	 @param response
+	 @return
+	 @throws Exception 
+	*/
+	@RequestMapping(value = "/api/signup/chkduplicate", method = {RequestMethod.POST})
+	public Map<String, Object> chkduplicate(@RequestBody User user, HttpServletResponse response) throws Exception {
+		Map<String, Object> resultMap = new HashMap<>();
+
+		int errorNo = signUpService.checkDuplicate(user);
 
 		resultMap.put("errorNo", errorNo);
 

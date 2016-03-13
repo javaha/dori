@@ -44,7 +44,16 @@ public class HtmlContentBuilder {
     public final static String HANDLEBARS_TEMPLATE_SUFFIX = ".html";
     public final static String HANDLEBARS_TEMPLATE_EMAIL_FILE_PATH = "/templates/email";
 
-    public String getSignupConfirmMail(ConfirmMailVO confirmMailVO) {
+    /**
+     @fn getSignupConfirmMail
+     @brief 함수 간략한 설명 : 회원가입 confirm 메일 내용 생성
+     @remark
+     - 함수의 상세 설명 : 회원가입 confirm 메일 내용 생성
+     @param confirmMailVO
+     @return
+     @throws Exception 
+    */
+    public String getSignupConfirmMail(ConfirmMailVO confirmMailVO) throws Exception {
     	String mailContents = "";
 
     	com.github.jknack.handlebars.Template template;
@@ -66,6 +75,7 @@ public class HtmlContentBuilder {
         } catch (Exception e) {
         	e.printStackTrace();
         	logger.error("{}", e);
+        	throw e;
         }
 
         return mailContents;
