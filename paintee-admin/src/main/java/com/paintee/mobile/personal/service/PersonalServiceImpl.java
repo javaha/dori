@@ -1,18 +1,18 @@
 /**
-@file MyHomeServiceImpl.java
+@file PersonalServiceImpl.java
 @section 파일생성정보
 |    항  목       |      내  용       |
 | :-------------: | -------------   |
-| File name | MyHomeServiceImpl.java |    
+| File name | PersonalServiceImpl.java |    
 | Package | com.paintee.mobile.follow.service |    
 | Project name | paintee-admin |    
-| Type name | MyHomeServiceImpl |    
+| Type name | PersonalServiceImpl |    
 | Company | Paintee | 
 | Create Date | 2016 2016. 3. 4. 오후 11:24:22 |
 | Author | Administrator |
 | File Version | v1.0 |
 */
-package com.paintee.mobile.myhome.service;
+package com.paintee.mobile.personal.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,16 +25,15 @@ import org.springframework.stereotype.Service;
 
 import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.repository.entity.FileInfoExample;
-import com.paintee.common.repository.entity.vo.FollowVO;
-import com.paintee.common.repository.entity.vo.MyHomeSearchVO;
-import com.paintee.common.repository.entity.vo.MyHomeVO;
+import com.paintee.common.repository.entity.vo.PersonalSearchVO;
+import com.paintee.common.repository.entity.vo.PersonalVO;
 import com.paintee.common.repository.helper.FileInfoHelper;
-import com.paintee.common.repository.helper.MyHomeHelper;
+import com.paintee.common.repository.helper.PersonalHelper;
 
 /**
-@class MyHomeServiceImpl
+@class PersonalServiceImpl
 com.paintee.mobile.follow.service \n
-   ㄴ MyHomeServiceImpl.java
+   ㄴ PersonalServiceImpl.java
  @section 클래스작성정보
     |    항  목       |      내  용       |
     | :-------------: | -------------   |
@@ -46,50 +45,42 @@ com.paintee.mobile.follow.service \n
  @section 상세설명
  - follow service 구현채
 */
-@Service(value="com.paintee.mobile.follow.service.MyHomeServiceImpl")
-public class MyHomeServiceImpl implements MyHomeService {
-	private final static Logger logger = LoggerFactory.getLogger(MyHomeServiceImpl.class);
+@Service(value="com.paintee.mobile.follow.service.PersonalServiceImpl")
+public class PersonalServiceImpl implements PersonalService {
+	private final static Logger logger = LoggerFactory.getLogger(PersonalServiceImpl.class);
 
 	@Autowired
-	private MyHomeHelper myhomeHelper;
+	private PersonalHelper personalHelper;
 	
 	@Autowired
 	private FileInfoHelper fileInfoHelper;
 	
 	@Override
-	public Map<String, Object> getMyHomePaintingInfo(MyHomeSearchVO searchVO) {
+	public Map<String, Object> getPersonalPaintingInfo(PersonalSearchVO searchVO) {
 		
 		// 목록 사용 카운트
-		MyHomeVO myhomeCnt = myhomeHelper.selectMyHomeCount(searchVO);
+		Integer personalCnt = personalHelper.selectPersonalPaintingCount(searchVO);
 		
-		// 목록 리스트 
-		// 만약 화면에서 업로드 부분을 비활성화 시켰다면
-		if (searchVO.getUpload().equalsIgnoreCase("N")) searchVO.setArtistId("");
-		// 만약 화면에서 포스트 부분을 비활성화 시켰다면
-		if (searchVO.getPost  ().equalsIgnoreCase("N")) searchVO.setUserId("");
-		
-		List<MyHomeVO> list = myhomeHelper.selectMyHomePaintingList(searchVO);
+		List<PersonalVO> list = personalHelper.selectPersonalPaintingList(searchVO);
 		logger.debug("list ::: {}", list);
 		
 		// 파일정보 조회
-		for (MyHomeVO myhome : list) {
+		for (PersonalVO personal : list) {
 			FileInfoExample fileInfoExample = new FileInfoExample();
 			FileInfoExample.Criteria fileWhere = fileInfoExample.createCriteria();
-			fileWhere.andFileGroupSeqEqualTo(myhome.getFileGroupSeq());
+			fileWhere.andFileGroupSeqEqualTo(personal.getFileGroupSeq());
 	
 			List<FileInfo> fileInfoList = fileInfoHelper.selectByExample(fileInfoExample);
 	
 			if(fileInfoList != null && fileInfoList.size() > 0) {
 				FileInfo fileInfo = fileInfoList.get(0);
-				myhome.setFileId(fileInfo.getId());
+				personal.setFileId(fileInfo.getId());
 			}
 		}
 		
 		Map<String, Object> result = new HashMap<>();
-		result.put("myhomeCnt", myhomeCnt);
+		result.put("uploadCount", personalCnt);
 		result.put("list", list);
-		result.put("uploadClass", searchVO.getUpload());
-		result.put("postClass", searchVO.getPost());
 		return result;
 	}
 }

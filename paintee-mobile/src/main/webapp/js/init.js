@@ -78,7 +78,7 @@ Home.prototype = {
 }
 
 // 그림 목록 화면
-function Structure(index, paintingId){
+function Structure(index, paintingId, artistName){
 		
         this.index              =index;
         this.container          =$("<div>").addClass("list_contents swiper-slide");
@@ -93,7 +93,7 @@ function Structure(index, paintingId){
         this.listPainting       =$("<div>").addClass("list_painting").attr("index", this.index);
 
         this.bottom             =$("<div>").addClass("bottom_bar");
-        this.listArtist         =$("<div>").addClass("list_artist_btn").click(function(){showPersonal("artist"+index)});
+        this.listArtist         =$("<div>").addClass("list_artist_btn").click(function(){showPersonal(artistName)});
         this.listPostBtn        =$("<div>").addClass("list_post_btn").html("post it").click(function(){purchase(paintingId)});
 
 }
@@ -152,7 +152,7 @@ function addPainting(swiper, currentIndex, type, listData){
 	
 	if (!listData) { return; }
 	
-	var newSlide = new Structure(swiper.slides.length, listData.paintingId);
+	var newSlide = new Structure(swiper.slides.length, listData.paintingId, listData.artistName);
     newSlide.setSentence(listData.sentence, listData.sentenceName ? listData.sentenceName : listData.artistName);
     newSlide.setPostedNumber(listData.postedPeopleCnt);
     newSlide.setDate(toEngDateStr(listData.uploadDate));
@@ -169,85 +169,6 @@ function addPainting(swiper, currentIndex, type, listData){
     }
     swiper.appendSlide(newSlide.buildStructure());
     delete newSlide;    
-}
-
-// 개인페이지 생성
-var personal = "";
-var isPersonal = false;
-
-function initPersonal(username){
-        var personalHome = new Home();
-        personalHome.setTitle(username);
-        personalHome.setExplain(username + "님이 포스트하거나 업로드한 그림들입니다.");
-        var content1 =
-            $("<div>").addClass("home_btn_my").html("uploaded ").append($("<b>").html(" 5"))
-        var content2 =
-            $("<div>").addClass("home_btn_my").html("posted ").append($("<b>").html(" 14"))
-        content1.click(function(){btnToggle(this)});
-        content2.click(function(){btnToggle(this)});
-        personalHome.hideNext();
-        personalHome.setContents(content1);
-        personalHome.setContents(content2);
-        personal.swiper.appendSlide(personalHome.buildStructure());
-        delete personalHome;
-        delete content1;
-        delete content2;
-
-        addPainting(personal.swiper, 0, "my");
-}
-
-function Personal(username){
-    this.container  = $("<div>").addClass("personal_container").addClass("swiper-slide");
-    this.list       = $("<div>").addClass("list_container").addClass("swiper_container_personal");
-    this.homeBtn    = $("<div>").addClass("home_btn").css("font-weight", 700).html(username);
-    this.bottom     = $("<div>").addClass("bottom_bar").css("background-color", "hsl(250,60%,20%)");
-    this.wrapper    = $("<div>").addClass("swiper-wrapper");
-    this.scroll     = $("<div>").addClass("swiper-scrollbar").addClass("swiper-scrollbar-personal");
-    this.swiper;
-}
-Personal.prototype = {
-    setSwiper       : function(){
-                        this.swiper = new Swiper('.swiper_container_personal', {
-                            slidesPerView: 'auto',
-                            centeredSlides: true,
-                            spaceBetween: mainWidth*0.05,
-                            mousewheelControl : true,
-                            scrollbar: '.swiper-scrollbar-personal',
-                            scrollbarHide: true
-                        })
-                    },
-    buildStructure  : function(){
-                        this.list.append(this.homeBtn);
-                        this.list.append(this.bottom);
-                        this.list.append(this.wrapper);
-                        this.list.append(this.scroll);
-                        this.container.append(this.list);
-        
-                        return this.container;
-                    }
-}
-             
-function showPersonal(username){
-    if(personal!="")hidePersonal();
-    isPersonal = true;
-    color = "250,60%,50%";
-    colorDark = "250,60%,20%";
-    
-    personal = new Personal(username);
-    mainSwiper.appendSlide(personal.buildStructure());
-    personal.setSwiper();
-    personal.swiper.on("onSlideChangeStart", function(swiper){addPainting(swiper, swiper.activeIndex, "my")});
-    personal.swiper.on("onTransitionEnd", function(swiper){listLock(swiper)});
-    personal.swiper.on("onSetTranslate", function(swiper, translate){swipeToMenu(swiper, translate)});
-      
-    initPersonal(username);
-    selectMenu(4);
-}
-
-function hidePersonal(){
-    isPersonal = false;
-    mainSwiper.removeSlide(4);
-    personal = "";
 }
 
 // 최초 5개 미리 생성

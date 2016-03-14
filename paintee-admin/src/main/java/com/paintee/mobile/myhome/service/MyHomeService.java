@@ -1,12 +1,12 @@
 /**
-@file FollowService.java
+@file MyHomeService.java
 @section 파일생성정보
 |    항  목       |      내  용       |
 | :-------------: | -------------   |
-| File name | FollowService.java |    
+| File name | MyHomeService.java |    
 | Package | com.paintee.mobile.follow.service |    
 | Project name | paintee-admin |    
-| Type name | FollowService |    
+| Type name | MyHomeService |    
 | Company | Paintee | 
 | Create Date | 2016 2016. 3. 4. 오후 11:24:07 |
 | Author | Administrator |
@@ -21,9 +21,9 @@ import com.paintee.common.repository.entity.vo.MyHomeSearchVO;
 import com.paintee.common.repository.entity.vo.MyHomeVO;
 
 /**
-@class FollowService
+@class MyHomeService
 com.paintee.mobile.follow.service \n
-   ㄴ FollowService.java
+   ㄴ MyHomeService.java
  @section 클래스작성정보
     |    항  목       |      내  용       |
     | :-------------: | -------------   |
