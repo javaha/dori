@@ -8,17 +8,14 @@
 	</resultMap>
     
   	<select id="selectRewardInfo" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.User">
-		select a.earn_total_money, 
-			   a.earn_reword_money,  
-			   a.earn_total_money - a.earn_reword_money as remain_money, 
-			   b.sell_count 
-		  from tb_user a, (select count(*) sell_count, b.artist_id 
-							 from tb_purchase a, 
-							      tb_painting b
-							where a.painting_id = b.painting_id
-							  and b.artist_id = #{userId}
-						 group by b.artist_id) b
-		 where a.user_id = b.artist_id
+	    SELECT a.earn_total_money,
+			   a.earn_reword_money,
+			   a.earn_total_money - a.earn_reword_money AS remain_money,
+			   (SELECT COUNT(*)
+			      FROM tb_purchase a, tb_painting b
+			     WHERE a.painting_id = b.painting_id
+			       AND b.artist_id = #{userId}) as sell_count
+		  FROM tb_user a 
+		 where a.user_id = #{userId}
   	</select>
-
 </mapper>

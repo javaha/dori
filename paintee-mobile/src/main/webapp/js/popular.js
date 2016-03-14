@@ -5,7 +5,10 @@ var popularSwiper = new Swiper('.swiper_container_popular', {
     spaceBetween: mainWidth*0.05,
     mousewheelControl : true,
     scrollbar: '.swiper-scrollbar-popular',
-    scrollbarHide: true
+    scrollbarHide: true,
+    lazyLoading: true,
+    lazyLoadingInPrevNext: true,
+    lazyLoadingInPrevNextAmount: 3    
 });
 
 popularSwiper.on("onSlideChangeStart", function(swiper){

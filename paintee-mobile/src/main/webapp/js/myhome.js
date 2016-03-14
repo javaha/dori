@@ -10,7 +10,10 @@ var mySwiper = new Swiper('.swiper_container_my', {
     spaceBetween: mainWidth*0.05,
     mousewheelControl : true,
     scrollbar: '.swiper-scrollbar-my',
-    scrollbarHide: true
+    scrollbarHide: true,
+    lazyLoading: true,
+    lazyLoadingInPrevNext: true,
+    lazyLoadingInPrevNextAmount: 3    
 })
 
 mySwiper.on("onSlideChangeStart", function(swiper) {

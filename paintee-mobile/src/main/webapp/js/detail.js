@@ -233,15 +233,18 @@ function setDetailLayout(){
 
 //디테일화면 닫기
 function closeDetail(){
- if(isDetail){
-     $(".detail").animate({top: 200, opacity: 0}, 200, "linear", function(){
-         $(".detail").empty();
-         $(".detail").hide().css("top", 0);
-         delete detailStructure;
-         delete detailSwiper;
-     });
-     isDetail = false;   
- }
+    if(isDetail){
+        if(get.page){
+            goPainting(get.user, get.page);
+        }        
+        $(".detail").animate({top: 200, opacity: 0}, 200, "linear", function(){
+            $(".detail").empty();
+            $(".detail").hide().css("top", 0);
+            delete detailStructure;
+            delete detailSwiper;
+        });
+        isDetail = false;   
+    }
 }
 
 //디테일화면의 스크롤 잠금/열기

@@ -5,7 +5,10 @@ var newSwiper = new Swiper('.swiper_container_new', {
     spaceBetween: mainWidth*0.05,
     mousewheelControl : true,
     scrollbar: '.swiper-scrollbar-new',
-    scrollbarHide: true
+    scrollbarHide: true,
+    lazyLoading: true,
+    lazyLoadingInPrevNext: true,
+    lazyLoadingInPrevNextAmount: 3    
 })
 
 newSwiper.on("onSlideChangeStart", function(swiper){

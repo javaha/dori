@@ -10,7 +10,10 @@ var followSwiper = new Swiper('.swiper_container_follow', {
 	spaceBetween : mainWidth * 0.05,
 	mousewheelControl : true,
 	scrollbar : '.swiper-scrollbar-follow',
-	scrollbarHide : true
+	scrollbarHide : true,
+    lazyLoading: true,
+    lazyLoadingInPrevNext: true,
+    lazyLoadingInPrevNextAmount: 3
 });
 
 followSwiper.on("onSlideChangeStart", function(swiper) {
