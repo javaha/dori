@@ -235,7 +235,7 @@ function setDetailLayout(){
 function closeDetail(){
     if(isDetail){
         if(get.page){
-            goPainting(get.user, get.page);
+//            goPainting(get.user, get.page);
             // 최초 한번만 동작하게 한다.
             get.page = null;
         }        
