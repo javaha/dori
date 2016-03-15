@@ -34,11 +34,20 @@ com.paintee.common.repository.entity.vo \n
 */
 public class MyHomeVO extends Painting {
 	
+	private String artistName;
 	private String sentenceName;
 	private String fileId;
 	private Integer uploadCount;
 	private Integer postCount;
 	
+	public String getArtistName() {
+		return artistName;
+	}
+
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
+	}
+
 	public String getSentenceName() {
 		return sentenceName;
 	}

@@ -7,6 +7,7 @@
 	    <result column="following_name" property="followingName" />
 	    <result column="follows_count" property="followsCount" />
 	    <result column="following_count" property="followingCount" />
+	    <result column="artist_name" property="artistName" />
 	</resultMap>
   	
 	<!-- 로그인 사용자가 팔로잉한 사용자가 구매한 그림과 업로드한 그림의 목록을 가져오기 -->

@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.paintee.common.repository.helper.NewPaintingHelper">
 	<resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.vo.NewPaintingVO" extends="com.paintee.common.repository.mapper.PaintingMapper.BaseResultMap">
+	    <result column="artist_name" property="artistName" />
 	</resultMap>
   
 	<!-- 최신 구매일 미만인 그림중에서 많이 팔린 순으로 가져오기 -->

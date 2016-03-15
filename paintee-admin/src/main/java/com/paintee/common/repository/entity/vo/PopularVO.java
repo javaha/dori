@@ -33,7 +33,16 @@ com.paintee.common.repository.entity.vo \n
  -# 여기는 리스트로 표시됩니다.
 */
 public class PopularVO extends Painting {
+	private String artistName;
 	private String fileId;
+
+	public String getArtistName() {
+		return artistName;
+	}
+
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
+	}
 
 	public String getFileId() {
 		return fileId;
