@@ -63,11 +63,11 @@ create table TB_REWARD (
 ) COMMENT = '리워드';
 
 create table TB_PAINTING (
-    painting_id varchar(64) primary key comment '그림의 고유 ID',
+	seq int primary key auto_increment comment '그림 고유 번호',
+    painting_id varchar(64) unique comment '그림의 고유 ID',
     upload_date datetime comment '그림이 업로드 된 날짜',
     artist_id varchar(64) comment '그림을 올린 사람 ID',
-    artist_name varchar(30) comment '그림을 올린 사람 이름',
-    sentence varchar(600) comment '그림 소갯말', 
+    sentence varchar(600) comment '그림 소갯말',
     location varchar(40) comment '업로드한 사람의 국가',
     posted_num int default 0 comment '구매된 숫자',
     posted_people_cnt int default 0 comment '구매된 숫자(사람수 기준)',

@@ -4,13 +4,13 @@ import com.paintee.common.object.BaseEntity;
 import java.util.Date;
 
 public class Painting extends BaseEntity {
+    private Integer seq;
+
     private String paintingId;
 
     private Date uploadDate;
 
     private String artistId;
-
-    private String artistName;
 
     private String sentence;
 
@@ -31,6 +31,14 @@ public class Painting extends BaseEntity {
     private String paintingStatus;
 
     private Date createdDate;
+
+    public Integer getSeq() {
+        return seq;
+    }
+
+    public void setSeq(Integer seq) {
+        this.seq = seq;
+    }
 
     public String getPaintingId() {
         return paintingId;
@@ -54,14 +62,6 @@ public class Painting extends BaseEntity {
 
     public void setArtistId(String artistId) {
         this.artistId = artistId;
-    }
-
-    public String getArtistName() {
-        return artistName;
-    }
-
-    public void setArtistName(String artistName) {
-        this.artistName = artistName;
     }
 
     public String getSentence() {

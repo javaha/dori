@@ -10,7 +10,7 @@ public interface PaintingMapper {
 
     int deleteByExample(PaintingExample example);
 
-    int deleteByPrimaryKey(String paintingId);
+    int deleteByPrimaryKey(Integer seq);
 
     int insert(Painting record);
 
@@ -18,7 +18,7 @@ public interface PaintingMapper {
 
     List<Painting> selectByExample(PaintingExample example);
 
-    Painting selectByPrimaryKey(String paintingId);
+    Painting selectByPrimaryKey(Integer seq);
 
     int updateByExampleSelective(@Param("record") Painting record, @Param("example") PaintingExample example);
 

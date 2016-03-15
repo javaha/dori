@@ -19,13 +19,20 @@
 		<sqlMapGenerator targetPackage="com.paintee.common.repository.mapper.sqlmap" targetProject="paintee-admin\src\main\java" />
 		<javaClientGenerator targetPackage="com.paintee.common.repository.mapper" targetProject="paintee-admin\src\main\java" type="XMLMAPPER" />
 
+		<table schema="" tableName="TB_PAINTING" domainObjectName="Painting" delimitIdentifiers="false" delimitAllColumns="false" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" selectByExampleQueryId="true" selectByPrimaryKeyQueryId="true">
+			<property name="enableSubPackages" value="true" />
+			<property name="rootClass" value="com.paintee.common.object.BaseEntity" />
+			<property name="trimStrings" value="true" />
+			<generatedKey column="seq" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<!-- 
 		<table schema="" tableName="TB_CODE" domainObjectName="Code" delimitIdentifiers="false" delimitAllColumns="false" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" selectByExampleQueryId="true" selectByPrimaryKeyQueryId="true">
 			<property name="enableSubPackages" value="true" />
 			<property name="rootClass" value="com.paintee.common.object.BaseEntity" />
 			<property name="trimStrings" value="true" />
 		</table>
 		
-		<!-- 
 		<table schema="" tableName="TB_CONFIRM_HASH" domainObjectName="ConfirmHash" delimitIdentifiers="false" delimitAllColumns="false" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" selectByExampleQueryId="true" selectByPrimaryKeyQueryId="true">
 			<property name="enableSubPackages" value="true" />
 			<property name="rootClass" value="com.paintee.common.object.BaseEntity" />
@@ -57,12 +64,6 @@
 			<property name="rootClass" value="com.paintee.common.object.BaseEntity" />
 			<property name="trimStrings" value="true" />
 			<generatedKey column="seq" sqlStatement="MySql" identity="true" />
-		</table>
-
-		<table schema="" tableName="TB_PAINTING" domainObjectName="Painting" delimitIdentifiers="false" delimitAllColumns="false" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" selectByExampleQueryId="true" selectByPrimaryKeyQueryId="true">
-			<property name="enableSubPackages" value="true" />
-			<property name="rootClass" value="com.paintee.common.object.BaseEntity" />
-			<property name="trimStrings" value="true" />
 		</table>
 
 		<table schema="" tableName="TB_LOGIN" domainObjectName="Login" delimitIdentifiers="false" delimitAllColumns="false" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" selectByExampleQueryId="true" selectByPrimaryKeyQueryId="true">

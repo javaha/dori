@@ -105,6 +105,66 @@ public class PaintingExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andSeqIsNull() {
+            addCriterion("seq is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqIsNotNull() {
+            addCriterion("seq is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqEqualTo(Integer value) {
+            addCriterion("seq =", value, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqNotEqualTo(Integer value) {
+            addCriterion("seq <>", value, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqGreaterThan(Integer value) {
+            addCriterion("seq >", value, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqGreaterThanOrEqualTo(Integer value) {
+            addCriterion("seq >=", value, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqLessThan(Integer value) {
+            addCriterion("seq <", value, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqLessThanOrEqualTo(Integer value) {
+            addCriterion("seq <=", value, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqIn(List<Integer> values) {
+            addCriterion("seq in", values, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqNotIn(List<Integer> values) {
+            addCriterion("seq not in", values, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqBetween(Integer value1, Integer value2) {
+            addCriterion("seq between", value1, value2, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqNotBetween(Integer value1, Integer value2) {
+            addCriterion("seq not between", value1, value2, "seq");
+            return (Criteria) this;
+        }
+
         public Criteria andPaintingIdIsNull() {
             addCriterion("painting_id is null");
             return (Criteria) this;
@@ -302,76 +362,6 @@ public class PaintingExample {
 
         public Criteria andArtistIdNotBetween(String value1, String value2) {
             addCriterion("artist_id not between", value1, value2, "artistId");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameIsNull() {
-            addCriterion("artist_name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameIsNotNull() {
-            addCriterion("artist_name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameEqualTo(String value) {
-            addCriterion("artist_name =", value, "artistName");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameNotEqualTo(String value) {
-            addCriterion("artist_name <>", value, "artistName");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameGreaterThan(String value) {
-            addCriterion("artist_name >", value, "artistName");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameGreaterThanOrEqualTo(String value) {
-            addCriterion("artist_name >=", value, "artistName");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameLessThan(String value) {
-            addCriterion("artist_name <", value, "artistName");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameLessThanOrEqualTo(String value) {
-            addCriterion("artist_name <=", value, "artistName");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameLike(String value) {
-            addCriterion("artist_name like", value, "artistName");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameNotLike(String value) {
-            addCriterion("artist_name not like", value, "artistName");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameIn(List<String> values) {
-            addCriterion("artist_name in", values, "artistName");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameNotIn(List<String> values) {
-            addCriterion("artist_name not in", values, "artistName");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameBetween(String value1, String value2) {
-            addCriterion("artist_name between", value1, value2, "artistName");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtistNameNotBetween(String value1, String value2) {
-            addCriterion("artist_name not between", value1, value2, "artistName");
             return (Criteria) this;
         }
 
