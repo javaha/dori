@@ -14,7 +14,13 @@ public class User extends BaseEntity {
 
     private String introduce;
 
-    private String address;
+    private String basicAddr;
+
+    private String detailAddr;
+
+    private String zipcode;
+
+    private String city;
 
     private String location;
 
@@ -26,7 +32,15 @@ public class User extends BaseEntity {
 
     private Integer earnRewordMoney;
 
-    private String resentSendAddr;
+    private String resentSendBasicAddr;
+
+    private String resentSendDetailAddr;
+
+    private String resentSendZipcode;
+
+    private String resentSendCity;
+
+    private String resentSendLocation;
 
     private String resentSendName;
 
@@ -78,12 +92,36 @@ public class User extends BaseEntity {
         this.introduce = introduce;
     }
 
-    public String getAddress() {
-        return address;
+    public String getBasicAddr() {
+        return basicAddr;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setBasicAddr(String basicAddr) {
+        this.basicAddr = basicAddr;
+    }
+
+    public String getDetailAddr() {
+        return detailAddr;
+    }
+
+    public void setDetailAddr(String detailAddr) {
+        this.detailAddr = detailAddr;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getLocation() {
@@ -126,12 +164,44 @@ public class User extends BaseEntity {
         this.earnRewordMoney = earnRewordMoney;
     }
 
-    public String getResentSendAddr() {
-        return resentSendAddr;
+    public String getResentSendBasicAddr() {
+        return resentSendBasicAddr;
     }
 
-    public void setResentSendAddr(String resentSendAddr) {
-        this.resentSendAddr = resentSendAddr;
+    public void setResentSendBasicAddr(String resentSendBasicAddr) {
+        this.resentSendBasicAddr = resentSendBasicAddr;
+    }
+
+    public String getResentSendDetailAddr() {
+        return resentSendDetailAddr;
+    }
+
+    public void setResentSendDetailAddr(String resentSendDetailAddr) {
+        this.resentSendDetailAddr = resentSendDetailAddr;
+    }
+
+    public String getResentSendZipcode() {
+        return resentSendZipcode;
+    }
+
+    public void setResentSendZipcode(String resentSendZipcode) {
+        this.resentSendZipcode = resentSendZipcode;
+    }
+
+    public String getResentSendCity() {
+        return resentSendCity;
+    }
+
+    public void setResentSendCity(String resentSendCity) {
+        this.resentSendCity = resentSendCity;
+    }
+
+    public String getResentSendLocation() {
+        return resentSendLocation;
+    }
+
+    public void setResentSendLocation(String resentSendLocation) {
+        this.resentSendLocation = resentSendLocation;
     }
 
     public String getResentSendName() {

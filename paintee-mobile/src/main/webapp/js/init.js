@@ -22,7 +22,9 @@ if(userInfo) {
 
 console.log('userID:'+userID);
 
+//var imageUrl="http://192.168.0.14:8090";
 var imageUrl="http://localhost:8090";
+//var imageUrl="http://192.168.43.89:8090";
 //var imageUrl="http://192.168.1.31:8090";
 //var imageUrl="http://192.168.43.63:8090";
 var apiUrl=imageUrl+"/api";
@@ -235,7 +237,14 @@ function initMenu(userID){
         sideLogin.empty()
         sideLogin.append($("<div>").addClass("side_menu_login_id").html(userID));
 //        sideLogin.append($("<div>").html("edit | logout").click(function(){showProfile()}));
-        sideLogin.append($("<div>").html("edit | logout").click(function(){logout()}));
+
+        //TODO:profile edit 버튼과 logout 버튼 분리 디자인 확인해야함.
+        var editBtn = $("<a>").html("edit").on("click", function(){showProfile()});
+        var logoutBtn = $("<a>").html("logout").on("click", function(){logout()});
+
+        var btnGroup = $("<div>").append(editBtn).append(" | ").append(logoutBtn);
+
+        sideLogin.append(btnGroup);
     }
 }
 
@@ -437,14 +446,6 @@ function successUpload(){
     uploadSuccess.setBottom("<div class='popup_cancle_btn upload_btn'><i class='material-icons'>folder</i><div class='purchase_btn_text'>Select again</div></div><div class='popup_btn upload_btn'><div class='purchase_btn_text'>Done </div><i class='material-icons'>done</i></div>");
     uploadSuccess.buildUpload();
     delete uploadSuccess;
-}
-
-// 프로필 수정화면
-function showProfile(){
-    boxStatus = "profile";
-    setBox();
-    sideOff();
-    $(".profile_container").show();
 }
 
 // 팝업 닫기

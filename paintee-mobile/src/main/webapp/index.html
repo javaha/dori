@@ -132,7 +132,7 @@
                     </div>
                     <div class="purchase_col_input">
                         <input type="text" name="receiverBasicAddr" class="purchase_input2" placeholder="address 1">
-						<span id="postSearch"><input type="button" onclick="execDaumPostcode()" value="post search" class="purchase_button"></span>
+						<span id="postSearch"><input type="button" onclick="execDaumPostcode('purchase', 'receiverZipcode', 'receiverBasicAddr')" value="post search" class="purchase_button"></span>
                         <input type="text" name="receiverDetailAddr" class="purchase_input" placeholder="address 2">
                         <input type="text" name="receiverCity" class="purchase_input" placeholder="city" style="width: 30%">
                         <input type="text" name="receiverZipcode" class="purchase_input" placeholder="zip code" style="width: 30%">
@@ -189,24 +189,25 @@
         <div class="profile_contents">
             <div class="profile_section">username</div>
             <div class="profile_form">
-                <input type="text" class="account_form profile_username" placeholder="name">
+                <input type="text" id="profileUserName" name="profileUserName" class="account_form profile_username" placeholder="name">
             </div>
             <div class="profile_section">passward</div>
             <div class="profile_form">
-                <input type="passward" class="account_form profile_passward" placeholder="new passward">
-                <input type="passward" class="account_form profile_passward" placeholder="repeat passward">
+                <input id="profileUserPassword" name="profileUserPassword" type="passward" class="account_form profile_passward" placeholder="new passward">
+                <input id="profileConfirmPassord" name="profileConfirmPassord" type="passward" class="account_form profile_passward" placeholder="repeat passward">
             </div>
             <div class="profile_section">introduction</div>
             <div class="profile_form">
-                <input type="text" class="account_form profile_username" placeholder="name">
+                <input id="profileIntroduction" name="profileIntroduction" type="text" class="account_form profile_username" placeholder="introduction">
             </div>
             <div class="profile_section">address</div>
             <div class="profile_form">
-                <input type="text" class="account_form" placeholder="address 1">
-                <input type="text" class="account_form" placeholder="address 2">
-                <input type="text" class="account_form" placeholder="city" style="width: 30%">
-                <input type="text" class="account_form" placeholder="zip code" style="width: 30%">
-                <select class="profile_select" style="width: 30%">
+                <span id="profilePostSearch"><input type="button" onclick="execDaumPostcode('profile', 'profileZipcode', 'profileBasicAddr')" value="post search" class="purchase_button"></span>
+                <input type="text" id="profileBasicAddr" name="profileBasicAddr" class="account_form" placeholder="address 1">
+                <input type="text" id="profileDetailAddr" name="profileDetailAddr" class="account_form" placeholder="address 2">
+                <input type="text" id="profileCity" name="profileCity" class="account_form" placeholder="city" style="width: 30%">
+                <input type="text" id="profileZipcode" name="profileZipcode" class="account_form" placeholder="zip code" style="width: 30%">
+                <select name="profileLocation" class="profile_select" style="width: 30%">
                         <option value="1">Korea</option>
                         <option value="2">USA</option>
                         <option value="3">China</option>
@@ -300,24 +301,25 @@
     </div>
     
     <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="js/swiper.jquery.min.js"></script>
-    <script src="js/jquery.touchSwipe.min.js"></script>
-	<script src="js/common-ajax.js"></script>
-	<script src="js/common.js"></script>
-    <script src="js/detail.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/myhome.js"></script>
-    <script src="js/follow.js"></script>
-    <script src="js/popular.js"></script>
-    <script src="js/new.js"></script>
-    <script src="js/personal.js"></script>
-    <script src="js/purchase.js"></script>
-    <script src="js/login.js"></script>
-    <script src="js/reward.js"></script>
-    <script src="js/signup.js"></script>
-    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?1"></script>
-    <script src="js/daumAddrApi.js"></script>
+    <script src="/js/jquery/jquery-2.1.1.js"></script>
+    <script src="/js/swiper.jquery.min.js"></script>
+    <script src="/js/jquery.touchSwipe.min.js"></script>
+	<script src="/js/common-ajax.js"></script>
+	<script src="/js/common.js"></script>
+    <script src="/js/init.js"></script>
+    <script src="/js/myhome.js"></script>
+    <script src="/js/follow.js"></script>
+    <script src="/js/popular.js"></script>
+    <script src="/js/new.js"></script>
+    <script src="/js/purchase.js"></script>
+    <script src="/js/detail.js"></script>
+    <script src="/js/login.js"></script>
+    <script src="/js/reward.js"></script>
+    <script src="/js/signup.js"></script>
+    <script src="/js/profile.js"></script>
+
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?1"></script>
+    <script src="/js/daumAddrApi.js"></script>
 
 </body>
 </html>

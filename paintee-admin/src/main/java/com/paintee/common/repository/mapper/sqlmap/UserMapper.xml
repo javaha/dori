@@ -7,13 +7,20 @@
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="introduce" property="introduce" jdbcType="VARCHAR" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="basic_addr" property="basicAddr" jdbcType="VARCHAR" />
+    <result column="detail_addr" property="detailAddr" jdbcType="VARCHAR" />
+    <result column="zipcode" property="zipcode" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
     <result column="location" property="location" jdbcType="VARCHAR" />
     <result column="upload_cnt" property="uploadCnt" jdbcType="INTEGER" />
     <result column="post_cnt" property="postCnt" jdbcType="INTEGER" />
     <result column="earn_total_money" property="earnTotalMoney" jdbcType="INTEGER" />
     <result column="earn_reword_money" property="earnRewordMoney" jdbcType="INTEGER" />
-    <result column="resent_send_addr" property="resentSendAddr" jdbcType="VARCHAR" />
+    <result column="resent_send_basic_addr" property="resentSendBasicAddr" jdbcType="VARCHAR" />
+    <result column="resent_send_detail_addr" property="resentSendDetailAddr" jdbcType="VARCHAR" />
+    <result column="resent_send_zipcode" property="resentSendZipcode" jdbcType="VARCHAR" />
+    <result column="resent_send_city" property="resentSendCity" jdbcType="VARCHAR" />
+    <result column="resent_send_location" property="resentSendLocation" jdbcType="VARCHAR" />
     <result column="resent_send_name" property="resentSendName" jdbcType="VARCHAR" />
     <result column="point" property="point" jdbcType="INTEGER" />
     <result column="user_status" property="userStatus" jdbcType="CHAR" />
@@ -79,9 +86,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    user_id, password, email, name, introduce, address, location, upload_cnt, post_cnt, 
-    earn_total_money, earn_reword_money, resent_send_addr, resent_send_name, point, user_status, 
-    sns_type, created_date
+    user_id, password, email, name, introduce, basic_addr, detail_addr, zipcode, city, 
+    location, upload_cnt, post_cnt, earn_total_money, earn_reword_money, resent_send_basic_addr, 
+    resent_send_detail_addr, resent_send_zipcode, resent_send_city, resent_send_location, 
+    resent_send_name, point, user_status, sns_type, created_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.UserExample" >
     select
@@ -116,17 +124,23 @@
   </delete>
   <insert id="insert" parameterType="com.paintee.common.repository.entity.User" >
     insert into tb_user (user_id, password, email, 
-      name, introduce, address, 
+      name, introduce, basic_addr, 
+      detail_addr, zipcode, city, 
       location, upload_cnt, post_cnt, 
-      earn_total_money, earn_reword_money, resent_send_addr, 
-      resent_send_name, point, user_status, 
-      sns_type, created_date)
+      earn_total_money, earn_reword_money, resent_send_basic_addr, 
+      resent_send_detail_addr, resent_send_zipcode, 
+      resent_send_city, resent_send_location, resent_send_name, 
+      point, user_status, sns_type, 
+      created_date)
     values (#{userId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{basicAddr,jdbcType=VARCHAR}, 
+      #{detailAddr,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{location,jdbcType=VARCHAR}, #{uploadCnt,jdbcType=INTEGER}, #{postCnt,jdbcType=INTEGER}, 
-      #{earnTotalMoney,jdbcType=INTEGER}, #{earnRewordMoney,jdbcType=INTEGER}, #{resentSendAddr,jdbcType=VARCHAR}, 
-      #{resentSendName,jdbcType=VARCHAR}, #{point,jdbcType=INTEGER}, #{userStatus,jdbcType=CHAR}, 
-      #{snsType,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP})
+      #{earnTotalMoney,jdbcType=INTEGER}, #{earnRewordMoney,jdbcType=INTEGER}, #{resentSendBasicAddr,jdbcType=VARCHAR}, 
+      #{resentSendDetailAddr,jdbcType=VARCHAR}, #{resentSendZipcode,jdbcType=VARCHAR}, 
+      #{resentSendCity,jdbcType=VARCHAR}, #{resentSendLocation,jdbcType=VARCHAR}, #{resentSendName,jdbcType=VARCHAR}, 
+      #{point,jdbcType=INTEGER}, #{userStatus,jdbcType=CHAR}, #{snsType,jdbcType=CHAR}, 
+      #{createdDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.User" >
     insert into tb_user
@@ -146,8 +160,17 @@
       <if test="introduce != null" >
         introduce,
       </if>
-      <if test="address != null" >
-        address,
+      <if test="basicAddr != null" >
+        basic_addr,
+      </if>
+      <if test="detailAddr != null" >
+        detail_addr,
+      </if>
+      <if test="zipcode != null" >
+        zipcode,
+      </if>
+      <if test="city != null" >
+        city,
       </if>
       <if test="location != null" >
         location,
@@ -164,8 +187,20 @@
       <if test="earnRewordMoney != null" >
         earn_reword_money,
       </if>
-      <if test="resentSendAddr != null" >
-        resent_send_addr,
+      <if test="resentSendBasicAddr != null" >
+        resent_send_basic_addr,
+      </if>
+      <if test="resentSendDetailAddr != null" >
+        resent_send_detail_addr,
+      </if>
+      <if test="resentSendZipcode != null" >
+        resent_send_zipcode,
+      </if>
+      <if test="resentSendCity != null" >
+        resent_send_city,
+      </if>
+      <if test="resentSendLocation != null" >
+        resent_send_location,
       </if>
       <if test="resentSendName != null" >
         resent_send_name,
@@ -199,8 +234,17 @@
       <if test="introduce != null" >
         #{introduce,jdbcType=VARCHAR},
       </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
+      <if test="basicAddr != null" >
+        #{basicAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddr != null" >
+        #{detailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
       </if>
       <if test="location != null" >
         #{location,jdbcType=VARCHAR},
@@ -217,8 +261,20 @@
       <if test="earnRewordMoney != null" >
         #{earnRewordMoney,jdbcType=INTEGER},
       </if>
-      <if test="resentSendAddr != null" >
-        #{resentSendAddr,jdbcType=VARCHAR},
+      <if test="resentSendBasicAddr != null" >
+        #{resentSendBasicAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="resentSendDetailAddr != null" >
+        #{resentSendDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="resentSendZipcode != null" >
+        #{resentSendZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="resentSendCity != null" >
+        #{resentSendCity,jdbcType=VARCHAR},
+      </if>
+      <if test="resentSendLocation != null" >
+        #{resentSendLocation,jdbcType=VARCHAR},
       </if>
       <if test="resentSendName != null" >
         #{resentSendName,jdbcType=VARCHAR},
@@ -261,8 +317,17 @@
       <if test="record.introduce != null" >
         introduce = #{record.introduce,jdbcType=VARCHAR},
       </if>
-      <if test="record.address != null" >
-        address = #{record.address,jdbcType=VARCHAR},
+      <if test="record.basicAddr != null" >
+        basic_addr = #{record.basicAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailAddr != null" >
+        detail_addr = #{record.detailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipcode != null" >
+        zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
       </if>
       <if test="record.location != null" >
         location = #{record.location,jdbcType=VARCHAR},
@@ -279,8 +344,20 @@
       <if test="record.earnRewordMoney != null" >
         earn_reword_money = #{record.earnRewordMoney,jdbcType=INTEGER},
       </if>
-      <if test="record.resentSendAddr != null" >
-        resent_send_addr = #{record.resentSendAddr,jdbcType=VARCHAR},
+      <if test="record.resentSendBasicAddr != null" >
+        resent_send_basic_addr = #{record.resentSendBasicAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resentSendDetailAddr != null" >
+        resent_send_detail_addr = #{record.resentSendDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resentSendZipcode != null" >
+        resent_send_zipcode = #{record.resentSendZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resentSendCity != null" >
+        resent_send_city = #{record.resentSendCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resentSendLocation != null" >
+        resent_send_location = #{record.resentSendLocation,jdbcType=VARCHAR},
       </if>
       <if test="record.resentSendName != null" >
         resent_send_name = #{record.resentSendName,jdbcType=VARCHAR},
@@ -309,13 +386,20 @@
       email = #{record.email,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       introduce = #{record.introduce,jdbcType=VARCHAR},
-      address = #{record.address,jdbcType=VARCHAR},
+      basic_addr = #{record.basicAddr,jdbcType=VARCHAR},
+      detail_addr = #{record.detailAddr,jdbcType=VARCHAR},
+      zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
       location = #{record.location,jdbcType=VARCHAR},
       upload_cnt = #{record.uploadCnt,jdbcType=INTEGER},
       post_cnt = #{record.postCnt,jdbcType=INTEGER},
       earn_total_money = #{record.earnTotalMoney,jdbcType=INTEGER},
       earn_reword_money = #{record.earnRewordMoney,jdbcType=INTEGER},
-      resent_send_addr = #{record.resentSendAddr,jdbcType=VARCHAR},
+      resent_send_basic_addr = #{record.resentSendBasicAddr,jdbcType=VARCHAR},
+      resent_send_detail_addr = #{record.resentSendDetailAddr,jdbcType=VARCHAR},
+      resent_send_zipcode = #{record.resentSendZipcode,jdbcType=VARCHAR},
+      resent_send_city = #{record.resentSendCity,jdbcType=VARCHAR},
+      resent_send_location = #{record.resentSendLocation,jdbcType=VARCHAR},
       resent_send_name = #{record.resentSendName,jdbcType=VARCHAR},
       point = #{record.point,jdbcType=INTEGER},
       user_status = #{record.userStatus,jdbcType=CHAR},
@@ -340,8 +424,17 @@
       <if test="introduce != null" >
         introduce = #{introduce,jdbcType=VARCHAR},
       </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
+      <if test="basicAddr != null" >
+        basic_addr = #{basicAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddr != null" >
+        detail_addr = #{detailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        zipcode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
       </if>
       <if test="location != null" >
         location = #{location,jdbcType=VARCHAR},
@@ -358,8 +451,20 @@
       <if test="earnRewordMoney != null" >
         earn_reword_money = #{earnRewordMoney,jdbcType=INTEGER},
       </if>
-      <if test="resentSendAddr != null" >
-        resent_send_addr = #{resentSendAddr,jdbcType=VARCHAR},
+      <if test="resentSendBasicAddr != null" >
+        resent_send_basic_addr = #{resentSendBasicAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="resentSendDetailAddr != null" >
+        resent_send_detail_addr = #{resentSendDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="resentSendZipcode != null" >
+        resent_send_zipcode = #{resentSendZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="resentSendCity != null" >
+        resent_send_city = #{resentSendCity,jdbcType=VARCHAR},
+      </if>
+      <if test="resentSendLocation != null" >
+        resent_send_location = #{resentSendLocation,jdbcType=VARCHAR},
       </if>
       <if test="resentSendName != null" >
         resent_send_name = #{resentSendName,jdbcType=VARCHAR},
@@ -385,13 +490,20 @@
       email = #{email,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       introduce = #{introduce,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
+      basic_addr = #{basicAddr,jdbcType=VARCHAR},
+      detail_addr = #{detailAddr,jdbcType=VARCHAR},
+      zipcode = #{zipcode,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
       location = #{location,jdbcType=VARCHAR},
       upload_cnt = #{uploadCnt,jdbcType=INTEGER},
       post_cnt = #{postCnt,jdbcType=INTEGER},
       earn_total_money = #{earnTotalMoney,jdbcType=INTEGER},
       earn_reword_money = #{earnRewordMoney,jdbcType=INTEGER},
-      resent_send_addr = #{resentSendAddr,jdbcType=VARCHAR},
+      resent_send_basic_addr = #{resentSendBasicAddr,jdbcType=VARCHAR},
+      resent_send_detail_addr = #{resentSendDetailAddr,jdbcType=VARCHAR},
+      resent_send_zipcode = #{resentSendZipcode,jdbcType=VARCHAR},
+      resent_send_city = #{resentSendCity,jdbcType=VARCHAR},
+      resent_send_location = #{resentSendLocation,jdbcType=VARCHAR},
       resent_send_name = #{resentSendName,jdbcType=VARCHAR},
       point = #{point,jdbcType=INTEGER},
       user_status = #{userStatus,jdbcType=CHAR},
