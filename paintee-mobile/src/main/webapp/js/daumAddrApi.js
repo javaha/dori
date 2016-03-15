@@ -1,12 +1,20 @@
 // 우편번호 찾기 화면을 넣을 element
 var postLayer = document.getElementById('layer');
+var profilePostLayer = document.getElementById('profileLayer');
+var openLayer = null;
 
 function closeDaumPostcode() {
     // iframe을 넣은 element를 안보이게 한다.
 	postLayer.style.display = 'none';
+	profilePostLayer.style.display = 'none';
 }
 
 function execDaumPostcode(searchModule, zipcodeFieldName, basicAddrFieldName) {
+    if(searchModule == 'purchase') {
+    	openLayer = postLayer;
+    } else if(searchModule == 'profile') {
+    	openLayer = profilePostLayer;
+    }
     new daum.Postcode({
         oncomplete: function(data) {
             // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -36,14 +44,14 @@ function execDaumPostcode(searchModule, zipcodeFieldName, basicAddrFieldName) {
 
             // iframe을 넣은 element를 안보이게 한다.
             // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
-            postLayer.style.display = 'none';
+            openLayer.style.display = 'none';
         },
         width : '100%',
         height : '100%'
-    }).embed(postLayer);
+    }).embed(openLayer);
 
     // iframe을 넣은 element를 보이게 한다.
-    postLayer.style.display = 'block';
+    openLayer.style.display = 'block';
 
     if(searchModule == 'purchase') {
     	// iframe을 넣은 element의 위치를 화면의 가운데로 이동시킨다.
@@ -74,17 +82,16 @@ function initLayerPositionForPurchase(){
 
 function initLayerPositionForProfile(){
     var width = 410; //우편번호서비스가 들어갈 element의 width
-    var height = $(".profile_box").height( ) - 20; //우편번호서비스가 들어갈 element의 height
+    var height = 300; //우편번호서비스가 들어갈 element의 height
     var borderWidth = 5; //샘플에서 사용하는 border의 두께
 
     // 위에서 선언한 값들을 실제 element에 넣는다.
-    postLayer.style.width = width + 'px';
-    postLayer.style.height = height + 'px';
-    postLayer.style.border = borderWidth + 'px #334455 solid';
-    
+    profilePostLayer.style.width = width + 'px';
+    profilePostLayer.style.height = height + 'px';
+    profilePostLayer.style.border = borderWidth + 'px #334455 solid';
 
     // 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
 //    postLayer.style.left = (($(".purchase_box").width( ) - width)/2 - borderWidth) + 'px';
-    postLayer.style.right = '10px';
-    postLayer.style.top = (($(".profile_box").height( ) - height)/2 - borderWidth) + 'px';
+    profilePostLayer.style.left = '10px';
+    profilePostLayer.style.top = (($(".profile_box").height( ) - height)/2 - borderWidth) + 'px';
 }
