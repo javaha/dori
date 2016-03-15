@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
+import com.paintee.mobile.auth.service.ResetPasswordMailVO;
 
 /**
 @class HtmlContentBuilder
@@ -70,6 +71,34 @@ public class HtmlContentBuilder {
             if (template != null && template.apply(null).length() > 0) {
             	logger.debug("---> template : {}", template.apply(confirmMailVO));
             	mailContents = template.apply(confirmMailVO);
+            }
+
+        } catch (Exception e) {
+        	e.printStackTrace();
+        	logger.error("{}", e);
+        	throw e;
+        }
+
+        return mailContents;
+    }
+
+    public String getResetPasswordMail(ResetPasswordMailVO resetPasswordMailVO) throws Exception {
+    	String mailContents = "";
+
+    	com.github.jknack.handlebars.Template template;
+
+        try {
+            TemplateLoader loader = new ClassPathTemplateLoader();
+            loader.setPrefix(HANDLEBARS_TEMPLATE_EMAIL_FILE_PATH);
+            loader.setSuffix(HANDLEBARS_TEMPLATE_SUFFIX);
+
+            logger.debug("template path : {}", loader.getPrefix());
+
+            template = new Handlebars(loader).compile("reset_password_mail");
+
+            if (template != null && template.apply(null).length() > 0) {
+            	logger.debug("---> template : {}", template.apply(resetPasswordMailVO));
+            	mailContents = template.apply(resetPasswordMailVO);
             }
 
         } catch (Exception e) {

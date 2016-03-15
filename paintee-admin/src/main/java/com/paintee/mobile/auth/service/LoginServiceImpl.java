@@ -25,7 +25,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.paintee.common.mail.HtmlContentBuilder;
+import com.paintee.common.mail.MailService;
 import com.paintee.common.repository.entity.Login;
 import com.paintee.common.repository.entity.LoginExample;
 import com.paintee.common.repository.entity.User;
@@ -33,6 +36,7 @@ import com.paintee.common.repository.entity.UserExample;
 import com.paintee.common.repository.entity.vo.UserLoginVO;
 import com.paintee.common.repository.helper.LoginHelper;
 import com.paintee.common.repository.helper.UserHelper;
+import com.paintee.common.util.PasswordGenerator;
 import com.paintee.common.util.Sha512Encrypt;
 
 /**
@@ -62,6 +66,15 @@ public class LoginServiceImpl implements LoginService {
 
 	@Value("#{config['common.login.hash.expireDay'] }")
 	private int expireDay;
+
+	@Autowired
+	private PasswordGenerator passwordGenerator;
+
+	@Autowired
+	private HtmlContentBuilder htmlContentBuilder;
+
+	@Autowired
+	private MailService mailService;
 
 	/**
 	 @fn 
@@ -161,5 +174,43 @@ public class LoginServiceImpl implements LoginService {
 		}
 
 		return user;
+	}
+
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 :
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 
+	 @see com.paintee.mobile.auth.service.LoginService#resetpassword(com.paintee.common.repository.entity.vo.UserLoginVO)
+	*/
+	@Transactional
+	public Map<String, Object> resetpassword(UserLoginVO userLoginVO) throws Exception {
+		Map<String, Object> resultMap = new HashMap<>();
+
+		String tempPasswordPlainText = passwordGenerator.randomPassword();
+
+		UserExample userExample = new UserExample();
+		UserExample.Criteria where = userExample.createCriteria();
+		where.andEmailEqualTo(userLoginVO.getEmail());
+		where.andUserStatusEqualTo("N");
+
+		User user = new User();
+		user.setPassword(Sha512Encrypt.hash(tempPasswordPlainText));
+
+		int count = userHelper.updateByExampleSelective(user, userExample);
+
+		if(count > 0) {
+			//임시비밀번호 메일 발송
+			ResetPasswordMailVO resetPasswordMailVO = new ResetPasswordMailVO();
+			resetPasswordMailVO.setPassword(tempPasswordPlainText);
+			resetPasswordMailVO.setTitle("SignUp Title");
+			resetPasswordMailVO.setSenderName("paintee");
+	
+			mailService.sendMail(user.getEmail(), "SignUp confirm", htmlContentBuilder.getResetPasswordMail(resetPasswordMailVO));
+		}
+
+		resultMap.put("errorNo", 0);
+
+		return resultMap;
 	}
 }

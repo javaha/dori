@@ -64,4 +64,15 @@ public interface LoginService {
 	 @return 
 	*/
 	public User getUser(String painteeHash);
+	
+	/**
+	 @fn resetpassword
+	 @brief 함수 간략한 설명 : 비밀번호 초기화후 메일로 임시비밀번호 발송
+	 @remark
+	 - 함수의 상세 설명 : 비밀번호 초기화후 메일로 임시비밀번호 발송
+	 @param userLoginVO
+	 @return
+	 @throws Exception 
+	*/
+	public Map<String, Object> resetpassword(UserLoginVO userLoginVO) throws Exception;
 }

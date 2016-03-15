@@ -22,22 +22,28 @@ LogInController.prototype = {
 
 			//login 후 cookie 를 페이지에 적용하기 위하여 새로고침해야함.
 			location.href = "/";
-/*
-		    $(".login_container").hide();
-
-		    userID = result.email;
-
-		    initFollow(userID);
-		    initMy(userID);
-		    initMenu(userID);
-
-		    mainSwiper.slideTo(0);
-		    mainSwiper.unlockSwipes();
-		    mainSwiper.lockSwipeToPrev();*/
 		} else if(result.errorNo == 401 || result.errorNo == 402 || result.errorNo == 404) {
 			alert('이메일과 비밀번호를 확인하세요.');
 		}
+	},
+	doResetPasswod: function() {
+		var param = {};
+		param.email = this.email;
+
+		var controller = this;
+
+		AjaxCall.call(apiUrl+"/resetpasswd", param, "POST", function(result, status) { controller.doResetPasswodRes(result, status); });
+	},
+	doResetPasswodRes: function(result, status) {
+		if(result.errorNo == 0) {
+			console.log(result);
+
+			alert('비밀번호 초기화 메일 발송.');
+		} else if(result.errorNo == 401) {
+			alert('이메일을 확인하세요.');
+		}
 	}
+	
 }
 
 // 로그인과 함께 다시 side menu 초기화
@@ -88,4 +94,11 @@ $(".login_help").click(function(){
 });
 $(".help_login_btn").click(function(){
  $(".loginhelp_container").hide();
+});
+
+//비밀번호 초기화
+$('#resetPasswordBtn').on('click', function() {
+    var resetUserEmaiil = $('#resetUserEmaiil').val();
+    var logInController = new LogInController(resetUserEmaiil, '');
+    logInController.doResetPasswod();
 });

@@ -60,7 +60,7 @@ public class SignUpServiceImpl implements SignUpService {
 	private UserHelper userHelper;
 
 	@Autowired
-	private HtmlContentBuilder mtmlContentBuilder;
+	private HtmlContentBuilder htmlContentBuilder;
 
 	@Autowired
 	private MailService mailService;
@@ -112,7 +112,7 @@ public class SignUpServiceImpl implements SignUpService {
 		confirmMailVO.setSenderName("paintee");
 		confirmMailVO.setConfirmUrl(confirmUrl+confirmHashString);
 
-		mailService.sendMail(user.getEmail(), "SignUp confirm", mtmlContentBuilder.getSignupConfirmMail(confirmMailVO));
+		mailService.sendMail(user.getEmail(), "SignUp confirm", htmlContentBuilder.getSignupConfirmMail(confirmMailVO));
 
 		result = true;
 
@@ -176,7 +176,7 @@ public class SignUpServiceImpl implements SignUpService {
 				confirmMailVO.setSenderName("paintee");
 				confirmMailVO.setConfirmUrl(confirmUrl+confirmHashString);
 
-				mailService.sendMail(user.getEmail(), "SignUp confirm", mtmlContentBuilder.getSignupConfirmMail(confirmMailVO));
+				mailService.sendMail(user.getEmail(), "SignUp confirm", htmlContentBuilder.getSignupConfirmMail(confirmMailVO));
 
 				confirmHashHelper.deleteByPrimaryKey(confirmHash.getSeq());
 			}

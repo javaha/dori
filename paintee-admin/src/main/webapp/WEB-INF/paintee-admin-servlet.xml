@@ -57,6 +57,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/api/**" />
+			<mvc:exclude-mapping path="/api/resetpasswd" />
 			<mvc:exclude-mapping path="/api/signup" />
 			<mvc:exclude-mapping path="/api/signup/**" />
 			<mvc:exclude-mapping path="/api/login" />

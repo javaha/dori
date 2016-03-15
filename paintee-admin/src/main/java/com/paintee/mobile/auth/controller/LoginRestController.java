@@ -123,4 +123,26 @@ public class LoginRestController {
 
 		return resultMap;
 	}
+
+	/**
+	 @fn resetpasswd
+	 @brief 함수 간략한 설명 : 비밀번호 초기화후 메일로 임시비밀번호 발송
+	 @remark
+	 - 함수의 상세 설명 : 비밀번호 초기화후 메일로 임시비밀번호 발송
+	 @param userLoginVO
+	 @param response
+	 @return 
+	*/
+	@RequestMapping(value = "/api/resetpasswd", method = {RequestMethod.POST})
+	public Map<String, Object> resetpasswd(@RequestBody UserLoginVO userLoginVO, HttpServletResponse response) throws Exception {
+		Map<String, Object> resultMap = new HashMap<>();
+
+		if(userLoginVO.getEmail() == null || userLoginVO.getEmail().trim().length() == 0) {
+			resultMap.put("errorNo", 401);
+		} else {
+			resultMap = loginService.resetpassword(userLoginVO);
+		}
+
+		return resultMap;
+	}
 }
