@@ -33,6 +33,8 @@ public class PersonalSearchVO extends PagingVO {
 	private static final long serialVersionUID = -3180373314948888878L;
 
 	private String artistName;
+	private String paintingId;
+	private Integer seq;
 
 	public String getArtistName() {
 		return artistName;
@@ -40,5 +42,21 @@ public class PersonalSearchVO extends PagingVO {
 
 	public void setArtistName(String artistName) {
 		this.artistName = artistName;
+	}
+
+	public String getPaintingId() {
+		return paintingId;
+	}
+
+	public void setPaintingId(String paintingId) {
+		this.paintingId = paintingId;
+	}
+
+	public Integer getSeq() {
+		return seq;
+	}
+
+	public void setSeq(Integer seq) {
+		this.seq = seq;
 	}
 }

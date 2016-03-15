@@ -6,7 +6,7 @@ var isPersonal = false;
  * 특정 아티스트 정보 보이기
  * @param username
  */             
-function showPersonal(username){
+function showPersonal(username, paintingId){
     if (personal != "") hidePersonal();
     isPersonal = true;
     color = "250,60%,50%";
@@ -29,7 +29,7 @@ function showPersonal(username){
     personal.swiper.on("onTransitionEnd", function(swiper){listLock(swiper)});
     personal.swiper.on("onSetTranslate", function(swiper, translate){swipeToMenu(swiper, translate)});
       
-    initPersonal(username);
+    initPersonal(paintingId);
     selectMenu(4);
 }
 
@@ -75,9 +75,11 @@ Personal.prototype = {
                     }
 }
 
-function initPersonal(username) {
+function initPersonal(paintingId) {
+	console.log("paintingId ::: " + paintingId);
+	
 	// 기본 페이지 로딩 시의 데이터 조회
-	new PersonalController(username).getPersonInfo(0);
+	new PersonalController(paintingId).getPersonInfo(0);
 }
 
 function setPersonal(result) {
@@ -93,17 +95,23 @@ function setPersonal(result) {
     delete content1;
 }
 
-function PersonalController(username) {
+function PersonalController(paintingId) {
 	this.startRow = 0;
-	this.username = username;
+	this.paintingId = paintingId;
 }
 
 PersonalController.prototype = {
 	getPersonInfo : function (startRow) {
 		this.startRow = startRow;
 		var controller = this;
+		var param = "?startRow=" + startRow  + "&artistName=" + personal.username;
+		// 
+		if (this.paintingId) {
+			param += "&paintingId=" + this.paintingId;
+		}
+		console.log("param ::: " + param);
 		AjaxCall.call(
-			apiUrl + "/index/personal?startRow=" + startRow  + "&artistName=" + personal.username, 
+			apiUrl + "/index/personal" + param, 
 			null,
 			"GET", 
 			function(result) {
@@ -112,35 +120,20 @@ PersonalController.prototype = {
 		);
 	}, 	
 	getPersonInfoRes : function (result) {
+		var controller = this;
 		// 처음 로딩시에만 메인화면 구성
 		if (this.startRow == 0) {
 			setPersonal(result);
 		}
-		
 		for ( var index in result.list) {
 			addPainting(personal.swiper, 1, "my", result.list[index]);
+		}
+		if (controller.paintingId) {
+			personal.swiper.slideTo(personal.swiper.slides.length - 1, 0);
 		}
 	}
 };
 
-//수정 11.Mar
-//특정 index로 바로 이동
-function goPainting(username, page){
-  showPersonal(username);
-  for(personal.swiper.slides.length ; personal.swiper.slides.length <= page ;){
-      var newSlide = new Structure(personal.swiper.slides.length);
-      newSlide.setSentence(newSlide.index+"번째 그림에 대한 설명입니다. <br> 200자 까지 적을 수 있습니다.", "wrighter");
-      newSlide.setPostedNumber(newSlide.index);
-      newSlide.setDate("11. Nov");
-      newSlide.setArtist();
-      newSlide.setColor("hsl(250,60%,20%)");
-      personal.swiper.appendSlide(newSlide.buildStructure());
-      delete newSlide;    
-  }
-  personal.swiper.slideTo(page, 0);
-}
-
-//수정 11.Mar
 //get 방식으로 user, painting 가져오기 
 function getRequest() {
   if(location.search.length > 1) {
@@ -152,20 +145,22 @@ function getRequest() {
       }
       return get;
   } else {
-  	console.log("소셜에서 누르고 들어온 경우 아님");
+//  		console.log("소셜에서 누르고 들어온 경우 아님");
       return false;
   }
 }
 
 var get = getRequest();
 
-//user만 있으면 개인페이지로 이동, user, page가 있으면 상세화면으로 이동
+// user만 있으면 개인페이지로 이동, user, page가 있으면 상세화면으로 이동
+// http://localhost:9080/index.html?user=a01&page=b0645fc6-a7bb-4f61-a133-d29ae45c4801
 if(get) {
-	get.page = 'b0645fc6-a7bb-4f61-a133-d29ae45c4801';
+//	get.page = 'b0645fc6-a7bb-4f61-a133-d29ae45c4801';
+//	get.user = 'a01';
 	console.log("개인 페이지 들어옴 : " + JSON.stringify(get));
   if(get.page) {
       loadDetail(get.page, "200,60%,50%", "200,60%,20%");
-      showPersonal(get.user);
+      showPersonal(get.user, get.page);
   } else if(get.user) {
       showPersonal(get.user);
   }

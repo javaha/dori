@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.paintee.common.repository.helper.PersonalHelper">
 	<resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.vo.PersonalVO" extends="com.paintee.common.repository.mapper.PaintingMapper.BaseResultMap">
-<!-- 	    <result column="artist_name" property="artistName" /> -->
+	    <result column="artist_name" property="artistName" />
 	</resultMap>
   	
 	<!-- 특정 개인 작가가 업로드한 그림의 목록을 가져오기 -->
@@ -17,10 +17,18 @@
 			   a.posted_people_cnt
 		  from tb_painting a
 		 where a.artist_id = (select user_id from tb_user where name = #{artistName})
-		 order by upload_date desc
+	    <choose >
+           <when test="paintingId != null" >
+           and seq &gt;= (select seq from tb_painting where painting_id = #{paintingId})
+         order by seq desc 
+           </when>
+           <otherwise>
+		 order by seq desc
 		 limit #{startRow}, #{rowPerPage}
+           </otherwise>
+        </choose>    
   	</select>  	
-  	
+
 	<!-- 그림 작가가 업로드한 그림 카운트 -->
   	<select id="selectPersonalPaintingCount" resultType="int">
   	    select count(*)

@@ -236,6 +236,8 @@ function closeDetail(){
     if(isDetail){
         if(get.page){
             goPainting(get.user, get.page);
+            // 최초 한번만 동작하게 한다.
+            get.page = null;
         }        
         $(".detail").animate({top: 200, opacity: 0}, 200, "linear", function(){
             $(".detail").empty();

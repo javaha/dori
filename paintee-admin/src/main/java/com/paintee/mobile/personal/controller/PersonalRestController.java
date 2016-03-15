@@ -53,7 +53,7 @@ public class PersonalRestController {
 	public Map<String, Object> personalInfo(PersonalSearchVO search) throws Exception {
 		
 		Map<String, Object> resultMap = new HashMap<>();
-		logger.debug("search:{}", search);
+		logger.debug("personalInfo ::: search:{}", search);
 
 		int errorNo = 0;
 		String errorMsg = "";

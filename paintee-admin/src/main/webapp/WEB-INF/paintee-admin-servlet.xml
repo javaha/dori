@@ -63,6 +63,8 @@
 			<mvc:exclude-mapping path="/api/newIndex" />
 			<mvc:exclude-mapping path="/api/popularIndex" />
 			<mvc:exclude-mapping path="/api/painting/**" />
+			<mvc:exclude-mapping path="/api/index/personal" />
+			<mvc:exclude-mapping path="/api/index/personal/**" />
 			<mvc:exclude-mapping path="/css/**" />
 			<mvc:exclude-mapping path="/font-awesome/**" />
 			<mvc:exclude-mapping path="/fonts/**" />
