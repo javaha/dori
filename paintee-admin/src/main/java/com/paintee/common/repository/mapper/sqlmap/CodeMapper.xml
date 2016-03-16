@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.paintee.common.repository.mapper.CodeMapper" >
   <resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.Code" >
+    <id column="code_group" property="codeGroup" jdbcType="VARCHAR" />
     <id column="code_value" property="codeValue" jdbcType="VARCHAR" />
     <result column="code_name" property="codeName" jdbcType="VARCHAR" />
-    <result column="code_group" property="codeGroup" jdbcType="VARCHAR" />
     <result column="use_yn" property="useYn" jdbcType="CHAR" />
     <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    code_value, code_name, code_group, use_yn, created_date
+    code_group, code_value, code_name, use_yn, created_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.CodeExample" >
     select
@@ -84,15 +84,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.CodeKey" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
     from tb_code
-    where code_value = #{codeValue,jdbcType=VARCHAR}
+    where code_group = #{codeGroup,jdbcType=VARCHAR}
+      and code_value = #{codeValue,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="com.paintee.common.repository.entity.CodeKey" >
     delete from tb_code
-    where code_value = #{codeValue,jdbcType=VARCHAR}
+    where code_group = #{codeGroup,jdbcType=VARCHAR}
+      and code_value = #{codeValue,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.CodeExample" >
     delete from tb_code
@@ -101,22 +103,22 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.paintee.common.repository.entity.Code" >
-    insert into tb_code (code_value, code_name, code_group, 
+    insert into tb_code (code_group, code_value, code_name, 
       use_yn, created_date)
-    values (#{codeValue,jdbcType=VARCHAR}, #{codeName,jdbcType=VARCHAR}, #{codeGroup,jdbcType=VARCHAR}, 
+    values (#{codeGroup,jdbcType=VARCHAR}, #{codeValue,jdbcType=VARCHAR}, #{codeName,jdbcType=VARCHAR}, 
       #{useYn,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Code" >
     insert into tb_code
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codeGroup != null" >
+        code_group,
+      </if>
       <if test="codeValue != null" >
         code_value,
       </if>
       <if test="codeName != null" >
         code_name,
-      </if>
-      <if test="codeGroup != null" >
-        code_group,
       </if>
       <if test="useYn != null" >
         use_yn,
@@ -126,14 +128,14 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codeGroup != null" >
+        #{codeGroup,jdbcType=VARCHAR},
+      </if>
       <if test="codeValue != null" >
         #{codeValue,jdbcType=VARCHAR},
       </if>
       <if test="codeName != null" >
         #{codeName,jdbcType=VARCHAR},
-      </if>
-      <if test="codeGroup != null" >
-        #{codeGroup,jdbcType=VARCHAR},
       </if>
       <if test="useYn != null" >
         #{useYn,jdbcType=CHAR},
@@ -152,14 +154,14 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update tb_code
     <set >
+      <if test="record.codeGroup != null" >
+        code_group = #{record.codeGroup,jdbcType=VARCHAR},
+      </if>
       <if test="record.codeValue != null" >
         code_value = #{record.codeValue,jdbcType=VARCHAR},
       </if>
       <if test="record.codeName != null" >
         code_name = #{record.codeName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.codeGroup != null" >
-        code_group = #{record.codeGroup,jdbcType=VARCHAR},
       </if>
       <if test="record.useYn != null" >
         use_yn = #{record.useYn,jdbcType=CHAR},
@@ -174,9 +176,9 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update tb_code
-    set code_value = #{record.codeValue,jdbcType=VARCHAR},
+    set code_group = #{record.codeGroup,jdbcType=VARCHAR},
+      code_value = #{record.codeValue,jdbcType=VARCHAR},
       code_name = #{record.codeName,jdbcType=VARCHAR},
-      code_group = #{record.codeGroup,jdbcType=VARCHAR},
       use_yn = #{record.useYn,jdbcType=CHAR},
       created_date = #{record.createdDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
@@ -189,9 +191,6 @@
       <if test="codeName != null" >
         code_name = #{codeName,jdbcType=VARCHAR},
       </if>
-      <if test="codeGroup != null" >
-        code_group = #{codeGroup,jdbcType=VARCHAR},
-      </if>
       <if test="useYn != null" >
         use_yn = #{useYn,jdbcType=CHAR},
       </if>
@@ -199,14 +198,15 @@
         created_date = #{createdDate,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where code_value = #{codeValue,jdbcType=VARCHAR}
+    where code_group = #{codeGroup,jdbcType=VARCHAR}
+      and code_value = #{codeValue,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.Code" >
     update tb_code
     set code_name = #{codeName,jdbcType=VARCHAR},
-      code_group = #{codeGroup,jdbcType=VARCHAR},
       use_yn = #{useYn,jdbcType=CHAR},
       created_date = #{createdDate,jdbcType=TIMESTAMP}
-    where code_value = #{codeValue,jdbcType=VARCHAR}
+    where code_group = #{codeGroup,jdbcType=VARCHAR}
+      and code_value = #{codeValue,jdbcType=VARCHAR}
   </update>
 </mapper>

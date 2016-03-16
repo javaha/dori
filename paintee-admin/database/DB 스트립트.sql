@@ -129,10 +129,10 @@ create table TB_CONFIRM_HASH (
 ) COMMENT = '회원가입 후 계정활성화를 위한 hash 정보';
 
 create table TB_CODE (
+    code_group varchar(20) not null comment '코드 그룹',
     code_value varchar(8) not null comment '코드 값',
 	code_name  varchar(30) not null comment '코드 이름',
-    code_group varchar(20) not null comment '코드 그룹',
     use_yn     char(1) not null  default 'Y'  comment '사용 여부',
     created_date datetime default now() comment '생성일시',
-    primary key (code_value)
+    primary key (code_group, code_value)
 ) COMMENT = '코드';

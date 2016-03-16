@@ -1,26 +1,13 @@
 package com.paintee.common.repository.entity;
 
-import com.paintee.common.object.BaseEntity;
 import java.util.Date;
 
-public class Code extends BaseEntity {
-    private String codeValue;
-
+public class Code extends CodeKey {
     private String codeName;
-
-    private String codeGroup;
 
     private String useYn;
 
     private Date createdDate;
-
-    public String getCodeValue() {
-        return codeValue;
-    }
-
-    public void setCodeValue(String codeValue) {
-        this.codeValue = codeValue;
-    }
 
     public String getCodeName() {
         return codeName;
@@ -28,14 +15,6 @@ public class Code extends BaseEntity {
 
     public void setCodeName(String codeName) {
         this.codeName = codeName;
-    }
-
-    public String getCodeGroup() {
-        return codeGroup;
-    }
-
-    public void setCodeGroup(String codeGroup) {
-        this.codeGroup = codeGroup;
     }
 
     public String getUseYn() {

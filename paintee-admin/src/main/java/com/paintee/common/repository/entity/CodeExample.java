@@ -105,6 +105,76 @@ public class CodeExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andCodeGroupIsNull() {
+            addCriterion("code_group is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGroupIsNotNull() {
+            addCriterion("code_group is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGroupEqualTo(String value) {
+            addCriterion("code_group =", value, "codeGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGroupNotEqualTo(String value) {
+            addCriterion("code_group <>", value, "codeGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGroupGreaterThan(String value) {
+            addCriterion("code_group >", value, "codeGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGroupGreaterThanOrEqualTo(String value) {
+            addCriterion("code_group >=", value, "codeGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGroupLessThan(String value) {
+            addCriterion("code_group <", value, "codeGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGroupLessThanOrEqualTo(String value) {
+            addCriterion("code_group <=", value, "codeGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGroupLike(String value) {
+            addCriterion("code_group like", value, "codeGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGroupNotLike(String value) {
+            addCriterion("code_group not like", value, "codeGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGroupIn(List<String> values) {
+            addCriterion("code_group in", values, "codeGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGroupNotIn(List<String> values) {
+            addCriterion("code_group not in", values, "codeGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGroupBetween(String value1, String value2) {
+            addCriterion("code_group between", value1, value2, "codeGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGroupNotBetween(String value1, String value2) {
+            addCriterion("code_group not between", value1, value2, "codeGroup");
+            return (Criteria) this;
+        }
+
         public Criteria andCodeValueIsNull() {
             addCriterion("code_value is null");
             return (Criteria) this;
@@ -242,76 +312,6 @@ public class CodeExample {
 
         public Criteria andCodeNameNotBetween(String value1, String value2) {
             addCriterion("code_name not between", value1, value2, "codeName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupIsNull() {
-            addCriterion("code_group is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupIsNotNull() {
-            addCriterion("code_group is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupEqualTo(String value) {
-            addCriterion("code_group =", value, "codeGroup");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupNotEqualTo(String value) {
-            addCriterion("code_group <>", value, "codeGroup");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupGreaterThan(String value) {
-            addCriterion("code_group >", value, "codeGroup");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupGreaterThanOrEqualTo(String value) {
-            addCriterion("code_group >=", value, "codeGroup");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupLessThan(String value) {
-            addCriterion("code_group <", value, "codeGroup");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupLessThanOrEqualTo(String value) {
-            addCriterion("code_group <=", value, "codeGroup");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupLike(String value) {
-            addCriterion("code_group like", value, "codeGroup");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupNotLike(String value) {
-            addCriterion("code_group not like", value, "codeGroup");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupIn(List<String> values) {
-            addCriterion("code_group in", values, "codeGroup");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupNotIn(List<String> values) {
-            addCriterion("code_group not in", values, "codeGroup");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupBetween(String value1, String value2) {
-            addCriterion("code_group between", value1, value2, "codeGroup");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeGroupNotBetween(String value1, String value2) {
-            addCriterion("code_group not between", value1, value2, "codeGroup");
             return (Criteria) this;
         }
 
