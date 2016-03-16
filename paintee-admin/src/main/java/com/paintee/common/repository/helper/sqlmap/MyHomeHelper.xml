@@ -3,8 +3,6 @@
 <mapper namespace="com.paintee.common.repository.helper.MyHomeHelper">
 	<resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.vo.MyHomeVO" extends="com.paintee.common.repository.mapper.PaintingMapper.BaseResultMap">
 	    <result column="sentence_name" property="sentenceName" />
-	    <result column="upload_count" property="uploadCount" />
-	    <result column="post_count" property="postCount" />
 	    <result column="artist_name" property="artistName" />	    
 	</resultMap>
   	
@@ -43,14 +41,15 @@
   	</select>  	
   	
 	<!-- 로그인 사용자가 팔로잉한 사용자가 구매한 그림과 업로드한 그림의 목록을 가져오기 -->
-  	<select id="selectMyHomeCount" resultMap="BaseResultMap">
-  	     select (select count(*) from tb_painting where artist_id = #{userId}) as upload_count,
+  	<select id="selectMyHomeInfo" resultType="com.paintee.common.repository.entity.vo.MyHomeVO">
+  	     select (select introduce from tb_user where user_id = #{userId}) as introduce,
+  	            (select count(*) from tb_painting where artist_id = #{userId}) as uploadCount,
   	            (select count(*) 
   	               from tb_purchase 
   	              where user_id = #{userId}
   	                and purchase_status in <foreach item="status" collection="purchaseStatusList" open="(" close=")" separator=",">
 		    								   #{status}
-		                            	   </foreach>) as post_count
+		                            	   </foreach>) as postCount
            from dual
   	</select>    	
 </mapper>

@@ -58,8 +58,8 @@ public class PersonalServiceImpl implements PersonalService {
 	@Override
 	public Map<String, Object> getPersonalPaintingInfo(PersonalSearchVO searchVO) {
 		
-		// 목록 사용 카운트
-		Integer personalCnt = personalHelper.selectPersonalPaintingCount(searchVO);
+		// 개인 페이지 정보
+		PersonalVO personalVO = personalHelper.selectPersonalPaintingInfo(searchVO);
 		
 		List<PersonalVO> list = personalHelper.selectPersonalPaintingList(searchVO);
 		logger.debug("list ::: {}", list);
@@ -79,7 +79,7 @@ public class PersonalServiceImpl implements PersonalService {
 		}
 		
 		Map<String, Object> result = new HashMap<>();
-		result.put("uploadCount", personalCnt);
+		result.put("personal", personalVO);
 		result.put("list", list);
 		return result;
 	}

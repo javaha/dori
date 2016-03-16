@@ -110,11 +110,12 @@ function setMyHome(result) {
     mySwiper.removeAllSlides();
     var myHome = new Home();
     myHome.setTitle("my");
-    myHome.setExplain("내가 올리거나 포스트한 그림입니다.<br>여기에 자신을 소개할 문구를 넣어주세요. <i class='material-icons' style='font-size:1em'>create</i>");
+    var introduce = (result.my.introduce) ? result.my.introduce : "여기에 자신을 소개할 문구를 넣어주세요.";
+    myHome.setExplain("내가 올리거나 포스트한 그림입니다.<br>" + introduce + " <i class='material-icons' style='font-size:1em' onclick='showProfile()'>create</i>");
     var content1 =
-        $("<div>").attr("id", "uploadBtn").addClass("home_btn_my").html("uploaded ").append($("<b>").html(" " + result.myhomeCnt.uploadCount))
+        $("<div>").attr("id", "uploadBtn").addClass("home_btn_my").html("uploaded ").append($("<b>").html(" " + result.my.uploadCount))
     var content2 =
-        $("<div>").attr("id", "postBtn").addClass("home_btn_my").html("posted ").append($("<b>").html(" " + result.myhomeCnt.postCount))
+        $("<div>").attr("id", "postBtn").addClass("home_btn_my").html("posted ").append($("<b>").html(" " + result.my.postCount))
     content1.click(function(){
     	btnToggle(this);
     	new MyHomeController().getHomeInfo(0);

@@ -30,10 +30,12 @@
   	</select>  	
 
 	<!-- 그림 작가가 업로드한 그림 카운트 -->
-  	<select id="selectPersonalPaintingCount" resultType="int">
-  	    select count(*)
-  	      from tb_painting 
-  	     where artist_id = (select user_id from tb_user where name = #{artistName})
+  	<select id="selectPersonalPaintingInfo" resultType="com.paintee.common.repository.entity.vo.PersonalVO">
+  	    select (select introduce from tb_user where name = #{artistName} limit 0, 1) as introduce,
+  	           (select count(*) 
+  	              from tb_painting 
+  	             where artist_id = (select user_id from tb_user where name = #{artistName})) as uploadCount 
+  	      from dual
   	</select>    	
 </mapper>
 

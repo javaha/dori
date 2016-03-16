@@ -37,6 +37,7 @@ public class MyHomeVO extends Painting {
 	private String artistName;
 	private String sentenceName;
 	private String fileId;
+	private String introduce;
 	private Integer uploadCount;
 	private Integer postCount;
 	
@@ -62,6 +63,14 @@ public class MyHomeVO extends Painting {
 
 	public void setFileId(String fileId) {
 		this.fileId = fileId;
+	}
+
+	public String getIntroduce() {
+		return introduce;
+	}
+
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
 	}
 
 	public Integer getUploadCount() {

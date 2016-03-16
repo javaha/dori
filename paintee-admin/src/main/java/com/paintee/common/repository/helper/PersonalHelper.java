@@ -40,5 +40,5 @@ com.paintee.common.repository.helper \n
 public interface PersonalHelper extends PaintingMapper {
 	public List<PersonalVO> selectPersonalPaintingList(PersonalSearchVO searchVO);
 	
-	public Integer selectPersonalPaintingCount(PersonalSearchVO search);
+	public PersonalVO selectPersonalPaintingInfo(PersonalSearchVO search);
 }

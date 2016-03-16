@@ -40,5 +40,5 @@ com.paintee.common.repository.helper \n
 public interface MyHomeHelper extends FollowMapper {
 	public List<MyHomeVO> selectMyHomePaintingList(MyHomeSearchVO searchVO);
 	
-	public MyHomeVO selectMyHomeCount(MyHomeSearchVO search);
+	public MyHomeVO selectMyHomeInfo(MyHomeSearchVO search);
 }

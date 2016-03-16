@@ -37,6 +37,7 @@ public class PersonalVO extends Painting {
 	private String fileId;
 	private Integer uploadCount;
 	private String artistName;
+	private String introduce;
 	
 	public String getFileId() {
 		return fileId;
@@ -61,5 +62,12 @@ public class PersonalVO extends Painting {
 	public void setArtistName(String artistName) {
 		this.artistName = artistName;
 	}
-	
+
+	public String getIntroduce() {
+		return introduce;
+	}
+
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
 }

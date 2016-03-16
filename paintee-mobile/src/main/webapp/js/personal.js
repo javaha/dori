@@ -85,9 +85,10 @@ function initPersonal(paintingId) {
 function setPersonal(result) {
     var personalHome = new Home();
     personalHome.setTitle(personal.username);
-    personalHome.setExplain(personal.username + "님이 업로드한 그림들입니다.");
+    var introduce = (result.personal.introduce) ? "<br />" + result.personal.introduce : "";
+    personalHome.setExplain(personal.username + "님이 업로드한 그림들입니다." + introduce);
     var content1 =
-        $("<div>").addClass("home_btn_my").html("uploaded ").append($("<b>").html(" " + result.uploadCount))
+        $("<div>").addClass("home_btn_my").html("uploaded ").append($("<b>").html(" " + result.personal.uploadCount))
     personalHome.hideNext();
     personalHome.setContents(content1);
     personal.swiper.appendSlide(personalHome.buildStructure());
