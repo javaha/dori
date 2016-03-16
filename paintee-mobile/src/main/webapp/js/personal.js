@@ -137,32 +137,31 @@ PersonalController.prototype = {
 
 //get 방식으로 user, painting 가져오기 
 function getRequest() {
-  if(location.search.length > 1) {
-      var get = new Object();
-      var ret = location.search.substr(1).split('&');
-      for(var i = 0; i < ret.length; i++) {
-          var r = ret[i].split('=');
-          get[r[0]] = r[1];
-      }
-      return get;
-  } else {
+    if(location.search.length > 1) {
+        var get = new Object();
+        var ret = location.search.substr(1).split('&');
+        for(var i = 0; i < ret.length; i++) {
+            var r = ret[i].split('=');
+            get[r[0]] = r[1];
+        }
+        return get;
+    } else {
 //  		console.log("소셜에서 누르고 들어온 경우 아님");
-      return false;
-  }
+        return false;
+    }
 }
 
 var get = getRequest();
-
 // user만 있으면 개인페이지로 이동, user, page가 있으면 상세화면으로 이동
 // http://localhost:9080/index.html?user=a01&page=b0645fc6-a7bb-4f61-a133-d29ae45c4801
 if(get) {
 //	get.page = 'b0645fc6-a7bb-4f61-a133-d29ae45c4801';
 //	get.user = 'a01';
 	console.log("개인 페이지 들어옴 : " + JSON.stringify(get));
-  if(get.page) {
-      loadDetail(get.page, "200,60%,50%", "200,60%,20%");
-      showPersonal(get.user, get.page);
-  } else if(get.user) {
-      showPersonal(get.user);
-  }
+    if(get.page) {
+        loadDetail(get.page, "200,60%,50%", "200,60%,20%");
+        showPersonal(get.user, get.page);
+    } else if(get.user) {
+        showPersonal(get.user);
+    }
 };
