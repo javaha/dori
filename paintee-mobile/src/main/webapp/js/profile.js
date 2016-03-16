@@ -10,16 +10,16 @@ $("[name=profileLocation]").change(function(e){
 	// console.log("change");
 	switch ($("[name=profileLocation]").val()) {
 	case "1":
-		setPostUI("KOREA");
+		setProfilePostUI("KOREA");
 		break;
 	default:
-		setPostUI("NOKOREA");
+		setProfilePostUI("NOKOREA");
 		break;
 	}
 	e.stopPropagation();
 });
 
-function setPostUI(type) {
+function setProfilePostUI(type) {
 	var className = "account_form";
 	var styleName = "none";
 	if (type == 'KOREA') {

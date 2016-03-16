@@ -47,7 +47,8 @@ function initReward(){
     reward.buildUpload();
     $(".reward_btn").click(function(){
         checkReward();
-    })
+    });
+    
     delete reward;
 }
 
@@ -84,7 +85,12 @@ function checkReward(){
     
     $(".popup_btn.upload_btn").click(function(){
     	rewardController.addReward();
-    })
+    });
+    
+    // 계좌번호 입력박스 키이벤트 등록
+    $("[name=accountNo]").keydown(function (event) {
+    	return limitNumber(event);
+    });
 }
 
 function validReward() {
@@ -98,6 +104,13 @@ function validReward() {
 		$("[name=accountNo]").focus();
 		return false;
 	}
+	
+	if (!chkNum($("[name=accountNo]").val())) {
+		alert("계좌번호는 숫자만 가능합니다.");
+		$("[name=accountNo]").focus();
+		return false;
+	}
+	
 	return true;
 }
 

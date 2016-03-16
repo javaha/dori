@@ -50,3 +50,37 @@ function chkAlphaNum(str){
 
 	return true;
 }
+
+/**
+ * 숫자 인지 체크
+ * @param str
+ * @returns
+ */
+function chkNum(str){
+	return /^[0-9]+$/.test(str);
+}
+
+/**
+ * 숫자만 입력받기
+ * @param event
+ * @returns {Boolean}
+ */
+function limitNumber(event) {
+	event = event || window.event;
+	var keyCode = (event.which) ? event.which : event.keyCode;
+	console.log(keyCode);
+	return ( keyCode >=48 && keyCode <= 57 ) || ( keyCode >=96 && keyCode <= 105 ) || keyCode == 8;
+}
+
+function getCharCount(value) {
+	var totalByte = 0;
+	for (var i = 0; i < value.length; i++) {
+	    oneChar = value.charAt(i);
+	    if (escape(oneChar).length > 4) {
+	        totalByte += 2;
+	    } else {
+	        totalByte++;
+	    }
+	}
+	return totalByte;
+}

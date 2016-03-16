@@ -19,8 +19,34 @@ if(userInfo) {
 } else {
 	userID = '';
 }
-
 console.log('userID:'+userID);
+
+// 최초 화면 로딩시 해야할 일
+$(function () {
+	setSideMenu();  // 사이드 메뉴 설정
+});
+
+/**
+ * 사이드 메뉴의 액션 설정 및 활성화/비활성화 처리
+ */
+function setSideMenu() {
+	// 사이드 메뉴 활성화 및 비활성화 설정
+	if (!userID) {
+		$("#menu_upload").addClass("side_menu_minor_inactive").click(sideOff);
+		$("#menu_reward").addClass("side_menu_minor_inactive").click(sideOff);
+	}
+	else {
+		$("#menu_upload").click(function(){
+		    upload();
+		    sideOff();
+		});
+		$("#menu_reward").click(function(){
+		    reward();
+		    sideOff();
+		});
+	}
+}
+
 
 //var imageUrl="http://192.168.0.14:8090";
 var imageUrl="http://localhost:8090";
@@ -290,15 +316,6 @@ function selectMenu(index){
     sideOff();
     mainSwiper.slideTo(index);
 }
-
-$("#menu_upload").click(function(){
-    upload();
-    sideOff();
-});
-$("#menu_reward").click(function(){
-    reward();
-    sideOff();
-});
 
 // 초기 설정들
 // 가로휠방지 && 페이지네이션숨김 && 위로스와이프방지

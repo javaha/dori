@@ -1,5 +1,5 @@
 // 구매화면으로 이동
-function purchase(paintingId){
+function purchase(paintingId) {
 	
 	if (userID == "") {
 		showLogin();
@@ -11,14 +11,19 @@ function purchase(paintingId){
     
     // 기존 설정된 이벤트 제거
     $(".purchase_pay_btn").off("click");
-    $(".purchase_like_btn").off("click");
-    
-    // 클릭 이벤트 설정
     $(".purchase_pay_btn" ).click(function(){payment(paintingId)});
-    // 좋아요 버튼일 경우 카드 발송하지 않는다 : 현재 미정임
-    $(".purchase_like_btn").click(function(){payment(paintingId, true)});
+
+    // 우편번호 입력박스 키이벤트 등록
+    $("[name=receiverZipcode]").keydown(
+    	function (event) {
+    		return limitNumber(event);
+    	}	
+    );
+    
     purchaseStatus = "sentence";
     setWidth();
+    
+    setPostUI($("[name=location]").val());
 }
 
 function setPurchase(){
@@ -97,34 +102,30 @@ $(".purchase_box").click(function(e){
 });
 
 $("[name=location]").change(function(e){
-	// console.log("change");
-	switch ($("[name=location]").val()) {
-	case "1":
-		setPostUI("KOREA");
-		break;
-	default:
-		setPostUI("NOKOREA");
-		break;
-	}
+	setPostUI($("[name=location]").val());
 	e.stopPropagation();
 });
 
 function setPostUI(type) {
-	var className = "purchase_input";
-	var styleName = "none";
-	if (type == 'KOREA') {
-		className = "purchase_input2";
-		styleName = "inline";
-//		$("[name=receiverBasicAddr]").attr("readOnly", "readOnly");
+	if (type == '1') {
+		// 기본 주소 선택시 
+		$("[name=receiverCity]").attr("disabled", "disabled");
+		$("[name=receiverBasicAddr]").attr("readOnly", "readOnly");
+		$("[name=receiverBasicAddr]").focus(function () {
+			execDaumPostcode('purchase', 'receiverZipcode', 'receiverBasicAddr')
+		});
+	} else {
+		// 주소에 설정된 이벤트 삭제
+		$("[name=receiverBasicAddr]").off();
+		$("[name=receiverCity]").attr("disabled", false);
+		$("[name=receiverBasicAddr]").attr("readOnly", false);
 	}
-	$("[name=receiverBasicAddr]").attr("class", className);
-	$("#postSearch").css("display", styleName);
 }
 
 // 구매시의 한마디 
 $("[name=sentence]").keyup(function () {
     // 남은 글자 수를 구합니다.
-    var inputLength = $(this).val().length;
+    var inputLength = getCharCount($(this).val());    
     var remain = 200 - inputLength;
 
     $('#pSentenceCount').html(inputLength);
@@ -170,6 +171,12 @@ function validPurchase() {
 		return false;
 	}
 	
+	if (getCharCount($("[name=sentence]").val()) > 200) {
+		alert("한마디는 200자까지 가능합니다.");
+		$("[name=sentence]").focus();
+		return false;
+	}
+	
 	var enter = getEnterCount($("[name=sentence]"));
 	if (enter > 5) {
 		alert("줄바꿈은 5회까지 가능합니다.");
@@ -201,6 +208,12 @@ function validPurchase() {
 	*/
 	if ($("[name=receiverZipcode]").val().trim().length == 0) {
 		alert("우편번호를 입력하세요");
+		$("[name=receiverZipcode]").focus();
+		return false;
+	}
+	
+	if (!chkNum($("[name=receiverZipcode]").val())) {
+		alert("우편번호는 숫자만 가능합니다.");
 		$("[name=receiverZipcode]").focus();
 		return false;
 	}
