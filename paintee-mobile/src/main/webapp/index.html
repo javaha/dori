@@ -196,11 +196,11 @@
                 <input type="text" id="profileDetailAddr" name="profileDetailAddr" class="account_form" placeholder="address 2">
                 <input type="text" id="profileCity" name="profileCity" class="account_form" placeholder="city" style="width: 30%">
                 <input type="text" id="profileZipcode" name="profileZipcode" class="account_form" placeholder="zip code" style="width: 30%">
-                <select name="profileLocation" class="profile_select" style="width: 30%">
-                        <option value="1">Korea</option>
-                        <option value="2">USA</option>
-                        <option value="3">China</option>
-                        <option value="3">Japan</option>
+                <select id="profileLocation" name="profileLocation" class="profile_select" style="width: 30%">
+                        <option value="Korea">Korea</option>
+                        <option value="USA">USA</option>
+                        <option value="China">China</option>
+                        <option value="Japan">Japan</option>
                 </select>
             </div>
             <div class="profile_section">language</div>
@@ -216,7 +216,7 @@
 			</div>
         </div>
         <div class="profile_bottom">
-            <div class="profile_btn"> Update profile <i class="material-icons">done</i></div>
+            <div class="profile_btn" id="profileUpdateBtn"> Update profile <i class="material-icons">done</i></div>
         </div>
     </div>
         

@@ -22,8 +22,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.paintee.common.repository.entity.Follow;
+import com.paintee.common.repository.entity.User;
+import com.paintee.common.repository.entity.UserExample;
 import com.paintee.common.repository.helper.FollowHelper;
 import com.paintee.common.repository.helper.UserHelper;
+import com.paintee.common.util.Sha512Encrypt;
 
 /**
 @class UserServiceImpl
@@ -74,6 +77,51 @@ public class UserServiceImpl implements UserService {
 			if(count > 0) {
 				errorNo = 0;
 			}
+		}
+
+		return errorNo;
+	}
+
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 사용자 이름 중복 체크
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 사용자 이름 중복 체크
+	 @see com.paintee.mobile.user.service.UserService#checkDuplicate(com.paintee.common.repository.entity.User)
+	*/
+	public int checkDuplicate(User user) {
+		int result = 0;
+
+		UserExample userNameExample = new UserExample();
+		UserExample.Criteria userNameWhere = userNameExample.createCriteria();
+		userNameWhere.andNameEqualTo(user.getName());
+		int count = userHelper.countByExample(userNameExample);
+
+		if(count > 0) {
+			result = 1;
+		}
+
+		return result;
+	}
+
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 사용자 정보 수정
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 사용자 정보 수정
+	 @see com.paintee.mobile.user.service.UserService#updateUser(com.paintee.common.repository.entity.User)
+	*/
+	public int updateUser(User user) {
+		int errorNo = 500;
+
+		if(user.getPassword() != null && user.getPassword().trim().length() > 0) {
+			user.setPassword(Sha512Encrypt.hash(user.getPassword()));
+		}
+
+		int count = userHelper.updateByPrimaryKeySelective(user);
+
+		if(count > 0) {
+			errorNo = 0;
 		}
 
 		return errorNo;

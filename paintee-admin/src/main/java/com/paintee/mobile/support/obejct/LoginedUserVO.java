@@ -42,7 +42,13 @@ public class LoginedUserVO extends BaseObject {
 
     private String introduce;
 
-    private String address;
+    private String basicAddr;
+
+    private String detailAddr;
+
+    private String zipcode;
+
+    private String city;
 
     private String location;
 
@@ -78,12 +84,36 @@ public class LoginedUserVO extends BaseObject {
 		this.introduce = introduce;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getBasicAddr() {
+		return basicAddr;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setBasicAddr(String basicAddr) {
+		this.basicAddr = basicAddr;
+	}
+
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getLocation() {

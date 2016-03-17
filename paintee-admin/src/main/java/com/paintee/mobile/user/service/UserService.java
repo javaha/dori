@@ -14,6 +14,8 @@
 */
 package com.paintee.mobile.user.service;
 
+import com.paintee.common.repository.entity.User;
+
 /**
 @class UserService
 com.paintee.mobile.user.service \n
@@ -40,4 +42,24 @@ public interface UserService {
 	 @return 
 	*/
 	public int follow(String followId, String followingId);
+	
+	/**
+	 @fn checkDuplicate
+	 @brief 함수 간략한 설명 : 사용자 이름 중복 체크
+	 @remark
+	 - 함수의 상세 설명 : 사용자 이름 중복 체크
+	 @param user
+	 @return 
+	*/
+	public int checkDuplicate(User user);
+	
+	/**
+	 @fn updateUser
+	 @brief 함수 간략한 설명 : 사용자 정보 수정
+	 @remark
+	 - 함수의 상세 설명 : 사용자 정보 수정
+	 @param user
+	 @return 
+	*/
+	public int updateUser(User user);
 }

@@ -57,7 +57,6 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
 
 		logger.debug("request method:{}", requestMethod);
 
-
 		if(requestMethod != null && requestMethod.equals("OPTIONS")) {
 			return super.preHandle(request, response, handler);
 		}

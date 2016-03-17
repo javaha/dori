@@ -74,51 +74,6 @@ public class LoginRestController {
 			resultMap.put("errorNo", 402);
 		} else {
 			resultMap = loginService.login(userLoginVO);
-/* TODO: 사용자 화면에서 처리하기로 함.
-			int resultCode = Integer.parseInt(String.valueOf(resultMap.get("errorNo")).trim());
-
-			if(resultCode == 0) {
-				int cookieMaxAge = expireDay*24*60*60;
-				String domain = "localhost";
-
-				//사용자 id cookie 생성
-				Cookie userIdCookie = new Cookie("userId", String.valueOf(resultMap.get("userId")));
-				//hash 의 생존 주기와 같게 설정
-				userIdCookie.setMaxAge(cookieMaxAge);
-				userIdCookie.setDomain(domain);
-				userIdCookie.setPath("/");
-				response.addCookie(userIdCookie);
-
-				//사용자 eamil cookie 생성
-				Cookie emailCookie = new Cookie("email", String.valueOf(resultMap.get("email")));
-				//hash 의 생존 주기와 같게 설정
-				emailCookie.setMaxAge(cookieMaxAge);
-				emailCookie.setDomain(domain);
-				emailCookie.setPath("/");
-				response.addCookie(emailCookie);
-
-				//사용자 hash cookie 생성
-				Cookie hashCookie = new Cookie("hash", String.valueOf(resultMap.get("hash")));
-				//hash 의 생존 주기와 같게 설정
-				hashCookie.setMaxAge(cookieMaxAge);
-				hashCookie.setDomain(domain);
-				hashCookie.setPath("/");
-				response.addCookie(hashCookie);
-
-				try {
-					//사용자 name cookie 생성
-					String name = String.valueOf(resultMap.get("name"));
-					Cookie nameCookie = null;
-					nameCookie = new Cookie("name", URLEncoder.encode(name, "UTF-8"));
-					//hash 의 생존 주기와 같게 설정
-					nameCookie.setMaxAge(cookieMaxAge);
-					nameCookie.setDomain(domain);
-					nameCookie.setPath("/");
-					response.addCookie(nameCookie);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}*/
 		}
 
 		return resultMap;
