@@ -14,8 +14,8 @@
     <result column="location" property="location" jdbcType="VARCHAR" />
     <result column="upload_cnt" property="uploadCnt" jdbcType="INTEGER" />
     <result column="post_cnt" property="postCnt" jdbcType="INTEGER" />
-    <result column="earn_total_money" property="earnTotalMoney" jdbcType="INTEGER" />
-    <result column="earn_reword_money" property="earnRewordMoney" jdbcType="INTEGER" />
+    <result column="earn_total_money" property="earnTotalMoney" jdbcType="REAL" />
+    <result column="earn_reword_money" property="earnRewordMoney" jdbcType="REAL" />
     <result column="resent_send_basic_addr" property="resentSendBasicAddr" jdbcType="VARCHAR" />
     <result column="resent_send_detail_addr" property="resentSendDetailAddr" jdbcType="VARCHAR" />
     <result column="resent_send_zipcode" property="resentSendZipcode" jdbcType="VARCHAR" />
@@ -136,7 +136,7 @@
       #{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{basicAddr,jdbcType=VARCHAR}, 
       #{detailAddr,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{location,jdbcType=VARCHAR}, #{uploadCnt,jdbcType=INTEGER}, #{postCnt,jdbcType=INTEGER}, 
-      #{earnTotalMoney,jdbcType=INTEGER}, #{earnRewordMoney,jdbcType=INTEGER}, #{resentSendBasicAddr,jdbcType=VARCHAR}, 
+      #{earnTotalMoney,jdbcType=REAL}, #{earnRewordMoney,jdbcType=REAL}, #{resentSendBasicAddr,jdbcType=VARCHAR}, 
       #{resentSendDetailAddr,jdbcType=VARCHAR}, #{resentSendZipcode,jdbcType=VARCHAR}, 
       #{resentSendCity,jdbcType=VARCHAR}, #{resentSendLocation,jdbcType=VARCHAR}, #{resentSendName,jdbcType=VARCHAR}, 
       #{point,jdbcType=INTEGER}, #{userStatus,jdbcType=CHAR}, #{snsType,jdbcType=CHAR}, 
@@ -256,10 +256,10 @@
         #{postCnt,jdbcType=INTEGER},
       </if>
       <if test="earnTotalMoney != null" >
-        #{earnTotalMoney,jdbcType=INTEGER},
+        #{earnTotalMoney,jdbcType=REAL},
       </if>
       <if test="earnRewordMoney != null" >
-        #{earnRewordMoney,jdbcType=INTEGER},
+        #{earnRewordMoney,jdbcType=REAL},
       </if>
       <if test="resentSendBasicAddr != null" >
         #{resentSendBasicAddr,jdbcType=VARCHAR},
@@ -339,10 +339,10 @@
         post_cnt = #{record.postCnt,jdbcType=INTEGER},
       </if>
       <if test="record.earnTotalMoney != null" >
-        earn_total_money = #{record.earnTotalMoney,jdbcType=INTEGER},
+        earn_total_money = #{record.earnTotalMoney,jdbcType=REAL},
       </if>
       <if test="record.earnRewordMoney != null" >
-        earn_reword_money = #{record.earnRewordMoney,jdbcType=INTEGER},
+        earn_reword_money = #{record.earnRewordMoney,jdbcType=REAL},
       </if>
       <if test="record.resentSendBasicAddr != null" >
         resent_send_basic_addr = #{record.resentSendBasicAddr,jdbcType=VARCHAR},
@@ -393,8 +393,8 @@
       location = #{record.location,jdbcType=VARCHAR},
       upload_cnt = #{record.uploadCnt,jdbcType=INTEGER},
       post_cnt = #{record.postCnt,jdbcType=INTEGER},
-      earn_total_money = #{record.earnTotalMoney,jdbcType=INTEGER},
-      earn_reword_money = #{record.earnRewordMoney,jdbcType=INTEGER},
+      earn_total_money = #{record.earnTotalMoney,jdbcType=REAL},
+      earn_reword_money = #{record.earnRewordMoney,jdbcType=REAL},
       resent_send_basic_addr = #{record.resentSendBasicAddr,jdbcType=VARCHAR},
       resent_send_detail_addr = #{record.resentSendDetailAddr,jdbcType=VARCHAR},
       resent_send_zipcode = #{record.resentSendZipcode,jdbcType=VARCHAR},
@@ -446,10 +446,10 @@
         post_cnt = #{postCnt,jdbcType=INTEGER},
       </if>
       <if test="earnTotalMoney != null" >
-        earn_total_money = #{earnTotalMoney,jdbcType=INTEGER},
+        earn_total_money = #{earnTotalMoney,jdbcType=REAL},
       </if>
       <if test="earnRewordMoney != null" >
-        earn_reword_money = #{earnRewordMoney,jdbcType=INTEGER},
+        earn_reword_money = #{earnRewordMoney,jdbcType=REAL},
       </if>
       <if test="resentSendBasicAddr != null" >
         resent_send_basic_addr = #{resentSendBasicAddr,jdbcType=VARCHAR},
@@ -497,8 +497,8 @@
       location = #{location,jdbcType=VARCHAR},
       upload_cnt = #{uploadCnt,jdbcType=INTEGER},
       post_cnt = #{postCnt,jdbcType=INTEGER},
-      earn_total_money = #{earnTotalMoney,jdbcType=INTEGER},
-      earn_reword_money = #{earnRewordMoney,jdbcType=INTEGER},
+      earn_total_money = #{earnTotalMoney,jdbcType=REAL},
+      earn_reword_money = #{earnRewordMoney,jdbcType=REAL},
       resent_send_basic_addr = #{resentSendBasicAddr,jdbcType=VARCHAR},
       resent_send_detail_addr = #{resentSendDetailAddr,jdbcType=VARCHAR},
       resent_send_zipcode = #{resentSendZipcode,jdbcType=VARCHAR},

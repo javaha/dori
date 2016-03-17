@@ -935,52 +935,52 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andEarnTotalMoneyEqualTo(Integer value) {
+        public Criteria andEarnTotalMoneyEqualTo(Float value) {
             addCriterion("earn_total_money =", value, "earnTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnTotalMoneyNotEqualTo(Integer value) {
+        public Criteria andEarnTotalMoneyNotEqualTo(Float value) {
             addCriterion("earn_total_money <>", value, "earnTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnTotalMoneyGreaterThan(Integer value) {
+        public Criteria andEarnTotalMoneyGreaterThan(Float value) {
             addCriterion("earn_total_money >", value, "earnTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnTotalMoneyGreaterThanOrEqualTo(Integer value) {
+        public Criteria andEarnTotalMoneyGreaterThanOrEqualTo(Float value) {
             addCriterion("earn_total_money >=", value, "earnTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnTotalMoneyLessThan(Integer value) {
+        public Criteria andEarnTotalMoneyLessThan(Float value) {
             addCriterion("earn_total_money <", value, "earnTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnTotalMoneyLessThanOrEqualTo(Integer value) {
+        public Criteria andEarnTotalMoneyLessThanOrEqualTo(Float value) {
             addCriterion("earn_total_money <=", value, "earnTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnTotalMoneyIn(List<Integer> values) {
+        public Criteria andEarnTotalMoneyIn(List<Float> values) {
             addCriterion("earn_total_money in", values, "earnTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnTotalMoneyNotIn(List<Integer> values) {
+        public Criteria andEarnTotalMoneyNotIn(List<Float> values) {
             addCriterion("earn_total_money not in", values, "earnTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnTotalMoneyBetween(Integer value1, Integer value2) {
+        public Criteria andEarnTotalMoneyBetween(Float value1, Float value2) {
             addCriterion("earn_total_money between", value1, value2, "earnTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnTotalMoneyNotBetween(Integer value1, Integer value2) {
+        public Criteria andEarnTotalMoneyNotBetween(Float value1, Float value2) {
             addCriterion("earn_total_money not between", value1, value2, "earnTotalMoney");
             return (Criteria) this;
         }
@@ -995,52 +995,52 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andEarnRewordMoneyEqualTo(Integer value) {
+        public Criteria andEarnRewordMoneyEqualTo(Float value) {
             addCriterion("earn_reword_money =", value, "earnRewordMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnRewordMoneyNotEqualTo(Integer value) {
+        public Criteria andEarnRewordMoneyNotEqualTo(Float value) {
             addCriterion("earn_reword_money <>", value, "earnRewordMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnRewordMoneyGreaterThan(Integer value) {
+        public Criteria andEarnRewordMoneyGreaterThan(Float value) {
             addCriterion("earn_reword_money >", value, "earnRewordMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnRewordMoneyGreaterThanOrEqualTo(Integer value) {
+        public Criteria andEarnRewordMoneyGreaterThanOrEqualTo(Float value) {
             addCriterion("earn_reword_money >=", value, "earnRewordMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnRewordMoneyLessThan(Integer value) {
+        public Criteria andEarnRewordMoneyLessThan(Float value) {
             addCriterion("earn_reword_money <", value, "earnRewordMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnRewordMoneyLessThanOrEqualTo(Integer value) {
+        public Criteria andEarnRewordMoneyLessThanOrEqualTo(Float value) {
             addCriterion("earn_reword_money <=", value, "earnRewordMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnRewordMoneyIn(List<Integer> values) {
+        public Criteria andEarnRewordMoneyIn(List<Float> values) {
             addCriterion("earn_reword_money in", values, "earnRewordMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnRewordMoneyNotIn(List<Integer> values) {
+        public Criteria andEarnRewordMoneyNotIn(List<Float> values) {
             addCriterion("earn_reword_money not in", values, "earnRewordMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnRewordMoneyBetween(Integer value1, Integer value2) {
+        public Criteria andEarnRewordMoneyBetween(Float value1, Float value2) {
             addCriterion("earn_reword_money between", value1, value2, "earnRewordMoney");
             return (Criteria) this;
         }
 
-        public Criteria andEarnRewordMoneyNotBetween(Integer value1, Integer value2) {
+        public Criteria andEarnRewordMoneyNotBetween(Float value1, Float value2) {
             addCriterion("earn_reword_money not between", value1, value2, "earnRewordMoney");
             return (Criteria) this;
         }

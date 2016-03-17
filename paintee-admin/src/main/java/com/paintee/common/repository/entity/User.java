@@ -28,9 +28,9 @@ public class User extends BaseEntity {
 
     private Integer postCnt;
 
-    private Integer earnTotalMoney;
+    private Float earnTotalMoney;
 
-    private Integer earnRewordMoney;
+    private Float earnRewordMoney;
 
     private String resentSendBasicAddr;
 
@@ -148,19 +148,19 @@ public class User extends BaseEntity {
         this.postCnt = postCnt;
     }
 
-    public Integer getEarnTotalMoney() {
+    public Float getEarnTotalMoney() {
         return earnTotalMoney;
     }
 
-    public void setEarnTotalMoney(Integer earnTotalMoney) {
+    public void setEarnTotalMoney(Float earnTotalMoney) {
         this.earnTotalMoney = earnTotalMoney;
     }
 
-    public Integer getEarnRewordMoney() {
+    public Float getEarnRewordMoney() {
         return earnRewordMoney;
     }
 
-    public void setEarnRewordMoney(Integer earnRewordMoney) {
+    public void setEarnRewordMoney(Float earnRewordMoney) {
         this.earnRewordMoney = earnRewordMoney;
     }
 
