@@ -14,7 +14,9 @@
 */
 package com.paintee.mobile.purchase.service;
 
-import com.paintee.common.repository.entity.Purchase;
+import com.paintee.common.repository.entity.User;
+import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
+import com.paintee.mobile.support.obejct.LoginedUserVO;
 
 /**
 @class PurchaseService
@@ -35,6 +37,16 @@ com.paintee.mobile.purchase.service \n
 public interface PurchaseService {
 	
 	/**
+	 @fn purchasePopInfo
+	 @brief 함수 간략한 설명 : 
+	 @remark
+	 - 함수의 상세 설명 : 
+	 @param loginedUserVO
+	 @return 
+	*/
+	public User purchasePopInfo(LoginedUserVO loginedUserVO);
+
+	/**
 	 @fn addPurchase
 	 @brief 함수 간략한 설명 : 구매정보를 등록한다.
 	 @remark
@@ -42,5 +54,5 @@ public interface PurchaseService {
 	 @param purchase
 	 @throws Exception 
 	*/
-	public void addPurchase(Purchase purchase) throws Exception;
+	public void addPurchase(PurchaseSearchVO purchase) throws Exception;
 }

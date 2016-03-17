@@ -20,12 +20,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.paintee.common.repository.entity.Painting;
-import com.paintee.common.repository.entity.Purchase;
 import com.paintee.common.repository.entity.PurchaseExample;
 import com.paintee.common.repository.entity.User;
+import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 import com.paintee.common.repository.helper.PaintingHelper;
 import com.paintee.common.repository.helper.PurchaseHelper;
 import com.paintee.common.repository.helper.UserHelper;
+import com.paintee.mobile.support.obejct.LoginedUserVO;
 
 /**
 @class PurchaseServiceImpl
@@ -71,7 +72,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 	 @see com.paintee.mobile.purchase.service.PurchaseService#addPurchase(com.paintee.common.repository.entity.Purchase)
 	*/
 	@Override
-	public void addPurchase(Purchase purchase) throws Exception {
+	public void addPurchase(PurchaseSearchVO purchase) throws Exception {
+		logger.debug("구매추가 : {}", purchase);
 		
 		String userId = purchase.getUserId();
 		String paintingId = purchase.getPaintingId();
@@ -89,7 +91,20 @@ public class PurchaseServiceImpl implements PurchaseService {
 		// 회원 테이블 정보 추가 - 구매카운트(post_cnt), 수익 전체 금액(earn_total_money)
 		User user = new User();
 		user.setUserId(userId);
-		userHelper.updateUserPostCnt(user);
+		
+		if ("Y".equalsIgnoreCase(purchase.getChangeAddr())) {
+			user.setZipcode(purchase.getReceiverZipcode());
+			user.setBasicAddr(purchase.getReceiverBasicAddr());
+			user.setDetailAddr(purchase.getReceiverDetailAddr());
+		}
+		
+		user.setResentSendZipcode(purchase.getReceiverZipcode());
+		user.setResentSendBasicAddr(purchase.getReceiverBasicAddr());
+		user.setResentSendDetailAddr(purchase.getReceiverDetailAddr());
+		user.setResentSendCity(purchase.getReceiverCity());
+		user.setResentSendName(purchase.getReceiverName());
+		
+		userHelper.updateUserInfo(user);
 		userHelper.updateUserEarnTotalMoney(purchase);
 		
 		// 그림 테이블 정보 업데이트 - posted_num 무조건 1 증가, posted_people_cnt (구매 테이블에 해당 사용자가 산적이 있는지 확인 후 증가 시킴)
@@ -99,6 +114,11 @@ public class PurchaseServiceImpl implements PurchaseService {
 			painting.setPostedPeopleCnt(0);
 		}
 		paintingHelper.updatePaintingPurchaseInfo(painting);
+	}
+
+	@Override
+	public User purchasePopInfo(LoginedUserVO loginedUserVO) {
+		return userHelper.selectByPrimaryKey(loginedUserVO.getUserId());
 	}
 }
 

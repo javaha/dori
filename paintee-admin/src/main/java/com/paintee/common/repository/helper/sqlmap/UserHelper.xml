@@ -2,10 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.paintee.common.repository.helper.UserHelper">
 	
-	<!-- 회원의 구매 정보를 업데이트(구매수 증가) -->
-  	<update id="updateUserPostCnt">
+	<!-- 회원의 구매 정보를 업데이트 -->
+  	<update id="updateUserInfo">
 		update tb_user 
 		   set post_cnt = post_cnt + 1 
+	    <if test="basicAddr != null">
+	          ,basic_addr = #{basicAddr}
+	    </if>	   
+	    <if test="detailAddr != null">
+	          ,detail_addr = #{detailAddr}
+	    </if>	   
+	    <if test="zipcode != null">
+	          ,zipcode = #{zipcode}
+	    </if>	   
+	    <if test="resentSendZipcode != null">
+	          ,resent_send_zipcode = #{resentSendZipcode}
+	    </if>	   
+	    <if test="resentSendBasicAddr != null">
+	          ,resent_send_basic_addr = #{resentSendBasicAddr}
+	    </if>	   
+	    <if test="resentSendDetailAddr != null">
+	          ,resent_Send_Detail_Addr = #{resentSendDetailAddr}
+	    </if>	   
+	    <if test="resentSendCity != null">
+	          ,resent_send_city = #{resentSendCity}
+	    </if>	   
+	    <if test="resentSendName != null">
+	          ,resent_send_name = #{resentSendName}
+	    </if>	   
 		 where user_id = #{userId}
   	</update>
 	

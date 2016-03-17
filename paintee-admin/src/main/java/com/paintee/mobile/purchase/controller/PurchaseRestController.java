@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paintee.common.repository.entity.Purchase;
+import com.paintee.common.repository.entity.User;
+import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 import com.paintee.mobile.purchase.service.PurchaseService;
 import com.paintee.mobile.support.obejct.LoginedUserVO;
 
@@ -53,8 +55,19 @@ public class PurchaseRestController {
 	@Autowired
 	private PurchaseService purchaseService;
 	
+	@RequestMapping(value="/api/purchasePopInfo", method={RequestMethod.GET})
+	public Map<String, Object> purchasePopInfo(LoginedUserVO loginedUserVO) throws Exception {
+		
+		// 구매관련 정보 등록
+		User user = purchaseService.purchasePopInfo(loginedUserVO);
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("user", user);
+		return result;
+	}
+	
 	@RequestMapping(value="/api/purchase", method={RequestMethod.POST})
-	public Map<String, Object> addPurchase(@RequestBody Purchase purchase, LoginedUserVO loginedUserVO) throws Exception {
+	public Map<String, Object> addPurchase(@RequestBody PurchaseSearchVO purchase, LoginedUserVO loginedUserVO) throws Exception {
 		logger.debug(purchase.toString());
 
 		// 로그인 사용자의 구매자 아이디 입력

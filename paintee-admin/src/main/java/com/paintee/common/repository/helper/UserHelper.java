@@ -43,7 +43,7 @@ public interface UserHelper extends UserMapper {
 	 @param user
 	 @return 
 	*/
-	public void updateUserPostCnt(User user);
+	public void updateUserInfo(User user);
 
 	/**
 	 @fn updateUserEarnTotalMoney

@@ -1,3 +1,4 @@
+var purchaseController;
 // 구매화면으로 이동
 function purchase(paintingId) {
 	
@@ -6,12 +7,31 @@ function purchase(paintingId) {
 		return ;
 	} 
 	
+	// 구매 팝업 정보 조회
+	purchaseController = new PurchaseController(paintingId);
+	purchaseController.purchasePopInfo();
+}
+
+function initPurchasePop(result) {
 	// console.log("purchase : " + paintingId);
-    $(".purchase_container").show();
+	 console.log("result : " + JSON.stringify(result));
+    
+	 purchaseController.basicAddr  = result.user.basicAddr;
+	 purchaseController.detailAddr = result.user.detailAddr;
+	 
+	 $(".purchase_container").show();
+    
+    // 주소설정...
+    $("[name=location]").val(result.user.location ? result.user.location : 1);
+    $("[name=receiverBasicAddr]").val(result.user.basicAddr);
+    $("[name=receiverDetailAddr]").val(result.user.detailAddr);
+    $("[name=receiverZipcode]").val(result.user.zipcode);
     
     // 기존 설정된 이벤트 제거
     $(".purchase_pay_btn").off("click");
-    $(".purchase_pay_btn" ).click(function(){payment(paintingId)});
+    $(".purchase_pay_btn" ).click(function() {
+    	payment();
+    });
 
     // 우편번호 입력박스 키이벤트 등록
     $("[name=receiverZipcode]").keydown(
@@ -148,7 +168,7 @@ $("[name=sentence]").blur(function () {
  * 차후 구현 예정
  * noPostCard의 값이 있는 경우 발송없이 결재
  */
-function payment(paintingId, noPostCard){
+function payment() {
 	// 구매입력 항목 체크
 	if (!validPurchase()) { return false; }
 	
@@ -159,7 +179,7 @@ function payment(paintingId, noPostCard){
     // console.log(2);
     $(".payment_container").show();
     // console.log(3);
-    initPayment(paintingId);
+    initPayment();
     // console.log(4);
     setBox();
 }
@@ -199,13 +219,13 @@ function validPurchase() {
 		$("[name=receiverBasicAddr]").focus();
 		return false;
 	}
-	/*
-	if ($("[name=receiverCity]").val().trim().length == 0) {
-		alert("도시명을 입력하세요");
-		$("[name=receiverCity]").focus();
-		return false;
+	if ($("[name=location]").val() != 1) {
+		if ($("[name=receiverCity]").val().trim().length == 0) {
+			alert("도시명을 입력하세요");
+			$("[name=receiverCity]").focus();
+			return false;
+		}
 	}
-	*/
 	if ($("[name=receiverZipcode]").val().trim().length == 0) {
 		alert("우편번호를 입력하세요");
 		$("[name=receiverZipcode]").focus();
@@ -217,7 +237,18 @@ function validPurchase() {
 		$("[name=receiverZipcode]").focus();
 		return false;
 	}
-	
+	var change = false;
+	if (purchaseController.basicAddr != $("[name=receiverBasicAddr]").val().trim()) {
+		change = true;
+	}
+	if (purchaseController.detailAddr != $("[name=receiverDetailAddr]").val().trim()) {
+		change = true;
+	}
+	if (change) {
+		if (confirm("그림 구매시 변경된 주소로 기존 주소를 바꾸시겠습니까?")) {
+			purchaseController.changeAddr = "Y";
+		}
+	}
 	return true;
 }
 
@@ -248,7 +279,7 @@ Payment.prototype = {
     }
 }
 
-function initPayment(paintingId){
+function initPayment(){
     $(".payment_box").empty();
     var payment = new Payment();
     payment.setTitle("Payment");
@@ -256,23 +287,41 @@ function initPayment(paintingId){
     payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><i class='material-icons'>edit</i><div class='purchase_btn_text'>edit address</div></div><div class='popup_btn payment_btn'><div class='purchase_btn_text'>Payment </div><i class='material-icons'>payment</i></div>");
     payment.buildPayment();
     $(".payment_btn").click(function(){
-        new PurchaseController().addPurchase(paintingId);
+        purchaseController.addPurchase();
     })
     delete payment;
 }
 
-function PurchaseController() {
+function PurchaseController(paintingId) {
+	this.paintingId = paintingId;
+	this.basicAddr;
+	this.detailAddr;
+	this.changeAddr = 'N';
 }
 
 PurchaseController.prototype = {
-	addPurchase: function (paintingId) {
+	purchasePopInfo: function () {
+		var controller = this;
+		AjaxCall.call(apiUrl + "/purchasePopInfo", 
+			"", 
+			"GET", 
+			function (result) {
+				controller.purchasePopInfoRes(result);			
+			}
+		);		
+	},
+	purchasePopInfoRes: function (result) {
+		console.log("성공함");
+		initPurchasePop(result);
+	},
+	addPurchase: function () {
 		// console.log("addPurchase");
 		var controller = this;
 		
 		// userId는 로그인 후 쿠키에서 가져와서 처리하도록 해야함
 		var data = {
 			userId: userID,
-			paintingId: paintingId,
+			paintingId: this.paintingId,
 			sentence: $("[name=sentence]").val(),
 			privateAt: ($("[name=privateAt]").prop("checked")) ? "Y" : "N",
 			receiverBasicAddr: $("[name=receiverBasicAddr]").val(),
@@ -282,7 +331,8 @@ PurchaseController.prototype = {
 			receiverName: $("[name=receiverName]").val(),
 			senderName: $("[name=senderName]").val(),
 			location: $("[name=location]").val(),
-			purchaseStatus: "C"
+			purchaseStatus: "C",
+			changeAddr: controller.changeAddr,
 		};
 
 		AjaxCall.call(apiUrl + "/purchase", 
