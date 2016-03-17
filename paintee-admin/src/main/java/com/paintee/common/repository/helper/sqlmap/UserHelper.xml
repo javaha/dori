@@ -36,7 +36,7 @@
 	<!-- 회원의 구매 정보를 업데이트(전체 판매 금액 증가) -->
   	<update id="updateUserEarnTotalMoney">
 		update tb_user 
-		   set earn_total_money = earn_total_money + 2 
+		   set earn_total_money = earn_total_money + 0.5 
 		 where user_id = (select artist_id from tb_painting where painting_id = #{paintingId})
   	</update>
 </mapper>

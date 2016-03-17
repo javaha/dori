@@ -40,6 +40,15 @@ public class RewardVO extends User {
 	/** 그림이 Post 된 총 카운트 */
 	private String sellCount;
 	
+	/** 그림이 Post 된 총 카운트 */
+	private int requestCount;
+	
+	public int getRequestCount() {
+		return requestCount;
+	}
+	public void setRequestCount(int requestCount) {
+		this.requestCount = requestCount;
+	}
 	public String getRemainMoney() {
 		return remainMoney;
 	}

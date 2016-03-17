@@ -54,6 +54,16 @@ function initReward(){
 
 function checkReward(){
 	var data = rewardController.result;
+	console.log("data : " + JSON.stringify(data));
+	if (data.reward.requestCount > 0) {
+		alert("이미 신청중인 리워드가 있습니다.");
+		return;
+	}
+	
+	if (data.reward.remainMoney < 10) {
+		alert("리워드는 $10부터 신청가능합니다.");
+		return;
+	}
 	
     $(".reward_box").empty();
     var reward = new Reward();

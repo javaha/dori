@@ -5,6 +5,7 @@
     <resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.vo.RewardVO" extends="com.paintee.common.repository.mapper.UserMapper.BaseResultMap">
         <result column="remain_money" property="remainMoney" />
         <result column="sell_count" property="sellCount" />
+        <result column="request_count" property="requestCount" />
 	</resultMap>
     
   	<select id="selectRewardInfo" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.User">
@@ -14,7 +15,11 @@
 			   (SELECT COUNT(*)
 			      FROM tb_purchase a, tb_painting b
 			     WHERE a.painting_id = b.painting_id
-			       AND b.artist_id = #{userId}) as sell_count
+			       AND b.artist_id = #{userId}) as sell_count,
+			   (SELECT count(*) 
+			      FROM TB_REWARD
+			     WHERE reward_status = 'R'
+			       AND user_id = #{userId}) as request_count
 		  FROM tb_user a 
 		 where a.user_id = #{userId}
   	</select>

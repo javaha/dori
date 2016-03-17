@@ -8,6 +8,10 @@ public class Reward extends BaseEntity {
 
     private String userId;
 
+    private String bank;
+
+    private String directInputBank;
+
     private String accountNo;
 
     private String accountName;
@@ -32,6 +36,22 @@ public class Reward extends BaseEntity {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+
+    public String getDirectInputBank() {
+        return directInputBank;
+    }
+
+    public void setDirectInputBank(String directInputBank) {
+        this.directInputBank = directInputBank;
     }
 
     public String getAccountNo() {

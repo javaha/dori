@@ -54,7 +54,8 @@ create  table TB_PURCHASE (
 create table TB_REWARD ( 
 	seq int primary key auto_increment comment '리워드 고유 번호',
     user_id varchar(64) comment '리워드 요청자 id',
-    bank varchar(8) comment '입금 요청된 은행',
+    bank varchar(8) comment '입금 요청된 은행(TB_CODE 테이블 확인)',
+    direct_input_bank varchar(40) comment '직접 입력한 입금 요청된 은행',
     account_no varchar(20) comment '입금 요청된 계좌번호',
     account_name varchar(30) comment '입금 요청된 계좌주 이름',
     earm_requested_money int comment '입금 요청된 금액',

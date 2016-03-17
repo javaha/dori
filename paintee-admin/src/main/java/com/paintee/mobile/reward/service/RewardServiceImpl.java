@@ -88,7 +88,7 @@ public class RewardServiceImpl implements RewardService {
 		// 사용자 테이블 리워드 관련 정보 업데이트
 		User user = new User();
 		// 요청한 리워드 금액 + 수수료
-//		user.setEarnRewordMoney(reward.getEarmRequestedMoney() + 5);
+		user.setEarnRewordMoney(reward.getEarmRequestedMoney() + 5.0f);
 		
 		// 사용자 테이블 업데이트 조건 설정
 		UserExample example = new UserExample();

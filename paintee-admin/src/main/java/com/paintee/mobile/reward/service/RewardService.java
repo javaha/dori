@@ -16,11 +16,8 @@ package com.paintee.mobile.reward.service;
 
 import java.util.Map;
 
-import com.paintee.common.repository.entity.Purchase;
 import com.paintee.common.repository.entity.Reward;
 import com.paintee.common.repository.entity.User;
-import com.paintee.common.repository.entity.vo.RewardSearchVO;
-import com.paintee.common.repository.entity.vo.RewardVO;
 
 /**
 @class PurchaseService
