@@ -55,4 +55,13 @@ public interface UserHelper extends UserMapper {
 	 @return 
 	*/
 	public void updateUserEarnTotalMoney(Purchase purchase);
+
+	/**
+	 @fn updateUserEarnRewordMoney
+	 @brief 함수 간략한 설명 : 구매시의 리워드 금액 증가
+	 @remark
+	 - 함수의 상세 설명 : 
+	 @param user 
+	*/
+	public void updateUserEarnRewordMoney(User user);
 }

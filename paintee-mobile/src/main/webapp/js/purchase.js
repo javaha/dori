@@ -127,6 +127,7 @@ $("[name=location]").change(function(e){
 });
 
 function setPostUI(type) {
+	console.log("type : " + type);
 	if (type == 'Korea') {
 		// 기본 주소 선택시 
 		$("[name=receiverCity]").attr("disabled", "disabled");
@@ -219,7 +220,7 @@ function validPurchase() {
 		$("[name=receiverBasicAddr]").focus();
 		return false;
 	}
-	if ($("[name=location]").val() != 1) {
+	if ($("[name=location]").val() != 'Korea') {
 		if ($("[name=receiverCity]").val().trim().length == 0) {
 			alert("도시명을 입력하세요");
 			$("[name=receiverCity]").focus();

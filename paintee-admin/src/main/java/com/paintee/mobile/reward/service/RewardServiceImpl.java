@@ -30,8 +30,8 @@ import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.UserExample;
 import com.paintee.common.repository.entity.vo.RewardVO;
 import com.paintee.common.repository.helper.RewardHelper;
+import com.paintee.common.repository.helper.UserHelper;
 import com.paintee.common.repository.mapper.CodeMapper;
-import com.paintee.common.repository.mapper.UserMapper;
 
 /**
 @class PurchaseServiceImpl
@@ -60,7 +60,7 @@ public class RewardServiceImpl implements RewardService {
 	private CodeMapper codeMapper;
 	
 	@Autowired
-	private UserMapper userMapper;
+	private UserHelper userHelper;
 	
 	@Override
 	public Map<String, Object> rewardInfo(User user) {
@@ -88,15 +88,16 @@ public class RewardServiceImpl implements RewardService {
 		// 사용자 테이블 리워드 관련 정보 업데이트
 		User user = new User();
 		// 요청한 리워드 금액 + 수수료
-		user.setEarnRewordMoney(reward.getEarmRequestedMoney() + 5.0f);
 		
-		// 사용자 테이블 업데이트 조건 설정
-		UserExample example = new UserExample();
-		UserExample.Criteria where = example.createCriteria();
-		where.andUserIdEqualTo(reward.getUserId());
+		float commission = 5.0f;
+		if ("99".equals(reward.getBank())) {
+			commission = 7.0f;
+		}
+		user.setUserId(reward.getUserId());
+		user.setEarnRewordMoney(reward.getEarmRequestedMoney() + commission);
 		
 		// 사용자 테이블 업데이트
-		userMapper.updateByExampleSelective(user, example);
+		userHelper.updateUserEarnRewordMoney(user);
 	}
 }
 

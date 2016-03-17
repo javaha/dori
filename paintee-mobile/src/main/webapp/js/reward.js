@@ -76,10 +76,14 @@ function checkReward(){
     bankSelect += "</select>";
     
     var content = '아래 계좌로 지금 받을 수 있는 <b>$' + data.reward.remainMoney + '</b> 에' 
-                + "<br>reward <b>수수료 $5</b>를 제외한<br><br>"
+                + "<br>reward <b>수수료 $<span id='commission'>5</span></b>를 제외한<br><br>"
                 + "<span class='reward_money'>$" + (data.reward.remainMoney - 5) + "</span> 이 입금됩니다.<br><br><br>" 
                 + bankSelect
                 + "<br><br>"
+                + "<span id='directSpan' style='display: none'>"
+                + "<input type='text' name='directInputBank' class='purchase_input' placeholder='name of bank'>"
+                + "<br>" 
+                + "</span>"
                 + "<input type='text' name='accountName' class='purchase_input' placeholder='name of account holder'>"
                 + "<br>" 
                 + "<input type='text' name='accountNo' class='purchase_input' placeholder='account'>"
@@ -93,6 +97,19 @@ function checkReward(){
     reward.setBottom(bottom);
     reward.buildUpload();
     
+    $("[name=bank]").change(function(e){
+    	if (this.value == "99") {
+    		$("#directSpan").show();
+    		$("#commission").text(7);
+    		$(".reward_money").text("$" + (data.reward.remainMoney - 7));
+    	} else {
+    		$("#directSpan").hide();
+    		$("[name=directInputBank]").val("");
+    		$("#commission").text(5);
+    		$(".reward_money").text("$" + (data.reward.remainMoney - 5));
+    	}
+    });
+    
     $(".popup_btn.upload_btn").click(function(){
     	rewardController.addReward();
     });
@@ -104,12 +121,20 @@ function checkReward(){
 }
 
 function validReward() {
-	if ($("[name=accountName]").val().trim().length == 0) {
+	if ($("[name=bank]").val() == '99') {
+		if ($("[name=directInputBank]").val().trim() == "") {
+			alert("은행이름을 입력하세요");
+			$("[name=directInputBank]").focus();
+			return false;
+		}
+	}
+	
+	if ($("[name=accountName]").val().trim() == "") {
 		alert("이름을 입력하세요");
 		$("[name=accountName]").focus();
 		return false;
 	}
-	if ($("[name=accountNo]").val().trim().length == 0) {
+	if ($("[name=accountNo]").val().trim() == "") {
 		alert("계좌번호를 입력하세요");
 		$("[name=accountNo]").focus();
 		return false;
@@ -154,10 +179,18 @@ RewardController.prototype = {
 		var data = {
 			accountName: $("[name=accountName]").val(),
 			accountNo: $("[name=accountNo]").val(),
-			bank: $("[name=bank]").val(),
-			earmRequestedMoney: controller.result.reward.remainMoney - 5
+			bank: $("[name=bank]").val()
 		};
-
+		
+		if ($("[name=bank]").val() == '99') {
+			data.directInputBank = $("[name=directInputBank]").val();
+			// 은행 직접 입력 시 수수료 $7
+			data.earmRequestedMoney = controller.result.reward.remainMoney - 7;
+		} else {
+			// 은행 직접 입력 시 수수료 $5
+			data.earmRequestedMoney = controller.result.reward.remainMoney - 5;
+		}
+		
 		AjaxCall.call(apiUrl + "/reward", 
 			data, 
 			"POST", 
