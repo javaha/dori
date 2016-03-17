@@ -137,3 +137,19 @@ create table TB_CODE (
     created_date datetime default now() comment '생성일시',
     primary key (code_group, code_value)
 ) COMMENT = '코드';
+
+create table TB_USER_SOCIAL (
+	user_id varchar(64) not null comment 'User 고유번호',
+    provider_id varchar(255) not null comment '소셜 공급자 ID',
+    provider_user_id varchar(255) comment '소셜 계정 ID',
+    rank int not null comment '',
+    display_name varchar(255) comment '소셜 계정 화면 표시 이름',
+    profile_url varchar(512) comment '소셜 계정 프로필 사진 주소',
+    image_url varchar(512) comment '소셜 계정 이미지 주소',
+    access_token varchar(255) not null comment '소셜 계정 토큰 Facebook:access_token, twitter : oauth_token, google+: access_token 으로 매칭',					
+    secret varchar(255) comment '소셜 계정 비밀키 Facebook:null, twitter : oauth_token_secret, google+: token_type 으로 매칭',
+    refresh_token varchar(255) comment '소셜 계정 새로고침 용 토큰',
+    expire_time bigint comment '소셜 계정 만료시간',
+    primary key (user_id, provider_id, provider_user_id)
+) COMMENT = '사용자 소셜 계정 정보';
+create unique index TB_USER_SOCIAL_IDX_01 on TB_USER_SOCIAL(user_id, provider_id, rank);
