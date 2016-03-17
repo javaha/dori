@@ -22,7 +22,7 @@ function initPurchasePop(result) {
 	 $(".purchase_container").show();
     
     // 주소설정...
-    $("[name=location]").val(result.user.location ? result.user.location : 1);
+    $("[name=location]").val(result.user.location ? result.user.location : 'Korea');
     $("[name=receiverBasicAddr]").val(result.user.basicAddr);
     $("[name=receiverDetailAddr]").val(result.user.detailAddr);
     $("[name=receiverZipcode]").val(result.user.zipcode);
@@ -127,7 +127,7 @@ $("[name=location]").change(function(e){
 });
 
 function setPostUI(type) {
-	if (type == '1') {
+	if (type == 'Korea') {
 		// 기본 주소 선택시 
 		$("[name=receiverCity]").attr("disabled", "disabled");
 		$("[name=receiverBasicAddr]").attr("readOnly", "readOnly");

@@ -23,6 +23,8 @@ ProfileController.prototype = {
 				$('#profileLocation').val(userInfo.location);
 			}
 
+			setProfilePostUI($("[name=profileLocation]").val());
+
 			//사용자 정보 set
 		    boxStatus = "profile";
 		    setBox();
@@ -110,28 +112,24 @@ function showProfile() {
 }
 
 $("[name=profileLocation]").change(function(e){
-	// console.log("change");
-	switch ($("[name=profileLocation]").val()) {
-	case "1":
-		setProfilePostUI("KOREA");
-		break;
-	default:
-		setProfilePostUI("NOKOREA");
-		break;
-	}
+	setProfilePostUI($("[name=profileLocation]").val());
 	e.stopPropagation();
 });
 
 function setProfilePostUI(type) {
-	var className = "account_form";
-	var styleName = "none";
-	if (type == 'KOREA') {
-		className = "account_form2";
-		styleName = "inline";
-//		$("[name=receiverBasicAddr]").attr("readOnly", "readOnly");
+	if (type == 'Korea') {
+		// 기본 주소 선택시 
+		$("[name=profileCity]").attr("disabled", "disabled");
+		$("[name=profileBasicAddr]").attr("readOnly", "readOnly");
+		$("[name=profileBasicAddr]").focus(function () {
+			execDaumPostcode('profile', 'profileZipcode', 'profileBasicAddr')
+		});
+	} else {
+		// 주소에 설정된 이벤트 삭제
+		$("[name=profileBasicAddr]").off();
+		$("[name=profileCity]").attr("disabled", false);
+		$("[name=profileBasicAddr]").attr("readOnly", false);
 	}
-	$("[name=receiverBasicAddr]").attr("class", className);
-	$("#profilePostSearch").css("display", styleName);
 }
 
 $('#profileUpdateBtn').on('click', function() {
