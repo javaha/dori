@@ -421,3 +421,14 @@ $(".popup_container").click(function(){
 $(".popup_box").click(function(e){
     e.stopPropagation();
 });
+
+/**
+ *   홈 페이지 데이터 리로딩
+ *   그림 구매시 : My, Popular  
+ */
+function dataReload(loadPages) {
+	console.log("dataReload.....");
+	for (var index in loadPages) {
+		eval(loadPages[index]);
+	}
+}

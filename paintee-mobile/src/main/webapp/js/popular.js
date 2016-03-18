@@ -1,3 +1,8 @@
+$(document).ready(function () {
+	// 페이지 로딩 시 Popular 스와이프 홈 화면 정보구성
+	initPopular();
+});
+
 // list container 시작  
 var popularSwiper = new Swiper('.swiper_container_popular', {
     slidesPerView: 'auto',
@@ -44,14 +49,6 @@ popularSwiper.on("onSetTranslate", function(swiper, translate){
 	swipeToMenu(swiper, translate);
 });
 
-
-$(document).ready(function () {
-	// 페이지 로딩 시 Popular 스와이프 홈 화면 정보구성
-	initPopular();
-	// 테이블에서 가져올 데이터의 시작 위치를 처음 로딩시 0번째 부터 조회
-	new PopularController().getListData(0);
-});
-
 function PopularController() {
 	this.startRow = 0;
 }
@@ -85,15 +82,20 @@ PopularController.prototype = {
 //각각의 home 화면 설정
 function initPopular(){
 	// console.log("init popular");
+	// 기존 설정된 슬라이더 제거
+	popularSwiper.removeAllSlides();
+	
+    var popularHome = new Home();
 
-  var popularHome = new Home();
+    popularHome.setTitle("Popular");
+    popularHome.setExplain("가장 인기있는 그림입니다.");
+    popularHome.setContents(totalPainting());
+    popularSwiper.appendSlide(popularHome.buildStructure());
 
-  popularHome.setTitle("Popular");
-  popularHome.setExplain("가장 인기있는 그림입니다.");
-  popularHome.setContents(totalPainting());
-  popularSwiper.appendSlide(popularHome.buildStructure());
-
-  delete popularHome;
+    delete popularHome;
+  
+    //테이블에서 가져올 데이터의 시작 위치를 처음 로딩시 0번째 부터 조회
+	new PopularController().getListData(0);
 }
 
 //전체그림/전체좋아요 숫자설정

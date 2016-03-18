@@ -80,9 +80,6 @@ MyHomeController.prototype = {
 		
 		for ( var index in result.list) {
 			addPainting(mySwiper, 1, "my", result.list[index]);
-//			if (mySwiper.slides.length > 100) {
-//				break;
-//			}
 		}
 	}
 };
@@ -100,6 +97,7 @@ function initMy(){
         delete myHome;
         delete logInBtn;
     }else{
+    	console.log("initMy() login 후 데이터 가져오기");
 		// 로그인 상태일 경우 홈카운트 가져오기
     	// 테이블에서 가져올 데이터의 시작 위치를 처음 로딩시 0번째 부터 조회
 		new MyHomeController().getHomeInfo(0);

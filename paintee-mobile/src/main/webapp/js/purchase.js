@@ -350,6 +350,7 @@ PurchaseController.prototype = {
 		// 기존 입력 내용 지우기
 		resetPurchase();
 		completePayment();
+    	dataReload(["initMy();", "initPopular();"]);
 	}
 };
 
