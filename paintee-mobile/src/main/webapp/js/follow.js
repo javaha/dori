@@ -142,6 +142,7 @@ FollowController.prototype = {
 		// 추가한 사용자의 추가버튼을 비활성화 시키고 스타일을 변경 처리함
 		this.btn.off("click");  // 이벤트 제거
 		this.btn.find("i").css("color", "rgba(120,120,120,0.5)").html("done");
+		initFollow();
 	},
 	delFollowing : function(following, name) {
 		console.log("FollowController.delFollowing ");
@@ -159,6 +160,7 @@ FollowController.prototype = {
 	delFollowingRes : function(result) {
 		// 화면에서 선택한 사용자의 이름을 제거
 		this.following.remove();
+		initFollow();
 	}
 };
 
