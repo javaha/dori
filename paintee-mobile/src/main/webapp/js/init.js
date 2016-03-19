@@ -53,6 +53,7 @@ var imageUrl="http://localhost:8090";
 //var imageUrl="http://192.168.43.89:8090";
 //var imageUrl="http://192.168.1.31:8090";
 //var imageUrl="http://192.168.43.63:8090";
+//var imageUrl="http://192.168.0.9:8090";
 var apiUrl=imageUrl+"/api";
 
 setWidth();
@@ -145,9 +146,13 @@ Structure.prototype = {
                                 this.listPainting.swipe({
                                     swipeUp:function(){
                                         loadDetail(paintingId, color, colorDark);
+                                        replaceHistory({"call": "detailPop"});
+                                        addHistory({"call": "dummy"});
                                     },
                                     tap:function(){
                                         loadDetail(paintingId, color, colorDark);
+                                        replaceHistory({"call": "detailPop"});
+                                        addHistory({"call": "dummy"});
                                     },
                                     threshold:10
                                 });
@@ -401,25 +406,36 @@ function setBox(){
 // 팝업 닫기
 $(".return_btn").click(function(){
 	// 구매 정보 초기화
-	resetPurchase();
-    $(".purchase_container").hide();
-    $(".popup_container").hide();
-    purchaseStatus = "";
-    boxStatus = "";
+	closePopup();
 });
+
 $(".popup_container").click(function(){
-    $(".purchase_container").hide();
-    $(".popup_container").hide();
-    /*
-    console.log(".popup_container ------------------------" + popName);
-    switch (popName) {
-    case "followPop":
-    	initFollow();  // Follow 팝업이 닫힐 때 새로 로딩한다.
-    	break;
-    }
-    */
+	closePopup();
     popName = "";  // 다시 초기화
 });
+
+function closePopup() {
+	console.log("boxStatus : " + boxStatus);
+	
+	// boxStatus payment
+	if (boxStatus == "payment") {
+		// 구매 정보 초기화
+		resetPurchase();
+		purchaseStatus = "";
+		$(".purchase_container").hide();
+		history.go(-2);
+		boxStatus = "";
+	} 
+	else if (boxStatus == "rewardStep2") {
+		history.go(-2);
+	}
+	else {
+		history.back();
+	}
+    $(".popup_container").hide();
+    boxStatus = "";
+}
+
 $(".popup_box").click(function(e){
     e.stopPropagation();
 });

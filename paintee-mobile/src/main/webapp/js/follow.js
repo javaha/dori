@@ -231,6 +231,10 @@ People.prototype = {
  * 나를 팔로잉 하는 사람들의 목록
  */
 function initFollows() {
+	// 히스토리 설정
+	replaceHistory({"call": "followPop"});
+    addHistory({"call": "dummy"});
+    
 	setBox();
 	$(".people_container").show();
 	$(".people_box").empty();
@@ -274,6 +278,11 @@ function Follows() {
 }
 
 function initFollowing() {
+	
+	// 히스토리 설정
+	replaceHistory({"call": "followPop"});
+    addHistory({"call": "dummy"});
+    
 	boxStatus = "people";
 	setBox();
 	$(".people_container").show();

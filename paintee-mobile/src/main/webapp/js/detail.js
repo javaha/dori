@@ -234,6 +234,7 @@ function setDetailLayout(){
 //디테일화면 닫기
 function closeDetail(){
     if(isDetail){
+    	history.back();
         if(get.page){
 //            goPainting(get.user, get.page);
             // 최초 한번만 동작하게 한다.

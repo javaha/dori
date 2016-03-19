@@ -33,6 +33,10 @@ Reward.prototype = {
 }
 
 function initReward(){
+	
+	replaceHistory({"call": "rewardPop"});
+    addHistory({"call": "rewardStep1"});
+    
 	var data = rewardController.result;
 	console.log(JSON.stringify(data));
     $(".reward_box").empty();
@@ -65,6 +69,11 @@ function checkReward(){
 		return;
 	}
 	
+	// 히스토리 적용
+    addHistory({"call": "rewardStep2"});
+    
+    boxStatus = "rewardStep2";
+    
     $(".reward_box").empty();
     var reward = new Reward();
     reward.setTitle("Reward");

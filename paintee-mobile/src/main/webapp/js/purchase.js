@@ -13,13 +13,17 @@ function purchase(paintingId) {
 }
 
 function initPurchasePop(result) {
-	// console.log("purchase : " + paintingId);
-	 console.log("result : " + JSON.stringify(result));
+	
+	replaceHistory({"call": "purchasePop"});
+    addHistory({"call": "purchaseStep1"});
     
-	 purchaseController.basicAddr  = result.user.basicAddr;
-	 purchaseController.detailAddr = result.user.detailAddr;
+	// console.log("purchase : " + paintingId);
+	console.log("result : " + JSON.stringify(result));
+    
+	purchaseController.basicAddr  = result.user.basicAddr;
+	purchaseController.detailAddr = result.user.detailAddr;
 	 
-	 $(".purchase_container").show();
+	$(".purchase_container").show();
     
     // 주소설정...
     $("[name=location]").val(result.user.location ? result.user.location : 'Korea');
@@ -109,13 +113,20 @@ $(".purchase_prev_btn").click(function(){
 });
 
 $(".purchase_container").click(function(){
-	// console.log("purchase_container");
+	// 구매 팝업 닫기
+	closePurchaseStep01();
+    // 뒤로가기 강제 호출
+    history.back();
+});
+
+function closePurchaseStep01() {
+	console.log("purchase_container");
     $(".purchase_container").hide();
     purchaseStatus = "";
     boxStatus = "";
     // 입력데이터 초기화
     resetPurchase();
-});
+}
 
 $(".purchase_box").click(function(e){
 	// console.log("purchase_box");
@@ -173,18 +184,17 @@ $("[name=sentence]").blur(function () {
  * noPostCard의 값이 있는 경우 발송없이 결재
  */
 function payment() {
+
+	addHistory({"call": "purchaseStep2"});
+	
 	// 구매입력 항목 체크
 	if (!validPurchase()) { return false; }
 	
     purchaseStatus = "";
     boxStatus = "payment";
-    // console.log(1);
     $(".purchase_container").hide();
-    // console.log(2);
     $(".payment_container").show();
-    // console.log(3);
     initPayment();
-    // console.log(4);
     setBox();
 }
 
@@ -359,7 +369,7 @@ PurchaseController.prototype = {
 
 // 구매 입력 내용 지우기
 function resetPurchase() {
-	// console.log("resetPurchase -- ");
+	 console.log("resetPurchase -- ");
 	// console.log("sentence -- " + $("[name=sentence]").val(""));
 	$("[name=privateAt]").prop("checked", false),
 	$("[name=sentence]").val("");
