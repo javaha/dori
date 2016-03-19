@@ -34,11 +34,12 @@ function initPurchasePop(result) {
     });
 
     // 우편번호 입력박스 키이벤트 등록
-    $("[name=receiverZipcode]").keydown(
-    	function (event) {
-    		return limitNumber(event);
-    	}	
-    );
+    $("[name=receiverZipcode]").keydown(function (event) {
+    	limitNumber(event);
+    })
+    .keyup(function (event) {
+    	limitNumber(event);
+    });
     
     purchaseStatus = "sentence";
     setWidth();
@@ -131,6 +132,7 @@ function setPostUI(type) {
 	if (type == 'Korea') {
 		// 기본 주소 선택시 
 		$("[name=receiverCity]").attr("disabled", "disabled");
+		$("[name=receiverZipcode]").attr("readOnly", "readOnly");
 		$("[name=receiverBasicAddr]").attr("readOnly", "readOnly");
 		$("[name=receiverBasicAddr]").focus(function () {
 			execDaumPostcode('purchase', 'receiverZipcode', 'receiverBasicAddr')
@@ -139,6 +141,7 @@ function setPostUI(type) {
 		// 주소에 설정된 이벤트 삭제
 		$("[name=receiverBasicAddr]").off();
 		$("[name=receiverCity]").attr("disabled", false);
+		$("[name=receiverZipcode]").attr("readOnly", false);		
 		$("[name=receiverBasicAddr]").attr("readOnly", false);
 	}
 }

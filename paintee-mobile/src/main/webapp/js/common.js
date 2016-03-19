@@ -68,8 +68,7 @@ function chkNum(str){
 function limitNumber(event) {
 	event = event || window.event;
 	var keyCode = (event.which) ? event.which : event.keyCode;
-	console.log(keyCode);
-	return ( keyCode >=48 && keyCode <= 57 ) || ( keyCode >=96 && keyCode <= 105 ) || keyCode == 8;
+	event.target.value = event.target.value.replace(/[^0-9]/g, "");
 }
 
 function getCharCount(value) {

@@ -116,7 +116,10 @@ function checkReward(){
     
     // 계좌번호 입력박스 키이벤트 등록
     $("[name=accountNo]").keydown(function (event) {
-    	return limitNumber(event);
+    	limitNumber(event);
+    })
+    .keyup(function (event) {
+    	limitNumber(event);
     });
 }
 
