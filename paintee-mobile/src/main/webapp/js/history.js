@@ -1,6 +1,5 @@
 window.history.pushState("dummy", "", "");
 window.addEventListener("popstate", function(e) {
-	console.log("popstate:" + e);
 	if(e.state){
 		console.log("e.state.call :: " + e.state.call);
 		if (e.state.call == "detailPop") {
@@ -50,23 +49,9 @@ window.addEventListener("popstate", function(e) {
 		else if (e.state.call == "list") {
 			console.log("e.state.index : " + e.state.index);
 			console.log("e.state.mainIndex : " + e.state.mainIndex);
-			console.log("currentSwiper : " + currentSwiper);
-			console.log("mainSwiper : " + mainSwiper);
+			
 			hidePersonal();
 
-//			/*
-			if(historySwiper !== "") {
-				mainSwiper = historyMainSwiper;
-		    	currentSwiper = historySwiper;
-
-		    	mainSwiper.slideTo(e.state.mainIndex);
-		        currentSwiper.slideTo(e.state.index, 0);
-		        
-		        historyMainSwiper = "";
-		        historySwiper = "";
-		    }
-//			 */
-			/*
 			switch (e.state.mainIndex) {
 			case 0:
 				currentSwiper = followSwiper;
@@ -81,10 +66,13 @@ window.addEventListener("popstate", function(e) {
 				currentSwiper = mySwiper;
 				break;
 			}
-			if(currentSwiper !== ""){
+			
+			if (currentSwiper !== "") {
 				currentSwiper.slideTo(e.state.index, 0);
+		    	mainSwiper.unlockSwipes();
+		    	mainSwiper.slideTo(e.state.mainIndex);
+		        currentSwiper.slideTo(e.state.index, 0);
 			}
-			 */
 		}
 	}
 }, false);

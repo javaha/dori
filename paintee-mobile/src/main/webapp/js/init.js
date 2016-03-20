@@ -3,8 +3,6 @@ var mainWidth;
 var slideWidth;
 var userID = "";
 var currentSwiper="";
-var historySwiper="";
-var historyMainSwiper="";
 var color;
 var colorDark;
 var purchaseWidth;
@@ -126,10 +124,8 @@ function Structure(index, paintingId, artistName){
         this.bottom             =$("<div>").addClass("bottom_bar");
         this.listArtist         =$("<div>").addClass("list_artist_btn").click(function() {
         							console.log("currentSwiper : " + currentSwiper);
-        							historySwiper = currentSwiper;
-        							historyMainSwiper = mainSwiper;
 						        	// 히스토리 설정
-						        	replaceHistory({"call": "list", "mainIndex": mainSwiper.activeIndex, "index": currentSwiper.activeIndex});
+						        	replaceHistory({"call": "list", "mainIndex": mainSwiper.activeIndex, "index": currentSwiper.activeIndex ? currentSwiper.activeIndex : index});
 						        	addHistory({"call": "personal"});
         							showPersonal(artistName)
         						});
