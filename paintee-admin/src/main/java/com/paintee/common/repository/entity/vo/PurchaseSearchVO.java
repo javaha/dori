@@ -35,12 +35,25 @@ public class PurchaseSearchVO extends Purchase {
 	private static final long serialVersionUID = -3180373314948888877L;
 
 	private String changeAddr;
+	private Integer startRow;
+	private Integer rowPerPage;
 
 	public String getChangeAddr() {
 		return changeAddr;
 	}
-
 	public void setChangeAddr(String changeAddr) {
 		this.changeAddr = changeAddr;
+	}
+	public Integer getStartRow() {
+		return startRow;
+	}
+	public void setStartRow(Integer startRow) {
+		this.startRow = startRow;
+	}
+	public Integer getRowPerPage() {
+		return rowPerPage;
+	}
+	public void setRowPerPage(Integer rowPerPage) {
+		this.rowPerPage = rowPerPage;
 	}
 }

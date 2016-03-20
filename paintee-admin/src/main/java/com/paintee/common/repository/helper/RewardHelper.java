@@ -14,7 +14,11 @@
 */
 package com.paintee.common.repository.helper;
 
+import java.util.List;
+
 import com.paintee.common.repository.entity.User;
+import com.paintee.common.repository.entity.vo.RewardResultVO;
+import com.paintee.common.repository.entity.vo.RewardSearchVO;
 import com.paintee.common.repository.entity.vo.RewardVO;
 import com.paintee.common.repository.mapper.RewardMapper;
 
@@ -44,4 +48,25 @@ public interface RewardHelper extends RewardMapper {
 	 @return 
 	*/
 	public RewardVO selectRewardInfo(User user);
+
+	/**
+	 @fn selectRewardList
+	 @brief 함수 간략한 설명 : 관리자 메뉴의 리워드정보를 조회한다.
+	 @remark
+	 - 함수의 상세 설명 : 
+	 @param rewardSearchVO
+	 @return 
+	 */
+	public List<RewardResultVO> selectRewardList(RewardSearchVO rewardSearchVO);
+
+	/**
+	 @fn selectPurchaseListCount
+	 @brief 함수 간략한 설명 : 관리자 메뉴의 리워드정보 전체 카운트 
+	 @remark
+	 - 함수의 상세 설명 : 
+	 @param rewardSearchVO
+	 @return 
+	*/
+	public Integer selectRewardListCount(RewardSearchVO rewardSearchVO);
+	
 }

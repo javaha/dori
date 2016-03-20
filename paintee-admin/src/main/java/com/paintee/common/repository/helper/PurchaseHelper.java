@@ -18,6 +18,8 @@ import java.util.List;
 
 import com.paintee.common.repository.entity.Purchase;
 import com.paintee.common.repository.entity.vo.PostedSearchVO;
+import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
+import com.paintee.common.repository.entity.vo.PurchaseVO;
 import com.paintee.common.repository.mapper.PurchaseMapper;
 
 /**
@@ -45,4 +47,25 @@ public interface PurchaseHelper extends PurchaseMapper {
 	 @return 
 	*/
 	public List<Purchase> selectPostedList(PostedSearchVO postedSearchVO);
+	
+	/**
+	 @fn selectPurchaseList
+	 @brief 함수 간략한 설명 : 관리자 메뉴의 구매정보를 조회한다.
+	 @remark
+	 - 함수의 상세 설명 : 
+	 @param postedSearchVO
+	 @return 
+	*/
+	public List<PurchaseVO> selectPurchaseList(PurchaseSearchVO purchaseSearchVO);
+
+	/**
+	 @fn selectPurchaseListCount
+	 @brief 함수 간략한 설명 : 관리자 메뉴의 구매정보 전체 카운트 
+	 @remark
+	 - 함수의 상세 설명 : 
+	 @param postedSearchVO
+	 @return 
+	*/
+	public Integer selectPurchaseListCount(PurchaseSearchVO purchaseSearchVO);
+	
 }

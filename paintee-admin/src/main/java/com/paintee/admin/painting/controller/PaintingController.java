@@ -1,0 +1,76 @@
+/**
+@file PaintingController.java
+@section 파일생성정보
+|    항  목       |      내  용       |
+| :-------------: | -------------   |
+| File name | PaintingController.java |    
+| Package | com.paintee.admin.test.controller |    
+| Project name | paintee-admin |    
+| Type name | PaintingController |    
+| Company | Paintee | 
+| Create Date | 2016 2016. 2. 27. 오후 5:14:46 |
+| Author | Administrator |
+| File Version | v1.0 |
+*/
+package com.paintee.admin.painting.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.paintee.admin.painting.service.PaintingService;
+import com.paintee.admin.test.service.TestService;
+import com.paintee.common.paging.PageVO;
+import com.paintee.common.repository.entity.Painting;
+import com.paintee.common.repository.entity.vo.PaintingSearchVO;
+
+/**
+@class PaintingController
+com.paintee.admin.test.controller \n
+   ㄴ PaintingController.java
+ @section 클래스작성정보
+    |    항  목       |      내  용       |
+    | :-------------: | -------------   |
+    | Company | Paintee |
+    | Author | Administrator |
+    | Date | 2016. 2. 27. 오후 5:14:46 |
+    | Class Version | v1.0 |
+    | 작업자 | Administrator |
+ @section 상세설명
+ - jsp view 를 포함한 controller
+*/
+@Controller(value="com.paintee.admin.painting.PaintingController")
+@RequestMapping(value="/admin/painting")
+public class PaintingController {
+
+	@Autowired
+	private PaintingService paintingService;
+	
+	/**
+	 @fn test
+	 @brief 함수 간략한 설명 : test view 화면
+	 @remark
+	 - 함수의 상세 설명 : test view 화면
+	 @return 
+	*/
+	@RequestMapping(value="/list", method={RequestMethod.GET})
+	public void list(@RequestParam(name="pageNo", required=false, defaultValue="1") Integer pageNo, Model model) {
+		// 데이터 조건 설정
+		PaintingSearchVO search = new PaintingSearchVO();
+		search.setStartRow((pageNo - 1) * 5);
+		search.setRowPerPage(10);
+		Map<String, Object> result = paintingService.getPatingList(search);
+		
+		// 화면 페이징 처리
+		PageVO pageVO = new PageVO(
+				"/admin/painting/list", pageNo, 
+				(int)result.get("count"), (List<Object>)result.get("list"));
+		model.addAttribute(pageVO);
+	}
+}

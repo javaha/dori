@@ -1,12 +1,12 @@
 /**
-@file RewardVO.java
+@file RewardResultVO.java
 @section 파일생성정보
 |    항  목       |      내  용       |
 | :-------------: | -------------   |
-| File name | RewardVO.java |    
+| File name | RewardResultVO.java |    
 | Package | com.paintee.common.repository.entity.vo |    
 | Project name | paintee-admin |    
-| Type name | RewardVO |    
+| Type name | RewardResultVO |    
 | Company | Paintee | 
 | Create Date | 2016 2016. 2. 27. 오후 6:25:26 |
 | Author | Administrator |
@@ -14,13 +14,12 @@
 */
 package com.paintee.common.repository.entity.vo;
 
-import com.paintee.common.paging.PageVO;
 import com.paintee.common.repository.entity.Reward;
 
 /**
-@class RewardVO
+@class RewardResultVO
 com.paintee.common.repository.entity.vo \n
-   ㄴ RewardVO.java
+   ㄴ RewardResultVO.java
  @section 클래스작성정보
     |    항  목       |      내  용       |
     | :-------------: | -------------   |
@@ -33,6 +32,14 @@ com.paintee.common.repository.entity.vo \n
  - 상세설명 은 여기에 기입해 주세요.
  -# 여기는 리스트로 표시됩니다.
 */
-public class RewardSearchVO extends PagingVO {
-	
+public class RewardResultVO extends Reward {
+	private String userName;
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 }

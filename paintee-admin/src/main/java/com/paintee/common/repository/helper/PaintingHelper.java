@@ -14,7 +14,11 @@
 */
 package com.paintee.common.repository.helper;
 
+import java.util.List;
+
 import com.paintee.common.repository.entity.Painting;
+import com.paintee.common.repository.entity.vo.PaintingSearchVO;
+import com.paintee.common.repository.entity.vo.PaintingVO;
 import com.paintee.common.repository.mapper.PaintingMapper;
 
 /**
@@ -42,4 +46,24 @@ public interface PaintingHelper extends PaintingMapper {
 	 @param painting 
 	*/
 	public void updatePaintingPurchaseInfo(Painting painting);
+	
+	/**
+	 @fn selectPaintingUpdateList
+	 @brief 함수 간략한 설명 : 관리자 메뉴의 신규 업데이트 그림 목록
+	 @remark
+	 - 함수의 상세 설명 : 관리자 메뉴의 신규 업데이트 그림 목록을 조회한다.
+	 @param search
+	 @return 
+	*/
+	public List<PaintingVO> selectPaintingUpdateList(PaintingSearchVO search);
+	
+	/**
+	 @fn selectPaintingUpdateList
+	 @brief 함수 간략한 설명 : 관리자 메뉴의 신규 업데이트 그림 카운트
+	 @remark
+	 - 함수의 상세 설명 : 관리자 메뉴의 신규 업데이트 그림 카운트를 조회한다.
+	 @param search
+	 @return 
+	 */
+	public Integer selectPaintingUpdateListCount(PaintingSearchVO search);
 }
