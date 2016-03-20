@@ -16,8 +16,6 @@ function showPersonal(username, paintingId){
     mainSwiper.appendSlide(personal.buildStructure());
     personal.setSwiper();
     personal.swiper.on("onSlideChangeStart", function(swiper){
-//    	addPainting(swiper, swiper.activeIndex, "my")
-
     	// 화면에 로딩된 슬라이드 그림 개수
 		var slidesCnt = swiper.slides.length - 1;
 		// 만약, 현재 선택한 슬라이드가 로딩된 슬라이드의 수보다 하나 작을 경우 서버에 5개의 그림을 재요청

@@ -4,7 +4,7 @@ window.addEventListener("popstate", function(e) {
 	if(e.state){
 		console.log("e.state.call :: " + e.state.call);
 		if (e.state.call == "detailPop") {
-			closeDetail();
+			processDetailClose();
 		} 
 		// 구매 1단계에서 뒤로가기 버튼을 클릭했을 경우에만 동작
 		else if (e.state.call == "purchasePop") {
@@ -30,6 +30,62 @@ window.addEventListener("popstate", function(e) {
 		else if (e.state.call == "rewardStep1") {
 			reward();
 		}
+		// 로그인 폼 일경우
+		else if (e.state.call == "login") {
+			$(".login_container").hide();
+		}
+		// 회원가입폼 일경우
+		else if (e.state.call == "signup") {
+			$(".signup_container").show();
+		}
+		// 회원가입폼 숨김 일경우
+		else if (e.state.call == "signupHide") {
+			$(".signup_container").hide();
+		}
+		// 패스워드 재발송
+		else if (e.state.call == "loginHelpHide") {
+			$(".loginhelp_container").hide();
+		}
+		// 개인페이지에서 리스트로 이동
+		else if (e.state.call == "list") {
+			console.log("e.state.index : " + e.state.index);
+			console.log("e.state.mainIndex : " + e.state.mainIndex);
+			console.log("currentSwiper : " + currentSwiper);
+			console.log("mainSwiper : " + mainSwiper);
+			hidePersonal();
+
+//			/*
+			if(historySwiper !== "") {
+				mainSwiper = historyMainSwiper;
+		    	currentSwiper = historySwiper;
+
+		    	mainSwiper.slideTo(e.state.mainIndex);
+		        currentSwiper.slideTo(e.state.index, 0);
+		        
+		        historyMainSwiper = "";
+		        historySwiper = "";
+		    }
+//			 */
+			/*
+			switch (e.state.mainIndex) {
+			case 0:
+				currentSwiper = followSwiper;
+				break;
+			case 1:
+				currentSwiper = popularSwiper;
+				break;
+			case 2:
+				currentSwiper = newSwiper;
+				break;
+			case 3:
+				currentSwiper = mySwiper;
+				break;
+			}
+			if(currentSwiper !== ""){
+				currentSwiper.slideTo(e.state.index, 0);
+			}
+			 */
+		}
 	}
 }, false);
 
@@ -38,6 +94,7 @@ window.addEventListener("popstate", function(e) {
  * @param data
  */
 function addHistory(data) {
+	console.log("history add");
 	window.history.pushState(data, "", "");
 }
 

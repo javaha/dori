@@ -235,21 +235,24 @@ function setDetailLayout(){
 function closeDetail(){
     if(isDetail){
     	history.back();
-        if(get.page){
-//            goPainting(get.user, get.page);
-            // 최초 한번만 동작하게 한다.
-            get.page = null;
-        }        
-        $(".detail").animate({top: 200, opacity: 0}, 200, "linear", function(){
-            $(".detail").empty();
-            $(".detail").hide().css("top", 0);
-            delete detailStructure;
-            delete detailSwiper;
-        });
-        isDetail = false;   
+    	processDetailClose();
     }
 }
 
+function processDetailClose() {
+    if(get.page){
+//      goPainting(get.user, get.page);
+      // 최초 한번만 동작하게 한다.
+    	get.page = null;
+    }        
+    $(".detail").animate({top: 200, opacity: 0}, 200, "linear", function(){
+    	$(".detail").empty();
+    	$(".detail").hide().css("top", 0);
+    	delete detailStructure;
+    	delete detailSwiper;
+    });
+    isDetail = false; 
+}
 //디테일화면의 스크롤 잠금/열기
 function changeMode(swiper){            
  var translate = swiper.translate;

@@ -77,23 +77,35 @@ function logout() {
 
 //로그인 화면
 function showLogin(){
- $(".login_container").show();
+	
+	// 히스토리 설정
+	replaceHistory({"call": "login"});
+    addHistory({"call": "dummy"});
+    
+    $(".login_container").show();
 }
 
 $(".login_btn_main").click(function(){
  logIn();
 });
 $(".login_signup_btn").click(function(){
- $(".signup_container").show();
+	// 히스토리 설정
+	replaceHistory({"call": "signupHide"});
+	addHistory({"call": "signup"});
+    $(".signup_container").show();
 });
 $(".signup_login_btn").click(function(){
- $(".signup_container").hide();
+	history.back();
+	$(".signup_container").hide();
 });
 $(".login_help").click(function(){
- $(".loginhelp_container").show();
+	replaceHistory({"call": "loginHelpHide"});
+	addHistory({"call": "loginHelp"});	
+	$(".loginhelp_container").show();
 });
 $(".help_login_btn").click(function(){
- $(".loginhelp_container").hide();
+	history.back();
+	$(".loginhelp_container").hide();
 });
 
 //비밀번호 초기화

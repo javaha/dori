@@ -3,6 +3,8 @@ var mainWidth;
 var slideWidth;
 var userID = "";
 var currentSwiper="";
+var historySwiper="";
+var historyMainSwiper="";
 var color;
 var colorDark;
 var purchaseWidth;
@@ -122,7 +124,15 @@ function Structure(index, paintingId, artistName){
         this.listPainting       =$("<div>").addClass("list_painting").attr("index", this.index);
 
         this.bottom             =$("<div>").addClass("bottom_bar");
-        this.listArtist         =$("<div>").addClass("list_artist_btn").click(function(){showPersonal(artistName)});
+        this.listArtist         =$("<div>").addClass("list_artist_btn").click(function() {
+        							console.log("currentSwiper : " + currentSwiper);
+        							historySwiper = currentSwiper;
+        							historyMainSwiper = mainSwiper;
+						        	// 히스토리 설정
+						        	replaceHistory({"call": "list", "mainIndex": mainSwiper.activeIndex, "index": currentSwiper.activeIndex});
+						        	addHistory({"call": "personal"});
+        							showPersonal(artistName)
+        						});
         this.listPostBtn        =$("<div>").addClass("list_post_btn").html("post it").click(function(){purchase(paintingId)});
 
 }
