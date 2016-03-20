@@ -18,6 +18,8 @@ public class Reward extends BaseEntity {
 
     private Integer earmRequestedMoney;
 
+    private Integer earmRequestedCommission;
+
     private String rewardStatus;
 
     private Date createdDate;
@@ -76,6 +78,14 @@ public class Reward extends BaseEntity {
 
     public void setEarmRequestedMoney(Integer earmRequestedMoney) {
         this.earmRequestedMoney = earmRequestedMoney;
+    }
+
+    public Integer getEarmRequestedCommission() {
+        return earmRequestedCommission;
+    }
+
+    public void setEarmRequestedCommission(Integer earmRequestedCommission) {
+        this.earmRequestedCommission = earmRequestedCommission;
     }
 
     public String getRewardStatus() {

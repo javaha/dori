@@ -43,8 +43,8 @@ create  table TB_PURCHASE (
 	receiver_detail_addr varchar(200) comment '엽서 수신자 상세 주소',
 	receiver_zipcode varchar(200) comment '엽서 수신자 우편번호',
 	receiver_city varchar(200) comment '엽서 수신자 도시명',
-	sender_addr varchar(30) comment '엽서 발신자 주소',
 	receiver_name varchar(200) comment '엽서 수신자 이름',
+	sender_addr varchar(30) comment '엽서 발신자 주소',
 	sender_name varchar(30) comment '엽서 발신자 이름',
 	location varchar(40) comment '구매자의 국가',
 	purchase_status char(1) default 'C' comment '구매 진행 상태 (요청-C/발송-S/환불요청-R/삭제-D)',
@@ -59,6 +59,7 @@ create table TB_REWARD (
     account_no varchar(20) comment '입금 요청된 계좌번호',
     account_name varchar(30) comment '입금 요청된 계좌주 이름',
     earm_requested_money int comment '입금 요청된 금액',
+    earm_requested_commission int comment '입금 요청된 금액의 수수료',
     reward_status char(1) default 'R' comment '입금 진행 상태 (요청-R/비정상-A/완료-C)',
     created_date datetime default now() comment '생성일시'
 ) COMMENT = '리워드';

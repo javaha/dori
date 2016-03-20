@@ -575,6 +575,66 @@ public class RewardExample {
             return (Criteria) this;
         }
 
+        public Criteria andEarmRequestedCommissionIsNull() {
+            addCriterion("earm_requested_commission is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEarmRequestedCommissionIsNotNull() {
+            addCriterion("earm_requested_commission is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEarmRequestedCommissionEqualTo(Integer value) {
+            addCriterion("earm_requested_commission =", value, "earmRequestedCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andEarmRequestedCommissionNotEqualTo(Integer value) {
+            addCriterion("earm_requested_commission <>", value, "earmRequestedCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andEarmRequestedCommissionGreaterThan(Integer value) {
+            addCriterion("earm_requested_commission >", value, "earmRequestedCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andEarmRequestedCommissionGreaterThanOrEqualTo(Integer value) {
+            addCriterion("earm_requested_commission >=", value, "earmRequestedCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andEarmRequestedCommissionLessThan(Integer value) {
+            addCriterion("earm_requested_commission <", value, "earmRequestedCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andEarmRequestedCommissionLessThanOrEqualTo(Integer value) {
+            addCriterion("earm_requested_commission <=", value, "earmRequestedCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andEarmRequestedCommissionIn(List<Integer> values) {
+            addCriterion("earm_requested_commission in", values, "earmRequestedCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andEarmRequestedCommissionNotIn(List<Integer> values) {
+            addCriterion("earm_requested_commission not in", values, "earmRequestedCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andEarmRequestedCommissionBetween(Integer value1, Integer value2) {
+            addCriterion("earm_requested_commission between", value1, value2, "earmRequestedCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andEarmRequestedCommissionNotBetween(Integer value1, Integer value2) {
+            addCriterion("earm_requested_commission not between", value1, value2, "earmRequestedCommission");
+            return (Criteria) this;
+        }
+
         public Criteria andRewardStatusIsNull() {
             addCriterion("reward_status is null");
             return (Criteria) this;
