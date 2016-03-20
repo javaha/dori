@@ -46,6 +46,23 @@ function execDaumPostcode(searchModule, zipcodeFieldName, basicAddrFieldName) {
             // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
             openLayer.style.display = 'none';
         },
+        onclose: function (state) {
+//        	console.log($(".list_post"));
+//        	console.log("state : " + state);
+        	// 다음 주소 api 호출시 히스토리 삭제됨 ??
+            // 다음 주소 호출후 강제로 히스트로 쌓기
+            if($(".detail").css("display") == "block") {
+                replaceHistory({"call": "detailPop"});
+                addHistory({"call": "dummy"});
+            }
+            if(searchModule == 'purchase') {
+                // 구매정보 히스트리
+            	replaceHistory({"call": "purchasePop"});
+                addHistory({"call": "purchaseStep1"});
+            } else if(searchModule == 'profile') {
+            	
+            }
+        },
         width : '100%',
         height : '100%'
     }).embed(openLayer);
@@ -64,7 +81,14 @@ function execDaumPostcode(searchModule, zipcodeFieldName, basicAddrFieldName) {
 // 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
 // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
 function initLayerPositionForPurchase(){
+	console.log("mainWidth : " + mainWidth);
+	console.log("$(.purchase_box).width( ) : " + $(".purchase_box").width( ));
+	
     var width = 410; //우편번호서비스가 들어갈 element의 width
+    
+    if ($(".purchase_box").width() < 660) {
+    	width = 300;
+    }
     var height = $(".purchase_box").height( ) - 20; //우편번호서비스가 들어갈 element의 height
     var borderWidth = 5; //샘플에서 사용하는 border의 두께
 
