@@ -16,6 +16,7 @@ package com.paintee.admin.purchase.service;
 
 import java.util.Map;
 
+import com.paintee.common.repository.entity.Purchase;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 
 /**
@@ -45,4 +46,13 @@ public interface PurchaseService {
 	 @throws Exception 
 	*/
 	public Map<String, Object> getPurchaseList(PurchaseSearchVO search);
+
+	/**
+	 @fn modPurchaseStatus
+	 @brief 함수 간략한 설명 : 구매상태 변경
+	 @remark
+	 - 함수의 상세 설명 : 
+	 @param reward
+	 */
+	public void modPurchaseStatus(Purchase reward);
 }

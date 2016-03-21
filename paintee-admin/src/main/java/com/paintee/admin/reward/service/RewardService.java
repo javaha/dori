@@ -16,6 +16,7 @@ package com.paintee.admin.reward.service;
 
 import java.util.Map;
 
+import com.paintee.common.repository.entity.Reward;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 import com.paintee.common.repository.entity.vo.RewardSearchVO;
 
@@ -46,4 +47,6 @@ public interface RewardService {
 	 @throws Exception 
 	*/
 	public Map<String, Object> getRewardList(RewardSearchVO search);
+
+	public void modRewardStatus(Reward reward);
 }

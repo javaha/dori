@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.repository.entity.FileInfoExample;
+import com.paintee.common.repository.entity.Painting;
 import com.paintee.common.repository.entity.PaintingExample;
 import com.paintee.common.repository.entity.vo.NewPaintingVO;
 import com.paintee.common.repository.entity.vo.PaintingSearchVO;
@@ -84,5 +85,10 @@ public class PaintingServiceImpl implements PaintingService {
 		result.put("list", list);
 		result.put("count", count);
 		return result;
+	}
+
+	@Override
+	public void modPaintingStatus(Painting painting) {
+		paintingHelper.updateByPrimaryKeySelective(painting);
 	}
 }

@@ -198,9 +198,11 @@ RewardController.prototype = {
 			data.directInputBank = $("[name=directInputBank]").val();
 			// 은행 직접 입력 시 수수료 $7
 			data.earmRequestedMoney = controller.result.reward.remainMoney - 7;
+			data.earmRequestedCommission = 7;
 		} else {
-			// 은행 직접 입력 시 수수료 $5
+			// 은행 선택 시 수수료 $5
 			data.earmRequestedMoney = controller.result.reward.remainMoney - 5;
+			data.earmRequestedCommission = 5;
 		}
 		
 		AjaxCall.call(apiUrl + "/reward", 

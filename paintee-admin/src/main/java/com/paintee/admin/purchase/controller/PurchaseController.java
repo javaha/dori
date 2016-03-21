@@ -14,6 +14,7 @@
 */
 package com.paintee.admin.purchase.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,9 +24,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paintee.admin.purchase.service.PurchaseService;
 import com.paintee.common.paging.PageVO;
+import com.paintee.common.repository.entity.Purchase;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 
 /**
@@ -70,5 +73,22 @@ public class PurchaseController {
 				"/admin/purchase/list", pageNo, 
 				(int)result.get("count"), (List<Object>)result.get("list"));
 		model.addAttribute(pageVO);
+	}
+	
+	
+	/**
+	 @fn modPurchase
+	 @brief 함수 간략한 설명 : 구매 상태 변경
+	 @remark
+	 - 함수의 상세 설명 : 
+	 @return 
+	 */
+	@RequestMapping(value="/mod", method={RequestMethod.GET})
+	@ResponseBody
+	public Map<String, String> modPurchase(Purchase purchase) {
+		purchaseService.modPurchaseStatus(purchase);
+		Map<String, String> result = new HashMap<>();
+		result.put("msg", "상태가 변경되었습니다.");
+		return result;
 	}
 }

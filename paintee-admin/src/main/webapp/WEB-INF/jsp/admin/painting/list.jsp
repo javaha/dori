@@ -10,7 +10,7 @@
 			<th class="tcenter" width="80px">Posted</th>
 			<th class="tcenter" width="80px">Share</th>
 			<th class="tcenter" width="130px">Posted People</th>
-			<th class="tcenter" width="200px">Created Date</th>
+			<th class="tcenter" width="190px">Created Date</th>
 			<th class="tcenter" width="180px">status</th>
 		</tr>
 	</thead>
@@ -27,13 +27,13 @@
 				<fmt:formatDate value="${data.createdDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 			</td>
 			<td class="tcenter">
-				<select id="paintingStatus${loop}" name="paintingStatus">
-					<option vlaue="N">정상</option>
-					<option vlaue="B">블라인드</option>
-					<option vlaue="D">삭제</option>
+				<select id="paintingStatus${data.seq}" name="paintingStatus">
+					<option value="N">정상</option>
+					<option value="B">블라인드</option>
+					<option value="D">삭제</option>
 				</select>
 				<script>
-					$("#paintingStatus${loop}").val("${data.paintingStatus}");
+					$("#paintingStatus${data.seq}").val("${data.paintingStatus}");
 				</script>
 			</td>
 		</tr>
@@ -49,5 +49,32 @@
 
 <%-- 페이징 처리 --%>
 <navi:page />
+
+<script>
+	$("[name=paintingStatus]").change(function (event) {
+		var seq = this.id.replace("paintingStatus", "");
+		var paintingStatus = this.value;
+		
+		var data = {
+			"seq": seq,
+			"paintingStatus": paintingStatus
+		};
+		$.ajax({
+				url: "/admin/painting/mod",
+				type: "GET",
+				async: true,
+				cache: false,
+				data: data
+		})
+		.done(function (result) {
+			if (result) {
+				alert(result.msg);			
+			}
+		})
+		.fail(function () {
+			alert("상태 변경중 오류가 발생했습니다.");
+		});
+	});	
+</script>
 
 <c:import url="/WEB-INF/jsp/template/footer.jsp" />

@@ -25,7 +25,7 @@
 	<c:forEach var="i" begin="${pageVO.beginPage}" end="${pageVO.endPage}">
 		<c:choose>
 			<c:when test="${i == pageVO.pageNo}">
-				<li class="active"><a href="#1">${i}  <span class="sr-only">(current)</span></a></li>
+				<li class="active"><a href="#1" style="background: #1995dc; color: white">${i}  <span class="sr-only">(current)</span></a></li>
 			</c:when>
 			<c:otherwise>
 				<li><a href="${pageVO.url}?pageNo=${i}">${i}</a></li>

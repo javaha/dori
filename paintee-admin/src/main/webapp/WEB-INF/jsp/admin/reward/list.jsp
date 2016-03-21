@@ -9,18 +9,18 @@
 			<th class="tcenter" width="130px">은행</th>
 			<th class="tcenter">계좌번호</th>
 			<th class="tcenter" width="130px">계좌주명</th>
-			<th class="tcenter" width="130px">요청수수료</th>
-			<th class="tcenter" width="130px">요청금액</th>
-			<th class="tcenter" width="130px">요청일시</th>
-			<th class="tcenter" width="130px">상태</th>
+			<th class="tcenter" width="110px">요청수수료</th>
+			<th class="tcenter" width="110px">요청금액</th>
+			<th class="tcenter" width="190px">요청일시</th>
+			<th class="tcenter" width="180px">상태</th>
 		</tr>
 	</thead>
 	<tbody>
 	<%--  최신 등록된 글부터 출력합니다. --%>
-	<c:forEach var="data" items="${pageVO.list}" varStatus="loop">
+	<c:forEach var="data" items="${pageVO.list}">
 		<tr>
 			<td class="tcenter">${data.userName}</td>
- 			<td class="tcenter">${data.bank}</td> 
+ 			<td class="tcenter">${data.bankName}</td> 
 			<td class="tcenter">${data.accountNo}</td>
 			<td class="tcenter">${data.accountName}</td>
 			<td class="tcenter">$${data.earmRequestedCommission}</td>
@@ -29,13 +29,13 @@
 				<fmt:formatDate value="${data.createdDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 			</td>
 			<td class="tcenter">
-				<select id="rewardStatus${loop}" name="rewardStatus">
-					<option vlaue="R">요청</option>
-					<option vlaue="A">비정상</option>
-					<option vlaue="C">완료</option>
+				<select id="rewardStatus${data.seq}" name="rewardStatus">
+					<option value="R">요청</option>
+					<option value="A">비정상</option>
+					<option value="C">완료</option>
 				</select>
 				<script>
-					$("#rewardStatus${loop}").val("${data.rewardStatus}");
+					$("#rewardStatus${data.seq}").val("${data.rewardStatus}");
 				</script>
 			</td>
 		</tr>
@@ -52,4 +52,30 @@
 <%-- 페이징 처리 --%>
 <navi:page />
 
+<script>
+	$("[name=rewardStatus]").change(function (event) {
+		var rewardId = this.id.replace("rewardStatus", "");
+		var rewardStatus = this.value;
+		
+		var data = {
+			"seq": rewardId,
+			"rewardStatus": rewardStatus
+		};
+		$.ajax({
+				url: "/admin/reward/mod",
+				type: "GET",
+				async: true,
+				cache: false,
+				data: data
+		})
+		.done(function (result) {
+			if (result) {
+				alert(result.msg);			
+			}
+		})
+		.fail(function () {
+			alert("상태 변경중 오류가 발생했습니다.");
+		});
+	});	
+</script>
 <c:import url="/WEB-INF/jsp/template/footer.jsp" />

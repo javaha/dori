@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.paintee.common.repository.entity.Reward;
 import com.paintee.common.repository.entity.vo.RewardResultVO;
 import com.paintee.common.repository.entity.vo.RewardSearchVO;
 import com.paintee.common.repository.helper.RewardHelper;
@@ -62,5 +63,10 @@ public class RewardServiceImpl implements RewardService {
 		result.put("list", list);
 		result.put("count", count);
 		return result;
+	}
+
+	@Override
+	public void modRewardStatus(Reward reward) {
+		rewardHelper.updateByPrimaryKeySelective(reward);
 	}
 }

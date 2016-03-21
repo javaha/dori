@@ -34,12 +34,18 @@ com.paintee.common.repository.entity.vo \n
 */
 public class RewardResultVO extends Reward {
 	private String userName;
+	private String bankName;
 
 	public String getUserName() {
 		return userName;
 	}
-
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getBankName() {
+		return bankName;
+	}
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
 	}
 }

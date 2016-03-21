@@ -23,12 +23,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.paintee.common.repository.entity.FileInfo;
-import com.paintee.common.repository.entity.FileInfoExample;
-import com.paintee.common.repository.entity.vo.PaintingVO;
+import com.paintee.common.repository.entity.Purchase;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 import com.paintee.common.repository.entity.vo.PurchaseVO;
-import com.paintee.common.repository.helper.FileInfoHelper;
 import com.paintee.common.repository.helper.PurchaseHelper;
 
 /**
@@ -66,5 +63,11 @@ public class PurchaseServiceImpl implements PurchaseService {
 		result.put("list", list);
 		result.put("count", count);
 		return result;
+	}
+	
+
+	@Override
+	public void modPurchaseStatus(Purchase reward) {
+		purchaseHelper.updateByPrimaryKeySelective(reward);
 	}
 }

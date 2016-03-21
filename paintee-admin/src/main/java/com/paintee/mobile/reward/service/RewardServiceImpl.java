@@ -89,12 +89,15 @@ public class RewardServiceImpl implements RewardService {
 		User user = new User();
 		// 요청한 리워드 금액 + 수수료
 		
+		/*
 		float commission = 5.0f;
 		if ("99".equals(reward.getBank())) {
 			commission = 7.0f;
 		}
 		user.setUserId(reward.getUserId());
 		user.setEarnRewordMoney(reward.getEarmRequestedMoney() + commission);
+		 */
+		user.setEarnRewordMoney(reward.getEarmRequestedMoney() + (float)reward.getEarmRequestedCommission());
 		
 		// 사용자 테이블 업데이트
 		userHelper.updateUserEarnRewordMoney(user);
