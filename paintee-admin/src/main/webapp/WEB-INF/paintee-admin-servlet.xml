@@ -142,6 +142,8 @@
 		</property>
 	</bean>
 
+	<mvc:view-controller path="/admin/login/loginForm" view-name="/admin/login/login" />
+
 	<!-- transaction setting -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
