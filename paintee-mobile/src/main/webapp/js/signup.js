@@ -76,3 +76,11 @@ SignupController.prototype = {
 }
 
 $('#signup_btn').on("click", function() { new SignupController().doSignup(); });
+
+$('#login_social_btn').on('click', function() {
+	//$('#fb_signin').action = apiUrl+"/auth/facebook";
+	//$('#fb_signin').submit();
+	FB.login(function(response) {
+		cosole.log();
+	}, {scope: 'email,user_likes'});
+});
