@@ -129,7 +129,7 @@ function Structure(index, paintingId, artistName){
 						        	addHistory({"call": "personal"});
         							showPersonal(artistName)
         						});
-        this.listPostBtn        =$("<div>").addClass("list_post_btn").html("post it").click(function(){purchase(paintingId)});
+        this.listPostBtn        =$("<div>").addClass("list_post_btn").html("post it").click(function(){purchase(paintingId, artistName)});
 
 }
 Structure.prototype = {

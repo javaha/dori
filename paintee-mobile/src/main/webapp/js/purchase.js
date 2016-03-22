@@ -1,6 +1,6 @@
 var purchaseController;
 // 구매화면으로 이동
-function purchase(paintingId) {
+function purchase(paintingId, artistName) {
 	
 	if (userID == "") {
 		showLogin();
@@ -9,7 +9,7 @@ function purchase(paintingId) {
 	this.paintingId = paintingId;
 	
 	// 구매 팝업 정보 조회
-	purchaseController = new PurchaseController(paintingId);
+	purchaseController = new PurchaseController(paintingId, artistName);
 	purchaseController.purchasePopInfo();
 }
 
@@ -307,8 +307,9 @@ function initPayment(){
     delete payment;
 }
 
-function PurchaseController(paintingId) {
+function PurchaseController(paintingId, artistName) {
 	this.paintingId = paintingId;
+	this.artistName = artistName;
 	this.basicAddr;
 	this.detailAddr;
 	this.changeAddr = 'N';
@@ -402,13 +403,13 @@ function completePayment(){
         mySwiper.slideTo(1);
     })
     $("#fac_share").click(function() {
-    	shareSocial({type: "facebook", name: userInfo.name, page: purchaseController.paintingId});
+    	shareSocial({type: "facebook", name: purchaseController.artistName, page: purchaseController.paintingId});
     });
     $("#twi_share").click(function() {
-    	shareSocial({type: "twitter", name: userInfo.name, page: purchaseController.paintingId});
+    	shareSocial({type: "twitter", name: purchaseController.artistName, page: purchaseController.paintingId});
     });
     $("#pin_share").click(function() {
-    	shareSocial({type: "pinterest", name: userInfo.name, page: purchaseController.paintingId});
+    	shareSocial({type: "pinterest", name: purchaseController.artistName, page: purchaseController.paintingId});
     });
     
     delete payment;
