@@ -29,10 +29,10 @@ function DetailStructure(paintingId, fileId, artistName, artistId, artistSentenc
     this.detailArtistSentence=$("<div>").addClass("detail_artist_sentence");
     this.detailArtistDate   =$("<div>").addClass("detail_artist_date");
     this.detailArtistBottom =$("<div>").addClass("detail_artist_bottom").html("Share to ");
-    this.sociconFacebook    =$("<span>").addClass("social_btn").addClass("socicon-facebook");
-    this.sociconTwitter     =$("<span>").addClass("social_btn").addClass("socicon-twitter");
-    this.sociconInstagram   =$("<span>").addClass("social_btn").addClass("socicon-instagram");
-    this.sociconPinterest   =$("<span>").addClass("social_btn").addClass("socicon-pinterest");
+    this.sociconFacebook    =$("<span id='detail_fac_share'>").addClass("social_btn").addClass("socicon-facebook");
+    this.sociconTwitter     =$("<span id='detail_twi_share'>").addClass("social_btn").addClass("socicon-twitter");
+    this.sociconInstagram   =$("<span id='detail_ins_share'>").addClass("social_btn").addClass("socicon-instagram");
+    this.sociconPinterest   =$("<span id='detail_pin_share'>").addClass("social_btn").addClass("socicon-pinterest");
 
     this.detailPostbar      =$("<div>").addClass("detail_postbar").addClass("swiper-slide");
     this.detailPostbarPostnum=$("<div>").addClass("detail_postbar_postnum");
@@ -114,6 +114,18 @@ DetailStructure.prototype = {
         this.sociconTwitter     =$("<span>").addClass("social_btn").addClass("socicon-twitter");
         this.sociconInstagram   =$("<span>").addClass("social_btn").addClass("socicon-instagram");
         this.sociconPinterest   =$("<span>").addClass("social_btn").addClass("socicon-pinterest");
+        
+        var paintingId = this.paintingId;
+        // 소셜 공유
+        $("#detail_fac_share").click(function() {
+        	shareSocial({type: "facebook", name: userInfo.name, page: paintingId});
+        });
+        $("#detail_twi_share").click(function() {
+        	shareSocial({type: "twitter", name: userInfo.name, page: paintingId});
+        });
+        $("#detail_pin_share").click(function() {
+        	shareSocial({type: "pinterest", name: userInfo.name, page: paintingId});
+        });
     }
 }
 

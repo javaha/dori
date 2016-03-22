@@ -6,6 +6,7 @@ function purchase(paintingId) {
 		showLogin();
 		return ;
 	} 
+	this.paintingId = paintingId;
 	
 	// 구매 팝업 정보 조회
 	purchaseController = new PurchaseController(paintingId);
@@ -270,10 +271,10 @@ function Payment(){
     this.title      = $("<div>").addClass("payment_title").addClass("popup_title");
     this.contents   = $("<div>").addClass("payment_contents").addClass("popup_contents");
     this.bottom     = $("<div>").addClass("payment_bottom").addClass("popup_bottom");
-    this.sociconFacebook    =$("<span>").addClass("social_btn").addClass("socicon-facebook");
-    this.sociconTwitter     =$("<span>").addClass("social_btn").addClass("socicon-twitter");
-    this.sociconInstagram   =$("<span>").addClass("social_btn").addClass("socicon-instagram");
-    this.sociconPinterest   =$("<span>").addClass("social_btn").addClass("socicon-pinterest");
+    this.sociconFacebook    =$("<span id='fac_share'>").addClass("social_btn").addClass("socicon-facebook");
+    this.sociconTwitter     =$("<span id='twi_share'>").addClass("social_btn").addClass("socicon-twitter");
+    this.sociconInstagram   =$("<span id='ins_share'>").addClass("social_btn").addClass("socicon-instagram");
+    this.sociconPinterest   =$("<span id='pin_share'>").addClass("social_btn").addClass("socicon-pinterest");
 }
 
 Payment.prototype = {
@@ -400,5 +401,15 @@ function completePayment(){
         selectMenu(3);
         mySwiper.slideTo(1);
     })
+    $("#fac_share").click(function() {
+    	shareSocial({type: "facebook", name: userInfo.name, page: purchaseController.paintingId});
+    });
+    $("#twi_share").click(function() {
+    	shareSocial({type: "twitter", name: userInfo.name, page: purchaseController.paintingId});
+    });
+    $("#pin_share").click(function() {
+    	shareSocial({type: "pinterest", name: userInfo.name, page: purchaseController.paintingId});
+    });
+    
     delete payment;
 }	

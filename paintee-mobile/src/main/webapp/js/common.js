@@ -83,3 +83,25 @@ function getCharCount(value) {
 	}
 	return totalByte;
 }
+
+function shareSocial(data) {
+	var url = "";
+	var hostAndFileName = "www.paintee.com:9080/index.html?";
+	var param = "user=" + data.name + "&page=" + data.page;
+		param = encodeURIComponent(param);
+	switch (data.type) {
+	case "facebook":
+		url = "https://www.facebook.com/sharer/sharer.php?u=http://" + hostAndFileName + param;
+		break;
+	case "twitter":
+		url = "http://twitter.com/home?status=paintee http://" + hostAndFileName + param;
+		break;
+	case "pinterest":
+		url = "https://pinterest.com/pin/create/button?url=http%3A//" + hostAndFileName + param;
+		break;
+	}
+	
+	var pop =  window.open(url, "social", "width=630,height=250,scrollbars=yes,resizable=yes,toolbar=no");
+	if (pop) pop.focus();  
+
+}
