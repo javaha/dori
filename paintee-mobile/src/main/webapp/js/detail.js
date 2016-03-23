@@ -1,14 +1,26 @@
 // 상세화면의 구조
-function DetailStructure(paintingId, fileId, artistName, artistId, artistSentence, uploadDate, postedNum){
+//function DetailStructure(paintingId, fileId, artistName, artistId, artistSentence, uploadDate, postedNum){
+function DetailStructure(paintingId, paintingInfo){
     this.paintingId     = paintingId;
 
-    this.fileId          = fileId;
+    /*
+    this.fileId         = fileId;
     this.artistName     = artistName;
     this.artistId       = artistId;
     this.artistSentence = artistSentence;
     this.uploadDate     = uploadDate;
     this.postedNum      = postedNum;
-
+    */
+    this.fileId         = paintingInfo.fileId;
+    this.artistName     = paintingInfo.artistName;
+    this.artistId       = paintingInfo.artistId;
+    this.artistSentence = paintingInfo.artistSentence;
+    this.uploadDate     = paintingInfo.uploadDate;
+    this.postedNum      = paintingInfo.postedNum;
+    // 히스토리 사용 부분 추가
+    this.colorDark      = paintingInfo.colorDark;
+    this.color          = paintingInfo.color;
+    
     this.detail             =$(".detail");
 
     this.detailBgContainer  =$("<div>").addClass("detail_bg_container");
@@ -48,7 +60,18 @@ DetailStructure.prototype = {
         this.detailBgImg.attr("src", imageUrl+"/cmm/file/view/"+fileId);
     },
     setArtist   : function(artistName){
+    	var paintingId = this.paintingId;
+    	var color      = this.color;
+    	var colorDark  = this.colorDark;
+    	
         this.detailArtistBtn.html(artistName);
+        this.detailArtistBtn.click(function () {
+        	processDetailClose();
+        	// 히스토리 설정
+        	replaceHistory({"call": "detailOpen", "paintingId": paintingId, "colorDark": colorDark, "color": color, "mainIndex": mainSwiper.activeIndex, "index": currentSwiper.activeIndex});
+        	addHistory({"call": "personal"});
+        	showPersonal(artistName);
+        });
     },
     setFollow   : function(artistId){
         this.detailArtistFollow.append('<i class="material-icons" style="font-size:12px">star</i> follow artist');
@@ -151,12 +174,16 @@ DetailController.prototype = {
 	//디테일화면에서 보여질 데이터 조회
 	getDetailData: function (paintingId, color, colorDark) {
 		var controller = this;
-
 		AjaxCall.call(apiUrl+"/painting/"+paintingId, null, "GET", function (result, status) { controller.getDetailDataRes(result, status, paintingId, color, colorDark); });
 	},
 	getDetailDataRes: function (result, status, paintingId, color, colorDark) {
-
+		console.log("getDetailDataRes", color, colorDark);
 		//loadDetail 에서 하던내용
+		
+		// 히스트리에서 사용하기 위해서 객체 변수 추가
+		result.color = color;
+		result.colorDark = colorDark;
+		
 		initDetail(paintingId, result);
 		setDetailLayout();
 
@@ -189,7 +216,7 @@ DetailController.prototype = {
 //디테일화면 표시
 function loadDetail(paintingId, color, colorDark) {
 	selectedPaintingId = paintingId;
-	new DetailController().getDetailData(paintingId, color, colorDark);
+	detailController = new DetailController().getDetailData(paintingId, color, colorDark);
 }
 
 //디테일화면 초기화
@@ -203,7 +230,8 @@ function initDetail(paintingId, paintingInfo){
  selectedArtistName = paintingInfo.artistName;
 
  //this.detailStructure = new DetailStructure(index);
- this.detailStructure = new DetailStructure(paintingId, paintingInfo.fileId, paintingInfo.artistName, paintingInfo.artistId, paintingInfo.sentence, paintingInfo.uploadDate, paintingInfo.postedNum);
+// this.detailStructure = new DetailStructure(paintingId, paintingInfo.fileId, paintingInfo.artistName, paintingInfo.artistId, paintingInfo.sentence, paintingInfo.uploadDate, paintingInfo.postedNum);
+ this.detailStructure = new DetailStructure(paintingId, paintingInfo);
  this.detailStructure.buildDetail();
 
  this.detailSwiper = new Swiper('.swiper_container_detail', {

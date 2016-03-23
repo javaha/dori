@@ -27,6 +27,7 @@ import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.repository.entity.FileInfoExample;
 import com.paintee.common.repository.entity.Painting;
 import com.paintee.common.repository.entity.PaintingExample;
+import com.paintee.common.repository.entity.vo.PaintingVO;
 import com.paintee.common.repository.helper.FileInfoHelper;
 import com.paintee.common.repository.helper.PaintingHelper;
 
@@ -56,11 +57,13 @@ public class PaintingServiceImpl implements PaintingService {
 	private FileInfoHelper fileInfoHelper;
 
 	public Map<String, Object> getPaintingInfo(String paintingId) throws Exception {
+		/*
 		PaintingExample example = new PaintingExample();
 		PaintingExample.Criteria pWhere = example.createCriteria();
 		pWhere.andPaintingIdEqualTo(paintingId);
 		Painting painting = paintingHelper.selectByExample(example).get(0);
-
+		*/
+		PaintingVO painting = paintingHelper.selectPaintingInfo(paintingId);
 		logger.debug("painting2:{}", painting);
 
 		Map<String, Object> resultMap = BeanUtils.describe(painting);

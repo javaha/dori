@@ -6,6 +6,13 @@
 	    <result column="artist_name" property="artistName" />
 	</resultMap>
 	
+  	<select id="selectPaintingInfo" resultMap="BaseResultMap">
+		select <include refid="com.paintee.common.repository.mapper.PaintingMapper.Base_Column_List" />,
+			   (select name from tb_user where user_id = a.artist_id) artist_name
+		  from tb_painting a
+		 where painting_id = #{paintingId}
+  	</select>
+	
   	<select id="selectPaintingUpdateList" resultMap="BaseResultMap">
 		select a.*, 
 		       (select name from tb_user where user_id = a.artist_id) artist_name

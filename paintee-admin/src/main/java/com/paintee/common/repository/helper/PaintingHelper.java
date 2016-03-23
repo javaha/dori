@@ -48,13 +48,23 @@ public interface PaintingHelper extends PaintingMapper {
 	public void updatePaintingPurchaseInfo(Painting painting);
 	
 	/**
+	 @fn selectPaintingInfo
+	 @brief 함수 간략한 설명 : 그림 아이디에 해당하는 그림 정보를 조회
+	 @remark
+	 - 함수의 상세 설명 : 그림 아이디에 해당하는 그림 정보를 조회
+	 @param search
+	 @return 
+	*/
+	public PaintingVO selectPaintingInfo(String paintingId);
+	
+	/**
 	 @fn selectPaintingUpdateList
 	 @brief 함수 간략한 설명 : 관리자 메뉴의 신규 업데이트 그림 목록
 	 @remark
 	 - 함수의 상세 설명 : 관리자 메뉴의 신규 업데이트 그림 목록을 조회한다.
 	 @param search
 	 @return 
-	*/
+	 */
 	public List<PaintingVO> selectPaintingUpdateList(PaintingSearchVO search);
 	
 	/**

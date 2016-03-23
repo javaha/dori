@@ -74,6 +74,34 @@ window.addEventListener("popstate", function(e) {
 		        currentSwiper.slideTo(e.state.index, 0);
 			}
 		}
+		// 상세 팝업이 발생한 상태에서 개인작가 페이지로 이동한 경우
+		else if (e.state.call == "detailOpen") {
+			hidePersonal();
+			switch (e.state.mainIndex) {
+			case 0:
+				currentSwiper = followSwiper;
+				break;
+			case 1:
+				currentSwiper = popularSwiper;
+				break;
+			case 2:
+				currentSwiper = newSwiper;
+				break;
+			case 3:
+				currentSwiper = mySwiper;
+				break;
+			}
+			
+			if (currentSwiper !== "") {
+				currentSwiper.slideTo(e.state.index, 0);
+		    	mainSwiper.unlockSwipes();
+		    	mainSwiper.slideTo(e.state.mainIndex);
+		        currentSwiper.slideTo(e.state.index, 0);
+			}
+			
+			// 상세 팝업 호출
+			loadDetail(e.state.paintingId, e.state.color, e.state.colorDark);
+		}
 	}
 }, false);
 
