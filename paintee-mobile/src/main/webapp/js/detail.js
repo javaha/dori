@@ -139,15 +139,16 @@ DetailStructure.prototype = {
         this.sociconPinterest   =$("<span>").addClass("social_btn").addClass("socicon-pinterest");
         
         var paintingId = this.paintingId;
+        var artistName = this.artistName;
         // 소셜 공유
         $("#detail_fac_share").click(function() {
-        	shareSocial({type: "facebook", name: userInfo.name, page: paintingId});
+        	shareSocial({type: "facebook", name: artistName, page: paintingId});
         });
         $("#detail_twi_share").click(function() {
-        	shareSocial({type: "twitter", name: userInfo.name, page: paintingId});
+        	shareSocial({type: "twitter", name: artistName, page: paintingId});
         });
         $("#detail_pin_share").click(function() {
-        	shareSocial({type: "pinterest", name: userInfo.name, page: paintingId});
+        	shareSocial({type: "pinterest", name: artistName, page: paintingId});
         });
     }
 }
