@@ -169,11 +169,13 @@ function initFollow() {
 	if (userID == "") {
 		var welcome = new Home();
 		welcome.setTitle("Welcome!");
-		welcome.setExplain("환영합니다.<br>그림을 엽서로 보내거나 받아보세요.");
+		welcome.setExplain("<span data-i18n='[html]follow.notloginexplain'></span>");
 		welcome.hidePrev();
 		followSwiper.appendSlide(welcome.buildStructure());
 		$("#menu_follow").addClass("side_menu_major_inactive");
 		delete welcome;
+		// 다국어 변경 적용
+		exeTranslation('.main_container', lang);
 	} else {
 		// 로그인 상태일 경우 홈카운트 가져오기
 		new FollowController().getHomeCount();
@@ -197,7 +199,7 @@ function setFollowHome(result) {
 				   });
 	
 	followHome.setTitle("Follow");
-	followHome.setExplain("가까운 사람들의 그림입니다.");
+	followHome.setExplain("<span data-i18n='follow.loginexplain'><span>");
 	followHome.setContents(content1);
 	followHome.setContents(content2);
 	followHome.hidePrev();
@@ -206,6 +208,9 @@ function setFollowHome(result) {
 	delete content1;
 	delete content2;
 	$("#menu_follow").removeClass("side_menu_major_inactive");
+	
+	// 다국어 변경 적용
+	exeTranslation('.main_container', lang);
 	
 	// 테이블에서 가져올 데이터의 시작 위치를 처음 로딩시 0번째 부터 조회
 	new FollowController().getListData(0);

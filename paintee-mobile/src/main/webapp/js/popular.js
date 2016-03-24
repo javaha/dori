@@ -88,12 +88,15 @@ function initPopular(){
     var popularHome = new Home();
 
     popularHome.setTitle("Popular");
-    popularHome.setExplain("가장 인기있는 그림입니다.");
+    popularHome.setExplain("<span data-i18n='popular.explain'><span>");
     popularHome.setContents(totalPainting());
     popularSwiper.appendSlide(popularHome.buildStructure());
 
     delete popularHome;
   
+	// 다국어 변경 적용
+	exeTranslation('.main_container', lang);
+	
     //테이블에서 가져올 데이터의 시작 위치를 처음 로딩시 0번째 부터 조회
 	new PopularController().getListData(0);
 }
@@ -103,6 +106,6 @@ function totalPainting(){
 	// console.log("totalPainting");
 
     var contents = $("<div>");
-    contents.html("<span id='popular_count'>0</span>명이 paintee에서 좋아하는 그림을 찾았습니다.")
+    contents.html("<span id='popular_count'>0</span><span data-i18n='popular.content'></span>")
     return contents;
 }

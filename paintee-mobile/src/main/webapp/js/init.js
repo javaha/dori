@@ -19,6 +19,11 @@ if(userInfo) {
 } else {
 	userID = '';
 }
+
+// 나중에 로그인 사용자의 언어를 설정해야 한다.
+var lang = userInfo.location ? userInfo.location : "en";
+console.log('userInfo.location:'+userInfo.location);
+console.log('lang:'+lang);
 console.log('userID:'+userID);
 
 // 최초 화면 로딩시 해야할 일
@@ -49,11 +54,11 @@ function setSideMenu() {
 
 
 //var imageUrl="http://192.168.0.14:8090";
-var imageUrl="http://localhost:8090";
-//var imageUrl="http://192.168.43.89:8090";
+//var imageUrl="http://10.100.69.12:8090";
 //var imageUrl="http://192.168.1.31:8090";
 //var imageUrl="http://192.168.43.63:8090";
 //var imageUrl="http://192.168.0.9:8090";
+var imageUrl="http://localhost:8090";
 var apiUrl=imageUrl+"/api";
 
 setWidth();
@@ -457,3 +462,11 @@ function dataReload(loadPages) {
 		eval(loadPages[index]);
 	}
 }
+
+/**
+ *  사이드 메뉴 언어 선택시 테이블 언어 변경 및 화면 언어 적용
+ */
+$(".side_menu_lang_select").change(function(event) {
+	lang = $(this).val();
+	exeTranslation(".main_container", lang);
+});

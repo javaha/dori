@@ -298,13 +298,18 @@ function initPayment(){
     $(".payment_box").empty();
     var payment = new Payment();
     payment.setTitle("Payment");
-    payment.setContents("<span class='reward_money'>$2</span><br>추가적인 배송료나 포장비가 없습니다.<br>어디든 $2면 충분합니다.<br><br><br>구매한 $2의 일부는 작가에게 후원금으로 지급됩니다. <br>아름다운 그림을 나눠준 작가에게 큰 힘이 되어주세요.<br><br>아래 구매버튼을 눌러 결재를 계속하세요.");
+    var contents = "<span class='reward_money'>$2</span><br>" 
+    	         + "<span data-i18n='[html]purchasePop1.contents'>추가적인 배송료나 포장비가 없습니다.<br>어디든 $2면 충분합니다.<br><br><br>구매한 $2의 일부는 작가에게 후원금으로 지급됩니다. <br>아름다운 그림을 나눠준 작가에게 큰 힘이 되어주세요.<br><br>아래 구매버튼을 눌러 결재를 계속하세요.</span>";
+    payment.setContents(contents);
     payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><i class='material-icons'>edit</i><div class='purchase_btn_text'>edit address</div></div><div class='popup_btn payment_btn'><div class='purchase_btn_text'>Payment </div><i class='material-icons'>payment</i></div>");
     payment.buildPayment();
     $(".payment_btn").click(function(){
         purchaseController.addPurchase();
     })
     delete payment;
+    
+    // 다국어 처리
+    exeTranslation('.base_position', lang);
 }
 
 function PurchaseController(paintingId, artistName) {
@@ -390,7 +395,7 @@ function completePayment(){
     $(".payment_box").empty();
     var payment = new Payment();
     payment.setTitle("Thanks!");
-    payment.setContents("곧 엽서가 발송됩니다.<br>하지만, 기다리세요, 조금 더 시간이 걸립니다.<br>구매한 엽서는 우편을 통해 배송됩니다. 우편은 충분히 빠르지 않습니다.<br>기다린 만큼 더 큰 기쁨이 될 수 있습니다.<br><br><br><b>Post한 그림을 친구들과 함께 하세요.</b><br><br>");
+    payment.setContents("<span data-i18n='[html]purchasePop2.contents'>곧 엽서가 발송됩니다.<br>하지만, 기다리세요, 조금 더 시간이 걸립니다.<br>구매한 엽서는 우편을 통해 배송됩니다. 우편은 충분히 빠르지 않습니다.<br>기다린 만큼 더 큰 기쁨이 될 수 있습니다.<br><br><br><b>Post한 그림을 친구들과 함께 하세요.</b><br><br></span>");
     payment.contents.append(payment.sociconFacebook.css("color", "rgb(80,80,80)"));
     payment.contents.append(payment.sociconTwitter.css("color", "rgb(80,80,80)"));
     payment.contents.append(payment.sociconInstagram.css("color", "rgb(80,80,80)"));
@@ -413,4 +418,7 @@ function completePayment(){
     });
     
     delete payment;
+    
+    // 다국어 처리
+    exeTranslation('.base_position', lang);    
 }	

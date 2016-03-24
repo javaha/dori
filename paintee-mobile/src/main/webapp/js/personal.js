@@ -84,7 +84,7 @@ function setPersonal(result) {
     var personalHome = new Home();
     personalHome.setTitle(personal.username);
     var introduce = (result.personal.introduce) ? "<br />" + result.personal.introduce : "";
-    personalHome.setExplain(personal.username + "님이 업로드한 그림들입니다." + introduce);
+    personalHome.setExplain(personal.username + "<span data-i18n='personal.contents'>님이 업로드한 그림들입니다.</span>" + introduce);
     var content1 =
         $("<div>").addClass("home_btn_my").html("uploaded ").append($("<b>").html(" " + result.personal.uploadCount))
     personalHome.hideNext();
@@ -92,6 +92,9 @@ function setPersonal(result) {
     personal.swiper.appendSlide(personalHome.buildStructure());
     delete personalHome;
     delete content1;
+    
+    // 다국어 처리
+    exeTranslation('.main_container', lang);      
 }
 
 function PersonalController(paintingId) {

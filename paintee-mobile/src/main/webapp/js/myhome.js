@@ -90,7 +90,7 @@ function initMy(){
         var myHome = new Home();
         var logInBtn = $("<div>").addClass("login_btn").html("Log in").click(function(){showLogin()});
         myHome.setTitle("my");
-        myHome.setExplain("로그인해서 나와 팔로워의 그림을 확인하세요<br><br><br>");
+        myHome.setExplain("<span data-i18n='[html]my.notloginexplain'></span>");
         myHome.hideNext();
         myHome.setContents(logInBtn);
         mySwiper.appendSlide(myHome.buildStructure());
@@ -102,14 +102,16 @@ function initMy(){
     	// 테이블에서 가져올 데이터의 시작 위치를 처음 로딩시 0번째 부터 조회
 		new MyHomeController().getHomeInfo(0);
     }
+	// 다국어 변경 적용
+	exeTranslation('.main_container', lang);
 }
 
 function setMyHome(result) {
     mySwiper.removeAllSlides();
     var myHome = new Home();
     myHome.setTitle("my");
-    var introduce = (result.my.introduce) ? result.my.introduce : "여기에 자신을 소개할 문구를 넣어주세요.";
-    myHome.setExplain("내가 올리거나 포스트한 그림입니다.<br>" + introduce + " <i class='material-icons' style='font-size:1em' onclick='showProfile()'>create</i>");
+    var introduce = (result.my.introduce) ? result.my.introduce : "<span data-i18n='my.login-introduce'></span>";
+    myHome.setExplain("<span data-i18n='[html]my.loginexplain'></span>" + introduce + " <i class='material-icons' style='font-size:1em' onclick='showProfile()'>create</i>");
     var content1 =
         $("<div>").attr("id", "uploadBtn").addClass("home_btn_my").html("uploaded ").append($("<b>").html(" " + result.my.uploadCount))
     var content2 =
@@ -130,4 +132,7 @@ function setMyHome(result) {
     delete myHome;
     delete content1;
     delete content2;
+    
+    // 다국어 변경 적용
+	exeTranslation('.main_container', lang);
 }

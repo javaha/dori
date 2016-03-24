@@ -81,16 +81,18 @@ NewController.prototype = {
 function initNew(){
   var newHome = new Home();
 	  newHome.setTitle("new");
-	  newHome.setExplain("새로 올라온 그림입니다.");
+	  newHome.setExplain("<span data-i18n='new.explain'><span>");
 	  newHome.setContents(totalPosted());
 	  newSwiper.appendSlide(newHome.buildStructure());
-
   delete newHome;
+
+  // 다국어 변경 적용
+  exeTranslation('.main_container', lang);
 }
 
 //전체그림/전체좋아요 숫자설정
 function totalPosted(){
     var contents = $("<div>");
-    contents.html("<span id='new_count'>0</span>개 그림이 paintee에 있습니다.")
+    contents.html("<span id='new_count'>0</span><span data-i18n='new.content'><span>")
     return contents;
 }
