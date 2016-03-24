@@ -26,6 +26,19 @@ LogInController.prototype = {
 			alert('이메일과 비밀번호를 확인하세요.');
 		}
 	},
+	doSocialLogin: function(email, name, accessToken, expireTime, userId, providerId) {
+		var param = {};
+		param.email = email;
+		param.accessToken = accessToken;
+		param.expireTime = expireTime;
+		param.userId = userId;
+		param.providerId = providerId;
+		param.accessGubun = this.accessGubun;
+
+		var controller = this;
+
+		AjaxCall.call(apiUrl+"/login/social", param, "POST", function(result, status) { controller.doLoginRes(result, status); });
+	},
 	doResetPasswod: function() {
 		var param = {};
 		param.email = this.email;
@@ -113,4 +126,32 @@ $('#resetPasswordBtn').on('click', function() {
     var resetUserEmaiil = $('#resetUserEmaiil').val();
     var logInController = new LogInController(resetUserEmaiil, '');
     logInController.doResetPasswod();
+});
+
+function loginSocialUser(response, providerId) {
+	var accessToken = response.authResponse.accessToken;
+	var expireTime = response.authResponse.expiresIn;
+	var userId = response.authResponse.userID;
+	var providerId = providerId;
+
+	if (response.status === 'connected') {
+		FB.api('/me', {fields: 'email,name'}, function(response) {
+
+			// Logged into your app and Facebook.
+			new LogInController().doSocialLogin(response.email, response.name, accessToken, expireTime, userId, providerId);
+		});
+	} else if (response.status === 'not_authorized') {
+		// The person is logged into Facebook, but not your app.
+		console.log('Please log into this app.');
+	} else {
+		// The person is not logged into Facebook, so we're not sure if
+		// they are logged into this app or not.
+		//console.log('Please log into Facebook.');
+	}
+}
+
+$('#login_facebook_btn').on('click', function() {
+	FB.login(function(response) {
+		loginSocialUser(response, "FACEBOOK")
+	}, {scope: 'email,user_likes'});
 });

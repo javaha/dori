@@ -39,12 +39,22 @@ public interface LoginService {
 	 @fn login
 	 @brief 함수 간략한 설명 : 사용자 인증
 	 @remark
-	 - 함수의 상세 설명 : userId 와 passwod 를 사용하여 사용자 인증을 한다.
+	 - 함수의 상세 설명 : email 과 passwod 를 사용하여 사용자 인증을 한다.
 	 @param userLoginVO
 	 @return 
 	*/
 	public Map<String, Object> login(UserLoginVO userLoginVO);
-	
+
+	/**
+	 @fn loginSocial
+	 @brief 함수 간략한 설명 : 소셜 사용자 인증
+	 @remark
+	 - 함수의 상세 설명 : email 과 providerId, accessToken 을 사용하여 사용자 인증을 한다.
+	 @param userLoginVO
+	 @return 
+	*/
+	public Map<String, Object> loginSocial(UserLoginVO userLoginVO);
+
 	/**
 	 @fn hashCheck
 	 @brief 함수 간략한 설명 : hash 에 대한 유효성 검증

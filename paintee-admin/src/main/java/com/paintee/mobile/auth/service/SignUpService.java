@@ -14,7 +14,10 @@
 */
 package com.paintee.mobile.auth.service;
 
+import java.util.Map;
+
 import com.paintee.common.repository.entity.User;
+import com.paintee.common.repository.entity.vo.SignupUserVO;
 
 /**
 @class SignUpService
@@ -37,11 +40,11 @@ public interface SignUpService {
 	 @brief 함수 간략한 설명 : 회원가입
 	 @remark
 	 - 함수의 상세 설명 : 회원가입
-	 @param user
+	 @param signupUserVO
 	 @return 
 	 @throws Exception
 	*/
-	public boolean registUser(User user) throws Exception;
+	public Map<String, Object> registUser(SignupUserVO signupUserVO) throws Exception;
 
 	/**
 	 @fn confirmHsh

@@ -385,6 +385,76 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andProviderIdIsNull() {
+            addCriterion("provider_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProviderIdIsNotNull() {
+            addCriterion("provider_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProviderIdEqualTo(String value) {
+            addCriterion("provider_id =", value, "providerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProviderIdNotEqualTo(String value) {
+            addCriterion("provider_id <>", value, "providerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProviderIdGreaterThan(String value) {
+            addCriterion("provider_id >", value, "providerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProviderIdGreaterThanOrEqualTo(String value) {
+            addCriterion("provider_id >=", value, "providerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProviderIdLessThan(String value) {
+            addCriterion("provider_id <", value, "providerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProviderIdLessThanOrEqualTo(String value) {
+            addCriterion("provider_id <=", value, "providerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProviderIdLike(String value) {
+            addCriterion("provider_id like", value, "providerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProviderIdNotLike(String value) {
+            addCriterion("provider_id not like", value, "providerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProviderIdIn(List<String> values) {
+            addCriterion("provider_id in", values, "providerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProviderIdNotIn(List<String> values) {
+            addCriterion("provider_id not in", values, "providerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProviderIdBetween(String value1, String value2) {
+            addCriterion("provider_id between", value1, value2, "providerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProviderIdNotBetween(String value1, String value2) {
+            addCriterion("provider_id not between", value1, value2, "providerId");
+            return (Criteria) this;
+        }
+
         public Criteria andIntroduceIsNull() {
             addCriterion("introduce is null");
             return (Criteria) this;

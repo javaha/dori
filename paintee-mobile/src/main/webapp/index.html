@@ -205,8 +205,8 @@
             <div class="profile_section">language</div>
             <div class="profile_form">
                 <select class="profile_select">
-                        <option value="1">English</option>
-                        <option value="2">Korean</option>
+                        <option value="en">English</option>
+                        <option value="ko">Korean</option>
                 </select>
             </div>
             <div class="return_btn"><i class="material-icons">keyboard_backspace</i></div>
@@ -237,7 +237,7 @@
         <div class="login_btn_main">
             Log In
         </div>
-        <div id="login_social_btn" class="login_social_btn">
+        <div id="login_facebook_btn" class="login_social_btn">
             Log in with Facebook
         </div>
         <div class="account_bottom_btn login_signup_btn">
@@ -253,8 +253,8 @@
         <div class="account_box">
         	<form id="signupForm" name="signupForm" method="POST">
             <input type="text" id="signupUserId" name="signupUserId" class="account_form signup_id" placeholder="Enter email address" value="javahaja@hotmail.com">
-            <input type="password" id="signupUserPassword" name="signupUserPassword" class="account_form signup_pw" placeholder="Enter passward" value="1111">
-            <input type="password" id="signupConfirmPassord" name="signupConfirmPassord" class="account_form signup_pw" placeholder="Repeat passward" value="1111">
+            <input type="password" id="signupUserPassword" name="signupUserPassword" class="account_form signup_pw" placeholder="Enter passward" value="qazwsx123">
+            <input type="password" id="signupConfirmPassord" name="signupConfirmPassord" class="account_form signup_pw" placeholder="Repeat passward" value="qazwsx123">
             <input type="text" id="signupUserName" name="signupUserName" class="account_form signup_username" placeholder="username" value="javadori">
             </form>
         </div>
@@ -264,7 +264,7 @@
         <div id="signup_btn" class="signup_btn">
             Sign Up
         </div>
-        <div id="signup_social_btn" class="signup_social_btn">
+        <div id="signup_facebook_btn" class="signup_social_btn">
             Start with Facebook
         </div>
         <div class="account_bottom_btn signup_login_btn">
@@ -291,13 +291,12 @@
         </div>
     </div>
 
-	<div id="status">
-	</div>
-
     <!--  Scripts-->
     <script src="/js/jquery/jquery-2.1.1.js"></script>
     <script src="/js/swiper.jquery.min.js"></script>
     <script src="/js/jquery.touchSwipe.min.js"></script>
+
+    <script src="/js/facebook.js"></script>
 	<script src="/js/common-ajax.js"></script>
 	<script src="/js/common.js"></script>
     <script src="/js/detail.js"></script>
@@ -318,8 +317,6 @@
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?1"></script>
     <script src="/js/daumAddrApi.js"></script>
 
-	<script src="/js/facebook.js"></script>
-	
 	<!-- 다국어 지원 라이브러리 -->
 	<script src="/js/jquery/i18next.min.js"></script>
 	<script src="/js/translation.js"></script>

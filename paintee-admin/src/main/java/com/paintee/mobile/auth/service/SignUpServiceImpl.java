@@ -15,9 +15,12 @@
 package com.paintee.mobile.auth.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +34,16 @@ import com.paintee.common.mail.HtmlContentBuilder;
 import com.paintee.common.mail.MailService;
 import com.paintee.common.repository.entity.ConfirmHash;
 import com.paintee.common.repository.entity.ConfirmHashExample;
+import com.paintee.common.repository.entity.Login;
 import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.UserExample;
+import com.paintee.common.repository.entity.UserSocial;
+import com.paintee.common.repository.entity.vo.SignupUserVO;
 import com.paintee.common.repository.helper.ConfirmHashHelper;
+import com.paintee.common.repository.helper.LoginHelper;
 import com.paintee.common.repository.helper.UserHelper;
+import com.paintee.common.repository.helper.UserSocialHelper;
+import com.paintee.common.util.PasswordGenerator;
 import com.paintee.common.util.Sha512Encrypt;
 
 /**
@@ -67,58 +76,105 @@ public class SignUpServiceImpl implements SignUpService {
 	
 	@Autowired
 	private ConfirmHashHelper confirmHashHelper;
+	
+	@Autowired
+	private UserSocialHelper userSocialHelper;
 
 	@Value("#{config['common.signup.confirm.url'] }")
 	private String confirmUrl;
+
+	@Value("#{config['common.login.hash.expireDay'] }")
+	private int expireDay;
+
+	@Autowired
+	private LoginHelper loginHelper;
+
+	@Autowired
+	private PasswordGenerator passwordGenerator;
 
 	/**
 	 @fn 
 	 @brief (Override method) 함수 간략한 설명 : 회원가입
 	 @remark
 	 - 오버라이드 함수의 상세 설명 : 회원가입
-	 @see com.paintee.mobile.auth.service.SignUpService#registUser(com.paintee.common.repository.entity.User)
+	 @see com.paintee.mobile.auth.service.SignUpService#registUser(com.paintee.common.repository.entity.vo.SignupUserVO)
 	*/
 	@Transactional
-	public boolean registUser(User user) throws Exception {
-		boolean result = false;
+	public Map<String, Object> registUser(SignupUserVO signupUserVO) throws Exception {
+		Map<String, Object> resultMap = new HashMap<>();
 
 		DateTime today = new DateTime();
 
 		//회원정보 등록
-		String plainText = user.getPassword();
 		String newUserId = UUID.randomUUID().toString();
 
-		user.setUserId(newUserId);
-		user.setPassword(Sha512Encrypt.hash(plainText));
-		user.setUserStatus("T");
-		user.setCreatedDate(today.toDate());
+		signupUserVO.setUserId(newUserId);
+		signupUserVO.setCreatedDate(today.toDate());
+
+		User user = signupUserVO;
+
+		if(signupUserVO.getProviderId().equals("PAINTEE")) {
+			String plainText = user.getPassword();
+			user.setPassword(Sha512Encrypt.hash(plainText));
+			user.setUserStatus("T");
+		} else if(signupUserVO.getProviderId().equals("FACEBOOK")) {
+			String plainText = passwordGenerator.randomPassword();
+			user.setPassword(Sha512Encrypt.hash(plainText));
+			user.setUserStatus("N");
+		}
 
 		userHelper.insertSelective(user);
 
-		//계정활성화를 위한 정보 저장
-		DateTime expireDate = today.plusDays(7);
+		if(signupUserVO.getProviderId().equals("PAINTEE")) {//일반 가입시 confirm mail 발송
+			//계정활성화를 위한 정보 저장
+			DateTime expireDate = today.plusDays(7);
 
-		String confirmHashString = Sha512Encrypt.hash(newUserId+expireDate.getMillis());
-		ConfirmHash confirmHash = new ConfirmHash();
-		confirmHash.setHash(confirmHashString);
-		confirmHash.setUserId(user.getUserId());
-		confirmHash.setExpireDate(expireDate.toDate());
-
-		confirmHashHelper.insertSelective(confirmHash);
-
-		//회원가입 메일 발송
-		ConfirmMailVO confirmMailVO = new ConfirmMailVO();
-		confirmMailVO.setTitle("SignUp Title");
-		confirmMailVO.setSenderName("paintee");
-		confirmMailVO.setConfirmUrl(confirmUrl+confirmHashString);
-
-		mailService.sendMail(user.getEmail(), "SignUp confirm", htmlContentBuilder.getSignupConfirmMail(confirmMailVO));
-
-		result = true;
-
-		return result;
-	}
+			String confirmHashString = Sha512Encrypt.hash(newUserId+expireDate.getMillis());
+			ConfirmHash confirmHash = new ConfirmHash();
+			confirmHash.setHash(confirmHashString);
+			confirmHash.setUserId(user.getUserId());
+			confirmHash.setExpireDate(expireDate.toDate());
 	
+			confirmHashHelper.insertSelective(confirmHash);
+	
+			//회원가입 메일 발송
+			ConfirmMailVO confirmMailVO = new ConfirmMailVO();
+			confirmMailVO.setTitle("SignUp Title");
+			confirmMailVO.setSenderName("paintee");
+			confirmMailVO.setConfirmUrl(confirmUrl+confirmHashString);
+
+			mailService.sendMail(user.getEmail(), "SignUp confirm", htmlContentBuilder.getSignupConfirmMail(confirmMailVO));
+		} else if(signupUserVO.getProviderId().equals("FACEBOOK")) {//facebook 가입시 social 정보 저장
+			UserSocial userSocial = new UserSocial();
+			BeanUtils.copyProperties(userSocial, signupUserVO);
+
+			userSocialHelper.insertSelective(userSocial);
+
+			DateTime expireDate = today.plusDays(expireDay);
+
+			String loginWord = user.getUserId()+signupUserVO.getAccessGubun()+expireDate.getMillis();
+
+			Login login = new Login();
+			login.setUserId(user.getUserId());
+			login.setAccessGubun("");
+			login.setHash(Sha512Encrypt.hash(loginWord));
+			login.setExpireDate(expireDate.toDate());
+
+			loginHelper.insert(login);
+
+			resultMap.put("hash", login.getHash());
+		}
+
+		resultMap.put("errorNo", 0);
+		resultMap.put("email", user.getEmail());
+		resultMap.put("name", user.getName());
+		resultMap.put("userId", user.getUserId());
+		resultMap.put("location", user.getLocation());
+		resultMap.put("providerId", user.getProviderId());
+
+		return resultMap;
+	}
+
 	/**
 	 @fn 
 	 @brief (Override method) 함수 간략한 설명 : hash 정보를 통해 사용자계정 활성화
@@ -168,7 +224,7 @@ public class SignUpServiceImpl implements SignUpService {
 				newConfirmHash.setUserId(user.getUserId());
 				newConfirmHash.setExpireDate(expireDate.toDate());
 
-				confirmHashHelper.insertSelective(confirmHash);
+				confirmHashHelper.insertSelective(newConfirmHash);
 
 				//회원가입 메일 발송
 				ConfirmMailVO confirmMailVO = new ConfirmMailVO();
@@ -180,6 +236,7 @@ public class SignUpServiceImpl implements SignUpService {
 
 				confirmHashHelper.deleteByPrimaryKey(confirmHash.getSeq());
 			}
+
 		} else {//해당 정보를 찾지 못한경우
 			result = 1;
 		}

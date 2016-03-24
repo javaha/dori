@@ -80,7 +80,7 @@ public class LoginServiceImpl implements LoginService {
 	 @fn 
 	 @brief (Override method) 함수 간략한 설명 : 사용자 인증
 	 @remark
-	 - 오버라이드 함수의 상세 설명 : userId 와 passwod 를 사용하여 사용자 인증을 한다.
+	 - 오버라이드 함수의 상세 설명 : email 과 passwod 를 사용하여 사용자 인증을 한다.
 	 @see com.paintee.mobile.auth.service.LoginService#login(com.paintee.common.repository.entity.vo.UserLoginVO)
 	*/
 	public Map<String, Object> login(UserLoginVO userLoginVO) {
@@ -91,6 +91,7 @@ public class LoginServiceImpl implements LoginService {
 		UserExample.Criteria where = userExamplem.createCriteria();
 		where.andEmailEqualTo(userLoginVO.getEmail());
 		where.andPasswordEqualTo(Sha512Encrypt.hash(userLoginVO.getPassword()));
+		where.andProviderIdEqualTo("PAINTEE");
 		where.andUserStatusEqualTo("N");
 
 		List<User> userList = userHelper.selectByExample(userExamplem);
@@ -109,7 +110,6 @@ public class LoginServiceImpl implements LoginService {
 			login.setUserId(userInfo.getUserId());
 			login.setAccessGubun(userLoginVO.getAccessGubun());
 			login.setHash(Sha512Encrypt.hash(loginWord));
-			login.setLocation(userInfo.getLocation());
 			login.setExpireDate(expireDate.toDate());
 
 			loginHelper.insert(login);
@@ -120,6 +120,57 @@ public class LoginServiceImpl implements LoginService {
 			resultMap.put("name", userInfo.getName());
 			resultMap.put("userId", userInfo.getUserId());
 			resultMap.put("location", userInfo.getLocation());
+			resultMap.put("providerId", userInfo.getProviderId());
+			resultMap.put("hash", login.getHash());
+		}
+
+		return resultMap;
+	}
+
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 소셜 사용자 인증
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : email 과 providerId, accessToken 을 사용하여 사용자 인증을 한다.
+	 @see com.paintee.mobile.auth.service.LoginService#loginSocial(com.paintee.common.repository.entity.vo.UserLoginVO)
+	*/
+	public Map<String, Object> loginSocial(UserLoginVO userLoginVO) {
+		Map<String, Object> resultMap = new HashMap<>();
+
+		//사용자 정보 조회
+		UserExample userExamplem = new UserExample();
+		UserExample.Criteria where = userExamplem.createCriteria();
+		where.andEmailEqualTo(userLoginVO.getEmail());
+		where.andProviderIdEqualTo(userLoginVO.getProviderId());
+		where.andUserStatusEqualTo("N");
+
+		List<User> userList = userHelper.selectByExample(userExamplem);
+
+		if(userList == null || userList.size() == 0) {
+			resultMap.put("errorNo", 404);
+		} else {
+			User userInfo = userList.get(0);
+
+			DateTime toDate = new DateTime();
+			DateTime expireDate = toDate.plusDays(expireDay);
+
+			String loginWord = userInfo.getUserId()+userLoginVO.getAccessGubun()+expireDate.getMillis();
+
+			Login login = new Login();
+			login.setUserId(userInfo.getUserId());
+			login.setAccessGubun(userLoginVO.getAccessGubun());
+			login.setHash(Sha512Encrypt.hash(loginWord));
+			login.setExpireDate(expireDate.toDate());
+
+			loginHelper.insert(login);
+			logger.debug("login:"+login);
+
+			resultMap.put("errorNo", 0);
+			resultMap.put("email", userInfo.getEmail());
+			resultMap.put("name", userInfo.getName());
+			resultMap.put("userId", userInfo.getUserId());
+			resultMap.put("location", userInfo.getLocation());
+			resultMap.put("providerId", userInfo.getProviderId());
 			resultMap.put("hash", login.getHash());
 		}
 

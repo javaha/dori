@@ -12,6 +12,8 @@ public class User extends BaseEntity {
 
     private String name;
 
+    private String providerId;
+
     private String introduce;
 
     private String basicAddr;
@@ -82,6 +84,14 @@ public class User extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getProviderId() {
+        return providerId;
+    }
+
+    public void setProviderId(String providerId) {
+        this.providerId = providerId;
     }
 
     public String getIntroduce() {

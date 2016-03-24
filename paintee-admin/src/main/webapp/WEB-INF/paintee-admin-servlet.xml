@@ -61,6 +61,7 @@
 			<mvc:exclude-mapping path="/api/signup" />
 			<mvc:exclude-mapping path="/api/signup/**" />
 			<mvc:exclude-mapping path="/api/login" />
+			<mvc:exclude-mapping path="/api/login/social" />
 			<mvc:exclude-mapping path="/api/newIndex" />
 			<mvc:exclude-mapping path="/api/popularIndex" />
 			<mvc:exclude-mapping path="/api/painting/**" />

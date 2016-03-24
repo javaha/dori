@@ -80,6 +80,28 @@ public class LoginRestController {
 	}
 
 	/**
+	 @fn loginSocial
+	 @brief 함수 간략한 설명 : 소셜 사용자 인증
+	 @remark
+	 - 함수의 상세 설명 : email 과 providerId, accessToken 을 사용하여 사용자 인증을 한다.
+	 @param userLoginVO
+	 @param response
+	 @return 
+	*/
+	@RequestMapping(value = "/api/login/social", method = {RequestMethod.POST})
+	public Map<String, Object> loginSocial(@RequestBody UserLoginVO userLoginVO, HttpServletResponse response) {
+		Map<String, Object> resultMap = new HashMap<>();
+
+		if(userLoginVO.getEmail() == null || userLoginVO.getEmail().trim().length() == 0) {
+			resultMap.put("errorNo", 401);
+		} else {
+			resultMap = loginService.loginSocial(userLoginVO);
+		}
+
+		return resultMap;
+	}
+
+	/**
 	 @fn resetpasswd
 	 @brief 함수 간략한 설명 : 비밀번호 초기화후 메일로 임시비밀번호 발송
 	 @remark

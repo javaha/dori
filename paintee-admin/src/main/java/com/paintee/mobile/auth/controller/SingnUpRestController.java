@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paintee.common.repository.entity.User;
+import com.paintee.common.repository.entity.vo.SignupUserVO;
 import com.paintee.mobile.auth.service.SignUpService;
 
 /**
@@ -50,6 +52,9 @@ com.paintee.mobile.auth.controller \n
 public class SingnUpRestController {
 	private final static Logger logger = LoggerFactory.getLogger(LoginRestController.class);
 
+	@Value("#{config['common.homepage.url'] }")
+	private String homepageUrl;
+
 	@Autowired
 	private SignUpService signUpService;
 
@@ -64,14 +69,10 @@ public class SingnUpRestController {
 	 @throws Exception
 	*/
 	@RequestMapping(value = "/api/signup", method = {RequestMethod.POST})
-	public Map<String, Object> signup(@RequestBody User user, HttpServletResponse response) throws Exception {
+	public Map<String, Object> signup(@RequestBody SignupUserVO signupUserVO, HttpServletResponse response) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
 
-		boolean result = signUpService.registUser(user);
-
-		if(result) {
-			resultMap.put("errorNo", 0);
-		}
+		resultMap = signUpService.registUser(signupUserVO);
 
 		return resultMap;
 	}
@@ -87,14 +88,12 @@ public class SingnUpRestController {
 	 @throws Exception
 	*/
 	@RequestMapping(value = "/api/signup/confirm/{hash}", method = {RequestMethod.GET})
-	public Map<String, Object> signup(@PathVariable String hash, HttpServletResponse response) throws Exception {
+	public void signup(@PathVariable String hash, HttpServletResponse response) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
 
 		int errorNo = signUpService.confirmHsh(hash);
 
-		resultMap.put("errorNo", errorNo);
-
-		return resultMap;
+		response.sendRedirect(homepageUrl);
 	}
 
 	/**
