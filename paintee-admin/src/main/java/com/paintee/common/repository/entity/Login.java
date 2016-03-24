@@ -13,6 +13,8 @@ public class Login extends BaseEntity {
     private Date expireDate;
 
     private String accessGubun;
+    
+    private String location;
 
     public Integer getSeq() {
         return seq;
@@ -53,4 +55,12 @@ public class Login extends BaseEntity {
     public void setAccessGubun(String accessGubun) {
         this.accessGubun = accessGubun;
     }
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 }

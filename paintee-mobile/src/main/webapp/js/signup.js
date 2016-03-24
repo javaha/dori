@@ -81,6 +81,6 @@ $('#login_social_btn').on('click', function() {
 	//$('#fb_signin').action = apiUrl+"/auth/facebook";
 	//$('#fb_signin').submit();
 	FB.login(function(response) {
-		cosole.log();
+		console.log(response);
 	}, {scope: 'email,user_likes'});
 });

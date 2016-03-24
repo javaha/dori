@@ -109,6 +109,7 @@ public class LoginServiceImpl implements LoginService {
 			login.setUserId(userInfo.getUserId());
 			login.setAccessGubun(userLoginVO.getAccessGubun());
 			login.setHash(Sha512Encrypt.hash(loginWord));
+			login.setLocation(userInfo.getLocation());
 			login.setExpireDate(expireDate.toDate());
 
 			loginHelper.insert(login);
@@ -118,6 +119,7 @@ public class LoginServiceImpl implements LoginService {
 			resultMap.put("email", userInfo.getEmail());
 			resultMap.put("name", userInfo.getName());
 			resultMap.put("userId", userInfo.getUserId());
+			resultMap.put("location", userInfo.getLocation());
 			resultMap.put("hash", login.getHash());
 		}
 
