@@ -23,10 +23,10 @@ if(userInfo) {
 // 나중에 로그인 사용자의 언어를 설정해야 한다.
 var lang = "en";
 
-if(userInfo) {
-	console.log('userInfo.location:'+userInfo.location);
-	lang = userInfo.location;
-}
+//if(userInfo) {
+//	console.log('userInfo.location:'+userInfo.location);
+//	lang = userInfo.location;
+//}
 
 console.log('lang:'+lang);
 console.log('userID:'+userID);
@@ -54,6 +54,19 @@ function setSideMenu() {
 		    reward();
 		    sideOff();
 		});
+	}
+
+	// 사이드 메뉴 언어 설정
+	// 로그인 정보를 매번 가져오지 않기 때문에 사이트 로딩시 로그인 상태일 경우만 로그인 정보를 가져온다.
+	if (userInfo) {
+		AjaxCall.call(apiUrl + "/user/me", 
+			null, 
+			"GET", 
+			function (result) {
+				lang = result.userInfo.location;
+				$(".side_menu_lang_select").val(lang);
+			}
+		);
 	}
 }
 
@@ -479,4 +492,13 @@ function dataReload(loadPages) {
 $(".side_menu_lang_select").change(function(event) {
 	lang = $(this).val();
 	exeTranslation(".main_container", lang);
+	if (userID) {
+		AjaxCall.call(apiUrl + "/user/me", 
+			{"location": lang}, 
+			"POST", 
+			function (result) {
+				console.log(result);			
+			}
+		);
+	} 
 });
