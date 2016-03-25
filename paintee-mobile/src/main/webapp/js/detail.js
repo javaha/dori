@@ -207,9 +207,11 @@ DetailController.prototype = {
 	artistFollowRes: function(result, status) {
 		console.log(selectedArtistId);
 		if(result.errorNo == 0) {
-			alert(selectedArtistName+' 님을 Follow 하였습니다.');
+			alert(selectedArtistName + $.i18n.t('alert.detail.processFollow'));
+//			alert(selectedArtistName+' 님을 Follow 하였습니다.');
 		} else if(result.errorNo == 501){
-			alert(selectedArtistName+' 님은 이미 Follow 되어있습니다.');
+			alert(selectedArtistName + $.i18n.t('alert.detail.existFollow'));
+//			alert(selectedArtistName+' 님은 이미 Follow 되어있습니다.');
 		}
 	}
 };

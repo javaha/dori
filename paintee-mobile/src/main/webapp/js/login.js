@@ -23,7 +23,8 @@ LogInController.prototype = {
 			//login 후 cookie 를 페이지에 적용하기 위하여 새로고침해야함.
 			location.href = "/";
 		} else if(result.errorNo == 401 || result.errorNo == 402 || result.errorNo == 404) {
-			alert('이메일과 비밀번호를 확인하세요.');
+//			alert('이메일과 비밀번호를 확인하세요.');
+			alert($.i18n.t('alert.login.confirmEmailPass'));
 		}
 	},
 	doSocialLogin: function(email, name, accessToken, expireTime, userId, providerId) {
@@ -50,10 +51,11 @@ LogInController.prototype = {
 	doResetPasswodRes: function(result, status) {
 		if(result.errorNo == 0) {
 			console.log(result);
-
-			alert('비밀번호 초기화 메일 발송.');
+			alert($.i18n.t('alert.login.resetPassSendMail'));
+//			alert('비밀번호 초기화 메일 발송.');
 		} else if(result.errorNo == 401) {
-			alert('이메일을 확인하세요.');
+			alert($.i18n.t('alert.login.confirmEmail'));
+//			alert('이메일을 확인하세요.');
 		}
 	}
 	

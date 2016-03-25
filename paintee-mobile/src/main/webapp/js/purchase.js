@@ -175,7 +175,8 @@ $("[name=sentence]").keyup(function () {
 $("[name=sentence]").blur(function () {
 	var enter = getEnterCount($("[name=sentence]"));
 	if (enter > 5) {
-		alert("줄바꿈은 5회까지 가능합니다. ");
+//		alert("줄바꿈은 5회까지 가능합니다.");
+		alert($.i18n.t('alert.purchase.limitEnterCount'));
 	}
 });
 
@@ -201,54 +202,54 @@ function payment() {
 
 function validPurchase() {
 	if ($("[name=sentence]").val().trim().length == 0) {
-		alert("한마디를 입력하세요");
+		alert($.i18n.t('alert.purchase.emptySentence'));
 		$("[name=sentence]").focus();
 		return false;
 	}
 	
 	if (getCharCount($("[name=sentence]").val()) > 200) {
-		alert("한마디는 200자까지 가능합니다.");
+		alert($.i18n.t('alert.purchase.exceedSentence'));
 		$("[name=sentence]").focus();
 		return false;
 	}
 	
 	var enter = getEnterCount($("[name=sentence]"));
 	if (enter > 5) {
-		alert("줄바꿈은 5회까지 가능합니다.");
+		alert($.i18n.t('alert.purchase.limitEnterCount'));
 		$("[name=sentence]").focus();
 		return false;
 	}
 	
 	if ($("[name=senderName]").val().trim().length == 0) {
-		alert("보내는 사람을 입력하세요");
+		alert($.i18n.t('alert.purchase.emptySenderName'));
 		$("[name=senderName]").focus();
 		return false;
 	}
 	if ($("[name=receiverName]").val().trim().length == 0) {
-		alert("보내는 사람을 입력하세요");
+		alert($.i18n.t('alert.purchase.emptyReceiverName'));
 		$("[name=receiverName]").focus();
 		return false;
 	}
 	if ($("[name=receiverBasicAddr]").val().trim().length == 0) {
-		alert("주소를 입력하세요");
+		alert($.i18n.t('alert.purchase.emptyAddress'));
 		$("[name=receiverBasicAddr]").focus();
 		return false;
 	}
 	if ($("[name=location]").val() != 'Korea') {
 		if ($("[name=receiverCity]").val().trim().length == 0) {
-			alert("도시명을 입력하세요");
+			alert($.i18n.t('alert.purchase.emptyCity'));
 			$("[name=receiverCity]").focus();
 			return false;
 		}
 	}
 	if ($("[name=receiverZipcode]").val().trim().length == 0) {
-		alert("우편번호를 입력하세요");
+		alert($.i18n.t('alert.purchase.emptyZipcode'));
 		$("[name=receiverZipcode]").focus();
 		return false;
 	}
 	
 	if (!chkNum($("[name=receiverZipcode]").val())) {
-		alert("우편번호는 숫자만 가능합니다.");
+		alert($.i18n.t('alert.purchase.inputOnlyNumber'));
 		$("[name=receiverZipcode]").focus();
 		return false;
 	}
@@ -260,7 +261,7 @@ function validPurchase() {
 		change = true;
 	}
 	if (change) {
-		if (confirm("그림 구매시 변경된 주소로 기존 주소를 바꾸시겠습니까?")) {
+		if (confirm($.i18n.t('alert.purchase.changeAddress'))) {
 			purchaseController.changeAddr = "Y";
 		}
 	}

@@ -63,12 +63,14 @@ function checkReward(){
 	var data = rewardController.result;
 	console.log("data : " + JSON.stringify(data));
 	if (data.reward.requestCount > 0) {
-		alert("이미 신청중인 리워드가 있습니다.");
+		alert($.i18n.t('alert.reward.existRequest'));
+//		alert("이미 신청중인 리워드가 있습니다.");
 		return;
 	}
 	
 	if (data.reward.remainMoney < 10) {
-		alert("리워드는 $10부터 신청가능합니다.");
+		alert($.i18n.t('alert.reward.possibleRequestMoney'));
+//		alert("리워드는 $10부터 신청가능합니다.");
 		return;
 	}
 	
@@ -145,25 +147,29 @@ function checkReward(){
 function validReward() {
 	if ($("[name=bank]").val() == '99') {
 		if ($("[name=directInputBank]").val().trim() == "") {
-			alert("은행이름을 입력하세요");
+			alert($.i18n.t('alert.reward.emptyBankName'));
+//			alert("은행이름을 입력하세요");
 			$("[name=directInputBank]").focus();
 			return false;
 		}
 	}
 	
 	if ($("[name=accountName]").val().trim() == "") {
-		alert("이름을 입력하세요");
+		alert($.i18n.t('alert.reward.emptyAccountName'));
+//		alert("계좌주를 입력하세요");
 		$("[name=accountName]").focus();
 		return false;
 	}
 	if ($("[name=accountNo]").val().trim() == "") {
-		alert("계좌번호를 입력하세요");
+		alert($.i18n.t('alert.reward.emptyAccountNo'));
+//		alert("계좌번호를 입력하세요");
 		$("[name=accountNo]").focus();
 		return false;
 	}
 	
 	if (!chkNum($("[name=accountNo]").val())) {
-		alert("계좌번호는 숫자만 가능합니다.");
+		alert($.i18n.t('alert.reward.inputOnlyNumberAccountNo'));
+//		alert("계좌번호는 숫자만 가능합니다.");
 		$("[name=accountNo]").focus();
 		return false;
 	}
@@ -224,7 +230,8 @@ RewardController.prototype = {
 		);
 	},
 	addRewardRes: function (result) {
-		alert("처리되었습니다.");
+		alert($.i18n.t('alert.reward.completeProcess'));
+//		alert("처리되었습니다.");
 		$(".popup_container").hide();
 	}
 }

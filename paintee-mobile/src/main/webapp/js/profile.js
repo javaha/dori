@@ -43,7 +43,8 @@ ProfileController.prototype = {
 	},
 	updateProfileRes: function(result, status) {
 		if(result.errorNo == 0) {
-			alert('수정 되었습니다.');
+			alert($.i18n.t('alert.profile.processModify'));
+//			alert('수정 되었습니다.');
 			$(".profile_container").hide();
 		}
 	},
@@ -53,16 +54,19 @@ ProfileController.prototype = {
 		result = chkAlphaNum($('#profileUserName').val());
 
 		if(!result) {
-			alert("이름은 최소 4자 최대 10자 의 영문, 숫자 조합으로 입력하셔야 합니다.");
+			alert($.i18n.t('alert.common.ruleName'));
+//			alert("이름은 최소 4자 최대 10자 의 영문, 숫자 조합으로 입력하셔야 합니다.");
 		} else {
 			if($('#profileUserPassword').val() != '' || $('#profileConfirmPassord').val() != '') {
 				if($('#profileUserPassword').val() != $('#profileConfirmPassord').val()) {
-					alert("비밀번호와 비밀번화 확인 값이 일치하지 않습니다.");
+					alert($.i18n.t('alert.common.differentPassword'));
+//					alert("비밀번호와 비밀번화 확인 값이 일치하지 않습니다.");
 				} else {
 					result = chkPassword($('#profileUserPassword').val());
 
 					if(!result) {
-						alert("비밀번호는 최소 8자 최대 12자 의 문자와 숫자 조합으로 입력하셔야 합니다.");
+						alert($.i18n.t('alert.common.rulePassword'));
+//						alert("비밀번호는 최소 8자 최대 12자 의 문자와 숫자 조합으로 입력하셔야 합니다.");
 					} else {
 						result = true;
 					}
@@ -101,7 +105,8 @@ ProfileController.prototype = {
 
 			AjaxCall.call(apiUrl+"/user/me", param, "POST", function (result, status) { controller.updateProfileRes(result, status); });
 		} else if(result.errorNo == 1) {
-			alert('이미 사용중인 이름 입니다.');
+			alert($.i18n.t('alert.profile.existName'));
+//			alert('이미 사용중인 이름 입니다.');
 		}
 	}
 }

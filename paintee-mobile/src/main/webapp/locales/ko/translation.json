@@ -47,5 +47,70 @@
 	"personal": 
 	{
 		"contents": "님이 업로드한 그림들입니다.(한)"
-	}			
+	},	
+	"alert": 
+	{
+		"common" : {
+			"ruleName": "이름은 최소 4자 최대 10자 의 영문, 숫자 조합으로 입력하셔야 합니다.(한)",
+			"rulePassword": "비밀번호는 최소 8자 최대 12자 의 문자와 숫자 조합으로 입력하셔야 합니다.(한)",
+			"confirmEmailPass": "이메일과 비밀번호를 확인하세요.(한)",
+			"existName": "이미 사용중인 이름 입니다.(한)",
+			"existEmail": "이미 사용중인 이름 입니다.(한)",
+			"differentPassword": "비밀번호와 비밀번화 확인 값이 일치하지 않습니다.(한)"
+		},
+		"purchase" : {
+			"limitEnterCount": "줄바꿈은 5회까지 가능합니다.(한)",
+			"emptySentence": "한마디를 입력하세요.(한)",
+			"exceedSentence": "한마디는 200자까지 가능합니다.(한)",
+			"emptySenderName": "보내는 사람을 입력하세요.(한)",
+			"emptyReceiverName": "받는 사람을 입력하세요.(한)",
+			"emptyAddress": "주소를 입력하세요.(한)",
+			"emptyCity": "도시명을 입력하세요.(한)",
+			"emptyZipcode": "우편번호를 입력하세요.(한)",
+			"inputOnlyNumber": "우편번호는 숫자만 가능합니다.(한)",
+			"changeAddress": "그림 구매시 변경된 주소로 기존 주소를 바꾸시겠습니까?(한)"
+		},
+		"reward" : {
+			"existRequest": "이미 신청중인 리워드가 있습니다.(한)",
+			"possibleRequestMoney": "리워드는 $10부터 신청가능합니다.(한)",
+			"emptyBankName": "은행이름을 입력하세요.(한)",
+			"emptyAccountName": "계좌주를 입력하세요.(한)",
+			"emptyAccountNo": "계좌번호를 입력하세요.(한)",
+			"inputOnlyNumberAccountNo": "계좌번호는 숫자만 가능합니다.(한)",
+			"completeProcess": "처리되었습니다.(한)"
+		},
+		"detail" : {
+			"processFollow": " 님을 Follow 하였습니다.(한)",
+			"existFollow": " 님은 이미 Follow 되어있습니다.(한)"
+		},
+		"login" : {
+			"confirmEmailPass": "이메일과 비밀번호를 확인하세요.(한)",
+			"resetPassSendMail": "비밀번호 초기화 메일 발송.(한)",
+			"confirmEmail": "이메일을 확인하세요.(한)"
+		},
+		"profile" : {
+			"processModify": "수정되었습니다.(한)"
+		},
+		"signup" : {
+			"processMemberJoin": "회원가입이 정상적으로 처리되었습니다.\n이메일을 확인하세요.(한)",
+			"correctEmailAddr": "바른 이메일 주소를 입력하셔야 합니다.(한)"
+		}
+	}				
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

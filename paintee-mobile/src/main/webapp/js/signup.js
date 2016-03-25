@@ -20,14 +20,17 @@ SignupController.prototype = {
 		if(result.errorNo == 0) {
 			console.log(result);
 			if(result.providerId == 'PAINTEE') {
-				alert('회원가입이 정상적으로 처리되었습니다.\n이메일을 확인하세요.');
+				alert($.i18n.t('alert.signup.processMemberJoin'));
+//				alert('회원가입이 정상적으로 처리되었습니다.\n이메일을 확인하세요.');
 			} else if(result.providerId == 'FACEBOOK') {
 				setUserInfoCookie(result);
-				alert('회원가입이 정상적으로 처리되었습니다.');
+				alert($.i18n.t('alert.signup.processMemberJoin'));
+//				alert('회원가입이 정상적으로 처리되었습니다.');
 			}
 			location.href = "/";
 		} else if(result.errorNo != 0) {
-			alert('이메일과 비밀번호를 확인하세요.');
+			alert($.i18n.t('alert.common.confirmEmailPass'));
+//			alert('이메일과 비밀번호를 확인하세요.');
 		}
 	},
 	validSignupInfo: function() {
@@ -36,20 +39,24 @@ SignupController.prototype = {
 		result = chkEmail($('#signupUserId').val());
 
 		if(!result) {
-			alert("바른 이메일 주소를 입력하셔야 합니다.");
+			alert($.i18n.t('alert.signup.correctEmailAddr'));
+//			alert("바른 이메일 주소를 입력하셔야 합니다.");
 		} else {
 			if($('#signupUserPassword').val() != $('#signupConfirmPassord').val()) {
-				alert("비밀번호와 비밀번화 확인 값이 일치하지 않습니다.");
+				alert($.i18n.t('alert.common.differentPassword'));
+//				alert("비밀번호와 비밀번화 확인 값이 일치하지 않습니다.");
 			} else {
 				result = chkPassword($('#signupUserPassword').val());
 
 				if(!result) {
-					alert("비밀번호는 최소 8자 최대 12자 의 문자와 숫자 조합으로 입력하셔야 합니다.");
+					alert($.i18n.t('alert.common.rulePassword'));
+//					alert("비밀번호는 최소 8자 최대 12자 의 문자와 숫자 조합으로 입력하셔야 합니다.");
 				} else {
 					result = chkAlphaNum($('#signupUserName').val());
 
 					if(!result) {
-						alert("이름은 최소 4자 최대 10자 의 영문, 숫자 조합으로 입력하셔야 합니다.");
+						alert($.i18n.t('alert.common.ruleName'));
+//						alert("이름은 최소 4자 최대 10자 의 영문, 숫자 조합으로 입력하셔야 합니다.");
 					} else {
 						result = true;
 					}
@@ -82,9 +89,11 @@ SignupController.prototype = {
 
 			AjaxCall.call(apiUrl+"/signup", param, "POST", function (result, status) { controller.doSignupRes(result, status); });
 		} else if(result.errorNo == 1) {
-			alert('이미 사용중인 email 입니다.');
+			alert($.i18n.t('alert.common.existEmail'));
+//			alert('이미 사용중인 email 입니다.');
 		} else if(result.errorNo == 2) {
-			alert('이미 사용중인 이름 입니다.');
+			alert($.i18n.t('alert.common.existName'));
+//			alert('이미 사용중인 이름 입니다.');
 		}
 	},
 	validFacebookSignup: function(email, name, accessToken, expireTime, userId, providerId) {
