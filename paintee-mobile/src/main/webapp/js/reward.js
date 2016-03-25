@@ -45,11 +45,11 @@ function initReward(){
     reward.setContents(
     		"<span data-i18n='[html]rewardPop.content1'>당신의 그림이 post될 때 마다 reward가 쌓입니다.<br> 지금까지 </span>" + 
     		data.reward.sellCount + 
-    		"<span data-i18n='[html]rewardPop.content2'>회 post된 당신이 얻은 총 Reward는<br></span>" + 
+    		"<span data-i18n='[html]rewardPop.content2'>회 post된 당신이 얻은 총 Reward는</span><br>" + 
     		"<span class='reward_money'>$" + data.reward.earnTotalMoney + " </span>" + 
     		"<span data-i18n='[html]rewardPop.content3'>입니다.<br><br><br>지금 Reward를 신청하면 남은 </span>" + 
     		"<b>$" + data.reward.remainMoney + " </b>" + 
-    		"<span data-i18n='[html]rewardPop.content4'>에<br><b>수수료 $5</b>가 제외된 금액을 받을 수 있습니다.<br></span>");
+    		"<span data-i18n='[html]rewardPop.content4'>에<br><b>수수료 $5</b>가 제외된 금액을 받을 수 있습니다.</span><br>");
     reward.setBottom("<div class='popup_btn reward_btn'><div class='purchase_btn_text'>Get reward now </div><i class='material-icons'>attach_money</i></div>");
     reward.buildUpload();
     $(".reward_btn").click(function(){
@@ -93,9 +93,9 @@ function checkReward(){
     	        + "<b>" + data.reward.remainMoney + "</b> " 
     	        + "<span data-i18n='[html]rewardPop2.content2'>에 <br>reward <b>수수료 $</span>" 
     	        + "<span id='commission'>5</span></b>"
-    	        + "<span data-i18n='[html]rewardPop2.content3'>를 제외한<br><br></span>"
+    	        + "<span data-i18n='[html]rewardPop2.content3'>를 제외한</span><br><br>"
                 + "<span class='reward_money'>$" + (data.reward.remainMoney - 5) + "</span>"
-                + "<span data-i18n='[html]rewardPop2.content4'>이 입금됩니다.<br><br><br></span>" 
+                + "<span data-i18n='[html]rewardPop2.content4'>이 입금됩니다.</span><br><br><br>" 
                 + bankSelect
                 + "<br><br>"
                 + "<span id='directSpan' style='display: none'>"
@@ -105,8 +105,8 @@ function checkReward(){
                 + "<input type='text' name='accountName' class='purchase_input' placeholder='name of account holder'>"
                 + "<br>" 
                 + "<input type='text' name='accountNo' class='purchase_input' placeholder='account'>"
-                + "<span data-i18n='[html]rewardPop2.content5'><br>계좌명과 계좌번호를 정확하게 입력해주세요.</span>"
-                + "<span data-i18n='[html]rewardPop2.content6'><br>계좌명이 정확하지 않을 경우, 입금에 장애가 있을 수 있습니다.</span>";
+                + "<br><span data-i18n='[html]rewardPop2.content5'>계좌명과 계좌번호를 정확하게 입력해주세요.</span>"
+                + "<br><span data-i18n='[html]rewardPop2.content6'>계좌명이 정확하지 않을 경우, 입금에 장애가 있을 수 있습니다.</span>";
     var bottom = "<div class='popup_btn upload_btn'>"
     	       + "  <div class='purchase_btn_text'>Done </div>"
     	       + "  <i class='material-icons'>done</i>"
