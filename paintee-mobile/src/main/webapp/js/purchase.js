@@ -353,7 +353,7 @@ PurchaseController.prototype = {
 			receiverName: $("[name=receiverName]").val(),
 			senderName: $("[name=senderName]").val(),
 			location: $("[name=location]").val(),
-			purchaseStatus: "C",
+			purchaseStatus: "1",
 			changeAddr: controller.changeAddr,
 		};
 

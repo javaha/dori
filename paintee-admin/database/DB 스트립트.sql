@@ -10,6 +10,7 @@ create table TB_USER (
 	zipcode varchar(200) comment '우편번호',
 	city varchar(200) comment '도시명',
 	location varchar(40) comment '국가',
+	language varchar(8) comment '언어',
 	upload_cnt int default 0 comment 'Upload 한 전체 숫자',
 	post_cnt int default 0 comment 'Post 한 전체 숫자',
 	earn_total_money float default 0 comment '수익의 전체 금액',
@@ -48,7 +49,7 @@ create  table TB_PURCHASE (
 	sender_addr varchar(30) comment '엽서 발신자 주소',
 	sender_name varchar(30) comment '엽서 발신자 이름',
 	location varchar(40) comment '구매자의 국가',
-	purchase_status char(1) default 'C' comment '구매 진행 상태 (요청-C/발송-S/환불요청-R/삭제-D)',
+	purchase_status varchar(8) default '1' comment '구매 진행 상태 (요청-1/발송-2/재발송요청-3/재발송처리-4/환불요청-5/환불처리-6/삭제-7)',
     created_date datetime default now() comment '생성일시'
 ) COMMENT = '구매';
 

@@ -100,7 +100,7 @@ public class RewardServiceImpl implements RewardService {
 		user.setEarnRewordMoney(reward.getEarmRequestedMoney() + (float)reward.getEarmRequestedCommission());
 		
 		// 사용자 테이블 업데이트
-		userHelper.updateUserEarnRewordMoney(user);
+		userHelper.updateUserEarnRewardMoney(user);
 	}
 }
 

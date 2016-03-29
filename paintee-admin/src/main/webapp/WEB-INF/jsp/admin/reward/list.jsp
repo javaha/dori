@@ -56,6 +56,7 @@
 <navi:page />
 
 <form name="rewardForm" method="post" action="${pageContext.request.contextPath}/admin/reward/mod">
+	<input type="hidden" name="pageNo" value="${pageVO.pageNo}" />
 	<input type="hidden" name="seq" />
 	<input type="hidden" name="userId" />
 	<input type="hidden" name="rewardStatus" />

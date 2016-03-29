@@ -54,6 +54,8 @@ public class User extends BaseEntity {
 
     private Date createdDate;
 
+    private String language;
+
     public String getUserId() {
         return userId;
     }
@@ -252,5 +254,13 @@ public class User extends BaseEntity {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }

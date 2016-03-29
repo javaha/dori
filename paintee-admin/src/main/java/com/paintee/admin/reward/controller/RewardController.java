@@ -90,7 +90,8 @@ public class RewardController {
 	 @return 
 	 */
 	@RequestMapping(value="/mod", method={RequestMethod.POST})
-	public String modReward(Reward reward, RedirectAttributes model) {
+	public String modReward(@RequestParam(name="pageNo", required=false, defaultValue="1") Integer pageNo, 
+			Reward reward, RedirectAttributes model) {
 		System.out.println("reward ::: " + reward);
 		rewardService.modRewardStatus(reward);
 		

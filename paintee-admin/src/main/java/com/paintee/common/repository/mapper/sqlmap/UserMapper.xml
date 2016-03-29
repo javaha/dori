@@ -27,6 +27,7 @@
     <result column="user_status" property="userStatus" jdbcType="CHAR" />
     <result column="sns_type" property="snsType" jdbcType="CHAR" />
     <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="language" property="language" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -90,7 +91,8 @@
     user_id, password, email, name, provider_id, introduce, basic_addr, detail_addr, 
     zipcode, city, location, upload_cnt, post_cnt, earn_total_money, earn_reword_money, 
     resent_send_basic_addr, resent_send_detail_addr, resent_send_zipcode, resent_send_city, 
-    resent_send_location, resent_send_name, point, user_status, sns_type, created_date
+    resent_send_location, resent_send_name, point, user_status, sns_type, created_date, 
+    language
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.UserExample" >
     select
@@ -132,7 +134,8 @@
       resent_send_basic_addr, resent_send_detail_addr, 
       resent_send_zipcode, resent_send_city, resent_send_location, 
       resent_send_name, point, user_status, 
-      sns_type, created_date)
+      sns_type, created_date, language
+      )
     values (#{userId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{providerId,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
       #{basicAddr,jdbcType=VARCHAR}, #{detailAddr,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR}, 
@@ -141,7 +144,8 @@
       #{resentSendBasicAddr,jdbcType=VARCHAR}, #{resentSendDetailAddr,jdbcType=VARCHAR}, 
       #{resentSendZipcode,jdbcType=VARCHAR}, #{resentSendCity,jdbcType=VARCHAR}, #{resentSendLocation,jdbcType=VARCHAR}, 
       #{resentSendName,jdbcType=VARCHAR}, #{point,jdbcType=INTEGER}, #{userStatus,jdbcType=CHAR}, 
-      #{snsType,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP})
+      #{snsType,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP}, #{language,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.User" >
     insert into tb_user
@@ -221,6 +225,9 @@
       <if test="createdDate != null" >
         created_date,
       </if>
+      <if test="language != null" >
+        language,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -297,6 +304,9 @@
       </if>
       <if test="createdDate != null" >
         #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -384,6 +394,9 @@
       <if test="record.createdDate != null" >
         created_date = #{record.createdDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.language != null" >
+        language = #{record.language,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -415,7 +428,8 @@
       point = #{record.point,jdbcType=INTEGER},
       user_status = #{record.userStatus,jdbcType=CHAR},
       sns_type = #{record.snsType,jdbcType=CHAR},
-      created_date = #{record.createdDate,jdbcType=TIMESTAMP}
+      created_date = #{record.createdDate,jdbcType=TIMESTAMP},
+      language = #{record.language,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -495,6 +509,9 @@
       <if test="createdDate != null" >
         created_date = #{createdDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="language != null" >
+        language = #{language,jdbcType=VARCHAR},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
@@ -523,7 +540,8 @@
       point = #{point,jdbcType=INTEGER},
       user_status = #{userStatus,jdbcType=CHAR},
       sns_type = #{snsType,jdbcType=CHAR},
-      created_date = #{createdDate,jdbcType=TIMESTAMP}
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      language = #{language,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
 </mapper>

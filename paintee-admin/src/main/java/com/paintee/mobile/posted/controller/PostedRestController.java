@@ -49,7 +49,7 @@ public class PostedRestController {
 
 		// 데이터 조건 설정
 		postedSearchVO.setPrivateAt("N");
-		postedSearchVO.setPurchaseStatus("S");
+		postedSearchVO.setPurchaseStatus("2");
 
 		Map<String, Object> result = postedService.getPostedData(postedSearchVO);
 
