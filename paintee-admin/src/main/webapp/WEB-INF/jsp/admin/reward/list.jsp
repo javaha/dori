@@ -19,7 +19,10 @@
 	<%--  최신 등록된 글부터 출력합니다. --%>
 	<c:forEach var="data" items="${pageVO.list}">
 		<tr>
-			<td class="tcenter">${data.userName}</td>
+			<td class="tcenter">
+				<input type="hidden" id="userId${data.seq}" value="${data.userId}" />
+				${data.userName}
+			</td>
  			<td class="tcenter">${data.bankName}</td> 
 			<td class="tcenter">${data.accountNo}</td>
 			<td class="tcenter">${data.accountName}</td>
@@ -52,34 +55,29 @@
 <%-- 페이징 처리 --%>
 <navi:page />
 
+<form name="rewardForm" method="post" action="${pageContext.request.contextPath}/admin/reward/mod">
+	<input type="hidden" name="seq" />
+	<input type="hidden" name="userId" />
+	<input type="hidden" name="rewardStatus" />
+	<input type="hidden" name="earmRequestedCommission" />
+	<input type="hidden" name="earmRequestedMoney" />
+</form>
+
 <script>
+	if ('${msg}') alert('${msg}');
 	$("[name=rewardStatus]").change(function (event) {
-		var rewardId = this.id.replace("rewardStatus", "");
-		var rewardStatus = this.value;
-		console.log($("#earmRequestedCommission" + rewardId));
-		console.log($("#earmRequestedCommission" + rewardId).html());
-		console.log($("#earmRequestedCommission" + rewardId).html().replace("$", ""));
-		var data = {
-			"seq": rewardId,
-			"rewardStatus": rewardStatus,
-			"earmRequestedCommission": $("#earmRequestedCommission" + rewardId).html().replace("$", ""), 
-			"earmRequestedMoney": $("#earmRequestedMoney" + rewardId).html().replace("$", "")
-		};
-		$.ajax({
-				url: "/admin/reward/mod",
-				type: "GET",
-				async: true,
-				cache: false,
-				data: data
-		})
-		.done(function (result) {
-			if (result) {
-				alert(result.msg);			
-			}
-		})
-		.fail(function () {
-			alert("상태 변경중 오류가 발생했습니다.");
-		});
+		if (confirm("상태를 변경하시겠습니까?")) {
+			var rewardId = this.id.replace("rewardStatus", "");
+			$("[name=seq]").val(rewardId);
+			$("[name=userId]").val($("#userId" + rewardId).val());
+			$("[name=rewardStatus]").val(this.value);
+			$("[name=earmRequestedCommission]").val($("#earmRequestedCommission" + rewardId).html().replace("$", ""));
+			$("[name=earmRequestedMoney]").val($("#earmRequestedMoney" + rewardId).html().replace("$", ""));
+						
+			document.rewardForm.submit();
+		} else {
+			$("[name=rewardStatus]").val("R");
+		}
 	});	
 </script>
 <c:import url="/WEB-INF/jsp/template/footer.jsp" />

@@ -16,6 +16,7 @@ package com.paintee.common.repository.helper;
 
 import com.paintee.common.repository.entity.Purchase;
 import com.paintee.common.repository.entity.User;
+import com.paintee.common.repository.entity.vo.UserVO;
 import com.paintee.common.repository.mapper.UserMapper;
 
 /**
@@ -63,5 +64,14 @@ public interface UserHelper extends UserMapper {
 	 - 함수의 상세 설명 : 
 	 @param user 
 	*/
-	public void updateUserEarnRewordMoney(User user);
+	public void updateUserEarnRewardMoney(User user);
+	
+	/**
+	 @fn updateUserRewordMoney
+	 @brief 함수 간략한 설명 : 관리자에서 리워드 상태변경시 
+	 @remark
+	 - 함수의 상세 설명 : 관리자에서 리워드 상태 변경을 요청에서 비정상으로 처리했을 경우 처리
+	 @param user 
+	 */
+	public void updateUserRewardMoney(UserVO user);
 }

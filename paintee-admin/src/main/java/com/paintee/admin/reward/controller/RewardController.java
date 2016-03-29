@@ -14,6 +14,7 @@
 */
 package com.paintee.admin.reward.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.paintee.admin.reward.service.RewardService;
 import com.paintee.common.paging.PageVO;
@@ -66,6 +68,11 @@ public class RewardController {
 		RewardSearchVO search = new RewardSearchVO();
 		search.setStartRow((pageNo - 1) * 5);
 		search.setRowPerPage(10);
+		// 목록에 조회할 상태
+		List<String> rewardStatus = new ArrayList<>();
+		rewardStatus.add("R");  // 요청
+		search.setRewardStatus(rewardStatus);
+		
 		Map<String, Object> result = rewardService.getRewardList(search);
 		
 		// 화면 페이징 처리
@@ -79,27 +86,16 @@ public class RewardController {
 	 @fn modReward
 	 @brief 함수 간략한 설명 : 리워드 상태 변경
 	 @remark
-	 - 함수의 상세 설명 : 
-	    1. 요청 변경시 처리할 일
-		   - 요청 수수료와 요청 금액을 합산한 금액을 tb_user 테이블의 earn_total_money에서 빼고, earn_reward_money에 더한다.	
-	    2. 비정상 변경시 처리할 일
-		   - 요청 수수료와 요청 금액을 합산한 금액을 tb_user 테이블의 earn_total_money에 더하고, earn_reward_money에서 뺀다.	
-	    3. 완료 변경시 처리할 일
-	       - 리워드 테이블에 상태만 적용하면 된다.
+	 - 함수의 상세 설명 : 리워드 상태 변경시 처리
 	 @return 
 	 */
-	@RequestMapping(value="/mod", method={RequestMethod.GET})
-	@ResponseBody
-	public Map<String, Object> modReward(Reward reward) {
+	@RequestMapping(value="/mod", method={RequestMethod.POST})
+	public String modReward(Reward reward, RedirectAttributes model) {
 		System.out.println("reward ::: " + reward);
 		rewardService.modRewardStatus(reward);
 		
-		int money = reward.getEarmRequestedCommission() + reward.getEarmRequestedMoney();
-		System.out.println("money ::: " + money);
-		
-		Map<String, Object> result = new HashMap<>();
-		result.put("msg", "상태가 변경되었습니다.");
-		return result;
+		model.addFlashAttribute("msg", "상태가 변경되었습니다.");
+		return "redirect:/admin/reward/list";
 	}
 }
 
