@@ -13,6 +13,7 @@
     <result column="zipcode" property="zipcode" jdbcType="VARCHAR" />
     <result column="city" property="city" jdbcType="VARCHAR" />
     <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="language" property="language" jdbcType="VARCHAR" />
     <result column="upload_cnt" property="uploadCnt" jdbcType="INTEGER" />
     <result column="post_cnt" property="postCnt" jdbcType="INTEGER" />
     <result column="earn_total_money" property="earnTotalMoney" jdbcType="REAL" />
@@ -27,7 +28,6 @@
     <result column="user_status" property="userStatus" jdbcType="CHAR" />
     <result column="sns_type" property="snsType" jdbcType="CHAR" />
     <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
-    <result column="language" property="language" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -89,10 +89,9 @@
   </sql>
   <sql id="Base_Column_List" >
     user_id, password, email, name, provider_id, introduce, basic_addr, detail_addr, 
-    zipcode, city, location, upload_cnt, post_cnt, earn_total_money, earn_reword_money, 
+    zipcode, city, location, language, upload_cnt, post_cnt, earn_total_money, earn_reword_money, 
     resent_send_basic_addr, resent_send_detail_addr, resent_send_zipcode, resent_send_city, 
-    resent_send_location, resent_send_name, point, user_status, sns_type, created_date, 
-    language
+    resent_send_location, resent_send_name, point, user_status, sns_type, created_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.UserExample" >
     select
@@ -101,7 +100,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_user
+    from TB_USER
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -112,43 +111,41 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_user
+    from TB_USER
     where user_id = #{userId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from tb_user
+    delete from TB_USER
     where user_id = #{userId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.UserExample" >
-    delete from tb_user
+    delete from TB_USER
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.paintee.common.repository.entity.User" >
-    insert into tb_user (user_id, password, email, 
+    insert into TB_USER (user_id, password, email, 
       name, provider_id, introduce, 
       basic_addr, detail_addr, zipcode, 
-      city, location, upload_cnt, 
-      post_cnt, earn_total_money, earn_reword_money, 
-      resent_send_basic_addr, resent_send_detail_addr, 
+      city, location, language, 
+      upload_cnt, post_cnt, earn_total_money, 
+      earn_reword_money, resent_send_basic_addr, resent_send_detail_addr, 
       resent_send_zipcode, resent_send_city, resent_send_location, 
       resent_send_name, point, user_status, 
-      sns_type, created_date, language
-      )
+      sns_type, created_date)
     values (#{userId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{providerId,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
       #{basicAddr,jdbcType=VARCHAR}, #{detailAddr,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR}, 
-      #{city,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{uploadCnt,jdbcType=INTEGER}, 
-      #{postCnt,jdbcType=INTEGER}, #{earnTotalMoney,jdbcType=REAL}, #{earnRewordMoney,jdbcType=REAL}, 
-      #{resentSendBasicAddr,jdbcType=VARCHAR}, #{resentSendDetailAddr,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{language,jdbcType=VARCHAR}, 
+      #{uploadCnt,jdbcType=INTEGER}, #{postCnt,jdbcType=INTEGER}, #{earnTotalMoney,jdbcType=REAL}, 
+      #{earnRewordMoney,jdbcType=REAL}, #{resentSendBasicAddr,jdbcType=VARCHAR}, #{resentSendDetailAddr,jdbcType=VARCHAR}, 
       #{resentSendZipcode,jdbcType=VARCHAR}, #{resentSendCity,jdbcType=VARCHAR}, #{resentSendLocation,jdbcType=VARCHAR}, 
       #{resentSendName,jdbcType=VARCHAR}, #{point,jdbcType=INTEGER}, #{userStatus,jdbcType=CHAR}, 
-      #{snsType,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP}, #{language,jdbcType=VARCHAR}
-      )
+      #{snsType,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.User" >
-    insert into tb_user
+    insert into TB_USER
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         user_id,
@@ -182,6 +179,9 @@
       </if>
       <if test="location != null" >
         location,
+      </if>
+      <if test="language != null" >
+        language,
       </if>
       <if test="uploadCnt != null" >
         upload_cnt,
@@ -225,9 +225,6 @@
       <if test="createdDate != null" >
         created_date,
       </if>
-      <if test="language != null" >
-        language,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -262,6 +259,9 @@
       </if>
       <if test="location != null" >
         #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=VARCHAR},
       </if>
       <if test="uploadCnt != null" >
         #{uploadCnt,jdbcType=INTEGER},
@@ -305,19 +305,16 @@
       <if test="createdDate != null" >
         #{createdDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="language != null" >
-        #{language,jdbcType=VARCHAR},
-      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.paintee.common.repository.entity.UserExample" resultType="java.lang.Integer" >
-    select count(*) from tb_user
+    select count(*) from TB_USER
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update tb_user
+    update TB_USER
     <set >
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=VARCHAR},
@@ -351,6 +348,9 @@
       </if>
       <if test="record.location != null" >
         location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language != null" >
+        language = #{record.language,jdbcType=VARCHAR},
       </if>
       <if test="record.uploadCnt != null" >
         upload_cnt = #{record.uploadCnt,jdbcType=INTEGER},
@@ -394,16 +394,13 @@
       <if test="record.createdDate != null" >
         created_date = #{record.createdDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.language != null" >
-        language = #{record.language,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update tb_user
+    update TB_USER
     set user_id = #{record.userId,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
@@ -415,6 +412,7 @@
       zipcode = #{record.zipcode,jdbcType=VARCHAR},
       city = #{record.city,jdbcType=VARCHAR},
       location = #{record.location,jdbcType=VARCHAR},
+      language = #{record.language,jdbcType=VARCHAR},
       upload_cnt = #{record.uploadCnt,jdbcType=INTEGER},
       post_cnt = #{record.postCnt,jdbcType=INTEGER},
       earn_total_money = #{record.earnTotalMoney,jdbcType=REAL},
@@ -428,14 +426,13 @@
       point = #{record.point,jdbcType=INTEGER},
       user_status = #{record.userStatus,jdbcType=CHAR},
       sns_type = #{record.snsType,jdbcType=CHAR},
-      created_date = #{record.createdDate,jdbcType=TIMESTAMP},
-      language = #{record.language,jdbcType=VARCHAR}
+      created_date = #{record.createdDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.User" >
-    update tb_user
+    update TB_USER
     <set >
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
@@ -466,6 +463,9 @@
       </if>
       <if test="location != null" >
         location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        language = #{language,jdbcType=VARCHAR},
       </if>
       <if test="uploadCnt != null" >
         upload_cnt = #{uploadCnt,jdbcType=INTEGER},
@@ -509,14 +509,11 @@
       <if test="createdDate != null" >
         created_date = #{createdDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="language != null" >
-        language = #{language,jdbcType=VARCHAR},
-      </if>
     </set>
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.User" >
-    update tb_user
+    update TB_USER
     set password = #{password,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
@@ -527,6 +524,7 @@
       zipcode = #{zipcode,jdbcType=VARCHAR},
       city = #{city,jdbcType=VARCHAR},
       location = #{location,jdbcType=VARCHAR},
+      language = #{language,jdbcType=VARCHAR},
       upload_cnt = #{uploadCnt,jdbcType=INTEGER},
       post_cnt = #{postCnt,jdbcType=INTEGER},
       earn_total_money = #{earnTotalMoney,jdbcType=REAL},
@@ -540,8 +538,7 @@
       point = #{point,jdbcType=INTEGER},
       user_status = #{userStatus,jdbcType=CHAR},
       sns_type = #{snsType,jdbcType=CHAR},
-      created_date = #{createdDate,jdbcType=TIMESTAMP},
-      language = #{language,jdbcType=VARCHAR}
+      created_date = #{createdDate,jdbcType=TIMESTAMP}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
 </mapper>

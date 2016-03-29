@@ -1,8 +1,7 @@
 package com.paintee.common.repository.entity;
 
-import java.util.Date;
-
 import com.paintee.common.object.BaseEntity;
+import java.util.Date;
 
 public class Login extends BaseEntity {
     private Integer seq;
@@ -14,7 +13,7 @@ public class Login extends BaseEntity {
     private Date expireDate;
 
     private String accessGubun;
-    
+
     public Integer getSeq() {
         return seq;
     }

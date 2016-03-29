@@ -76,7 +76,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_code
+    from TB_CODE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,29 +87,29 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.CodeKey" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_code
+    from TB_CODE
     where code_group = #{codeGroup,jdbcType=VARCHAR}
       and code_value = #{codeValue,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.paintee.common.repository.entity.CodeKey" >
-    delete from tb_code
+    delete from TB_CODE
     where code_group = #{codeGroup,jdbcType=VARCHAR}
       and code_value = #{codeValue,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.CodeExample" >
-    delete from tb_code
+    delete from TB_CODE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.paintee.common.repository.entity.Code" >
-    insert into tb_code (code_group, code_value, code_name, 
+    insert into TB_CODE (code_group, code_value, code_name, 
       use_yn, created_date)
     values (#{codeGroup,jdbcType=VARCHAR}, #{codeValue,jdbcType=VARCHAR}, #{codeName,jdbcType=VARCHAR}, 
       #{useYn,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Code" >
-    insert into tb_code
+    insert into TB_CODE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="codeGroup != null" >
         code_group,
@@ -146,13 +146,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.paintee.common.repository.entity.CodeExample" resultType="java.lang.Integer" >
-    select count(*) from tb_code
+    select count(*) from TB_CODE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update tb_code
+    update TB_CODE
     <set >
       <if test="record.codeGroup != null" >
         code_group = #{record.codeGroup,jdbcType=VARCHAR},
@@ -175,7 +175,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update tb_code
+    update TB_CODE
     set code_group = #{record.codeGroup,jdbcType=VARCHAR},
       code_value = #{record.codeValue,jdbcType=VARCHAR},
       code_name = #{record.codeName,jdbcType=VARCHAR},
@@ -186,7 +186,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.Code" >
-    update tb_code
+    update TB_CODE
     <set >
       <if test="codeName != null" >
         code_name = #{codeName,jdbcType=VARCHAR},
@@ -202,7 +202,7 @@
       and code_value = #{codeValue,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.Code" >
-    update tb_code
+    update TB_CODE
     set code_name = #{codeName,jdbcType=VARCHAR},
       use_yn = #{useYn,jdbcType=CHAR},
       created_date = #{createdDate,jdbcType=TIMESTAMP}

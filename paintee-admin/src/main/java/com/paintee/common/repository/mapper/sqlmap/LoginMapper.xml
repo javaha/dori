@@ -5,7 +5,7 @@
     <id column="seq" property="seq" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="VARCHAR" />
     <result column="hash" property="hash" jdbcType="VARCHAR" />
-    <result column="expire_date" property="expireDate" jdbcType="DATE" />
+    <result column="expire_date" property="expireDate" jdbcType="TIMESTAMP" />
     <result column="access_gubun" property="accessGubun" jdbcType="CHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -76,7 +76,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_login
+    from TB_LOGIN
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,15 +87,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_login
+    from TB_LOGIN
     where seq = #{seq,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from tb_login
+    delete from TB_LOGIN
     where seq = #{seq,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.LoginExample" >
-    delete from tb_login
+    delete from TB_LOGIN
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -104,16 +104,16 @@
     <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tb_login (user_id, hash, expire_date, 
+    insert into TB_LOGIN (user_id, hash, expire_date, 
       access_gubun)
-    values (#{userId,jdbcType=VARCHAR}, #{hash,jdbcType=VARCHAR}, #{expireDate,jdbcType=DATE}, 
+    values (#{userId,jdbcType=VARCHAR}, #{hash,jdbcType=VARCHAR}, #{expireDate,jdbcType=TIMESTAMP}, 
       #{accessGubun,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Login" >
     <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tb_login
+    insert into TB_LOGIN
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         user_id,
@@ -136,7 +136,7 @@
         #{hash,jdbcType=VARCHAR},
       </if>
       <if test="expireDate != null" >
-        #{expireDate,jdbcType=DATE},
+        #{expireDate,jdbcType=TIMESTAMP},
       </if>
       <if test="accessGubun != null" >
         #{accessGubun,jdbcType=CHAR},
@@ -144,13 +144,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.paintee.common.repository.entity.LoginExample" resultType="java.lang.Integer" >
-    select count(*) from tb_login
+    select count(*) from TB_LOGIN
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update tb_login
+    update TB_LOGIN
     <set >
       <if test="record.seq != null" >
         seq = #{record.seq,jdbcType=INTEGER},
@@ -162,7 +162,7 @@
         hash = #{record.hash,jdbcType=VARCHAR},
       </if>
       <if test="record.expireDate != null" >
-        expire_date = #{record.expireDate,jdbcType=DATE},
+        expire_date = #{record.expireDate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.accessGubun != null" >
         access_gubun = #{record.accessGubun,jdbcType=CHAR},
@@ -173,18 +173,18 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update tb_login
+    update TB_LOGIN
     set seq = #{record.seq,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=VARCHAR},
       hash = #{record.hash,jdbcType=VARCHAR},
-      expire_date = #{record.expireDate,jdbcType=DATE},
+      expire_date = #{record.expireDate,jdbcType=TIMESTAMP},
       access_gubun = #{record.accessGubun,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.Login" >
-    update tb_login
+    update TB_LOGIN
     <set >
       <if test="userId != null" >
         user_id = #{userId,jdbcType=VARCHAR},
@@ -193,7 +193,7 @@
         hash = #{hash,jdbcType=VARCHAR},
       </if>
       <if test="expireDate != null" >
-        expire_date = #{expireDate,jdbcType=DATE},
+        expire_date = #{expireDate,jdbcType=TIMESTAMP},
       </if>
       <if test="accessGubun != null" >
         access_gubun = #{accessGubun,jdbcType=CHAR},
@@ -202,10 +202,10 @@
     where seq = #{seq,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.Login" >
-    update tb_login
+    update TB_LOGIN
     set user_id = #{userId,jdbcType=VARCHAR},
       hash = #{hash,jdbcType=VARCHAR},
-      expire_date = #{expireDate,jdbcType=DATE},
+      expire_date = #{expireDate,jdbcType=TIMESTAMP},
       access_gubun = #{accessGubun,jdbcType=CHAR}
     where seq = #{seq,jdbcType=INTEGER}
   </update>

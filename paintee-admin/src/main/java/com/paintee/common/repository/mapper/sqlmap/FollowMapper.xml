@@ -74,7 +74,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_follow
+    from TB_FOLLOW
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,29 +85,29 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.FollowKey" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_follow
+    from TB_FOLLOW
     where user_id = #{userId,jdbcType=VARCHAR}
       and following = #{following,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.paintee.common.repository.entity.FollowKey" >
-    delete from tb_follow
+    delete from TB_FOLLOW
     where user_id = #{userId,jdbcType=VARCHAR}
       and following = #{following,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.FollowExample" >
-    delete from tb_follow
+    delete from TB_FOLLOW
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.paintee.common.repository.entity.Follow" >
-    insert into tb_follow (user_id, following, created_date
+    insert into TB_FOLLOW (user_id, following, created_date
       )
     values (#{userId,jdbcType=VARCHAR}, #{following,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Follow" >
-    insert into tb_follow
+    insert into TB_FOLLOW
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         user_id,
@@ -132,13 +132,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.paintee.common.repository.entity.FollowExample" resultType="java.lang.Integer" >
-    select count(*) from tb_follow
+    select count(*) from TB_FOLLOW
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update tb_follow
+    update TB_FOLLOW
     <set >
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=VARCHAR},
@@ -155,7 +155,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update tb_follow
+    update TB_FOLLOW
     set user_id = #{record.userId,jdbcType=VARCHAR},
       following = #{record.following,jdbcType=VARCHAR},
       created_date = #{record.createdDate,jdbcType=TIMESTAMP}
@@ -164,7 +164,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.Follow" >
-    update tb_follow
+    update TB_FOLLOW
     <set >
       <if test="createdDate != null" >
         created_date = #{createdDate,jdbcType=TIMESTAMP},
@@ -174,7 +174,7 @@
       and following = #{following,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.Follow" >
-    update tb_follow
+    update TB_FOLLOW
     set created_date = #{createdDate,jdbcType=TIMESTAMP}
     where user_id = #{userId,jdbcType=VARCHAR}
       and following = #{following,jdbcType=VARCHAR}

@@ -75,7 +75,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_confirm_hash
+    from TB_CONFIRM_HASH
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,15 +86,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_confirm_hash
+    from TB_CONFIRM_HASH
     where seq = #{seq,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from tb_confirm_hash
+    delete from TB_CONFIRM_HASH
     where seq = #{seq,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.ConfirmHashExample" >
-    delete from tb_confirm_hash
+    delete from TB_CONFIRM_HASH
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -103,7 +103,7 @@
     <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tb_confirm_hash (user_id, hash, expire_date
+    insert into TB_CONFIRM_HASH (user_id, hash, expire_date
       )
     values (#{userId,jdbcType=VARCHAR}, #{hash,jdbcType=VARCHAR}, #{expireDate,jdbcType=TIMESTAMP}
       )
@@ -112,7 +112,7 @@
     <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tb_confirm_hash
+    insert into TB_CONFIRM_HASH
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         user_id,
@@ -137,13 +137,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.paintee.common.repository.entity.ConfirmHashExample" resultType="java.lang.Integer" >
-    select count(*) from tb_confirm_hash
+    select count(*) from TB_CONFIRM_HASH
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update tb_confirm_hash
+    update TB_CONFIRM_HASH
     <set >
       <if test="record.seq != null" >
         seq = #{record.seq,jdbcType=INTEGER},
@@ -163,7 +163,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update tb_confirm_hash
+    update TB_CONFIRM_HASH
     set seq = #{record.seq,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=VARCHAR},
       hash = #{record.hash,jdbcType=VARCHAR},
@@ -173,7 +173,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.ConfirmHash" >
-    update tb_confirm_hash
+    update TB_CONFIRM_HASH
     <set >
       <if test="userId != null" >
         user_id = #{userId,jdbcType=VARCHAR},
@@ -188,7 +188,7 @@
     where seq = #{seq,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.ConfirmHash" >
-    update tb_confirm_hash
+    update TB_CONFIRM_HASH
     set user_id = #{userId,jdbcType=VARCHAR},
       hash = #{hash,jdbcType=VARCHAR},
       expire_date = #{expireDate,jdbcType=TIMESTAMP}

@@ -82,7 +82,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_reward
+    from TB_REWARD
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,15 +93,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_reward
+    from TB_REWARD
     where seq = #{seq,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from tb_reward
+    delete from TB_REWARD
     where seq = #{seq,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.RewardExample" >
-    delete from tb_reward
+    delete from TB_REWARD
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -110,7 +110,7 @@
     <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tb_reward (user_id, bank, direct_input_bank, 
+    insert into TB_REWARD (user_id, bank, direct_input_bank, 
       account_no, account_name, earm_requested_money, 
       earm_requested_commission, reward_status, created_date
       )
@@ -123,7 +123,7 @@
     <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tb_reward
+    insert into TB_REWARD
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         user_id,
@@ -184,13 +184,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.paintee.common.repository.entity.RewardExample" resultType="java.lang.Integer" >
-    select count(*) from tb_reward
+    select count(*) from TB_REWARD
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update tb_reward
+    update TB_REWARD
     <set >
       <if test="record.seq != null" >
         seq = #{record.seq,jdbcType=INTEGER},
@@ -228,7 +228,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update tb_reward
+    update TB_REWARD
     set seq = #{record.seq,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=VARCHAR},
       bank = #{record.bank,jdbcType=VARCHAR},
@@ -244,7 +244,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.Reward" >
-    update tb_reward
+    update TB_REWARD
     <set >
       <if test="userId != null" >
         user_id = #{userId,jdbcType=VARCHAR},
@@ -277,7 +277,7 @@
     where seq = #{seq,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.Reward" >
-    update tb_reward
+    update TB_REWARD
     set user_id = #{userId,jdbcType=VARCHAR},
       bank = #{bank,jdbcType=VARCHAR},
       direct_input_bank = #{directInputBank,jdbcType=VARCHAR},

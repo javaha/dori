@@ -83,7 +83,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_file_info
+    from TB_FILE_INFO
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -94,21 +94,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_file_info
+    from TB_FILE_INFO
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from tb_file_info
+    delete from TB_FILE_INFO
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.FileInfoExample" >
-    delete from tb_file_info
+    delete from TB_FILE_INFO
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.paintee.common.repository.entity.FileInfo" >
-    insert into tb_file_info (id, file_group_seq, content_type, 
+    insert into TB_FILE_INFO (id, file_group_seq, content_type, 
       extension, name, ori_name, 
       display_name, path, size, 
       created_date, last_modified_date)
@@ -118,7 +118,7 @@
       #{createdDate,jdbcType=TIMESTAMP}, #{lastModifiedDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.FileInfo" >
-    insert into tb_file_info
+    insert into TB_FILE_INFO
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -191,13 +191,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.paintee.common.repository.entity.FileInfoExample" resultType="java.lang.Integer" >
-    select count(*) from tb_file_info
+    select count(*) from TB_FILE_INFO
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update tb_file_info
+    update TB_FILE_INFO
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=VARCHAR},
@@ -238,7 +238,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update tb_file_info
+    update TB_FILE_INFO
     set id = #{record.id,jdbcType=VARCHAR},
       file_group_seq = #{record.fileGroupSeq,jdbcType=BIGINT},
       content_type = #{record.contentType,jdbcType=VARCHAR},
@@ -255,7 +255,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.FileInfo" >
-    update tb_file_info
+    update TB_FILE_INFO
     <set >
       <if test="fileGroupSeq != null" >
         file_group_seq = #{fileGroupSeq,jdbcType=BIGINT},
@@ -291,7 +291,7 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.FileInfo" >
-    update tb_file_info
+    update TB_FILE_INFO
     set file_group_seq = #{fileGroupSeq,jdbcType=BIGINT},
       content_type = #{contentType,jdbcType=VARCHAR},
       extension = #{extension,jdbcType=VARCHAR},

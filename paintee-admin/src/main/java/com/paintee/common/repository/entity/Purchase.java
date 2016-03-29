@@ -24,9 +24,9 @@ public class Purchase extends BaseEntity {
 
     private String receiverCity;
 
-    private String senderAddr;
-
     private String receiverName;
+
+    private String senderAddr;
 
     private String senderName;
 
@@ -116,20 +116,20 @@ public class Purchase extends BaseEntity {
         this.receiverCity = receiverCity;
     }
 
-    public String getSenderAddr() {
-        return senderAddr;
-    }
-
-    public void setSenderAddr(String senderAddr) {
-        this.senderAddr = senderAddr;
-    }
-
     public String getReceiverName() {
         return receiverName;
     }
 
     public void setReceiverName(String receiverName) {
         this.receiverName = receiverName;
+    }
+
+    public String getSenderAddr() {
+        return senderAddr;
+    }
+
+    public void setSenderAddr(String senderAddr) {
+        this.senderAddr = senderAddr;
     }
 
     public String getSenderName() {

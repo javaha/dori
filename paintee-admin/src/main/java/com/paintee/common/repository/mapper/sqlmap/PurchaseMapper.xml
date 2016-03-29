@@ -12,8 +12,8 @@
     <result column="receiver_detail_addr" property="receiverDetailAddr" jdbcType="VARCHAR" />
     <result column="receiver_zipcode" property="receiverZipcode" jdbcType="VARCHAR" />
     <result column="receiver_city" property="receiverCity" jdbcType="VARCHAR" />
-    <result column="sender_addr" property="senderAddr" jdbcType="VARCHAR" />
     <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
+    <result column="sender_addr" property="senderAddr" jdbcType="VARCHAR" />
     <result column="sender_name" property="senderName" jdbcType="VARCHAR" />
     <result column="location" property="location" jdbcType="VARCHAR" />
     <result column="purchase_status" property="purchaseStatus" jdbcType="CHAR" />
@@ -79,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List" >
     seq, user_id, painting_id, purchase_date, sentence, private_at, receiver_basic_addr, 
-    receiver_detail_addr, receiver_zipcode, receiver_city, sender_addr, receiver_name, 
+    receiver_detail_addr, receiver_zipcode, receiver_city, receiver_name, sender_addr, 
     sender_name, location, purchase_status, created_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.PurchaseExample" >
@@ -89,7 +89,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_purchase
+    from TB_PURCHASE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -100,15 +100,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_purchase
+    from TB_PURCHASE
     where seq = #{seq,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from tb_purchase
+    delete from TB_PURCHASE
     where seq = #{seq,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.paintee.common.repository.entity.PurchaseExample" >
-    delete from tb_purchase
+    delete from TB_PURCHASE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -117,16 +117,16 @@
     <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tb_purchase (user_id, painting_id, purchase_date, 
+    insert into TB_PURCHASE (user_id, painting_id, purchase_date, 
       sentence, private_at, receiver_basic_addr, 
       receiver_detail_addr, receiver_zipcode, receiver_city, 
-      sender_addr, receiver_name, sender_name, 
+      receiver_name, sender_addr, sender_name, 
       location, purchase_status, created_date
       )
     values (#{userId,jdbcType=VARCHAR}, #{paintingId,jdbcType=VARCHAR}, #{purchaseDate,jdbcType=TIMESTAMP}, 
       #{sentence,jdbcType=VARCHAR}, #{privateAt,jdbcType=CHAR}, #{receiverBasicAddr,jdbcType=VARCHAR}, 
       #{receiverDetailAddr,jdbcType=VARCHAR}, #{receiverZipcode,jdbcType=VARCHAR}, #{receiverCity,jdbcType=VARCHAR}, 
-      #{senderAddr,jdbcType=VARCHAR}, #{receiverName,jdbcType=VARCHAR}, #{senderName,jdbcType=VARCHAR}, 
+      #{receiverName,jdbcType=VARCHAR}, #{senderAddr,jdbcType=VARCHAR}, #{senderName,jdbcType=VARCHAR}, 
       #{location,jdbcType=VARCHAR}, #{purchaseStatus,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -134,7 +134,7 @@
     <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tb_purchase
+    insert into TB_PURCHASE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         user_id,
@@ -163,11 +163,11 @@
       <if test="receiverCity != null" >
         receiver_city,
       </if>
-      <if test="senderAddr != null" >
-        sender_addr,
-      </if>
       <if test="receiverName != null" >
         receiver_name,
+      </if>
+      <if test="senderAddr != null" >
+        sender_addr,
       </if>
       <if test="senderName != null" >
         sender_name,
@@ -210,11 +210,11 @@
       <if test="receiverCity != null" >
         #{receiverCity,jdbcType=VARCHAR},
       </if>
-      <if test="senderAddr != null" >
-        #{senderAddr,jdbcType=VARCHAR},
-      </if>
       <if test="receiverName != null" >
         #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="senderAddr != null" >
+        #{senderAddr,jdbcType=VARCHAR},
       </if>
       <if test="senderName != null" >
         #{senderName,jdbcType=VARCHAR},
@@ -231,13 +231,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.paintee.common.repository.entity.PurchaseExample" resultType="java.lang.Integer" >
-    select count(*) from tb_purchase
+    select count(*) from TB_PURCHASE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update tb_purchase
+    update TB_PURCHASE
     <set >
       <if test="record.seq != null" >
         seq = #{record.seq,jdbcType=INTEGER},
@@ -269,11 +269,11 @@
       <if test="record.receiverCity != null" >
         receiver_city = #{record.receiverCity,jdbcType=VARCHAR},
       </if>
-      <if test="record.senderAddr != null" >
-        sender_addr = #{record.senderAddr,jdbcType=VARCHAR},
-      </if>
       <if test="record.receiverName != null" >
         receiver_name = #{record.receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.senderAddr != null" >
+        sender_addr = #{record.senderAddr,jdbcType=VARCHAR},
       </if>
       <if test="record.senderName != null" >
         sender_name = #{record.senderName,jdbcType=VARCHAR},
@@ -293,7 +293,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update tb_purchase
+    update TB_PURCHASE
     set seq = #{record.seq,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=VARCHAR},
       painting_id = #{record.paintingId,jdbcType=VARCHAR},
@@ -304,8 +304,8 @@
       receiver_detail_addr = #{record.receiverDetailAddr,jdbcType=VARCHAR},
       receiver_zipcode = #{record.receiverZipcode,jdbcType=VARCHAR},
       receiver_city = #{record.receiverCity,jdbcType=VARCHAR},
-      sender_addr = #{record.senderAddr,jdbcType=VARCHAR},
       receiver_name = #{record.receiverName,jdbcType=VARCHAR},
+      sender_addr = #{record.senderAddr,jdbcType=VARCHAR},
       sender_name = #{record.senderName,jdbcType=VARCHAR},
       location = #{record.location,jdbcType=VARCHAR},
       purchase_status = #{record.purchaseStatus,jdbcType=CHAR},
@@ -315,7 +315,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.paintee.common.repository.entity.Purchase" >
-    update tb_purchase
+    update TB_PURCHASE
     <set >
       <if test="userId != null" >
         user_id = #{userId,jdbcType=VARCHAR},
@@ -344,11 +344,11 @@
       <if test="receiverCity != null" >
         receiver_city = #{receiverCity,jdbcType=VARCHAR},
       </if>
-      <if test="senderAddr != null" >
-        sender_addr = #{senderAddr,jdbcType=VARCHAR},
-      </if>
       <if test="receiverName != null" >
         receiver_name = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="senderAddr != null" >
+        sender_addr = #{senderAddr,jdbcType=VARCHAR},
       </if>
       <if test="senderName != null" >
         sender_name = #{senderName,jdbcType=VARCHAR},
@@ -366,7 +366,7 @@
     where seq = #{seq,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.paintee.common.repository.entity.Purchase" >
-    update tb_purchase
+    update TB_PURCHASE
     set user_id = #{userId,jdbcType=VARCHAR},
       painting_id = #{paintingId,jdbcType=VARCHAR},
       purchase_date = #{purchaseDate,jdbcType=TIMESTAMP},
@@ -376,8 +376,8 @@
       receiver_detail_addr = #{receiverDetailAddr,jdbcType=VARCHAR},
       receiver_zipcode = #{receiverZipcode,jdbcType=VARCHAR},
       receiver_city = #{receiverCity,jdbcType=VARCHAR},
-      sender_addr = #{senderAddr,jdbcType=VARCHAR},
       receiver_name = #{receiverName,jdbcType=VARCHAR},
+      sender_addr = #{senderAddr,jdbcType=VARCHAR},
       sender_name = #{senderName,jdbcType=VARCHAR},
       location = #{location,jdbcType=VARCHAR},
       purchase_status = #{purchaseStatus,jdbcType=CHAR},
