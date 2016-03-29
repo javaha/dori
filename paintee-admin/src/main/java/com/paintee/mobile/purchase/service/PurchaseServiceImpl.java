@@ -14,15 +14,23 @@
 */
 package com.paintee.mobile.purchase.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.paintee.common.repository.entity.FileInfo;
+import com.paintee.common.repository.entity.FileInfoExample;
 import com.paintee.common.repository.entity.Painting;
 import com.paintee.common.repository.entity.PurchaseExample;
 import com.paintee.common.repository.entity.User;
+import com.paintee.common.repository.entity.vo.PaintingVO;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
+import com.paintee.common.repository.helper.FileInfoHelper;
 import com.paintee.common.repository.helper.PaintingHelper;
 import com.paintee.common.repository.helper.PurchaseHelper;
 import com.paintee.common.repository.helper.UserHelper;
@@ -52,6 +60,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 	private PurchaseHelper purchaseHelper;
 	
 	@Autowired
+	private FileInfoHelper fileInfoHelper;
+	
+	@Autowired
 	private UserHelper userHelper;
 	
 	@Autowired
@@ -72,7 +83,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	 @see com.paintee.mobile.purchase.service.PurchaseService#addPurchase(com.paintee.common.repository.entity.Purchase)
 	*/
 	@Override
-	public void addPurchase(PurchaseSearchVO purchase) throws Exception {
+	public Map<String, Object> addPurchase(PurchaseSearchVO purchase) throws Exception {
 		logger.debug("구매추가 : {}", purchase);
 		
 		String userId = purchase.getUserId();
@@ -114,6 +125,23 @@ public class PurchaseServiceImpl implements PurchaseService {
 			painting.setPostedPeopleCnt(0);
 		}
 		paintingHelper.updatePaintingPurchaseInfo(painting);
+		
+		// 구매 후 공유를 할 수 있게 하기 위해 그림 정보를 가져온다.
+		Map<String, Object> resultMap = new HashMap<>();
+		PaintingVO pInfo = paintingHelper.selectPaintingInfo(painting.getPaintingId());
+		
+		//파일정보 조회
+		FileInfoExample fileInfoExample = new FileInfoExample();
+		FileInfoExample.Criteria where = fileInfoExample.createCriteria();
+		where.andFileGroupSeqEqualTo(pInfo.getFileGroupSeq());
+
+		List<FileInfo> fileInfoList = fileInfoHelper.selectByExample(fileInfoExample);
+
+		if(fileInfoList != null && fileInfoList.size() > 0) {
+			FileInfo fileInfo = fileInfoList.get(0);
+			resultMap.put("fileId", fileInfo.getId());
+		}
+		return resultMap;
 	}
 
 	@Override

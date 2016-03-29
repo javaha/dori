@@ -370,7 +370,7 @@ PurchaseController.prototype = {
 		// console.log("addPurchaseRes---");
 		// 기존 입력 내용 지우기
 		resetPurchase();
-		completePayment();
+		completePayment(result);
     	dataReload(["initMy();", "initPopular();"]);
 	}
 };
@@ -391,7 +391,8 @@ function resetPurchase() {
 	$('#pSentenceCount').html(0);
 }
 
-function completePayment(){
+function completePayment(result){
+	console.log("completePayment ::: " + JSON.stringify(result));
 	// console.log("sentence : " + $("[name=sentence]").val());
     $(".payment_box").empty();
     var payment = new Payment();
@@ -408,14 +409,16 @@ function completePayment(){
         selectMenu(3);
         mySwiper.slideTo(1);
     })
+    
+    var data = {name: purchaseController.artistName, page: purchaseController.paintingId, fileId: result.fileId};
     $("#fac_share").click(function() {
-    	shareSocial({type: "facebook", name: purchaseController.artistName, page: purchaseController.paintingId});
+    	shareSocial($.extend({type: "facebook"}, data));
     });
     $("#twi_share").click(function() {
-    	shareSocial({type: "twitter", name: purchaseController.artistName, page: purchaseController.paintingId});
+    	shareSocial($.extend({type: "twitter"}, data));
     });
     $("#pin_share").click(function() {
-    	shareSocial({type: "pinterest", name: purchaseController.artistName, page: purchaseController.paintingId});
+    	shareSocial($.extend({type: "pinterest"}, data));
     });
     
     delete payment;

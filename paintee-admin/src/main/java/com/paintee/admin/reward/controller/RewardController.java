@@ -80,14 +80,44 @@ public class RewardController {
 	 @brief 함수 간략한 설명 : 리워드 상태 변경
 	 @remark
 	 - 함수의 상세 설명 : 
+	    1. 요청 변경시 처리할 일
+		   - 요청 수수료와 요청 금액을 합산한 금액을 tb_user 테이블의 earn_total_money에서 빼고, earn_reward_money에 더한다.	
+	    2. 비정상 변경시 처리할 일
+		   - 요청 수수료와 요청 금액을 합산한 금액을 tb_user 테이블의 earn_total_money에 더하고, earn_reward_money에서 뺀다.	
+	    3. 완료 변경시 처리할 일
+	       - 리워드 테이블에 상태만 적용하면 된다.
 	 @return 
 	 */
 	@RequestMapping(value="/mod", method={RequestMethod.GET})
 	@ResponseBody
-	public Map<String, String> modReward(Reward reward) {
+	public Map<String, Object> modReward(Reward reward) {
+		System.out.println("reward ::: " + reward);
 		rewardService.modRewardStatus(reward);
-		Map<String, String> result = new HashMap<>();
+		
+		int money = reward.getEarmRequestedCommission() + reward.getEarmRequestedMoney();
+		System.out.println("money ::: " + money);
+		
+		Map<String, Object> result = new HashMap<>();
 		result.put("msg", "상태가 변경되었습니다.");
 		return result;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

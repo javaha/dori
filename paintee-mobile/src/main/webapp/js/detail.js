@@ -140,15 +140,18 @@ DetailStructure.prototype = {
         
         var paintingId = this.paintingId;
         var artistName = this.artistName;
+        var fileId = this.fileId;
+        
         // 소셜 공유
+        var data = {name: artistName, page: paintingId, fileId: fileId};
         $("#detail_fac_share").click(function() {
-        	shareSocial({type: "facebook", name: artistName, page: paintingId});
+        	shareSocial($.extend({type: "facebook"}, data));
         });
         $("#detail_twi_share").click(function() {
-        	shareSocial({type: "twitter", name: artistName, page: paintingId});
+        	shareSocial($.extend({type: "twitter"}, data));
         });
         $("#detail_pin_share").click(function() {
-        	shareSocial({type: "pinterest", name: artistName, page: paintingId});
+        	shareSocial($.extend({type: "pinterest"}, data));
         });
     }
 }

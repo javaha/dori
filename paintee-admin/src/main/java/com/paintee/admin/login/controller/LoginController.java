@@ -58,8 +58,8 @@ public class LoginController {
 	public String login(String id, String pass, HttpSession session) {
 		// 별도의 테이블 없이 특정 사용자만 허용
 		List<String> users = new ArrayList<>();
-		users.add("admin:1234");
-		users.add("manager:1234");
+		users.add("admin:admin");
+		users.add("manager:manager");
 		
 		String result = "redirect:/";
 		if (users.indexOf(id + ":" + pass) == -1) {

@@ -14,6 +14,8 @@
 */
 package com.paintee.mobile.purchase.service;
 
+import java.util.Map;
+
 import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 import com.paintee.mobile.support.obejct.LoginedUserVO;
@@ -54,5 +56,5 @@ public interface PurchaseService {
 	 @param purchase
 	 @throws Exception 
 	*/
-	public void addPurchase(PurchaseSearchVO purchase) throws Exception;
+	public Map<String, Object> addPurchase(PurchaseSearchVO purchase) throws Exception;
 }

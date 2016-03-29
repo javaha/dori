@@ -86,7 +86,9 @@ function getCharCount(value) {
 
 function shareSocial(data) {
 	var url = "";
-	var hostAndFileName = "www.paintee.com:8080/index.html?";
+//	var hostAndFileName = "www.paintee.com:8080/index.html?";
+	var hostAndFileName = "www.paintee.com:9080/index.html?";
+	hostAndFileName = encodeURIComponent(hostAndFileName);
 	var param = "user=" + data.name + "&page=" + data.page;
 		param = encodeURIComponent(param);
 	switch (data.type) {
@@ -97,7 +99,7 @@ function shareSocial(data) {
 		url = "http://twitter.com/home?status=paintee http://" + hostAndFileName + param;
 		break;
 	case "pinterest":
-		url = "https://pinterest.com/pin/create/button?url=http%3A//" + hostAndFileName + param;
+		url = "https://pinterest.com/pin/create/button?media=" + imageUrl + "/cmm/file/view/" + data.fileId + "&url=http%3A//" + hostAndFileName + param;
 		break;
 	}
 	

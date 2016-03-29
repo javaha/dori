@@ -23,8 +23,8 @@
  			<td class="tcenter">${data.bankName}</td> 
 			<td class="tcenter">${data.accountNo}</td>
 			<td class="tcenter">${data.accountName}</td>
-			<td class="tcenter">$${data.earmRequestedCommission}</td>
-			<td class="tcenter">$${data.earmRequestedMoney}</td>
+			<td class="tcenter" id="earmRequestedCommission${data.seq}">$${data.earmRequestedCommission}</td>
+			<td class="tcenter" id="earmRequestedMoney${data.seq}">$${data.earmRequestedMoney}</td>
 			<td class="tcenter">
 				<fmt:formatDate value="${data.createdDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 			</td>
@@ -56,10 +56,14 @@
 	$("[name=rewardStatus]").change(function (event) {
 		var rewardId = this.id.replace("rewardStatus", "");
 		var rewardStatus = this.value;
-		
+		console.log($("#earmRequestedCommission" + rewardId));
+		console.log($("#earmRequestedCommission" + rewardId).html());
+		console.log($("#earmRequestedCommission" + rewardId).html().replace("$", ""));
 		var data = {
 			"seq": rewardId,
-			"rewardStatus": rewardStatus
+			"rewardStatus": rewardStatus,
+			"earmRequestedCommission": $("#earmRequestedCommission" + rewardId).html().replace("$", ""), 
+			"earmRequestedMoney": $("#earmRequestedMoney" + rewardId).html().replace("$", "")
 		};
 		$.ajax({
 				url: "/admin/reward/mod",

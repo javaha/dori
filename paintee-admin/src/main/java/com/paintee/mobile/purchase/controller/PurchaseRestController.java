@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.paintee.admin.painting.service.PaintingService;
 import com.paintee.common.repository.entity.Purchase;
 import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
@@ -55,6 +56,9 @@ public class PurchaseRestController {
 	@Autowired
 	private PurchaseService purchaseService;
 	
+	@Autowired
+	private PaintingService paintingService;
+	
 	@RequestMapping(value="/api/purchasePopInfo", method={RequestMethod.GET})
 	public Map<String, Object> purchasePopInfo(LoginedUserVO loginedUserVO) throws Exception {
 		
@@ -74,10 +78,7 @@ public class PurchaseRestController {
 		purchase.setUserId(loginedUserVO.getUserId());
 		
 		// 구매관련 정보 등록
-		purchaseService.addPurchase(purchase);
-
-		Map<String, Object> result = new HashMap<>();
-		result.put("msg", "success");
+		Map<String, Object> result = purchaseService.addPurchase(purchase);
 		return result;
 	}
 }
