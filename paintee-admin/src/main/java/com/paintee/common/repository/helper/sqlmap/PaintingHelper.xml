@@ -8,28 +8,28 @@
 	
   	<select id="selectPaintingInfo" resultMap="BaseResultMap">
 		select <include refid="com.paintee.common.repository.mapper.PaintingMapper.Base_Column_List" />,
-			   (select name from tb_user where user_id = a.artist_id) artist_name
-		  from tb_painting a
+			   (select name from TB_USER where user_id = a.artist_id) artist_name
+		  from TB_PAINTING a
 		 where painting_id = #{paintingId}
   	</select>
 	
   	<select id="selectPaintingUpdateList" resultMap="BaseResultMap">
 		select a.*, 
-		       (select name from tb_user where user_id = a.artist_id) artist_name
+		       (select name from TB_USER where user_id = a.artist_id) artist_name
 		  from (select <include refid="com.paintee.common.repository.mapper.PaintingMapper.Base_Column_List" />
-				  from tb_painting
+				  from TB_PAINTING
 				 order by upload_date desc 
 				 limit #{startRow}, #{rowPerPage}) a
   	</select>
 
   	<select id="selectPaintingUpdateListCount" resultType="int">
 		select count(*)
-		  from tb_painting
+		  from TB_PAINTING
 	</select>
 
 	<!-- 그림의 구매정보를 업데이트 -->
   	<update id="updatePaintingPurchaseInfo">
-		update tb_painting
+		update TB_PAINTING
 		   set posted_num = posted_num + 1
 			<if test = "postedPeopleCnt != null">
 			   ,posted_people_cnt = posted_people_cnt + 1

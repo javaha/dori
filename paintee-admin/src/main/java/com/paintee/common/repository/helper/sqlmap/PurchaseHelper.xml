@@ -9,7 +9,7 @@
   	<select id="selectPostedList" resultMap="com.paintee.common.repository.mapper.PurchaseMapper.BaseResultMap" parameterType="com.paintee.common.repository.entity.vo.PostedSearchVO">
   		SELECT
   			<include refid="com.paintee.common.repository.mapper.PurchaseMapper.Base_Column_List" />
-  		FROM tb_purchase
+  		FROM TB_PURCHASE
 		<trim prefix="WHERE" prefixOverrides="AND|OR ">
 			<if test = "paintingId != null and paintingId != ''">
 				AND painting_id = #{paintingId}
@@ -27,15 +27,15 @@
   	
   	<select id="selectPurchaseList" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.vo.PurchaseSearchVO">
 		select a.*, 
-		       (select name from tb_user where user_id = a.user_id) user_name
+		       (select name from TB_USER where user_id = a.user_id) user_name
 		  from (select <include refid="com.paintee.common.repository.mapper.PurchaseMapper.Base_Column_List" />
-				  from tb_purchase
+				  from TB_PURCHASE
 				 order by purchase_date desc 
 				 limit #{startRow}, #{rowPerPage}) a
   	</select>
 
   	<select id="selectPurchaseListCount" resultType="int">
 		select count(*)
-		  from tb_purchase
+		  from TB_PURCHASE
 	</select>
 </mapper>

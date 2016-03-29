@@ -8,18 +8,18 @@
 	<!-- 특정 개인 작가가 업로드한 그림의 목록을 가져오기 -->
   	<select id="selectPersonalPaintingList" resultMap="BaseResultMap">
 		select a.artist_id, 
-			   (select name from tb_user where user_id = a.artist_id) artist_name, 
+			   (select name from TB_USER where user_id = a.artist_id) artist_name, 
 			   a.sentence, 
 			   a.file_group_seq, 
 			   a.upload_date, 
 			   a.painting_id, 
 			   a.posted_num, 
 			   a.posted_people_cnt
-		  from tb_painting a
-		 where a.artist_id = (select user_id from tb_user where name = #{artistName})
+		  from TB_PAINTING a
+		 where a.artist_id = (select user_id from TB_USER where name = #{artistName})
 	    <choose >
            <when test="paintingId != null" >
-           and seq &gt;= (select seq from tb_painting where painting_id = #{paintingId})
+           and seq &gt;= (select seq from TB_PAINTING where painting_id = #{paintingId})
          order by seq desc 
            </when>
            <otherwise>
@@ -31,10 +31,10 @@
 
 	<!-- 그림 작가가 업로드한 그림 카운트 -->
   	<select id="selectPersonalPaintingInfo" resultType="com.paintee.common.repository.entity.vo.PersonalVO">
-  	    select (select introduce from tb_user where name = #{artistName} limit 0, 1) as introduce,
+  	    select (select introduce from TB_USER where name = #{artistName} limit 0, 1) as introduce,
   	           (select count(*) 
-  	              from tb_painting 
-  	             where artist_id = (select user_id from tb_user where name = #{artistName})) as uploadCount 
+  	              from TB_PAINTING 
+  	             where artist_id = (select user_id from TB_USER where name = #{artistName})) as uploadCount 
   	      from dual
   	</select>    	
 </mapper>

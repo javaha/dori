@@ -13,42 +13,42 @@
 	<!-- 로그인 사용자가 팔로잉한 사용자가 구매한 그림과 업로드한 그림의 목록을 가져오기 -->
   	<select id="selectFollowPaintingList" resultMap="BaseResultMap">
 		select a.artist_id, 
-			   (select name from tb_user where user_id = a.artist_id) artist_name, 
-			   (select name from tb_user where user_id = a.artist_id) sentence_name, 
+			   (select name from TB_USER where user_id = a.artist_id) artist_name, 
+			   (select name from TB_USER where user_id = a.artist_id) sentence_name, 
 			   a.sentence, 
 			   a.file_group_seq, 
 			   a.upload_date, 
 			   a.painting_id, 
 			   a.posted_num, 
 			   a.posted_people_cnt
-		  from tb_painting a
-		 where a.artist_id in (select following from tb_follow where user_id = #{userId})
+		  from TB_PAINTING a
+		 where a.artist_id in (select following from TB_FOLLOW where user_id = #{userId})
 		 union all
 		select a.artist_id, 
-			   (select name from tb_user where user_id = a.artist_id) artist_name, 
-		       (select name from tb_user where user_id = b.user_id) sentence_name,
+			   (select name from TB_USER where user_id = a.artist_id) artist_name, 
+		       (select name from TB_USER where user_id = b.user_id) sentence_name,
 			   b.sentence,
 			   a.file_group_seq,
 			   b.purchase_date,
 			   a.painting_id,
 			   a.posted_num,
 			   a.posted_people_cnt
-		  from tb_painting a, 
-		       tb_purchase b
+		  from TB_PAINTING a, 
+		       TB_PURCHASE b
 		 where a.painting_id = b.painting_id
     	   and b.private_at = #{privateAt}
 		   and b.purchase_status in <foreach item="status" collection="purchaseStatusList" open="(" close=")" separator=",">
 		    							#{status}
 		                            </foreach>
-		   and b.user_id in (select following from tb_follow where user_id = #{userId})
+		   and b.user_id in (select following from TB_FOLLOW where user_id = #{userId})
 		 order by upload_date desc
 		 limit #{startRow}, #{rowPerPage}
   	</select>  	
   	
 	<!-- 로그인 사용자가 팔로잉한 사용자가 구매한 그림과 업로드한 그림의 목록을 가져오기 -->
   	<select id="selectFollowCount" resultMap="BaseResultMap">
-  	     select (select count(*) from tb_follow where user_id = #{userId}) as following_count,
-  	            (select count(*) from tb_follow where following = #{userId}) as follows_count
+  	     select (select count(*) from TB_FOLLOW where user_id = #{userId}) as following_count,
+  	            (select count(*) from TB_FOLLOW where following = #{userId}) as follows_count
            from dual
   	</select>    	
   	
@@ -57,31 +57,31 @@
 		select user_id, 
 			   (select name from tb_user where user_id = a.user_id) follows_name, 
 			   (select count(*)
-				  from tb_follow
+				  from TB_FOLLOW
 				 where user_id = #{userId}
 				   and following = a.user_id) follows_count
-		  from tb_follow a
+		  from TB_FOLLOW a
 		 where following = #{userId}
   	</select>
   	
   	<!-- 로그인한 사용자가 팔로잉한 사용자의 목록을 조회 -->
   	<select id="selectFollowingList" resultMap="BaseResultMap">
 		SELECT following user_id, 
-			   (select name from tb_user where user_id = a.following) following_name
-		  FROM tb_follow a
+			   (select name from TB_USER where user_id = a.following) following_name
+		  FROM TB_FOLLOW a
 		 WHERE user_id = #{userId}
   	</select>
   	
   	<!-- 로그인 사용자의 팔로워를 추가 -->
   	<insert id="insertFollowByName">
-  	    insert into tb_follow(user_id, following)
-  	    values(#{userId}, (select user_id from tb_user where name = #{following}))
+  	    insert into TB_FOLLOW(user_id, following)
+  	    values(#{userId}, (select user_id from TB_USER where name = #{following}))
   	</insert>
   	
   	<!-- 로그인 사용자의 팔로워를 삭제 -->
   	<insert id="deleteFollowByName">
-  	    delete from tb_follow
+  	    delete from TB_FOLLOW
   	     where user_id = #{userId}
-  	       and following = (select user_id from tb_user where name = #{following})
+  	       and following = (select user_id from TB_USER where name = #{following})
   	</insert>
 </mapper>
