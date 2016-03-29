@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paintee.common.repository.helper.PurchaseHelper">
+  
+  	<resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.vo.PurchaseVO" extends="com.paintee.common.repository.mapper.PurchaseMapper.BaseResultMap">
+	    <result column="user_name" property="userName" />
+	</resultMap>
+	
+  	<select id="selectPostedList" resultMap="com.paintee.common.repository.mapper.PurchaseMapper.BaseResultMap" parameterType="com.paintee.common.repository.entity.vo.PostedSearchVO">
+  		SELECT
+  			<include refid="com.paintee.common.repository.mapper.PurchaseMapper.Base_Column_List" />
+  		FROM tb_purchase
+		<trim prefix="WHERE" prefixOverrides="AND|OR ">
+			<if test = "paintingId != null and paintingId != ''">
+				AND painting_id = #{paintingId}
+			</if>
+			<if test = "purchaseStatus != null and purchaseStatus != ''">
+				AND purchase_status = #{purchaseStatus}
+			</if>
+			<if test = "privateAt != null and privateAt != ''">
+				AND private_at = #{privateAt}
+			</if>
+		</trim>
+  		ORDER BY created_date DESC
+  		LIMIT #{startRow}, #{rowPerPage}
+  	</select>
+  	
+  	<select id="selectPurchaseList" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.vo.PurchaseSearchVO">
+		select a.*, 
+		       (select name from tb_user where user_id = a.user_id) user_name
+		  from (select <include refid="com.paintee.common.repository.mapper.PurchaseMapper.Base_Column_List" />
+				  from tb_purchase
+				 order by purchase_date desc 
+				 limit #{startRow}, #{rowPerPage}) a
+  	</select>
+
+  	<select id="selectPurchaseListCount" resultType="int">
+		select count(*)
+		  from tb_purchase
+	</select>
+</mapper>

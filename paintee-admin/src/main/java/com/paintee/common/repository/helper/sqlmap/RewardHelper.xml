@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paintee.common.repository.helper.RewardHelper">
+  
+    <resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.vo.RewardVO" extends="com.paintee.common.repository.mapper.UserMapper.BaseResultMap">
+        <result column="remain_money" property="remainMoney" />
+        <result column="sell_count" property="sellCount" />
+        <result column="request_count" property="requestCount" />
+	</resultMap>
+  
+    <resultMap id="AdminBaseResultMap" type="com.paintee.common.repository.entity.vo.RewardResultVO" extends="com.paintee.common.repository.mapper.RewardMapper.BaseResultMap">
+        <result column="user_name" property="userName" />
+        <result column="bank_name" property="bankName" />
+	</resultMap>
+    
+  	<select id="selectRewardInfo" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.User">
+	    SELECT a.earn_total_money,
+			   a.earn_reword_money,
+			   a.earn_total_money - a.earn_reword_money AS remain_money,
+			   (SELECT COUNT(*)
+			      FROM tb_purchase a, tb_painting b
+			     WHERE a.painting_id = b.painting_id
+			       AND b.artist_id = #{userId}) as sell_count,
+			   (SELECT count(*) 
+			      FROM TB_REWARD
+			     WHERE reward_status = 'R'
+			       AND user_id = #{userId}) as request_count
+		  FROM tb_user a 
+		 where a.user_id = #{userId}
+  	</select>
+  	
+  	<select id="selectRewardList" resultMap="AdminBaseResultMap" parameterType="com.paintee.common.repository.entity.vo.RewardSearchVO">
+		select a.*, 
+		       (select name from tb_user where user_id = a.user_id) user_name,
+		       case when a.bank = '99' then direct_input_bank
+		            else (select code_name from tb_code where code_group = 'bank' and code_value = a.bank)
+		        end as bank_name
+		  from (select <include refid="com.paintee.common.repository.mapper.RewardMapper.Base_Column_List" />
+				  from tb_reward
+				 where reward_status in 
+				 		<foreach collection="rewardStatus" item="status" separator="," open="(" close=")">
+				        	#{status}                     
+				        </foreach> 
+				 order by created_date desc 
+				 limit #{startRow}, #{rowPerPage}) a
+  	</select>
+
+  	<select id="selectRewardListCount" resultType="int">
+		select count(*)
+		  from tb_reward
+	</select>  	
+</mapper>

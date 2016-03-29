@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paintee.common.repository.helper.PaintingHelper">
+
+	<resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.vo.PaintingVO" extends="com.paintee.common.repository.mapper.PaintingMapper.BaseResultMap">
+	    <result column="artist_name" property="artistName" />
+	</resultMap>
+	
+  	<select id="selectPaintingInfo" resultMap="BaseResultMap">
+		select <include refid="com.paintee.common.repository.mapper.PaintingMapper.Base_Column_List" />,
+			   (select name from tb_user where user_id = a.artist_id) artist_name
+		  from tb_painting a
+		 where painting_id = #{paintingId}
+  	</select>
+	
+  	<select id="selectPaintingUpdateList" resultMap="BaseResultMap">
+		select a.*, 
+		       (select name from tb_user where user_id = a.artist_id) artist_name
+		  from (select <include refid="com.paintee.common.repository.mapper.PaintingMapper.Base_Column_List" />
+				  from tb_painting
+				 order by upload_date desc 
+				 limit #{startRow}, #{rowPerPage}) a
+  	</select>
+
+  	<select id="selectPaintingUpdateListCount" resultType="int">
+		select count(*)
+		  from tb_painting
+	</select>
+
+	<!-- 그림의 구매정보를 업데이트 -->
+  	<update id="updatePaintingPurchaseInfo">
+		update tb_painting
+		   set posted_num = posted_num + 1
+			<if test = "postedPeopleCnt != null">
+			   ,posted_people_cnt = posted_people_cnt + 1
+			</if>				
+		 where painting_id = #{paintingId}
+  	</update>
+</mapper>

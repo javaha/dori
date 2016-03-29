@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <title>Paintee</title>
+    <!-- CSS  -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900,500' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,700' rel='stylesheet' type='text/css'>
+    <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
+    <link href="css/swiper.css" type="text/css" rel="stylesheet"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+    <!--  화면이 스크롤되지 않도록 고정, 나중에 반응형으로 고정  -->
+    <div class="main_container swiper_container">
+        <div class="swiper-wrapper">        
+        <!--  상하 스크롤 또는 메뉴선택으로 변경되는 블록 [follow]  -->
+        <div class="mode_container swiper-slide" id="follow">
+            <div class="list_container swiper_container_follow">
+                <div class="home_btn" style="font-weight: 700">follow</div>
+                <div class="bottom_bar" style="background-color: hsl(200,60%,20%)"></div>
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-scrollbar swiper-scrollbar-follow"></div>
+                
+            </div>
+        </div>
+        <!--  상하 스크롤 또는 메뉴선택으로 변경되는 블록 [popular]  -->
+        <div class="mode_container swiper-slide" id="popular">
+            <div class="list_container swiper_container_popular">
+                <div class="home_btn" style="font-weight: 700">popular</div>
+                <div class="bottom_bar" style="background-color: hsl(330,60%,20%)"></div>
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-scrollbar swiper-scrollbar-popular"></div>
+ 
+            </div>
+        </div>
+        <!--  상하 스크롤 또는 메뉴선택으로 변경되는 블록 [new]  -->
+        <div class="mode_container swiper-slide" id="new">
+            <div class="list_container swiper_container_new">
+                <div class="home_btn" style="font-weight: 700">new</div>
+                <div class="bottom_bar" style="background-color: hsl(90,60%,20%)"></div>
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-scrollbar swiper-scrollbar-new"></div>
+ 
+            </div>
+        </div>
+        <!--  상하 스크롤 또는 메뉴선택으로 변경되는 블록 [my]  -->
+        <div class="mode_container swiper-slide" id="my">
+            <div class="list_container swiper_container_my">
+                <div class="home_btn" style="font-weight: 700">my</div>
+                <div class="bottom_bar" style="background-color: hsl(250,60%,20%)"></div>
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-scrollbar swiper-scrollbar-my"></div>
+            </div>
+        </div>
+        </div>
+        
+        <!--   side menu     -->
+        <div id="side_menu">
+            <div class="side_menu_login"></div>
+            <div class="side_menu_major" id="menu_follow">Follow</div>
+            <div class="side_menu_major" id="menu_popular">Popular</div>
+            <div class="side_menu_major" id="menu_new">New</div>
+            <div class="side_menu_major" id="menu_my">My</div>
+            <div class="side_menu_margin"></div>
+            <div class="side_menu_minor" id="menu_upload">upload</div>
+            <div class="side_menu_minor" id="menu_reward">reward</div>
+            <div class="side_menu_minor">about</div>
+            <div class="side_menu_minor">search</div>
+            <div class="side_menu_btn"><i class="material-icons" style="font-size:24px">menu</i></div>
+            <div class="side_menu_close"><i class="material-icons" style="font-size:24px">close</i></div>
+            <div class="side_menu_bottom">
+                <div class="side_menu_lang">
+                    Language
+                    <select class="side_menu_lang_select">
+                            <option value="en">English</option>
+                            <option value="ko">Korean</option>
+                    </select>
+                </div>
+                <div class="side_menu_copyright">Copyright ⓒ paintee. Inc.,</div>
+            </div>
+        </div>
+        <div class="modal"></div>
+        <div id="fullscreen_btn"><i class="material-icons" style="font-size:24px">fullscreen</i></div>
+    </div>
+    
+    <!--  상세화면  -->
+    <div class="detail">
+    </div>
+    
+    <!--  아래는 팝업화면으로 처리  -->
+    <div class="base_position"> 
+    <!--   구매 화면   -->
+    <div class="purchase_container">
+        <div class="purchase_box">
+            <div class="purchase_box_left">
+                <div class="purchase_box_top">your sentence</div>
+                <div class="purchase_box_middle" style="text-align: right">
+                    <span class="character_counter"><span id="pSentenceCount">0</span>/200</span>
+                    <textarea name="sentence" class="sentence_textarea" length="200"></textarea>
+                    <input type="checkbox" id="privateAt" name="privateAt"> private
+                </div>
+                <div class="purchase_box_bottom">
+                    <div class="purchase_next_btn"><div class="purchase_btn_text">address </div><i class="material-icons">keyboard_arrow_right</i></div>
+                </div>
+            </div>
+            <div class="purchase_box_right">
+                <div class="purchase_box_top">address</div>
+                <div class="purchase_box_middle">
+                    <div class="purchase_col_title">sender</div>
+                    <div class="purchase_col_name">
+                        <input type="text" id="senderName" name="senderName" class="purchase_input" placeholder="name">
+                    </div>
+                    <div class="purchase_col_input"></div>
+
+                    <div class="purchase_col_title">addressee</div>
+                    <div class="purchase_col_name">
+                        <input type="text" id="receiverName" name="receiverName" class="purchase_input" placeholder="name">
+                    </div>
+                    <div class="purchase_col_input">
+                        <input type="text" name="receiverBasicAddr" class="purchase_input" placeholder="address 1">
+                        <input type="text" name="receiverDetailAddr" class="purchase_input" placeholder="address 2">
+                        <input type="text" name="receiverCity" class="purchase_input" placeholder="city" style="width: 30%">
+                        <input type="text" name="receiverZipcode" class="purchase_input" placeholder="zip code" style="width: 30%">
+                        <select name="location" class="purchase_select" style="width: 30%">
+                            <option value="Korea" selected="selected">Korea</option>
+                            <option value="USA">USA</option>
+                            <option value="China">China</option>
+                            <option value="Japan">Japan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="purchase_box_bottom">
+                    <div class="purchase_prev_btn"><i class="material-icons">keyboard_arrow_left</i><div class="purchase_btn_text"> Sentence</div></div>
+                    <div class="purchase_pay_btn"><div class="purchase_btn_text">Payment </div><i class="material-icons">payment</i></div>
+                </div>
+            </div>
+	        <div id="layer" style="display:none;position:absolute;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+				<img src="//i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+			</div>
+        </div>
+        <div class="return_btn"><i class="material-icons">close</i></div>
+	</div>
+    <!--  결재 화면  -->
+    <div class="popup_container payment_container">
+        <div class="popup_box payment_box"></div>
+        <div class="return_btn"><i class="material-icons">close</i></div>
+    </div>
+        
+        
+    <!--  업로드 화면  -->
+    <div class="popup_container upload_container">
+        <div class="popup_box upload_box"></div>
+        <div class="return_btn"><i class="material-icons">close</i></div>
+    </div>
+        
+    <!--  리워드 화면  -->
+    <div class="popup_container reward_container">
+        <div class="popup_box reward_box"></div>
+        <div class="return_btn"><i class="material-icons">close</i></div>
+    </div>
+    
+    <!--  팔로우/팔로워 화면  -->
+    <div class="popup_container people_container">
+        <div class="popup_box people_box"></div>
+        <div class="return_btn"><i class="material-icons">close</i></div>
+    </div> 
+    
+    <!--  회원정보 수정 화면  -->
+    <div class="popup_container profile_container">
+    <div class="popup_box profile_box">
+        <div class="profile_title">
+            Edit Profile
+        </div>
+        <div class="profile_contents">
+            <div class="profile_section">username</div>
+            <div class="profile_form">
+                <input type="text" id="profileUserName" name="profileUserName" class="account_form profile_username" placeholder="name">
+            </div>
+            <div class="profile_section">passward</div>
+            <div class="profile_form">
+                <input id="profileUserPassword" name="profileUserPassword" type="passward" class="account_form profile_passward" placeholder="new passward">
+                <input id="profileConfirmPassord" name="profileConfirmPassord" type="passward" class="account_form profile_passward" placeholder="repeat passward">
+            </div>
+            <div class="profile_section">introduction</div>
+            <div class="profile_form">
+                <input id="profileIntroduction" name="profileIntroduction" type="text" class="account_form profile_username" placeholder="introduction">
+            </div>
+            <div class="profile_section">address</div>
+            <div class="profile_form">
+                <input type="text" id="profileBasicAddr" name="profileBasicAddr" class="account_form" placeholder="address 1">
+                <input type="text" id="profileDetailAddr" name="profileDetailAddr" class="account_form" placeholder="address 2">
+                <input type="text" id="profileCity" name="profileCity" class="account_form" placeholder="city" style="width: 30%">
+                <input type="text" id="profileZipcode" name="profileZipcode" class="account_form" placeholder="zip code" style="width: 30%">
+                <select id="profileLocation" name="profileLocation" class="profile_select" style="width: 30%">
+                        <option value="Korea">Korea</option>
+                        <option value="USA">USA</option>
+                        <option value="China">China</option>
+                        <option value="Japan">Japan</option>
+                </select>
+            </div>
+            <div class="profile_section">language</div>
+            <div class="profile_form">
+                <select class="profile_select">
+                        <option value="en">English</option>
+                        <option value="ko">Korean</option>
+                </select>
+            </div>
+            <div class="return_btn"><i class="material-icons">keyboard_backspace</i></div>
+	        <div id="profileLayer" style="display:none;position:absolute;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+				<img src="//i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseProfileLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+			</div>
+        </div>
+        <div class="profile_bottom">
+            <div class="profile_btn" id="profileUpdateBtn"> Update profile <i class="material-icons">done</i></div>
+        </div>
+    </div>
+        
+    </div>
+    
+    <!--  로그인화면  -->
+    <div class="account_container login_container">
+        <div class="account_margin"></div>
+        <div class="account_title">
+            Paintee
+        </div>
+        <div class="account_box">
+            <input type="text" id="userEmail" class="account_form login_id" placeholder="email address">
+            <input type="password" id="userPassword" class="account_form login_pw" placeholder="passward">
+        </div>
+        <div class="account_middle login_help">
+            Fogot your login details? <b>Get help signing in.</b>
+        </div>
+        <div class="login_btn_main">
+            Log In
+        </div>
+        <div id="login_facebook_btn" class="login_social_btn">
+            Log in with Facebook
+        </div>
+        <div class="account_bottom_btn login_signup_btn">
+            Dont't have an account? <b>Sign up</b>
+        </div>
+    </div>
+    <!--  회원가입 화면  -->
+    <div class="account_container signup_container">
+        <div class="account_margin"></div>
+        <div class="account_title">
+            Paintee
+        </div>
+        <div class="account_box">
+        	<form id="signupForm" name="signupForm" method="POST">
+            <input type="text" id="signupUserId" name="signupUserId" class="account_form signup_id" placeholder="Enter email address" value="javahaja@hotmail.com">
+            <input type="password" id="signupUserPassword" name="signupUserPassword" class="account_form signup_pw" placeholder="Enter passward" value="qazwsx123">
+            <input type="password" id="signupConfirmPassord" name="signupConfirmPassord" class="account_form signup_pw" placeholder="Repeat passward" value="qazwsx123">
+            <input type="text" id="signupUserName" name="signupUserName" class="account_form signup_username" placeholder="username" value="javadori">
+            </form>
+        </div>
+        <div class="account_middle signup_terms">
+            By signing up, you agree to our <b>Terms & Policy.</b>
+        </div>
+        <div id="signup_btn" class="signup_btn">
+            Sign Up
+        </div>
+        <div id="signup_facebook_btn" class="signup_social_btn">
+            Start with Facebook
+        </div>
+        <div class="account_bottom_btn signup_login_btn">
+            Already have an account? <b>Log in</b>
+        </div>
+    </div>
+    <!--  로그인 도움 화면  -->
+    <div class="account_container loginhelp_container">
+        <div class="account_margin"></div>
+        <div class="account_title">
+            Paintee
+        </div>
+        <div class="account_box">
+            <input type="text" id="resetUserEmaiil" name="resetUserEmail" class="account_form login_help_id" placeholder="Enter email address">
+        </div>
+        <div class="account_middle">
+            Enter your email address associated with your account
+        </div>
+        <div id="resetPasswordBtn" class="loginhelp_btn">
+            Send temporary passward
+        </div>
+        <div class="account_bottom_btn help_login_btn">
+            Return to <b>Log in</b>
+        </div>
+    </div>
+
+    <!--  Scripts-->
+    <script src="/js/jquery/jquery-2.1.1.js"></script>
+    <script src="/js/swiper.jquery.min.js"></script>
+    <script src="/js/jquery.touchSwipe.min.js"></script>
+
+    <script src="/js/facebook.js"></script>
+	<script src="/js/common-ajax.js"></script>
+	<script src="/js/common.js"></script>
+    <script src="/js/detail.js"></script>
+    <script src="/js/init.js"></script>
+    <script src="/js/myhome.js"></script>
+    <script src="/js/follow.js"></script>
+    <script src="/js/popular.js"></script>
+    <script src="/js/new.js"></script>
+    <script src="/js/personal.js"></script>
+    <script src="/js/purchase.js"></script>
+    <script src="/js/login.js"></script>
+    <script src="/js/reward.js"></script>
+    <script src="/js/signup.js"></script>
+    <script src="/js/profile.js"></script>
+    <script src="/js/upload.js"></script>
+    <script src="/js/history.js"></script>
+
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?1"></script>
+    <script src="/js/daumAddrApi.js"></script>
+
+	<!-- 다국어 지원 라이브러리 -->
+	<script src="/js/jquery/i18next.min.js"></script>
+	<script src="/js/translation.js"></script>
+</body>
+</html>

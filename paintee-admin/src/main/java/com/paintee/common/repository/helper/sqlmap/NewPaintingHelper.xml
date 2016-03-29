@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paintee.common.repository.helper.NewPaintingHelper">
+	<resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.vo.NewPaintingVO" extends="com.paintee.common.repository.mapper.PaintingMapper.BaseResultMap">
+	    <result column="artist_name" property="artistName" />
+	</resultMap>
+  
+	<!-- 최신 등록일 순으로 가져오기 
+  	<select id="selectNewPaintingList" resultMap="BaseResultMap">
+		select a.artist_id, (select name from tb_user where user_id = a.artist_id) artist_name,
+		       a.sentence, a.file_group_seq, 
+		       a.upload_date, a.painting_id, 
+		       a.posted_num, a.posted_people_cnt
+		  from tb_painting a
+		 where a.painting_status = #{paintingStatus}
+		 order by a.upload_date desc 
+		 limit #{startRow}, #{rowPerPage}
+  	</select>
+	-->
+  	<select id="selectNewPaintingList" resultMap="BaseResultMap">
+		select a.*, 
+		       (select name from tb_user where user_id = a.artist_id) artist_name
+		  from (select <include refid="com.paintee.common.repository.mapper.PaintingMapper.Base_Column_List" />
+				  from tb_painting
+		<where>
+			<if test="paintingStatus != null and paintingStatus != ''">
+				 and painting_status = #{paintingStatus}
+			</if> 
+		</where>
+				 order by upload_date desc 
+				 limit #{startRow}, #{rowPerPage}) a
+  	</select>
+  	
+  	
+</mapper>
