@@ -126,7 +126,7 @@ public class FileController {
 			throw new Exception("File does not exist.");
 		}
 
-		if (fileType < 1 || fileType > 2) {
+		if (fileType < 1 || fileType > 3) {
 			throw new Exception("File does not exist.");
 		}
 
@@ -137,7 +137,11 @@ public class FileController {
 		}
 
 		StringBuilder fullPath = new StringBuilder();
-		fullPath.append(filePathGenerator.getAbsoluteFilPath(fileInfo.getPath())).append(fileInfo.getName()).append("_").append(fileType);
+		if(fileType == 1) {
+			fullPath.append(filePathGenerator.getAbsoluteFilPath(fileInfo.getPath())).append(fileInfo.getName());
+		} else {
+			fullPath.append(filePathGenerator.getAbsoluteFilPath(fileInfo.getPath())).append(fileInfo.getName()).append("_").append(fileType);
+		}
 
 		File file = new File(fullPath.toString());
 

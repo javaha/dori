@@ -246,19 +246,19 @@ public class FileInfoGenerator {
 
 			FileCopyUtils.copy(multipartFile.getBytes(), cropImageFile);
 
-			//썸네일1
+			//중간 크기 썸네일1
 			fullPath.delete(0, fullPath.length());
 			fullPath.append(filePathGenerator.getAbsoluteFilPath(filePath));
-			fullPath.append(newId).append("_1");
+			fullPath.append(newId).append("_2");
 
 			File thumbnailFile1 = new File(fullPath.toString());
 
 			FileCopyUtils.copy(cropImageFile, thumbnailFile1);
 
-			//썸네일2
+			//작은 크기 썸네일2
 			fullPath.delete(0, fullPath.length());
 			fullPath.append(filePathGenerator.getAbsoluteFilPath(filePath));
-			fullPath.append(newId).append("_2");
+			fullPath.append(newId).append("_3");
 
 			File thumbnailFile2 = new File(fullPath.toString());
 
