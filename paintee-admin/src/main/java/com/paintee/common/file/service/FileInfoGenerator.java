@@ -25,12 +25,12 @@ import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.paintee.common.repository.entity.FileInfo;
+import com.paintee.common.util.ImgScalrWrapper;
 
 /**
 @class FileInfoGenerator
@@ -53,6 +53,9 @@ public class FileInfoGenerator {
 
 	@Autowired
 	private FilePathGenerator filePathGenerator;
+
+	@Autowired
+	private ImgScalrWrapper imgScalrWrapper;
 
 	/**
 	 @fn makeFileInfo
@@ -224,7 +227,6 @@ public class FileInfoGenerator {
 		fileInfo.setExtension(FilenameUtils.getExtension(multipartFile.getOriginalFilename()));
 		fileInfo.setPath(filePath);
 		fileInfo.setContentType(multipartFile.getContentType());
-		fileInfo.setSize(multipartFile.getSize());
 		fileInfo.setDisplayName(displayName);
 		fileInfo.setCreatedDate(today);
 
@@ -242,27 +244,33 @@ public class FileInfoGenerator {
 				cropImageFilePath.mkdirs();
 			}
 
+			//원본파일 생성
+			File originalFile = new File(fullPath.toString()+"_ori");
+			FileCopyUtils.copy(multipartFile.getBytes(), originalFile);
+
+			//crop 이미지 생성
 			File cropImageFile = new File(fullPath.toString());
+			imgScalrWrapper.cropCenter(originalFile, cropImageFile, 1080, 1500);
 
-			FileCopyUtils.copy(multipartFile.getBytes(), cropImageFile);
+			fileInfo.setSize(cropImageFile.length());
 
-			//중간 크기 썸네일1
+			//중간 크기 썸네일
 			fullPath.delete(0, fullPath.length());
 			fullPath.append(filePathGenerator.getAbsoluteFilPath(filePath));
 			fullPath.append(newId).append("_2");
 
 			File thumbnailFile1 = new File(fullPath.toString());
 
-			FileCopyUtils.copy(cropImageFile, thumbnailFile1);
+			imgScalrWrapper.resize(cropImageFile, thumbnailFile1, 648, 900);
 
-			//작은 크기 썸네일2
+			//작은 크기 썸네일
 			fullPath.delete(0, fullPath.length());
 			fullPath.append(filePathGenerator.getAbsoluteFilPath(filePath));
 			fullPath.append(newId).append("_3");
 
 			File thumbnailFile2 = new File(fullPath.toString());
 
-			FileCopyUtils.copy(cropImageFile, thumbnailFile2);
+			imgScalrWrapper.resize(cropImageFile, thumbnailFile2, 360, 500);
 		} catch (IOException e) {
 			logger.error("exception [{}]", e);
 			throw e;
