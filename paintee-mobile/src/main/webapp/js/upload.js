@@ -183,7 +183,7 @@ function updatePaintingSentence(paintingSeq) {
 }
 function updatePaintingSentenceRes(result, status) {
 	if(result.errorNo == 0) {
-		dataReload(["initMy();", "initFollow();", "initPopular();"]);
+		dataReload(["initMy();", "initFollow();", "initNew();"]);
 		selectMenu(3);
 		$(".popup_container").hide();
 		$(".upload_box").empty();
