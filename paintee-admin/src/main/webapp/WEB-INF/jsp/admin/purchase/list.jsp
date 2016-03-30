@@ -79,14 +79,14 @@
 				<fmt:formatDate value="${data.purchaseDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 			</td>
 			<td class="tcenter">
-				<select id="purchaseStatus${data.seq}" name="purchaseStatus">
+				<select id="purchaseSel${data.seq}" name="purchaseSel">
 				<c:forEach var="status" items="${statusList}">
 					<option value="${status.codeValue}">${status.codeName}</option>
 				</c:forEach>	
 				</select>
 				<script>
-					$("#purchaseStatus${data.seq}").val("${data.purchaseStatus}");
-					$("#purchaseStatus${data.seq} option").each(function (index, item) {
+					$("#purchaseSel${data.seq}").val("${data.purchaseStatus}");
+					$("#purchaseSel${data.seq} option").each(function (index, item) {
 						// 상태값에 따른 OPTION 생성
 						initStatus("${data.purchaseStatus}", item);
 					}); 
@@ -115,8 +115,8 @@
 
 <script>
 	if ('${msg}') alert('${msg}');
-	$("[name=purchaseStatus]").change(function (event) {
-		var seq = this.id.replace("purchaseStatus", "");
+	$("[name=purchaseSel]").change(function (event) {
+		var seq = this.id.replace("purchaseSel", "");
 		if (confirm("상태를 변경하시겠습니까?")) {
 			$("[name=seq]").val(seq);
 			$("[name=userId]").val($("#userId" + seq).val());
@@ -126,32 +126,6 @@
 		} else {
 			$(this).val($("#purchaseStatus" + seq).val());
 		}
-		
-		
-		/*
-		var seq = this.id.replace("purchaseStatus", "");
-		var purchaseStatus = this.value;
-		
-		var data = {
-			"seq": seq,
-			"purchaseStatus": purchaseStatus
-		};
-		$.ajax({
-				url: "/admin/purchase/mod",
-				type: "GET",
-				async: true,
-				cache: false,
-				data: data
-		})
-		.done(function (result) {
-			if (result) {
-				alert(result.msg);			
-			}
-		})
-		.fail(function () {
-			alert("상태 변경중 오류가 발생했습니다.");
-		});
-		*/
 	});	
 </script>
 

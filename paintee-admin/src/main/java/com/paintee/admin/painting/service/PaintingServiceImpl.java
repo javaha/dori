@@ -26,12 +26,12 @@ import org.springframework.stereotype.Service;
 import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.repository.entity.FileInfoExample;
 import com.paintee.common.repository.entity.Painting;
-import com.paintee.common.repository.entity.PaintingExample;
-import com.paintee.common.repository.entity.vo.NewPaintingVO;
+import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.PaintingSearchVO;
 import com.paintee.common.repository.entity.vo.PaintingVO;
 import com.paintee.common.repository.helper.FileInfoHelper;
 import com.paintee.common.repository.helper.PaintingHelper;
+import com.paintee.common.repository.helper.UserHelper;
 
 /**
 @class PaintingServiceImpl
@@ -54,6 +54,9 @@ public class PaintingServiceImpl implements PaintingService {
 	
 	@Autowired
 	private PaintingHelper paintingHelper;
+	
+	@Autowired
+	private UserHelper userHelper;
 
 	@Autowired
 	private FileInfoHelper fileInfoHelper;
@@ -89,6 +92,29 @@ public class PaintingServiceImpl implements PaintingService {
 
 	@Override
 	public void modPaintingStatus(Painting painting) {
+		
+		User user = null;
+		
+		// 그림 상태를 삭제로 변경시
+		if ("D".equalsIgnoreCase(painting.getPaintingStatus())) {
+			// 사용자의 업데이트 카운트 감소
+			user = new User();
+			user.setUploadCnt(-1);
+			user.setUserId(painting.getArtistId());
+			userHelper.updateUserInfo(user);
+		} 
+		// 정상으로 변경되는 경우 기존 그림의 상태를 조회한 다음 그림의 상태가 삭제였을 경우 작가의 업로드 카운트를 1 증가시킨다.
+		else if ("N".equalsIgnoreCase(painting.getPaintingStatus())) {
+			Painting paint = paintingHelper.selectByPrimaryKey(painting.getSeq());
+			if ("D".equalsIgnoreCase(paint.getPaintingStatus())) {
+				user = new User();
+				user.setUploadCnt(1);
+				user.setUserId(painting.getArtistId());
+				userHelper.updateUserInfo(user);
+			}
+		}
+
+		// 구매 그림의 상태 변경
 		paintingHelper.updateByPrimaryKeySelective(painting);
 	}
 }

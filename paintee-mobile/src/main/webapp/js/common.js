@@ -100,6 +100,11 @@ function shareSocial(data) {
 		break;
 	case "pinterest":
 		url = "https://pinterest.com/pin/create/button?media=" + imageUrl + "/cmm/file/view/" + data.fileId + "&url=http%3A//" + hostAndFileName + param;
+//		url = "https://pinterest.com/pin/create/button?media=" + imageUrl + "/cmm/file/view/" + data.fileId + "&url=http://me2.do/xndJIG4P";
+//		url = "https://pinterest.com/pin/create/button?media=" + imageUrl + "/cmm/file/view/" + data.fileId + "&url=http://www.naver.com";
+//		url = "https://pinterest.com/pin/create/button?url=http://www.naver.com";
+//		url = "https://pinterest.com/pin/create/button?url=" + encodeURIComponent("http://www.naver.com");
+//		url = "https://pinterest.com/pin/create/button?media=" + imageUrl + "/cmm/file/view/" + data.fileId + "&url=" + encodeURIComponent("http://www.naver.com");
 		break;
 	}
 	
