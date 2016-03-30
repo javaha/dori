@@ -14,6 +14,8 @@
 */
 package com.paintee.mobile.painting.service;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -96,7 +98,7 @@ public class PaintingServiceImpl implements PaintingService {
 	 @see com.paintee.mobile.painting.service.PaintingService#createPainting(com.paintee.common.repository.entity.FileInfo, com.paintee.mobile.support.obejct.LoginedUserVO)
 	*/
 	@Transactional
-	public Painting createPainting(FileInfo fileInfo, LoginedUserVO loginedUserVO) throws Exception {
+	public Map<String, Object> createPainting(FileInfo fileInfo, LoginedUserVO loginedUserVO) throws Exception {
 		Painting painting = new Painting();
 
 		Long fileGroupSeq = fileService.createFileInfo(fileInfo, null, false, loginedUserVO.getUserId());
@@ -104,14 +106,43 @@ public class PaintingServiceImpl implements PaintingService {
 
 		String newPaintingId = UUID.randomUUID().toString();
 
+		Date today = new Date();
+
 		painting.setPaintingId(newPaintingId);
 		painting.setArtistId(loginedUserVO.getUserId());
 		painting.setFileGroupSeq(fileGroupSeq);
 		painting.setLocation(user.getLocation());
 		painting.setOriginalSize(String.valueOf(fileInfo.getSize()));
+		painting.setUploadDate(today);
+		painting.setCreatedDate(today);
+		painting.setPaintingStatus("N");
 
 		paintingHelper.insertSelective(painting);
 
-		return painting;
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("paintingSeq", painting.getSeq());
+		resultMap.put("paintingId", painting.getPaintingId());
+		resultMap.put("fileId", fileInfo.getId());
+
+		return resultMap;
+	}
+	
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 :
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 
+	 @see com.paintee.mobile.painting.service.PaintingService#updatePainting(com.paintee.common.repository.entity.Painting)
+	*/
+	public boolean updatePainting(Painting painting) {
+		boolean result = false;
+
+		int count = paintingHelper.updateByPrimaryKeySelective(painting);
+
+		if(count > 0) {
+			result = true;
+		}
+
+		return result;
 	}
 }

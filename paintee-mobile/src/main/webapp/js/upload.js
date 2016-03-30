@@ -1,5 +1,4 @@
 var baseUploadCount = 5;
-var uploadedPaintingId = '';
 
 //업로드화면
 function upload(){
@@ -86,9 +85,8 @@ function createPainting(form) {
 	AjaxCall.callMultipart(apiUrl+"/painting", form, createPaintingRes);
 }
 function createPaintingRes(result, status) {
-	console.log(result);
 	if(result.errorNo == 0) {
-		alert("등록 되었습니다.");
+		successUpload(result.painting.paintingSeq, result.painting.fileId);
 	} else {
 		alert('error');
 	}
@@ -149,14 +147,91 @@ function initUpload(postedCount, uploadCount, doUploadCout){
     exeTranslation('.base_position', lang);
 }*/
 
-function successUpload(){
+function updatePaintingSentence(paintingSeq) {
+	var sentence = $('#painting_sentence_text').val();
+
+	if ($("[name=painting_sentence_text]").val().trim().length == 0) {
+		alert($.i18n.t('alert.purchase.emptySentence'));
+		$("[name=painting_sentence_text]").focus();
+		return ;
+	}
+
+	if (getCharCount($("[name=painting_sentence_text]").val()) > 200) {
+		alert($.i18n.t('alert.purchase.exceedSentence'));
+		$("[name=painting_sentence_text]").focus();
+		return ;
+	}
+
+	var enter = getEnterCount($("[name=painting_sentence_text]"));
+	if (enter > 5) {
+		alert($.i18n.t('alert.purchase.limitEnterCount'));
+		$("[name=painting_sentence_text]").focus();
+		return ;
+	}
+
+	var param = {};
+	param.sentence = sentence;
+	param.artistId = userInfo.userId;
+
+	if($('#painting_private').is(":checked")) {
+		param.privateAt = 'Y';
+	} else {
+		param.privateAt = 'N';
+	}
+
+	AjaxCall.call(apiUrl+"/painting/"+paintingSeq, param, "PUT", updatePaintingSentenceRes);
+}
+function updatePaintingSentenceRes(result, status) {
+	if(result.errorNo == 0) {
+		dataReload(["initMy();", "initFollow();", "initPopular();"]);
+		selectMenu(3);
+		$(".popup_container").hide();
+		$(".upload_box").empty();
+	} else {
+		alert('error');
+	}
+}
+
+function successUpload(paintingSeq, fileId) {
     $(".upload_box").empty();
+
     var uploadSuccess = new Upload();
     uploadSuccess.setTitle("Upload Painting");
-    uploadSuccess.setContents('<span data-i18n="[html]uploadPop.successContent"></span><br><div class="upload_sentence"><span class="character_counter">0/200</span><textarea class="upload_sentence_textarea" length="200"></textarea><input type="checkbox"> private</div>');
-    uploadSuccess.setBottom("<div class='popup_cancle_btn upload_btn uploadFileBox'><i class='material-icons'>folder</i><label for='painteeFile' class='upload_btn_text'>Select image file </label><input type='file' id='painteeFile' name='painteeFile' title='' class='upload-input-hidden' /></div><div class='popup_btn upload_btn'><div class='purchase_btn_text'>Done </div><i class='material-icons'>done</i></div>");
+    uploadSuccess.setContents('<span data-i18n="[html]uploadPop.successContent"></span><br><div class="upload_sentence"><span class="character_counter"><span id="paintingSentenceCount">0</span>/200</span><textarea id="painting_sentence_text" name="painting_sentence_text" class="upload_sentence_textarea" length="200"></textarea><input id="painting_private" name="painting_private" type="checkbox"> private</div>');
+    uploadSuccess.setBottom("<div class='popup_cancle_btn upload_btn uploadFileBox'><i class='material-icons'>folder</i><label for='painteeFile' class='upload_btn_text'>Select image file </label><input type='file' id='painteeFile' name='painteeFile' title='' class='upload-input-hidden' /></div><div class='popup_btn upload_btn'><div id='update_painting_sentence_btn' class='purchase_btn_text'>Done </div><i class='material-icons'>done</i></div>");
     uploadSuccess.buildUpload();
+
+	//구매시의 한마디 
+	$("[name=painting_sentence_text]").keyup(function () {
+		// 남은 글자 수를 구합니다.
+		var inputLength = getCharCount($(this).val());    
+		var remain = 200 - inputLength;
+		
+		$('#paintingSentenceCount').html(inputLength);
+
+		if (remain >= 0) {
+			$('#paintingSentenceCount').css('color', 'black');
+		} else {
+			$('#paintingSentenceCount').css('color', 'red');
+		}
+	});
+	
+	$("[name=painting_sentence_text]").blur(function () {
+		var enter = getEnterCount($("[name=painting_sentence_text]"));
+		if (enter > 5) {
+			//alert("줄바꿈은 5회까지 가능합니다.");
+			alert($.i18n.t('alert.purchase.limitEnterCount'));
+		}
+	});
+
+    $('#update_painting_sentence_btn').on('click', function() {
+    	updatePaintingSentence(paintingSeq);
+    });
+
     delete uploadSuccess;
+
+    $('.painting_preview').append('<img src="' + imageUrl + '/cmm/file/view/3/' + fileId + '" width="120px" height="150px"/>');
+
     // 다국어 처리
     exeTranslation('.base_position', lang);
 }

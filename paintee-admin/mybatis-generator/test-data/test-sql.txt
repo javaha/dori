@@ -80,7 +80,7 @@ insert into `TB_FILE_INFO`(`id`,`file_group_seq`,`content_type`,`extension`,`nam
 insert into `TB_FILE_INFO`(`id`,`file_group_seq`,`content_type`,`extension`,`name`,`ori_name`,`display_name`,`path`,`size`,`created_date`,`last_modified_date`) values ('c0645fc6-a7bb-4f61-a133-d29ae45c4813', 13,'image/png','png','c0645fc6-a7bb-4f61-a133-d29ae45c4813','futurico.png','ddd','/2016/03/02/',1734, now(), now());
 
 --password 는 1111이다.
-insert into `TB_USER`(`user_id`, `location`, `provider_id`, `password`,`email`, `name`,`user_status`,`created_date`) values 
+insert into `TB_USER`(`user_id`, `language`, `provider_id`, `password`,`email`, `name`,`user_status`,`created_date`) values 
 ('f98377b9-e250-48ce-9d01-c48016256d1','ko','PAINTEE','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','test@a.com','아무개','N','2016-03-06 14:33:45'),
 ('f98377b9-e250-48ce-9d01-c48016256a1','ko','PAINTEE','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','aa@a.com','a01','N','2016-03-06 14:33:45'),
 ('f98377b9-e250-48ce-9d01-c48016256a2','ko','PAINTEE','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','ab@a.com','a02','N','2016-03-06 14:33:45'),

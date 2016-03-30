@@ -56,5 +56,15 @@ public interface PaintingService {
 	 @return 
 	 @throws Exception 
 	*/
-	public Painting createPainting(FileInfo fileInfo, LoginedUserVO loginedUserVO) throws Exception;
+	public Map<String, Object> createPainting(FileInfo fileInfo, LoginedUserVO loginedUserVO) throws Exception;
+
+	/**
+	 @fn updatePainting
+	 @brief 함수 간략한 설명 : painting 정보 수정
+	 @remark
+	 - 함수의 상세 설명 : painting 정보 수정
+	 @param painting
+	 @return 
+	*/
+	public boolean updatePainting(Painting painting);
 }

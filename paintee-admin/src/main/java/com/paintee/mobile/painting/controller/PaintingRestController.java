@@ -29,9 +29,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.paintee.common.file.service.FileInfoGenerator;
 import com.paintee.common.repository.entity.FileInfo;
+import com.paintee.common.repository.entity.Painting;
 import com.paintee.mobile.painting.service.PaintingService;
 import com.paintee.mobile.support.obejct.LoginedUserVO;
-import com.paintee.mobile.test.controller.TestVO;
 
 /**
 @class PaintingRestController
@@ -83,7 +83,6 @@ public class PaintingRestController {
 	@RequestMapping(value="/api/painting", method={RequestMethod.POST})
 	public Map<String, Object> createPainting(PaintingCreateVO paintingCreateVO, LoginedUserVO loginedUserVO) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		logger.debug("testUpload1111");
 
 		MultipartFile painteeFile = paintingCreateVO.getPainteeFile();
 		FileInfo fileInfo = null;
@@ -92,11 +91,45 @@ public class PaintingRestController {
 		if (painteeFile != null && !painteeFile.isEmpty()) {
 			fileInfo = fileInfoGenerator.makePainteeFileInfo(painteeFile, null, null);
 			logger.debug("fileInfo:{}", fileInfo);
-			paintingService.createPainting(fileInfo, loginedUserVO);
+			Map<String, Object> paintingInfoMap = paintingService.createPainting(fileInfo, loginedUserVO);
+			resultMap.put("painting", paintingInfoMap);
 		}
 
 		resultMap.put("errorMsg", "");
 		resultMap.put("errorNo", 0);
+
+		return resultMap;
+	}
+
+	/**
+	 @fn updatePainting
+	 @brief 함수 간략한 설명 : painting 정보 수정
+	 @remark
+	 - 함수의 상세 설명 : painting 정보 수정
+	 @param paintingId
+	 @param painting
+	 @param loginedUserVO
+	 @return
+	 @throws Exception 
+	*/
+	@RequestMapping(value="/api/painting/{paintingSeq}", method={RequestMethod.PUT})
+	public Map<String, Object> updatePainting(@PathVariable Integer paintingSeq, @RequestBody Painting painting, LoginedUserVO loginedUserVO) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		if(paintingSeq != null && painting.getArtistId() != null && painting.getArtistId().equals(loginedUserVO.getUserId())) {
+			painting.setSeq(paintingSeq);
+
+			boolean result = paintingService.updatePainting(painting);
+
+			if(result) {
+				resultMap.put("errorMsg", "");
+				resultMap.put("errorNo", 0);
+			} else {
+				resultMap.put("errorNo", 500);
+			}
+		} else {
+			resultMap.put("errorNo", 405);
+		}
 
 		return resultMap;
 	}
