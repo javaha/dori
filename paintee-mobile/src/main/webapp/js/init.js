@@ -63,7 +63,7 @@ function setSideMenu() {
 			null, 
 			"GET", 
 			function (result) {
-				lang = result.userInfo.location;
+				lang = result.userInfo.language ? result.userInfo.language : "en";
 				$(".side_menu_lang_select").val(lang);
 			}
 		);
@@ -71,17 +71,9 @@ function setSideMenu() {
 }
 
 
-//var imageUrl="http://192.168.0.14:8090";
-//var imageUrl="http://10.100.69.12:8090";
-//var imageUrl="http://192.168.1.31:8090";
-//var imageUrl="http://192.168.43.63:8090";
-//var imageUrl="http://192.168.0.9:8090";
 var imageUrl="http://localhost:8090";
-//var imageUrl="http://localhost:8090";
-//var imageUrl="http://192.168.43.89:8090";
-//var imageUrl="http://192.168.1.31:8090";
-//var imageUrl="http://192.168.43.63:8090";
-//var imageUrl="http://192.168.0.9:8090";
+//var imageUrl="http://192.168.0.3:8090";
+//var imageUrl="http://www.paintee.com:8090";
 var apiUrl=imageUrl+"/api";
 
 setWidth();
@@ -494,8 +486,8 @@ $(".side_menu_lang_select").change(function(event) {
 	exeTranslation(".main_container", lang);
 	if (userID) {
 		AjaxCall.call(apiUrl + "/user/me", 
-			{"location": lang}, 
-			"POST", 
+			{"language": lang}, 
+			"PUT", 
 			function (result) {
 				console.log(result);			
 			}

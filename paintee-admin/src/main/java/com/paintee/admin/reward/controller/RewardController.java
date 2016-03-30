@@ -89,6 +89,19 @@ public class RewardController {
 	 - 함수의 상세 설명 : 리워드 상태 변경시 처리
 	 @return 
 	 */
+	@RequestMapping(value="/mod", method={RequestMethod.GET})
+	@ResponseBody
+	public Map<String, Object> modReward(Reward reward) {
+		rewardService.modRewardStatus(reward);
+		
+		int money = reward.getEarmRequestedCommission() + reward.getEarmRequestedMoney();
+		System.out.println("money ::: " + money);
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("msg", "상태가 변경되었습니다.");
+		return result;
+	}
+	/*
 	@RequestMapping(value="/mod", method={RequestMethod.POST})
 	public String modReward(@RequestParam(name="pageNo", required=false, defaultValue="1") Integer pageNo, 
 			Reward reward, RedirectAttributes model) {
@@ -98,6 +111,7 @@ public class RewardController {
 		model.addFlashAttribute("msg", "상태가 변경되었습니다.");
 		return "redirect:/admin/reward/list";
 	}
+	*/
 }
 
 

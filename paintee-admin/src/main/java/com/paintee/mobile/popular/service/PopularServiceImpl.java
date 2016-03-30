@@ -53,8 +53,10 @@ public class PopularServiceImpl implements PopularService {
 		PurchaseExample example = new PurchaseExample();
 		PurchaseExample.Criteria where =  example.createCriteria();
 		List<String> sList = new ArrayList<>();
-		sList.add("C");  // 요청
-		sList.add("S");  // 발송
+		sList.add("1");  // 요청
+		sList.add("2");  // 발송
+		sList.add("4");  // 재발송요청
+		sList.add("5");  // 재발송처리
 		where.andPurchaseStatusIn(sList);
 		
 		int count = purchaseHelper.countByExample(example);

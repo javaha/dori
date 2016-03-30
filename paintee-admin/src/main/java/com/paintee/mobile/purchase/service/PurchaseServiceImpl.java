@@ -75,16 +75,19 @@ public class PurchaseServiceImpl implements PurchaseService {
 	 - 오버라이드 함수의 상세 설명 : 
 	   1. 구매테이블에 데이터를 입력한다.
 	   2. 회원 테이블 정보 업데이트 
-	      - 구매한 그림의 사용자의 수익 전체 금액(earn_total_money) 증가
-	      - 로그인한 사용자의 구매카운트(post_cnt) 증가
+	      - 구매자의 구매카운트(post_cnt) 증가
 	   3. 그림 테이블 정보 업데이트 
 	      - posted_num 무조건 1 증가, 
 	      - posted_people_cnt (구매 테이블에 해당 사용자가 구매한적이 있는지 확인 후 증가 시킴)   
+	   --------------------------------------------------------------------
 	 @see com.paintee.mobile.purchase.service.PurchaseService#addPurchase(com.paintee.common.repository.entity.Purchase)
 	*/
 	@Override
 	public Map<String, Object> addPurchase(PurchaseSearchVO purchase) throws Exception {
 		logger.debug("구매추가 : {}", purchase);
+
+		// 구매 테이블 데이터 추가
+		purchaseHelper.insertSelective(purchase);
 		
 		String userId = purchase.getUserId();
 		String paintingId = purchase.getPaintingId();
@@ -96,10 +99,18 @@ public class PurchaseServiceImpl implements PurchaseService {
 		int puchaseCount = purchaseHelper.countByExample(example);
 		logger.debug("구매카운트 : {}", puchaseCount);
 		
-		// 구매 테이블 데이터 추가
-		purchaseHelper.insertSelective(purchase);
+		// 그림 테이블 정보 업데이트 - posted_num 무조건 1 증가, posted_people_cnt (구매 테이블에 해당 사용자가 산적이 있는지 확인 후 증가 시킴)
+		Painting painting = new Painting();
+		painting.setPaintingId(paintingId);
+		if (puchaseCount == 0) {
+			painting.setPostedPeopleCnt(1);
+		} else {
+			painting.setPostedPeopleCnt(0);
+		}
+		painting.setPostedNum(1);
+		paintingHelper.updatePaintingPurchaseInfo(painting);
 		
-		// 회원 테이블 정보 추가 - 구매카운트(post_cnt), 수익 전체 금액(earn_total_money)
+		// 회원 테이블 정보 추가 - 구매카운트(post_cnt)
 		User user = new User();
 		user.setUserId(userId);
 		
@@ -115,20 +126,13 @@ public class PurchaseServiceImpl implements PurchaseService {
 		user.setResentSendCity(purchase.getReceiverCity());
 		user.setResentSendName(purchase.getReceiverName());
 		
-		userHelper.updateUserInfo(user);
-		userHelper.updateUserEarnTotalMoney(purchase);
+		user.setPostCnt(1);
 		
-		// 그림 테이블 정보 업데이트 - posted_num 무조건 1 증가, posted_people_cnt (구매 테이블에 해당 사용자가 산적이 있는지 확인 후 증가 시킴)
-		Painting painting = new Painting();
-		painting.setPaintingId(paintingId);
-		if (puchaseCount == 0) {
-			painting.setPostedPeopleCnt(0);
-		}
-		paintingHelper.updatePaintingPurchaseInfo(painting);
+		userHelper.updateUserInfo(user);
 		
 		// 구매 후 공유를 할 수 있게 하기 위해 그림 정보를 가져온다.
 		Map<String, Object> resultMap = new HashMap<>();
-		PaintingVO pInfo = paintingHelper.selectPaintingInfo(painting.getPaintingId());
+		PaintingVO pInfo = paintingHelper.selectPaintingInfo(paintingId);
 		
 		//파일정보 조회
 		FileInfoExample fileInfoExample = new FileInfoExample();

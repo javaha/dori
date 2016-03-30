@@ -70,10 +70,13 @@ public class MyHomeRestController {
 		// 요청 데이터 페이징 정보
 		search.setRowPerPage(5);
 		
-		// 요청, 발송 상태
+		// 요청, 발송, 재발송요청, 재발송처리 상태
 		List<String> purchaseStatusList = new ArrayList<>();
-		purchaseStatusList.add("C");
-		purchaseStatusList.add("S");
+		purchaseStatusList.add("1");  // 요청
+		purchaseStatusList.add("2");  // 발송
+		purchaseStatusList.add("4");  // 재발송요청
+		purchaseStatusList.add("5");  // 재발송처리
+
 		search.setPurchaseStatusList(purchaseStatusList);
 		
 		// 로그인 사용자 아이디

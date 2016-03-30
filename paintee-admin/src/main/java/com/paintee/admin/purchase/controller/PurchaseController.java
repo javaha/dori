@@ -14,6 +14,7 @@
 */
 package com.paintee.admin.purchase.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.paintee.admin.purchase.service.PurchaseService;
 import com.paintee.common.paging.PageVO;
@@ -66,6 +68,17 @@ public class PurchaseController {
 		PurchaseSearchVO search = new PurchaseSearchVO();
 		search.setStartRow((pageNo - 1) * 5);
 		search.setRowPerPage(10);
+		
+		// 목록에 조회할 상태
+		List<String> purchaseStatus = new ArrayList<>();
+		purchaseStatus.add("1");  // 환불처리
+		purchaseStatus.add("2");  // 삭제
+		purchaseStatus.add("3");  // 삭제
+		purchaseStatus.add("4");  // 삭제
+		purchaseStatus.add("5");  // 삭제
+		search.setStatusList(purchaseStatus);
+		
+		
 		Map<String, Object> result = purchaseService.getPurchaseList(search);
 		
 		// 화면 페이징 처리
@@ -73,6 +86,7 @@ public class PurchaseController {
 				"/admin/purchase/list", pageNo, 
 				(int)result.get("count"), (List<Object>)result.get("list"));
 		model.addAttribute(pageVO);
+		model.addAttribute("statusList", result.get("statusList"));
 	}
 	
 	
@@ -83,12 +97,12 @@ public class PurchaseController {
 	 - 함수의 상세 설명 : 
 	 @return 
 	 */
-	@RequestMapping(value="/mod", method={RequestMethod.GET})
-	@ResponseBody
-	public Map<String, String> modPurchase(Purchase purchase) {
+	@RequestMapping(value="/mod", method={RequestMethod.POST})
+	public String modReward(@RequestParam(name="pageNo", required=false, defaultValue="1") Integer pageNo, 
+			Purchase purchase, RedirectAttributes model) {
+		System.out.println("purchase ::: " + purchase);
 		purchaseService.modPurchaseStatus(purchase);
-		Map<String, String> result = new HashMap<>();
-		result.put("msg", "상태가 변경되었습니다.");
-		return result;
+		model.addFlashAttribute("msg", "상태가 변경되었습니다.");
+		return "redirect:/admin/purchase/list";
 	}
 }

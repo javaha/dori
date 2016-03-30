@@ -55,7 +55,7 @@ public interface UserHelper extends UserMapper {
 	 @param user
 	 @return 
 	*/
-	public void updateUserEarnTotalMoney(Purchase purchase);
+	public void updateUserEarnTotalMoney(User user);
 
 	/**
 	 @fn updateUserEarnRewordMoney

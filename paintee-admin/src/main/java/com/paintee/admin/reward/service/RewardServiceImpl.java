@@ -83,12 +83,16 @@ public class RewardServiceImpl implements RewardService {
 	*/
 	@Override
 	public void modRewardStatus(Reward reward) {
+		// 리워드 테이블 상태 변경
 		rewardHelper.updateByPrimaryKeySelective(reward);
 		
-		int money = reward.getEarmRequestedCommission() + reward.getEarmRequestedMoney();
-		UserVO user = new UserVO();
-		user.setMoney(money);
-		user.setUserId(reward.getUserId());
-		userHelper.updateUserRewardMoney(user);
+		// 비정상으로 변경
+		if ("A".equalsIgnoreCase(reward.getRewardStatus())) {
+			int money = reward.getEarmRequestedCommission() + reward.getEarmRequestedMoney();
+			UserVO user = new UserVO();
+			user.setMoney(money);
+			user.setUserId(reward.getUserId());
+			userHelper.updateUserRewardMoney(user);
+		}
 	}
 }

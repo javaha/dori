@@ -139,7 +139,7 @@ public class UserRestController {
 	 @return
 	 @throws Exception 
 	*/
-	@RequestMapping(value="/api/user/me", method={RequestMethod.POST})
+	@RequestMapping(value="/api/user/me", method={RequestMethod.PUT})
 	public Map<String, Object> updateUserInfo(@RequestBody User user, LoginedUserVO loginedUserVO) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
 

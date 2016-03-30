@@ -14,6 +14,8 @@
 */
 package com.paintee.common.repository.entity.vo;
 
+import java.util.List;
+
 import com.paintee.common.repository.entity.Purchase;
 
 /**
@@ -34,10 +36,17 @@ com.paintee.common.repository.entity.vo \n
 public class PurchaseSearchVO extends Purchase {
 	private static final long serialVersionUID = -3180373314948888877L;
 
+	private List<String> statusList;
 	private String changeAddr;
 	private Integer startRow;
 	private Integer rowPerPage;
-
+	
+	public List<String> getStatusList() {
+		return statusList;
+	}
+	public void setStatusList(List<String> statusList) {
+		this.statusList = statusList;
+	}
 	public String getChangeAddr() {
 		return changeAddr;
 	}

@@ -39,6 +39,10 @@
 				</select>
 				<script>
 					$("#rewardStatus${data.seq}").val("${data.rewardStatus}");
+					
+					if ("${data.rewardStatus}" != "R") {
+						$("#rewardStatus${data.seq}").find("option").not(":selected").attr("disabled", "disabled");
+					}
 				</script>
 			</td>
 		</tr>
@@ -55,30 +59,39 @@
 <%-- 페이징 처리 --%>
 <navi:page />
 
-<form name="rewardForm" method="post" action="${pageContext.request.contextPath}/admin/reward/mod">
-	<input type="hidden" name="pageNo" value="${pageVO.pageNo}" />
-	<input type="hidden" name="seq" />
-	<input type="hidden" name="userId" />
-	<input type="hidden" name="rewardStatus" />
-	<input type="hidden" name="earmRequestedCommission" />
-	<input type="hidden" name="earmRequestedMoney" />
-</form>
-
 <script>
-	if ('${msg}') alert('${msg}');
 	$("[name=rewardStatus]").change(function (event) {
+		var selObj = this;
 		if (confirm("상태를 변경하시겠습니까?")) {
 			var rewardId = this.id.replace("rewardStatus", "");
-			$("[name=seq]").val(rewardId);
-			$("[name=userId]").val($("#userId" + rewardId).val());
-			$("[name=rewardStatus]").val(this.value);
-			$("[name=earmRequestedCommission]").val($("#earmRequestedCommission" + rewardId).html().replace("$", ""));
-			$("[name=earmRequestedMoney]").val($("#earmRequestedMoney" + rewardId).html().replace("$", ""));
-						
-			document.rewardForm.submit();
+			var rewardStatus = this.value;
+			console.log($("#earmRequestedCommission" + rewardId));
+			console.log($("#earmRequestedCommission" + rewardId).html());
+			console.log($("#earmRequestedCommission" + rewardId).html().replace("$", ""));
+			var data = {
+				"seq": rewardId,
+				"userId": $("#userId" + rewardId).val(),
+				"rewardStatus": rewardStatus,
+				"earmRequestedCommission": $("#earmRequestedCommission" + rewardId).html().replace("$", ""), 
+				"earmRequestedMoney": $("#earmRequestedMoney" + rewardId).html().replace("$", "")
+			};
+			$.ajax({
+					url: "/admin/reward/mod",
+					type: "GET",
+					async: true,
+					cache: false,
+					data: data
+			})
+			.done(function (result) {
+				$(selObj).find("option").not(":selected").attr("disabled", "disabled");
+			})
+			.fail(function () {
+				alert("처리시 오류가 발생하였습니다.");
+			});
 		} else {
-			$("[name=rewardStatus]").val("R");
+			$(this).val("R");
 		}
 	});	
+	
 </script>
 <c:import url="/WEB-INF/jsp/template/footer.jsp" />

@@ -56,9 +56,6 @@ public class PurchaseRestController {
 	@Autowired
 	private PurchaseService purchaseService;
 	
-	@Autowired
-	private PaintingService paintingService;
-	
 	@RequestMapping(value="/api/purchasePopInfo", method={RequestMethod.GET})
 	public Map<String, Object> purchasePopInfo(LoginedUserVO loginedUserVO) throws Exception {
 		

@@ -25,17 +25,24 @@
   		LIMIT #{startRow}, #{rowPerPage}
   	</select>
   	
+  	<sql id="purchaseFromWhere">
+		  from TB_PURCHASE
+		 where purchase_status in <foreach item="status" collection="statusList" open="(" close=")" separator=",">
+	   								#{status}
+	                        	  </foreach>
+  	</sql>
+
   	<select id="selectPurchaseList" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.vo.PurchaseSearchVO">
 		select a.*, 
 		       (select name from TB_USER where user_id = a.user_id) user_name
 		  from (select <include refid="com.paintee.common.repository.mapper.PurchaseMapper.Base_Column_List" />
-				  from TB_PURCHASE
+				  <include refid="purchaseFromWhere" />
 				 order by purchase_date desc 
 				 limit #{startRow}, #{rowPerPage}) a
   	</select>
 
   	<select id="selectPurchaseListCount" resultType="int">
 		select count(*)
-		  from TB_PURCHASE
+		  <include refid="purchaseFromWhere" />
 	</select>
 </mapper>

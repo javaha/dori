@@ -30,10 +30,8 @@
 	<!-- 그림의 구매정보를 업데이트 -->
   	<update id="updatePaintingPurchaseInfo">
 		update TB_PAINTING
-		   set posted_num = posted_num + 1
-			<if test = "postedPeopleCnt != null">
-			   ,posted_people_cnt = posted_people_cnt + 1
-			</if>				
+		   set posted_num = posted_num + #{postedNum},
+			   posted_people_cnt = posted_people_cnt + #{postedPeopleCnt}
 		 where painting_id = #{paintingId}
   	</update>
 </mapper>
