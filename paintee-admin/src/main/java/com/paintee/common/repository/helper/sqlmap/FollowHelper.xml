@@ -55,7 +55,7 @@
   	<!-- 로그인한 사용자를 팔로잉한 사용자의 목록을 조회 -->
   	<select id="selectFollowsList" resultMap="BaseResultMap">
 		select user_id, 
-			   (select name from tb_user where user_id = a.user_id) follows_name, 
+			   (select name from TB_USER where user_id = a.user_id) follows_name, 
 			   (select count(*)
 				  from TB_FOLLOW
 				 where user_id = #{userId}

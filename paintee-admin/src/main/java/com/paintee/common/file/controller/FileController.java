@@ -117,6 +117,64 @@ public class FileController {
 		out.flush();
 	}
 
+	@RequestMapping(value="/file/view/{fileType}/{fileId}")
+	public void view(@PathVariable Integer fileType, @PathVariable String fileId, HttpServletResponse response) throws Exception {
+		if (fileId == null || fileId.trim().length() == 0) {
+			throw new Exception("File does not exist.");
+		}
+		if (fileType == null) {
+			throw new Exception("File does not exist.");
+		}
+
+		if (fileType < 1 || fileType > 2) {
+			throw new Exception("File does not exist.");
+		}
+
+		FileInfo fileInfo = fileService.getFileInfo(fileId);
+
+		if (fileInfo == null) {
+			throw new Exception("File does not exist.");
+		}
+
+		StringBuilder fullPath = new StringBuilder();
+		fullPath.append(filePathGenerator.getAbsoluteFilPath(fileInfo.getPath())).append(fileInfo.getName()).append("_").append(fileType);
+
+		File file = new File(fullPath.toString());
+
+		if(!file.exists()) {
+			throw new Exception("File does not exist.");
+		}
+
+		response.setContentType(fileInfo.getContentType());
+		response.setContentLengthLong(file.length());
+
+//		String fileName = java.net.URLEncoder.encode(fileInfo.getLgclflNm(), "UTF-8");
+
+//		response.setHeader("Content-Disposition", "attachment;filename=\""+fileName+"\";");
+//		response.setHeader("Content-Transfer-Encoding", "binary");
+
+		OutputStream out = response.getOutputStream();
+		FileInputStream fis = null;
+
+		try {
+			fis = new FileInputStream(file);
+			FileCopyUtils.copy(fis, out);
+		} catch (Exception e) {
+			logger.error("Exception [{}]", e.getMessage());
+			throw e;
+		} finally {
+			if (fis != null) {
+				try {
+					fis.close();
+				} catch (Exception e2) {
+					logger.error("Exception [{}]", e2.getMessage());
+				}
+			}
+		}
+
+		out.flush();
+	}
+
     /**
      @fn download
      @brief 함수 간략한 설명 : 첨부파일 다운로드

@@ -120,6 +120,7 @@ public class LoginServiceImpl implements LoginService {
 			resultMap.put("name", userInfo.getName());
 			resultMap.put("userId", userInfo.getUserId());
 			resultMap.put("location", userInfo.getLocation());
+			resultMap.put("language", userInfo.getLanguage());
 			resultMap.put("providerId", userInfo.getProviderId());
 			resultMap.put("hash", login.getHash());
 		}
@@ -170,6 +171,7 @@ public class LoginServiceImpl implements LoginService {
 			resultMap.put("name", userInfo.getName());
 			resultMap.put("userId", userInfo.getUserId());
 			resultMap.put("location", userInfo.getLocation());
+			resultMap.put("language", userInfo.getLanguage());
 			resultMap.put("providerId", userInfo.getProviderId());
 			resultMap.put("hash", login.getHash());
 		}

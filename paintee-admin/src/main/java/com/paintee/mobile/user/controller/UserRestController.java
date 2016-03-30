@@ -17,8 +17,6 @@ package com.paintee.mobile.user.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,6 +146,24 @@ public class UserRestController {
 		int errorNo = userService.updateUser(user);
 
 		resultMap.put("errorNo", errorNo);
+
+		return resultMap;
+	}
+
+	/**
+	 @fn postedInfo
+	 @brief 함수 간략한 설명 : 로그인 사용자의 옆서가 post 된 개수 조회
+	 @remark
+	 - 함수의 상세 설명 : 로그인 사용자의 옆서가 post 된 개수 조회
+	 @param loginedUserVO
+	 @return
+	 @throws Exception 
+	*/
+	@RequestMapping(value="/api/user/me/postedCountInfo", method={RequestMethod.GET})
+	public Map<String, Object> postedCountInfo(LoginedUserVO loginedUserVO) throws Exception {
+		Map<String, Object> resultMap = userService.postedCountInfo(loginedUserVO);
+
+		resultMap.put("errorNo", 0);
 
 		return resultMap;
 	}

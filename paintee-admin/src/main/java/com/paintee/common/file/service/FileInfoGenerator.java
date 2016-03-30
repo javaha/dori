@@ -25,6 +25,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -190,6 +191,78 @@ public class FileInfoGenerator {
 			}
 
 			FileCopyUtils.copy(multipartFile.getBytes(), new File(fullPath.toString()));
+		} catch (IOException e) {
+			logger.error("exception [{}]", e);
+			throw e;
+		}
+
+		return fileInfo;
+	}
+
+	/**
+	 @fn makePainteeFileInfo
+	 @brief 함수 간략한 설명 : 옆서 그림 파일용 upload
+	 @remark
+	 - 함수의 상세 설명 : 옆서 그림 파일용 upload
+	 @param multipartFile
+	 @param middlePath
+	 @param displayName
+	 @return
+	 @throws Exception 
+	*/
+	public FileInfo makePainteeFileInfo(MultipartFile multipartFile, String middlePath, String displayName) throws Exception {
+		Date today = new Date();
+
+		//crop image file path
+		String filePath = filePathGenerator.generateFilPath(middlePath);
+		String newId = UUID.randomUUID().toString();
+
+		FileInfo fileInfo = new FileInfo();
+		fileInfo.setId(newId);
+		fileInfo.setName(newId);
+		fileInfo.setOriName(multipartFile.getOriginalFilename());
+		fileInfo.setExtension(FilenameUtils.getExtension(multipartFile.getOriginalFilename()));
+		fileInfo.setPath(filePath);
+		fileInfo.setContentType(multipartFile.getContentType());
+		fileInfo.setSize(multipartFile.getSize());
+		fileInfo.setDisplayName(displayName);
+		fileInfo.setCreatedDate(today);
+
+		StringBuilder fullPath = new StringBuilder();
+		fullPath.append(filePathGenerator.getAbsoluteFilPath(filePath));
+		fullPath.append(newId);
+
+		try {
+			File cropImageFilePath = new File(filePathGenerator.getAbsoluteFilPath(filePath));
+
+			//TODO:크롭, 썸네일 생성해야함.
+			//크롭된 원본 파일 경로
+			if(!cropImageFilePath.exists()) {
+				logger.info("created {} directory", filePath);
+				cropImageFilePath.mkdirs();
+			}
+
+			File cropImageFile = new File(fullPath.toString());
+
+			FileCopyUtils.copy(multipartFile.getBytes(), cropImageFile);
+
+			//썸네일1
+			fullPath.delete(0, fullPath.length());
+			fullPath.append(filePathGenerator.getAbsoluteFilPath(filePath));
+			fullPath.append(newId).append("_1");
+
+			File thumbnailFile1 = new File(fullPath.toString());
+
+			FileCopyUtils.copy(cropImageFile, thumbnailFile1);
+
+			//썸네일2
+			fullPath.delete(0, fullPath.length());
+			fullPath.append(filePathGenerator.getAbsoluteFilPath(filePath));
+			fullPath.append(newId).append("_2");
+
+			File thumbnailFile2 = new File(fullPath.toString());
+
+			FileCopyUtils.copy(cropImageFile, thumbnailFile2);
 		} catch (IOException e) {
 			logger.error("exception [{}]", e);
 			throw e;

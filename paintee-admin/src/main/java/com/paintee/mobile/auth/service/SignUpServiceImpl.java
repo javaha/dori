@@ -170,6 +170,7 @@ public class SignUpServiceImpl implements SignUpService {
 		resultMap.put("name", user.getName());
 		resultMap.put("userId", user.getUserId());
 		resultMap.put("location", user.getLocation());
+		resultMap.put("language", user.getLanguage());
 		resultMap.put("providerId", user.getProviderId());
 
 		return resultMap;

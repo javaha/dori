@@ -14,7 +14,10 @@
 */
 package com.paintee.mobile.user.service;
 
+import java.util.Map;
+
 import com.paintee.common.repository.entity.User;
+import com.paintee.mobile.support.obejct.LoginedUserVO;
 
 /**
 @class UserService
@@ -62,4 +65,14 @@ public interface UserService {
 	 @return 
 	*/
 	public int updateUser(User user);
+
+	/**
+	 @fn postedCountInfo
+	 @brief 함수 간략한 설명 : 로그인 사용자의 옆서가 post 된 개수 조회
+	 @remark
+	 - 함수의 상세 설명 : 로그인 사용자의 옆서가 post 된 개수 조회
+	 @param loginedUserVO
+	 @return 
+	*/
+	public Map<String, Object> postedCountInfo(LoginedUserVO loginedUserVO);
 }

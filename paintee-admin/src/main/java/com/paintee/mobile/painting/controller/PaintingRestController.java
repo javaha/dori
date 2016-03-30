@@ -14,17 +14,24 @@
 */
 package com.paintee.mobile.painting.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.paintee.common.file.service.FileInfoGenerator;
+import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.mobile.painting.service.PaintingService;
+import com.paintee.mobile.support.obejct.LoginedUserVO;
+import com.paintee.mobile.test.controller.TestVO;
 
 /**
 @class PaintingRestController
@@ -48,6 +55,9 @@ public class PaintingRestController {
 	@Autowired
 	private PaintingService paintingService;
 
+	@Autowired
+	private FileInfoGenerator fileInfoGenerator;
+
 	/**
 	 @fn detailPainting
 	 @brief 함수 간략한 설명 : 그림에 대한 정보조회
@@ -59,5 +69,35 @@ public class PaintingRestController {
 	public Map<String, Object> detailPainting(@PathVariable String paintingId) throws Exception {
 
 		return paintingService.getPaintingInfo(paintingId);
+	}
+	
+	/**
+	 @fn createPainting
+	 @brief 함수 간략한 설명 : 옆서 그림 등록
+	 @remark
+	 - 함수의 상세 설명 : 옆서 그림 등록
+	 @param testVO
+	 @return
+	 @throws Exception 
+	*/
+	@RequestMapping(value="/api/painting", method={RequestMethod.POST})
+	public Map<String, Object> createPainting(PaintingCreateVO paintingCreateVO, LoginedUserVO loginedUserVO) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		logger.debug("testUpload1111");
+
+		MultipartFile painteeFile = paintingCreateVO.getPainteeFile();
+		FileInfo fileInfo = null;
+
+		//첨부파일 업로드시
+		if (painteeFile != null && !painteeFile.isEmpty()) {
+			fileInfo = fileInfoGenerator.makePainteeFileInfo(painteeFile, null, null);
+			logger.debug("fileInfo:{}", fileInfo);
+			paintingService.createPainting(fileInfo, loginedUserVO);
+		}
+
+		resultMap.put("errorMsg", "");
+		resultMap.put("errorNo", 0);
+
+		return resultMap;
 	}
 }

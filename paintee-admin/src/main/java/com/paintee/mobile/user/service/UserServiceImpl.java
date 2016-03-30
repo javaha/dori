@@ -15,6 +15,8 @@
 package com.paintee.mobile.user.service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,11 +24,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.paintee.common.repository.entity.Follow;
+import com.paintee.common.repository.entity.PaintingExample;
 import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.UserExample;
 import com.paintee.common.repository.helper.FollowHelper;
+import com.paintee.common.repository.helper.PaintingHelper;
 import com.paintee.common.repository.helper.UserHelper;
 import com.paintee.common.util.Sha512Encrypt;
+import com.paintee.mobile.support.obejct.LoginedUserVO;
 
 /**
 @class UserServiceImpl
@@ -52,6 +57,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private FollowHelper followHelper;
+	
+	@Autowired
+	private PaintingHelper paintingHelper;
 
 	/**
 	 @fn 
@@ -125,5 +133,29 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return errorNo;
+	}
+
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 로그인 사용자의 옆서가 post 된 개수 조회
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 로그인 사용자의 옆서가 post 된 개수 조회
+	 @see com.paintee.mobile.user.service.UserService#postedCountInfo(com.paintee.mobile.support.obejct.LoginedUserVO)
+	*/
+	public Map<String, Object> postedCountInfo(LoginedUserVO loginedUserVO) {
+		Map<String, Object> resultMap = new HashMap<>();
+
+		int postedCount = paintingHelper.sumPostedNum(loginedUserVO.getUserId());
+
+		PaintingExample paintingExample = new PaintingExample();
+		PaintingExample.Criteria where = paintingExample.createCriteria();
+		where.andArtistIdEqualTo(loginedUserVO.getUserId());
+		
+		int uploadedCount = paintingHelper.countByExample(paintingExample);
+
+		resultMap.put("postedCount", postedCount);
+		resultMap.put("uploadedCount", uploadedCount);
+
+		return resultMap;
 	}
 }

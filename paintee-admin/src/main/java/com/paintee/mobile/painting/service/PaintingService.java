@@ -16,6 +16,10 @@ package com.paintee.mobile.painting.service;
 
 import java.util.Map;
 
+import com.paintee.common.repository.entity.FileInfo;
+import com.paintee.common.repository.entity.Painting;
+import com.paintee.mobile.support.obejct.LoginedUserVO;
+
 /**
 @class PaintingService
 com.paintee.mobile.painting.service \n
@@ -41,4 +45,16 @@ public interface PaintingService {
 	 @return 
 	*/
 	public Map<String, Object> getPaintingInfo(String paintingId) throws Exception;
+	
+	/**
+	 @fn createPainting
+	 @brief 함수 간략한 설명 : 그림 정보 생성
+	 @remark
+	 - 함수의 상세 설명 : 그림 정보 생성
+	 @param fileInfo
+	 @param loginedUserVO
+	 @return 
+	 @throws Exception 
+	*/
+	public Painting createPainting(FileInfo fileInfo, LoginedUserVO loginedUserVO) throws Exception;
 }

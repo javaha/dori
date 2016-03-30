@@ -34,4 +34,10 @@
 			   posted_people_cnt = posted_people_cnt + #{postedPeopleCnt}
 		 where painting_id = #{paintingId}
   	</update>
+
+  	<select id="sumPostedNum" resultType="int" parameterType="java.lang.String">
+		select COALESCE(SUM(posted_num),0)
+		from TB_PAINTING
+		where artist_id = #{artistId}
+	</select>
 </mapper>

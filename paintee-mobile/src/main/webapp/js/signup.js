@@ -77,15 +77,15 @@ SignupController.prototype = {
 		if(result.errorNo == 0) {
 			console.log('regist user');
 
-			//TODO:location 정보 취득 (현재 브라우저의 location 정보를 넣음.)
-			var signupLocation = 'en';
-			var signupLocations = navigator.language.split("-");
-			if(signupLocations && signupLocations[0]) {
-				signupLocation = signupLocations[0];
+			//TODO:Language 정보 취득 (현재 브라우저의 location 정보를 넣음.)
+			var signupLanguage = 'en';
+			var signupLanguages = navigator.language.split("-");
+			if(signupLanguages && signupLanguages[0]) {
+				signupLanguage = signupLanguages[0];
 			}
 
 			param.accessGubun = "W";
-			param.location = signupLocation;
+			param.language = signupLanguage;
 
 			AjaxCall.call(apiUrl+"/signup", param, "POST", function (result, status) { controller.doSignupRes(result, status); });
 		} else if(result.errorNo == 1) {
