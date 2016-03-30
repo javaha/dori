@@ -14,6 +14,8 @@
 */
 package com.paintee.common.repository.entity.vo;
 
+import java.util.List;
+
 /**
 @class PersonalSearchVO
 com.paintee.common.repository.entity.vo \n
@@ -35,6 +37,7 @@ public class PersonalSearchVO extends PagingVO {
 	private String artistName;
 	private String paintingId;
 	private Integer seq;
+	private List<String> paintingStatusList;
 
 	public String getArtistName() {
 		return artistName;
@@ -58,5 +61,13 @@ public class PersonalSearchVO extends PagingVO {
 
 	public void setSeq(Integer seq) {
 		this.seq = seq;
+	}
+
+	public List<String> getPaintingStatusList() {
+		return paintingStatusList;
+	}
+
+	public void setPaintingStatusList(List<String> paintingStatusList) {
+		this.paintingStatusList = paintingStatusList;
 	}
 }

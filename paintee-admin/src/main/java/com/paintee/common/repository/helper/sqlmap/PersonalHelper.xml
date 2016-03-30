@@ -17,6 +17,9 @@
 			   a.posted_people_cnt
 		  from TB_PAINTING a
 		 where a.artist_id = (select user_id from TB_USER where name = #{artistName})
+		   and a.painting_status in <foreach item="status" collection="paintingStatusList" open="(" close=")" separator=",">
+		    							#{status}
+		                            </foreach>				 
 	    <choose >
            <when test="paintingId != null" >
            and seq &gt;= (select seq from TB_PAINTING where painting_id = #{paintingId})
@@ -34,7 +37,10 @@
   	    select (select introduce from TB_USER where name = #{artistName} limit 0, 1) as introduce,
   	           (select count(*) 
   	              from TB_PAINTING 
-  	             where artist_id = (select user_id from TB_USER where name = #{artistName})) as uploadCount 
+  	             where artist_id = (select user_id from TB_USER where name = #{artistName})
+  	               and painting_status in <foreach item="status" collection="paintingStatusList" open="(" close=")" separator=",">
+		    								  #{status}
+		                                  </foreach>) as uploadCount 
   	      from dual
   	</select>    	
 </mapper>

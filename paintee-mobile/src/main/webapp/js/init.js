@@ -127,9 +127,8 @@ Home.prototype = {
 }
 
 // 그림 목록 화면
-function Structure(index, paintingId, artistName){
-		
-        this.index              =index;
+function Structure(data) {
+        this.index              =data.index;
         this.container          =$("<div>").addClass("list_contents swiper-slide");
 
         this.listInfo           =$("<div>").addClass("list_info");
@@ -145,11 +144,19 @@ function Structure(index, paintingId, artistName){
         this.listArtist         =$("<div>").addClass("list_artist_btn").click(function() {
         							console.log("currentSwiper : " + currentSwiper);
 						        	// 히스토리 설정
-						        	replaceHistory({"call": "list", "mainIndex": mainSwiper.activeIndex, "index": currentSwiper.activeIndex ? currentSwiper.activeIndex : index});
+						        	replaceHistory({"call": "list", "mainIndex": mainSwiper.activeIndex, "index": currentSwiper.activeIndex ? currentSwiper.activeIndex : data.index});
 						        	addHistory({"call": "personal"});
-        							showPersonal(artistName)
+        							showPersonal(data.artistName)
         						});
-        this.listPostBtn        =$("<div>").addClass("list_post_btn").html("post it").click(function(){purchase(paintingId, artistName)});
+        this.listPostBtn        =$("<div>").addClass("list_post_btn").html("post it")
+                                           .click( function() {
+                                        	   		   if (data.paintingStatus == "D") {
+                                        	   			   alert($.i18n.t('alert.common.delPainting'));
+                                        	   			   return;
+                                        	   		   }
+                                        	           purchase(data.paintingId, data.artistName);
+                                        	       }
+                                           );
 
 }
 Structure.prototype = {
@@ -210,9 +217,20 @@ Structure.prototype = {
 function addPainting(swiper, currentIndex, type, listData){
 	
 	if (!listData) { return; }
-	
-	var newSlide = new Structure(swiper.slides.length, listData.paintingId, listData.artistName);
-    newSlide.setSentence(listData.sentence, listData.sentenceName ? listData.sentenceName : listData.artistName);
+	console.log("type :::::::::::::::::::::::::::::::::::::: " + type);
+	var data = {
+		index: swiper.slides.length,
+		paintingId: listData.paintingId,
+		artistName: listData.artistName
+	};
+
+	// 업로드된 그림일 경우 U, 구매된 그림일 경우 P
+	// 사용 페이지 : My
+	if (listData.paintingStatus) {
+		data.paintingStatus = listData.paintingStatus;
+	}
+	var newSlide = new Structure(data);
+    newSlide.setSentence((listData.paintingStatus == "B") ? "It was blind by the administrator." : listData.sentence, listData.sentenceName ? listData.sentenceName : listData.artistName);
     newSlide.setPostedNumber(listData.postedPeopleCnt);
     newSlide.setDate(toEngDateStr(listData.uploadDate));
     newSlide.setArtist(listData.artistName);

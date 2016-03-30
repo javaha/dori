@@ -4,6 +4,7 @@
 	<resultMap id="BaseResultMap" type="com.paintee.common.repository.entity.vo.MyHomeVO" extends="com.paintee.common.repository.mapper.PaintingMapper.BaseResultMap">
 	    <result column="sentence_name" property="sentenceName" />
 	    <result column="artist_name" property="artistName" />	    
+	    <result column="type" property="type" />	    
 	</resultMap>
   	
 	<!-- 로그인 사용자가 구매한 그림과 업로드한 그림의 목록을 가져오기 -->
@@ -16,9 +17,14 @@
 			   a.upload_date, 
 			   a.painting_id, 
 			   a.posted_num, 
-			   a.posted_people_cnt
+			   a.painting_status,
+			   a.posted_people_cnt,
+			   'U' as type
 		  from TB_PAINTING a
 		 where a.artist_id = #{artistId}
+		   and a.painting_status in <foreach item="status" collection="paintingStatusList" open="(" close=")" separator=",">
+		    							#{status}
+		                            </foreach>
 		 union all
 		select a.artist_id, 
 			   (select name from TB_USER where user_id = a.artist_id) artist_name, 
@@ -28,7 +34,9 @@
 			   b.purchase_date,
 			   a.painting_id,
 			   a.posted_num,
-			   a.posted_people_cnt
+			   a.painting_status,
+			   a.posted_people_cnt,
+			   'P' as type
 		  from TB_PAINTING a, 
 		       TB_PURCHASE b
 		 where a.painting_id = b.painting_id
@@ -43,7 +51,12 @@
 	<!-- 로그인 사용자가 팔로잉한 사용자가 구매한 그림과 업로드한 그림의 목록을 가져오기 -->
   	<select id="selectMyHomeInfo" resultType="com.paintee.common.repository.entity.vo.MyHomeVO">
   	     select (select introduce from TB_USER where user_id = #{userId}) as introduce,
-  	            (select count(*) from TB_PAINTING where artist_id = #{userId}) as uploadCount,
+  	            (select count(*) 
+  	               from TB_PAINTING 
+  	              where artist_id = #{userId} 
+  	                and painting_status in <foreach item="status" collection="paintingStatusList" open="(" close=")" separator=",">
+		    									#{status}
+		                            	   </foreach>) as uploadCount,
   	            (select count(*) 
   	               from TB_PURCHASE 
   	              where user_id = #{userId}

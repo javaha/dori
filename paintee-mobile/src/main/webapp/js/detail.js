@@ -210,6 +210,7 @@ DetailController.prototype = {
 	artistFollowRes: function(result, status) {
 		console.log(selectedArtistId);
 		if(result.errorNo == 0) {
+			dataReload(["initFollow();"]);
 			alert(selectedArtistName + $.i18n.t('alert.detail.processFollow'));
 //			alert(selectedArtistName+' 님을 Follow 하였습니다.');
 		} else if(result.errorNo == 501){

@@ -111,8 +111,11 @@ public class FollowRestController {
 		purchaseStatusList.add("2");  // 발송
 		purchaseStatusList.add("4");  // 재발송요청
 		purchaseStatusList.add("5");  // 재발송처리
-		
 		search.setPurchaseStatusList(purchaseStatusList);
+		
+		List<String> paintingStatusList = new ArrayList<>();
+		paintingStatusList.add("N");  // 정상
+		search.setPaintingStatusList(paintingStatusList);
 		
 		// 공개인것만 
 		search.setPrivateAt("N");
@@ -121,9 +124,6 @@ public class FollowRestController {
 		search.setUserId(userId);
 		
 		resultMap = followService.getFollowPaintingInfo(search);
-		
-//		errorNo = followService.follow(followId, followingId);
-
 		resultMap.put("errorNo", errorNo);
 		resultMap.put("errorMsg", errorMsg);
 

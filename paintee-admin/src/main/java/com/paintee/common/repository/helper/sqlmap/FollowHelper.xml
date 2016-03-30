@@ -20,9 +20,13 @@
 			   a.upload_date, 
 			   a.painting_id, 
 			   a.posted_num, 
+			   a.painting_status,
 			   a.posted_people_cnt
 		  from TB_PAINTING a
 		 where a.artist_id in (select following from TB_FOLLOW where user_id = #{userId})
+		   and a.painting_status in <foreach item="status" collection="paintingStatusList" open="(" close=")" separator=",">
+		    							#{status}
+		                            </foreach>		 
 		 union all
 		select a.artist_id, 
 			   (select name from TB_USER where user_id = a.artist_id) artist_name, 
@@ -32,6 +36,7 @@
 			   b.purchase_date,
 			   a.painting_id,
 			   a.posted_num,
+			   a.painting_status,
 			   a.posted_people_cnt
 		  from TB_PAINTING a, 
 		       TB_PURCHASE b

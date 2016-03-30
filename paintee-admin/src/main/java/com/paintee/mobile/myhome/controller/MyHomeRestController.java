@@ -79,6 +79,13 @@ public class MyHomeRestController {
 
 		search.setPurchaseStatusList(purchaseStatusList);
 		
+		// 정상, 블라인드
+		List<String> paintingStatusList = new ArrayList<>();
+		paintingStatusList.add("N");  // 정상
+		paintingStatusList.add("B");  // 블라인드
+
+		search.setPaintingStatusList(paintingStatusList);
+		
 		// 로그인 사용자 아이디
 		search.setUserId(userId);
 		

@@ -39,6 +39,7 @@ public class MyHomeSearchVO extends PagingVO {
 	private String artistId;
 
 	private List<String> purchaseStatusList;
+	private List<String> paintingStatusList;
 	
 	private String upload;
 	private String post;
@@ -65,6 +66,14 @@ public class MyHomeSearchVO extends PagingVO {
 
 	public void setPurchaseStatusList(List<String> purchaseStatusList) {
 		this.purchaseStatusList = purchaseStatusList;
+	}
+	
+	public List<String> getPaintingStatusList() {
+		return paintingStatusList;
+	}
+
+	public void setPaintingStatusList(List<String> paintingStatusList) {
+		this.paintingStatusList = paintingStatusList;
 	}
 
 	public String getUpload() {

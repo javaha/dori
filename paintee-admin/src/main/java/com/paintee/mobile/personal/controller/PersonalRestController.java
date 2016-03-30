@@ -14,7 +14,9 @@
 */
 package com.paintee.mobile.personal.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -60,6 +62,10 @@ public class PersonalRestController {
 		
 		// 요청 데이터 페이징 정보
 		search.setRowPerPage(5);
+		
+		List<String> paintingStatusList = new ArrayList<>();
+		paintingStatusList.add("N");  // 정상
+		search.setPaintingStatusList(paintingStatusList);
 		
 		resultMap = personalService.getPersonalPaintingInfo(search);
 		

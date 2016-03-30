@@ -38,6 +38,7 @@ public class FollowSearchVO extends PagingVO {
 
 	private String privateAt;
 	
+	private List<String> paintingStatusList;
 	private List<String> purchaseStatusList;
 
 	private String followName;
@@ -56,6 +57,14 @@ public class FollowSearchVO extends PagingVO {
 
 	public void setPrivateAt(String privateAt) {
 		this.privateAt = privateAt;
+	}
+
+	public List<String> getPaintingStatusList() {
+		return paintingStatusList;
+	}
+
+	public void setPaintingStatusList(List<String> paintingStatusList) {
+		this.paintingStatusList = paintingStatusList;
 	}
 
 	public List<String> getPurchaseStatusList() {

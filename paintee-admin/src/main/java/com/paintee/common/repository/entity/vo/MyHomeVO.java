@@ -41,6 +41,12 @@ public class MyHomeVO extends Painting {
 	private Integer uploadCount;
 	private Integer postCount;
 	
+	/** 
+	 * My 리스트에 나오는 그림이 업로드된 그림인지 구매된 그림인지 표시
+	 * 업로드 : U, 구매 : P 
+	 */
+	private String type;
+	
 	public String getArtistName() {
 		return artistName;
 	}
@@ -87,5 +93,13 @@ public class MyHomeVO extends Painting {
 
 	public void setPostCount(Integer postCount) {
 		this.postCount = postCount;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }
