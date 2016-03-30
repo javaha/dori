@@ -93,6 +93,7 @@ function createPaintingRes(result, status) {
 }
 
 function resetUpload() {
+	$('.painting_preview').empty();
 	$('.uploadFileBox').empty();
 	$('.uploadFileBox').html("<form id='paintingCreateForm' name='paintingCreateForm' method='POST' enctype='multipart/form-data'><label for='painteeFile' class='upload_btn_text'>Select image file </label><i id='do-upload' class='material-icons'>folder</i><input type='file' id='painteeFile' name='painteeFile' title='' class='upload-input-hidden' /></form>");
 
