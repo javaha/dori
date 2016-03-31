@@ -1640,3 +1640,98 @@ screen and (-o-min-device-pixel-ratio: 2.5) {
 @media all and (min-width: 649px) {
     #media-1080 { display: block; }
 }
+
+
+/*  3/29 추가내용 */
+.about_container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(50,20,150,0.8);
+    z-index: 40;
+}
+.about_navi{
+    width: 700px;
+    height: auto;
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    transition: left 300ms;
+    z-index: 50;
+}
+.about_navi_tab{
+    width: 140px;
+    height: 30px;
+    position: relative;
+    float: left;
+    text-align: center;
+    color: rgba(250,250,250,0.6);
+    cursor: pointer;
+}
+.about_navi_selected{
+    color: rgba(250,250,250,1);
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: rgb(250,250,250);
+}
+.about_wrapper{
+    position: relative;
+    height: 100%;
+    transition: left 300ms;
+}
+.about_card{
+    position: relative;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+    background-color: hsla(190,60%,50%,0.9);
+}
+.randing_card{
+    text-align: center;
+    display: table;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.randing_card_margin{
+    width: 100%;
+    height: 20%;
+}
+.randing_card_title{
+    box-sizing: border-box;
+    padding: 5%;
+    text-align: center;
+    vertical-align: bottom;
+    width: 100%;
+    font-size: 50px;
+    font-weight: 300;
+}
+.randing_card_contents{
+    box-sizing: border-box;
+    padding: 5%;
+    text-align: center;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 300;
+    margin-top: 30px;
+}
+/*   고해상도 디스플레이   */
+@media  screen and (min-device-pixel-ratio: 1.5),
+screen and (-webkit-min-device-pixel-ratio: 1.5),
+screen and (min-moz-device-pixel-ratio: 1.5),
+screen and (-o-min-device-pixel-ratio: 1.5) {
+    .randing_card_title{
+        font-size: 30px;
+    }
+}
+/*   고해상도 디스플레이   */
+@media  screen and (min-device-pixel-ratio: 2.5),
+screen and (-webkit-min-device-pixel-ratio: 2.5),
+screen and (min-moz-device-pixel-ratio: 2.5),
+screen and (-o-min-device-pixel-ratio: 2.5) {
+    .randing_card_title{
+        font-size: 25px;
+    }
+}
