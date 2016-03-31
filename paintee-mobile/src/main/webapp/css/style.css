@@ -1624,3 +1624,19 @@ screen and (-o-min-device-pixel-ratio: 2.5) {
         width: 90px;
     }           
 }
+
+/* 옆서 이미지 크기 설정 */
+#media-360, #media-648, #media-1080 {
+    display: none;
+    height: 0px;
+    overflow: hidden;
+}
+@media all and (max-width: 360px) {
+    #media-360 { display: block; }
+}
+@media all and (min-width: 361px) and (max-width: 648px) {
+    #media-648 { display: block; }
+}
+@media all and (min-width: 649px) {
+    #media-1080 { display: block; }
+}

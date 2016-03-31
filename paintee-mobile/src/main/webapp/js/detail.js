@@ -57,7 +57,7 @@ function DetailStructure(paintingId, paintingInfo){
 
 DetailStructure.prototype = {
     setBG       : function(fileId){
-        this.detailBgImg.attr("src", imageUrl+"/cmm/file/view/"+fileId);
+        this.detailBgImg.attr("src", imageUrl+"/cmm/file/view/"+responsive+"/"+fileId);
     },
     setArtist   : function(artistName){
     	var paintingId = this.paintingId;
