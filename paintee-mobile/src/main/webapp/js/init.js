@@ -211,7 +211,7 @@ Structure.prototype = {
                                 }
                                 
         },                            
-        buildStructure:     function(){
+        buildStructure:     function(type){
                                 this.listInfoRow_1.append(this.listInfoSentence);
                                 this.listInfo.append(this.listInfoRow_1);
                                 this.listInfoRow_2.append(this.listInfoPosted);
@@ -222,11 +222,13 @@ Structure.prototype = {
                                 this.container.append(this.bottom);
                                 this.container.append(this.listArtist);
                                 this.container.append(this.listPostBtn);
-                                this.container.append(this.listStatusBtn);  
-                                this.container.append(this.listCancelBtn);  
-                                this.container.append(this.listResendBtn);  
-                                this.container.append(this.listConfirmBtn); 
-                                this.container.append(this.listStatusStc);
+                                if (type == "my") {
+                                	this.container.append(this.listStatusBtn);  
+                                	this.container.append(this.listCancelBtn);  
+                                	this.container.append(this.listResendBtn);  
+                                	this.container.append(this.listConfirmBtn); 
+                                	this.container.append(this.listStatusStc);
+                                }
                                 return this.container;
                             }
 }
@@ -261,12 +263,12 @@ function addPainting(swiper, currentIndex, type, listData){
         newSlide.setColor("hsl(90,60%,20%)");
     } else if (type=="my") {
         newSlide.setColor("hsl(250,60%,20%)");
-        newSlide.setStatus("done");   // 수정 3.30 -- my 목록에서만 추가
-        newSlide.setStatus("sended");   // 수정 3.30 -- my 목록에서만 추가
-        newSlide.setStatus("preparing");   // 수정 3.30 -- my 목록에서만 추가
+        newSlide.setStatus("done");   
+        newSlide.setStatus("sended");   
+        newSlide.setStatus("preparing");   
     }
     
-    swiper.appendSlide(newSlide.buildStructure());
+    swiper.appendSlide(newSlide.buildStructure(type));
     delete newSlide;    
 }
 
@@ -519,7 +521,9 @@ function closePopup() {
 	else {
 		history.back();
 	}
-    $(".popup_container").hide();
+	if (boxStatus != "uploadPop") {
+		$(".popup_container").hide();
+	}
     boxStatus = "";
 }
 

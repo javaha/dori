@@ -95,6 +95,8 @@ function createPaintingRes(result, status) {
 }
 
 function resetUpload() {
+	boxStatus = "uploadPop";
+	
 	$('.painting_preview').empty();
 	$('.uploadFileBox').empty();
 	$('.uploadFileBox').html("<label for='painteeFile' class='upload_btn_text'>Select image file </label><i id='do-upload' class='material-icons'>folder</i>");
@@ -195,6 +197,10 @@ function updatePaintingSentenceRes(result, status) {
 		selectMenu(3);
 		$(".popup_container").hide();
 		$(".upload_box").empty();
+		
+		
+		boxStatus = "";
+		closePopup(); 
 	} else {
 		alert('error');
 	}
