@@ -1509,3 +1509,118 @@ screen and (-o-min-device-pixel-ratio: 2.5) {
     font-size: 0.9em;
     font-weight: 400;         
 }
+
+/* 목록 삭제 등 버튼 추가 :: 2016-03-31 */
+.list_status_btn{
+    position: absolute;
+    right: 2%;
+    bottom: 60px;
+    height: 30px;
+    width: 120px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgba(50,50,50,0.9);
+    cursor: pointer;
+    line-height: 16px;
+    box-sizing: border-box;
+}
+.list_cancel_btn{
+    position: absolute;
+    right: 2%;
+    bottom: 60px;
+    height: 30px;
+    width: 120px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgb(255,255,255);
+    color: hsl(250,60%,20%);
+    font-weight: 900;
+    display: none;
+    cursor: pointer;
+    z-index: 5;
+    line-height: 16px;
+    box-sizing: border-box;
+}
+.list_resend_btn{
+    position: absolute;
+    right: 140px;
+    bottom: 60px;
+    height: 30px;
+    width: 120px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgb(255,255,255);
+    color: hsl(250,60%,20%);
+    font-weight: 900;
+    display: none;
+    cursor: pointer;
+    z-index: 5;
+    line-height: 16px;
+    box-sizing: border-box;
+}
+.list_confirm_btn{
+    position: absolute;
+    right: 2%;
+    bottom: 60px;
+    height: 30px;
+    width: 120px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgb(255,255,255);
+    color: hsl(250,60%,20%);
+    font-weight: 900;
+    display: none;
+    cursor: pointer;
+    z-index: 5;
+    line-height: 16px;
+    box-sizing: border-box;
+}
+.list_status_sentence{
+    position: absolute;
+    left: 0px;
+    bottom: 50px;
+    width: 100%;
+    height: 100px;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: right;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+}
+/*   고해상도 디스플레이   */
+@media  screen and (min-device-pixel-ratio: 1.5),
+screen and (-webkit-min-device-pixel-ratio: 1.5),
+screen and (min-moz-device-pixel-ratio: 1.5),
+screen and (-o-min-device-pixel-ratio: 1.5) {
+    .list_status_btn{
+        width: 100px;
+    }
+    .list_cancel_btn{
+        width: 100px;
+    }
+    .list_resend_btn{
+        width: 100px;
+        right: 120px;
+    }
+    .list_confirm_btn{
+        width: 100px;
+    }
+}
+@media  screen and (min-devicepixel-ratio: 2.5),
+screen and (-webkit-min-device-pixel-ratio: 2.5),
+screen and (min-moz-device-pixel-ratio: 2.5),
+screen and (-o-min-device-pixel-ratio: 2.5) {
+    .list_status_btn{
+        width: 90px;
+    }
+    .list_cancel_btn{
+        width: 90px;
+    }
+    .list_resend_btn{
+        width: 90px;
+        right: 110px;
+    }
+    .list_confirm_btn{
+        width: 90px;
+    }           
+}

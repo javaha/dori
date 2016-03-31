@@ -157,7 +157,11 @@ function Structure(data) {
                                         	           purchase(data.paintingId, data.artistName);
                                         	       }
                                            );
-
+        this.listStatusBtn      =$("<div>").addClass("list_status_btn");                 
+        this.listStatusStc      =$("<div>").addClass("list_status_sentence");            
+        this.listCancelBtn      =$("<div>").addClass("list_cancel_btn").html("Cancel");  
+        this.listResendBtn      =$("<div>").addClass("list_resend_btn").html("Resend");  
+        this.listConfirmBtn     =$("<div>").addClass("list_confirm_btn").html("Confirm"); 
 }
 Structure.prototype = {
         setSentence:        function(sentence, wrighter){
@@ -197,6 +201,16 @@ Structure.prototype = {
         setArtist:          function(name){
                                 this.listArtist.html(name);
                             },
+        setStatus:          function(status){                                                                   
+                                if(status=="preparing"){                                                        
+                                    this.listStatusBtn.addClass("list_status_preparing").html("preparing").click(function(){showCancel(this)});
+                                }else if(status=="sended"){                                                     
+                                    this.listStatusBtn.addClass("list_status_sended").html("sended").click(function(){showResend(this)});
+                                }else if(status=="done"){                                                       
+                                    this.listStatusBtn.addClass("list_status_done").html("delete");             
+                                }
+                                
+        },                            
         buildStructure:     function(){
                                 this.listInfoRow_1.append(this.listInfoSentence);
                                 this.listInfo.append(this.listInfoRow_1);
@@ -208,7 +222,11 @@ Structure.prototype = {
                                 this.container.append(this.bottom);
                                 this.container.append(this.listArtist);
                                 this.container.append(this.listPostBtn);
-
+                                this.container.append(this.listStatusBtn);  
+                                this.container.append(this.listCancelBtn);  
+                                this.container.append(this.listResendBtn);  
+                                this.container.append(this.listConfirmBtn); 
+                                this.container.append(this.listStatusStc);
                                 return this.container;
                             }
 }
@@ -243,9 +261,34 @@ function addPainting(swiper, currentIndex, type, listData){
         newSlide.setColor("hsl(90,60%,20%)");
     } else if (type=="my") {
         newSlide.setColor("hsl(250,60%,20%)");
+        newSlide.setStatus("done");   // 수정 3.30 -- my 목록에서만 추가
+        newSlide.setStatus("sended");   // 수정 3.30 -- my 목록에서만 추가
+        newSlide.setStatus("preparing");   // 수정 3.30 -- my 목록에서만 추가
     }
+    
     swiper.appendSlide(newSlide.buildStructure());
     delete newSlide;    
+}
+
+function showCancel(clicked){
+    $(clicked).parent().find(".list_cancel_btn").fadeIn();
+    $(clicked).parent().find(".list_status_sentence").empty().html("조금만 기다려주세요, 엽서가 배송준비중입니다. 구매를 취소하려면 Cancel버튼을 이용하세요.").fadeIn().click(function(){hideCancel(this)});
+    setTimeout(function(){hideCancel(clicked)}, 5000);
+}
+function hideCancel(clicked){
+    $(clicked).parent().find(".list_cancel_btn").fadeOut();
+    $(clicked).parent().find(".list_status_sentence").fadeOut();
+}
+function showResend(clicked){
+    $(clicked).parent().find(".list_resend_btn").fadeIn();
+    $(clicked).parent().find(".list_confirm_btn").fadeIn();
+    $(clicked).parent().find(".list_status_sentence").empty().html("엽서가 배송되었습니다. 엽서가 도착하면 확인해주세요.").fadeIn().click(function(){hideResend(this)});
+    setTimeout(function(){hideResend(clicked)}, 5000);
+}
+function hideResend(clicked){
+    $(clicked).parent().find(".list_resend_btn").fadeOut();
+    $(clicked).parent().find(".list_confirm_btn").fadeOut();
+    $(clicked).parent().find(".list_status_sentence").fadeOut();
 }
 
 // 최초 5개 미리 생성
