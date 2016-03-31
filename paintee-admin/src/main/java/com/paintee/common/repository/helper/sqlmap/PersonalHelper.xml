@@ -17,6 +17,7 @@
 			   a.posted_people_cnt
 		  from TB_PAINTING a
 		 where a.artist_id = (select user_id from TB_USER where name = #{artistName})
+		   and a.private_at = 'N'
 		   and a.painting_status in <foreach item="status" collection="paintingStatusList" open="(" close=")" separator=",">
 		    							#{status}
 		                            </foreach>				 
@@ -38,6 +39,7 @@
   	           (select count(*) 
   	              from TB_PAINTING 
   	             where artist_id = (select user_id from TB_USER where name = #{artistName})
+  	               and private_at = 'N'
   	               and painting_status in <foreach item="status" collection="paintingStatusList" open="(" close=")" separator=",">
 		    								  #{status}
 		                                  </foreach>) as uploadCount 

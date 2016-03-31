@@ -21,6 +21,10 @@ window.addEventListener("popstate", function(e) {
 		else if (e.state.call == "followPop") {
 			$(".popup_container").hide();
 		}
+		// upload 팝업에서 호출된 경우
+		else if (e.state.call == "uploadPop") {
+			$(".popup_container").hide();
+		}
 		// 리워드 1단계에서 뒤로가기 버튼을 클릭했을 경우에만 동작
 		else if (e.state.call == "rewardPop") {
 			$(".popup_container").hide();

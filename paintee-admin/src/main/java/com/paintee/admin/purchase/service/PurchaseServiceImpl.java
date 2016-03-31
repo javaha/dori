@@ -15,6 +15,7 @@
 package com.paintee.admin.purchase.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +27,6 @@ import org.springframework.stereotype.Service;
 
 import com.paintee.common.repository.entity.Code;
 import com.paintee.common.repository.entity.CodeExample;
-import com.paintee.common.repository.entity.FileInfo;
-import com.paintee.common.repository.entity.FileInfoExample;
 import com.paintee.common.repository.entity.Painting;
 import com.paintee.common.repository.entity.Purchase;
 import com.paintee.common.repository.entity.PurchaseExample;
@@ -35,7 +34,6 @@ import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.PaintingVO;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 import com.paintee.common.repository.entity.vo.PurchaseVO;
-import com.paintee.common.repository.helper.FileInfoHelper;
 import com.paintee.common.repository.helper.PaintingHelper;
 import com.paintee.common.repository.helper.PurchaseHelper;
 import com.paintee.common.repository.helper.UserHelper;
@@ -65,9 +63,6 @@ public class PurchaseServiceImpl implements PurchaseService {
 	
 	@Autowired
 	private CodeMapper codeMapper;
-	
-	@Autowired
-	private FileInfoHelper fileInfoHelper;
 	
 	@Autowired
 	private UserHelper userHelper;
@@ -169,6 +164,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		}
 
 		// 1. 구매테이블의 상태를 변경
+		purchase.setStatusUpdateDate(new Date());
 		purchaseHelper.updateByPrimaryKeySelective(purchase);
 	}
 }

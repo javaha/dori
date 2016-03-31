@@ -17,6 +17,7 @@
 				 where to_days(now()) - to_days(purchase_date) &lt;= 120
 		         group by painting_id) b
 		 where a.painting_id = b.painting_id
+		   and a.private_at = 'N'
 		   and a.painting_status = #{paintingStatus}
 		 order by posted_num desc 
 		 limit #{startRow}, #{rowPerPage}

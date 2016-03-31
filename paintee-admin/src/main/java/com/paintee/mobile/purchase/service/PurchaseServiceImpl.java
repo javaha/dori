@@ -15,6 +15,7 @@
 package com.paintee.mobile.purchase.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -272,6 +273,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		userHelper.updateUserInfo(user);
 
 		// 1. 구매테이블의 상태를 변경
+		purchase.setStatusUpdateDate(new Date());
 		purchaseHelper.updateByPrimaryKeySelective(purchase);
 		
 		Map<String, Object> result = new HashMap<>();
