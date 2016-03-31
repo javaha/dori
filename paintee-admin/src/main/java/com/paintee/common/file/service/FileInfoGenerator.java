@@ -236,6 +236,11 @@ public class FileInfoGenerator {
 		fullPath.append(filePathGenerator.getAbsoluteFilPath(filePath));
 		fullPath.append(newId);
 
+		File originalFile = null;
+		File cropImageFile = null;
+		File thumbnailFile1 = null;
+		File thumbnailFile2 = null;
+
 		try {
 			File cropImageFilePath = new File(filePathGenerator.getAbsoluteFilPath(filePath));
 
@@ -246,11 +251,11 @@ public class FileInfoGenerator {
 			}
 
 			//원본파일 생성
-			File originalFile = new File(fullPath.toString()+"_ori");
+			originalFile = new File(fullPath.toString()+"_ori");
 			FileCopyUtils.copy(multipartFile.getBytes(), originalFile);
 
 			//crop 이미지 생성
-			File cropImageFile = new File(fullPath.toString());
+			cropImageFile = new File(fullPath.toString());
 			imgScalrWrapper.cropCenter(originalFile, cropImageFile, 1080, 1500);
 //			imgScalrWrapper.cropCenter(originalFile, cropImageFile, 1080, 1500, ImageWriteParam.MODE_DISABLED);
 
@@ -261,7 +266,7 @@ public class FileInfoGenerator {
 			fullPath.append(filePathGenerator.getAbsoluteFilPath(filePath));
 			fullPath.append(newId).append("_2");
 
-			File thumbnailFile1 = new File(fullPath.toString());
+			thumbnailFile1 = new File(fullPath.toString());
 
 			imgScalrWrapper.resize(cropImageFile, thumbnailFile1, 648, 900);
 
@@ -270,12 +275,27 @@ public class FileInfoGenerator {
 			fullPath.append(filePathGenerator.getAbsoluteFilPath(filePath));
 			fullPath.append(newId).append("_3");
 
-			File thumbnailFile2 = new File(fullPath.toString());
+			thumbnailFile2 = new File(fullPath.toString());
 
 			imgScalrWrapper.resize(cropImageFile, thumbnailFile2, 360, 500);
 		} catch (IOException e) {
 			logger.error("exception [{}]", e);
+
+			if(cropImageFile != null) {
+				cropImageFile.delete();
+			}
+			if(thumbnailFile1 != null) {
+				thumbnailFile1.delete();
+			}
+			if(thumbnailFile2 != null) {
+				thumbnailFile2.delete();
+			}
+
 			throw e;
+		} finally {
+			if(originalFile != null) {
+				originalFile.delete();
+			}
 		}
 
 		return fileInfo;
