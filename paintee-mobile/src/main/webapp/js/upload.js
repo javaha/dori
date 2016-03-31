@@ -68,10 +68,12 @@ function checkPainteeFile(file) {
 			var width = this.width;
 			var height = this.height;
 			if(width < 1080 || height < 1500) {
-				alert($.i18n.t('uploadPop.failContent'));
-				resetUpload();
+				failUpload();
+//				alert($.i18n.t('uploadPop.failContent'));
+//				resetUpload();
 			} else {
-				$('.painting_preview').append('<img src="'+ this.src +'" width="120px" height="150px"/>');
+				successUpload();
+//				$('.painting_preview').append('<img src="'+ this.src +'" width="120px" height="150px"/>');
 			}
 		};
 
@@ -95,7 +97,10 @@ function createPaintingRes(result, status) {
 function resetUpload() {
 	$('.painting_preview').empty();
 	$('.uploadFileBox').empty();
-	$('.uploadFileBox').html("<form id='paintingCreateForm' name='paintingCreateForm' method='POST' enctype='multipart/form-data'><label for='painteeFile' class='upload_btn_text'>Select image file </label><i id='do-upload' class='material-icons'>folder</i><input type='file' id='painteeFile' name='painteeFile' title='' class='upload-input-hidden' /></form>");
+	$('.uploadFileBox').html("<label for='painteeFile' class='upload_btn_text'>Select image file </label><i id='do-upload' class='material-icons'>folder</i>");
+
+	$('#upload_file_input_box').empty();
+	$('#upload_file_input_box').html("<form id='paintingCreateForm' name='paintingCreateForm' method='POST' enctype='multipart/form-data'><input type='file' id='painteeFile' name='painteeFile' title='' class='upload-input-hidden' /></form>");
 
 	$("#do-upload").on('click', function(){
 		if($('#painteeFile').val() == '') {
@@ -132,21 +137,23 @@ function initUpload(postedCount, uploadCount, doUploadCout){
     exeTranslation('.base_position', lang);
 }
 
-/* 사용해야 하는경우가 어느 경우인지?
- * function failUpload(){
-    $(".upload_box").empty();
-    var uploadFail = new Upload();
-    uploadFail.setTitle("Upload Painting");
-    uploadFail.setContents('<span data-i18n="[html]uploadPop.failContent"></span>');
-    uploadFail.setBottom("<div class='popup_btn upload_btn uploadFileBox'><label for='painteeFile' class='upload_btn_text'>Select image file </label><i class='material-icons'>folder</i><input type='file' id='painteeFile' name='painteeFile' title='' class='upload-input-hidden' /></div>");
-    uploadFail.buildUpload();
-    $(".upload_btn").click(function(){
-        successUpload();
-    })
-    delete uploadFail;
-    // 다국어 처리
-    exeTranslation('.base_position', lang);
-}*/
+function failUpload(){
+	$(".upload_box").empty();
+	var uploadFail = new Upload();
+	uploadFail.setTitle("Upload Painting");
+	uploadFail.setContents('<span data-i18n="[html]uploadPop.failContent"></span>');
+	uploadFail.setBottom("<div class='popup_btn upload_btn uploadFileBox'><label for='painteeFile' class='upload_btn_text'>Select image file </label><i class='material-icons'>folder</i><input type='file' id='painteeFile' name='painteeFile' title='' class='upload-input-hidden' /></div>");
+	uploadFail.buildUpload();
+
+	$(".upload_btn").click(function(){
+
+	})
+
+	delete uploadFail;
+
+	// 다국어 처리
+	exeTranslation('.base_position', lang);
+}
 
 function updatePaintingSentence(paintingSeq) {
 	var sentence = $('#painting_sentence_text').val();
@@ -207,7 +214,7 @@ function successUpload(paintingSeq, fileId) {
 		// 남은 글자 수를 구합니다.
 		var inputLength = getCharCount($(this).val());    
 		var remain = 200 - inputLength;
-		
+
 		$('#paintingSentenceCount').html(inputLength);
 
 		if (remain >= 0) {
@@ -216,7 +223,7 @@ function successUpload(paintingSeq, fileId) {
 			$('#paintingSentenceCount').css('color', 'red');
 		}
 	});
-	
+
 	$("[name=painting_sentence_text]").blur(function () {
 		var enter = getEnterCount($("[name=painting_sentence_text]"));
 		if (enter > 5) {
