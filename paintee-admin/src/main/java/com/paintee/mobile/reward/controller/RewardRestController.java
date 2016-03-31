@@ -15,6 +15,7 @@
 package com.paintee.mobile.reward.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -27,6 +28,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.paintee.common.repository.entity.Reward;
 import com.paintee.common.repository.entity.User;
+import com.paintee.common.repository.entity.vo.RewardResultVO;
+import com.paintee.common.repository.entity.vo.RewardSearchVO;
+import com.paintee.common.repository.entity.vo.UserVO;
 import com.paintee.mobile.reward.service.RewardService;
 import com.paintee.mobile.support.obejct.LoginedUserVO;
 
@@ -70,6 +74,29 @@ public class RewardRestController {
 		// 리워드 정보 등록
 		reward.setUserId(loginedUserVO.getUserId());
 		rewardService.addReward(reward);
+		
+		Map<String, Object> result = new HashMap<>();
+		// 에러정보
+		result.put("errorNo", 0);
+		result.put("errorMsg", "");
+		return result;
+	}
+	
+	@RequestMapping(value="/api/rewardHistory", method={RequestMethod.GET})
+	public List<RewardResultVO> rewardHistory(LoginedUserVO loginedUserVO) throws Exception {
+		// 구매관련 정보 등록
+		User user = new User();
+		user.setUserId(loginedUserVO.getUserId());
+		
+		List<RewardResultVO> result = rewardService.rewardHistory(user);
+		return result;
+	}
+	
+	@RequestMapping(value="/api/cancelReward", method={RequestMethod.POST})
+	public Map<String, Object> cancelReward(LoginedUserVO loginedUserVO, @RequestBody RewardSearchVO search) throws Exception {
+		search.setUserId(loginedUserVO.getUserId());
+		
+		rewardService.cancelReward(search);
 		
 		Map<String, Object> result = new HashMap<>();
 		// 에러정보

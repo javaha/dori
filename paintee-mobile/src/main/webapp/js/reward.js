@@ -43,15 +43,18 @@ function initReward(){
     var reward = new Reward();
     reward.setTitle("Reward");
     reward.setContents(
-    		"<span data-i18n='[html]rewardPop.content1'>당신의 그림이 post될 때 마다 reward가 쌓입니다.<br> 지금까지 </span>" + 
+    		"<span data-i18n='[html]rewardPop.content1'></span>" + 
     		data.reward.sellCount + 
-    		"<span data-i18n='[html]rewardPop.content2'>회 post된 당신이 얻은 총 Reward는</span><br>" + 
+    		"<span data-i18n='[html]rewardPop.content2'></span><br>" + 
     		"<span class='reward_money'>$" + data.reward.earnTotalMoney + " </span>" + 
-    		"<span data-i18n='[html]rewardPop.content3'>입니다.<br><br><br>지금 Reward를 신청하면 남은 </span>" + 
+    		"<span data-i18n='[html]rewardPop.content3'></span>" + 
     		"<b>$" + data.reward.remainMoney + " </b>" + 
-    		"<span data-i18n='[html]rewardPop.content4'>에<br><b>수수료 $5</b>가 제외된 금액을 받을 수 있습니다.</span><br>");
-    reward.setBottom("<div class='popup_btn reward_btn'><div class='purchase_btn_text'>Get reward now </div><i class='material-icons'>attach_money</i></div>");
+    		"<span data-i18n='[html]rewardPop.content4'></span><br>");
+    reward.setBottom("<div class='popup_cancle_btn reward_history_btn'><i class='material-icons'>playlist_add_check</i><div class='purchase_btn_text'>History</div></div><div class='popup_btn reward_btn'><div class='purchase_btn_text'>Get reward now </div><i class='material-icons'>attach_money</i></div>");
     reward.buildUpload();
+    $(".reward_history_btn").click(function(){
+    	rewardController.getRewardHistory();
+    });
     $(".reward_btn").click(function(){
         checkReward();
     });
@@ -64,13 +67,11 @@ function checkReward(){
 	console.log("data : " + JSON.stringify(data));
 	if (data.reward.requestCount > 0) {
 		alert($.i18n.t('alert.reward.existRequest'));
-//		alert("이미 신청중인 리워드가 있습니다.");
 		return;
 	}
 	
 	if (data.reward.remainMoney < 10) {
 		alert($.i18n.t('alert.reward.possibleRequestMoney'));
-//		alert("리워드는 $10부터 신청가능합니다.");
 		return;
 	}
 	
@@ -89,13 +90,13 @@ function checkReward(){
     });		
     bankSelect += "</select>";
     
-    var content = "<span data-i18n='[html]rewardPop2.content1'>아래 계좌로 지금 받을 수 있는 </span>" 
+    var content = "<span data-i18n='[html]rewardPop2.content1'></span>" 
     	        + "<b>" + data.reward.remainMoney + "</b> " 
-    	        + "<span data-i18n='[html]rewardPop2.content2'>에 <br>reward <b>수수료 $</span>" 
+    	        + "<span data-i18n='[html]rewardPop2.content2'></span>" 
     	        + "<span id='commission'>5</span></b>"
-    	        + "<span data-i18n='[html]rewardPop2.content3'>를 제외한</span><br><br>"
+    	        + "<span data-i18n='[html]rewardPop2.content3'></span><br><br>"
                 + "<span class='reward_money'>$" + (data.reward.remainMoney - 5) + "</span>"
-                + "<span data-i18n='[html]rewardPop2.content4'>이 입금됩니다.</span><br><br><br>" 
+                + "<span data-i18n='[html]rewardPop2.content4'></span><br><br><br>" 
                 + bankSelect
                 + "<br><br>"
                 + "<span id='directSpan' style='display: none'>"
@@ -105,8 +106,8 @@ function checkReward(){
                 + "<input type='text' name='accountName' class='purchase_input' placeholder='name of account holder'>"
                 + "<br>" 
                 + "<input type='text' name='accountNo' class='purchase_input' placeholder='account'>"
-                + "<br><span data-i18n='[html]rewardPop2.content5'>계좌명과 계좌번호를 정확하게 입력해주세요.</span>"
-                + "<br><span data-i18n='[html]rewardPop2.content6'>계좌명이 정확하지 않을 경우, 입금에 장애가 있을 수 있습니다.</span>";
+                + "<br><span data-i18n='[html]rewardPop2.content5'></span>"
+                + "<br><span data-i18n='[html]rewardPop2.content6'></span>";
     var bottom = "<div class='popup_btn upload_btn'>"
     	       + "  <div class='purchase_btn_text'>Done </div>"
     	       + "  <i class='material-icons'>done</i>"
@@ -177,6 +178,75 @@ function validReward() {
 	return true;
 }
 
+// 리워드 히스토리
+function Rewarded(){
+    this.rewarded   = $("<div>").addClass("reward_list");
+    this.money      = $("<div>").addClass("reward_list_money");
+    this.account    = $("<div>").addClass("reward_list_account");
+    this.required   = $("<div>").addClass("reward_list_required");
+    this.problem    = $("<div>").addClass("reward_list_problem").html("problem");
+    this.done       = $("<div>").addClass("reward_list_finished").html("rewarded");
+    this.build      = function(data){
+                        $(this.money).html(data.earmRequestedMoney);
+                        $(this.account).html(data.accountInfo);
+                        $(this.rewarded).append(this.money);
+                        $(this.rewarded).append(this.account);
+                        rewarded = this.rewarded;
+                        if (data.status == "required") {
+                        	$(this.required).html("reqried<div class='reward_list_required_btn'>cancel</div>")
+                        	                .click(function () {
+                        	                	rewardController.getCancelReward({
+                        	                		seq: data.seq,
+                        	                		money: data.money
+                        	                	}, rewarded);
+                                            });
+                            $(this.rewarded).append(this.required);   
+                        } else if (data.status == "problem") {
+                            $(this.rewarded).append(this.problem);   
+                        } else {
+                            $(this.rewarded).append(this.done);   
+                        }
+                        return this.rewarded;
+                    }
+}
+
+function addRewarded(data) {
+        var adder = new Rewarded();
+        $(adder.build(data)).appendTo($(".reward_contents"));
+        delete adder;
+}
+
+function showRewarded(result){
+	console.log("showRewarded ::: " + JSON.stringify(result));
+    
+    $(".reward_box").empty();
+    var reward = new Reward();
+    reward.setTitle("Reward History");
+    reward.buildUpload();
+    for(var i = 0; i < result.length; i++){
+    	
+    	var status;
+    	switch (result[i].rewardStatus) {
+    	case "R": status = "required"; break;
+    	case "A": status = "problem"; break;
+    	case "C": status = "done"; break;
+    	}
+    	var data = {
+    		earmRequestedMoney: "$ " + result[i].earmRequestedMoney,
+    		accountInfo: result[i].bankName + " " + result[i].accountNo, 
+    		status: status,
+    		money: result[i].earmRequestedCommission + result[i].earmRequestedMoney,
+    		seq: result[i].seq
+    	};
+    	
+        addRewarded(data);
+    }
+    $(".reward_box").height(result.length * 70);
+
+    // 히스토리 적용
+    addHistory({"call": "rewardStep2"});
+}
+
 function RewardController() {
 }
 
@@ -231,7 +301,39 @@ RewardController.prototype = {
 	},
 	addRewardRes: function (result) {
 		alert($.i18n.t('alert.reward.completeProcess'));
-//		alert("처리되었습니다.");
 		$(".popup_container").hide();
+	},
+	// 리워드 히스토리
+	getRewardHistory: function () {
+		var controller = this;
+		AjaxCall.call(	apiUrl + "/rewardHistory", 
+						null, 
+						"GET", 
+						function (result) {
+							controller.getRewardHistoryRes(result);			
+						}
+		);
+	},
+	getRewardHistoryRes: function (result) {
+		if (result.length == 0) {
+			alert($.i18n.t('alert.reward.notExistHistory'));
+			return;
+		}
+		showRewarded(result);
+	},
+	// 리워드 요청 취소하기
+	getCancelReward: function (data, rewarded) {
+		var controller = this;
+		AjaxCall.call(	apiUrl + "/cancelReward", 
+				data, 
+				"POST", 
+				function (result) {
+					controller.getCancelRewardRes(result, rewarded);			
+				}
+		);
+	},
+	getCancelRewardRes: function (result) {
+		alert($.i18n.t('alert.reward.cancelReward'));
+		$(rewarded).remove();
 	}
 }

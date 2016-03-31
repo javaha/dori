@@ -34,13 +34,40 @@ com.paintee.common.repository.entity.vo \n
 */
 public class RewardSearchVO extends PagingVO {
 	private List<String> rewardStatus;
-
+	private Integer seq;
+	private Integer money;
+	private String userId;
+	
 	public List<String> getRewardStatus() {
 		return rewardStatus;
 	}
 
 	public void setRewardStatus(List<String> rewardStatus) {
 		this.rewardStatus = rewardStatus;
+	}
+
+	public Integer getSeq() {
+		return seq;
+	}
+
+	public void setSeq(Integer seq) {
+		this.seq = seq;
+	}
+
+	public Integer getMoney() {
+		return money;
+	}
+
+	public void setMoney(Integer money) {
+		this.money = money;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 }
 

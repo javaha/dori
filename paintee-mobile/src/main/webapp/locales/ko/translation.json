@@ -87,7 +87,9 @@
 			"emptyAccountName": "계좌주를 입력하세요.(한)",
 			"emptyAccountNo": "계좌번호를 입력하세요.(한)",
 			"inputOnlyNumberAccountNo": "계좌번호는 숫자만 가능합니다.(한)",
-			"completeProcess": "처리되었습니다.(한)"
+			"completeProcess": "처리되었습니다.(한)",
+			"notExistHistory": "리워드 히스토리가 존재하지 않습니다.(한)",
+			"cancelReward": "리워드 요청이 취소되었습니다.(한)"
 		},
 		"detail" : {
 			"processFollow": " 님을 Follow 하였습니다.(한)",

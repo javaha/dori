@@ -27,8 +27,10 @@ import com.paintee.common.repository.entity.Code;
 import com.paintee.common.repository.entity.CodeExample;
 import com.paintee.common.repository.entity.Reward;
 import com.paintee.common.repository.entity.User;
-import com.paintee.common.repository.entity.UserExample;
+import com.paintee.common.repository.entity.vo.RewardResultVO;
+import com.paintee.common.repository.entity.vo.RewardSearchVO;
 import com.paintee.common.repository.entity.vo.RewardVO;
+import com.paintee.common.repository.entity.vo.UserVO;
 import com.paintee.common.repository.helper.RewardHelper;
 import com.paintee.common.repository.helper.UserHelper;
 import com.paintee.common.repository.mapper.CodeMapper;
@@ -102,10 +104,40 @@ public class RewardServiceImpl implements RewardService {
 		// 사용자 테이블 업데이트
 		userHelper.updateUserEarnRewardMoney(user);
 	}
+
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 :
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 사용자 화면의 리워드 히스토리 요청 팝업에 필요한 정보를 조회
+	 @see com.paintee.mobile.reward.service.RewardService#rewardHistory(com.paintee.common.repository.entity.User)
+	*/
+	@Override
+	public List<RewardResultVO> rewardHistory(User user) {
+		List<RewardResultVO> list = rewardHelper.selectRewardHistoryList(user);
+		logger.debug("list : " + list);
+		return list;
+	}
+
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 :
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 사용자의 리워드 관련 정보를 변경한다.
+	   1. 리워드 요청 정보 삭제
+	   2. 사용자 테이블 리워드 정보 수정
+	      - 요청 수수료와 요청 금액을 합산한 금액을 tb_user 테이블의 earn_total_money에 더하고, earn_reward_money에서 뺀다.	 
+	 @see com.paintee.mobile.reward.service.RewardService#cancelReward(com.paintee.common.repository.entity.vo.RewardSearchVO)
+	*/
+	@Override
+	public void cancelReward(RewardSearchVO search) {
+		// 1. 리워드 요청 정보 삭제
+		rewardHelper.deleteByPrimaryKey(search.getSeq());
+		
+		// 2. 사용자 테이블 리워드 정보 수정
+		UserVO user = new UserVO();
+		user.setUserId(search.getUserId());
+		user.setMoney(search.getMoney());
+		userHelper.updateUserRewardMoney(user);
+	}
 }
-
-
-
-
-
-

@@ -69,4 +69,13 @@ public interface RewardHelper extends RewardMapper {
 	*/
 	public Integer selectRewardListCount(RewardSearchVO rewardSearchVO);
 	
+	/**
+	 @fn selectRewardHistoryList
+	 @brief 함수 간략한 설명 : 
+	 @remark
+	 - 함수의 상세 설명 : 사용자의 리워드 히스토리 팝업 정보를 조회
+	 @param user
+	 @return 
+	*/
+	public List<RewardResultVO> selectRewardHistoryList(User user);
 }

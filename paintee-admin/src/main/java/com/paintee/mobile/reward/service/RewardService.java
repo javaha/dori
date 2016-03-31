@@ -14,10 +14,13 @@
 */
 package com.paintee.mobile.reward.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.paintee.common.repository.entity.Reward;
 import com.paintee.common.repository.entity.User;
+import com.paintee.common.repository.entity.vo.RewardResultVO;
+import com.paintee.common.repository.entity.vo.RewardSearchVO;
 
 /**
 @class PurchaseService
@@ -55,4 +58,23 @@ public interface RewardService {
 	 @param reward 
 	*/
 	public void addReward(Reward reward);
+
+	/**
+	 @fn rewardHistory
+	 @brief 함수 간략한 설명 : 로그인 사용자의 리워드 히스토리 정보를 조회
+	 @remark
+	 - 함수의 상세 설명 : 로그인 사용자의 리워드 히스토리 정보를 조회
+	 @param user
+	 @return 
+	*/
+	public List<RewardResultVO> rewardHistory(User user);
+
+	/**
+	 @fn cancelReward
+	 @brief 함수 간략한 설명 : 사용자 요청 리워드 취소
+	 @remark
+	 - 함수의 상세 설명 : 사용자가 요청한 리워드를 취소한다.(리워드 삭제, 사용자 리워드 관련 금액 변경)
+	 @param search 
+	*/
+	public void cancelReward(RewardSearchVO search);
 }
