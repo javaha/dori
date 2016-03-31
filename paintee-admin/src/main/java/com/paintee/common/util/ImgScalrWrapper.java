@@ -63,7 +63,7 @@ public class ImgScalrWrapper {
 	public void writeJpegImage(BufferedImage bufferedImage, File resultFile, float quality) throws IOException {
 		ImageOutputStream imageOutputStream = ImageIO.createImageOutputStream(resultFile);
 		Iterator<ImageWriter> iterator = ImageIO.getImageWritersByFormatName("jpeg");
-	
+
 		if (iterator.hasNext() == false) {
 			logger.debug("# ImageWriter not available.");
 			return;
@@ -73,6 +73,25 @@ public class ImgScalrWrapper {
 	
 		ImageWriteParam imageWriteParam = imageWriter.getDefaultWriteParam();
 		imageWriteParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+		imageWriteParam.setCompressionQuality(quality);
+	
+		imageWriter.setOutput(imageOutputStream);
+		imageWriter.write(null, new IIOImage(bufferedImage, null, null), imageWriteParam);
+		imageWriter.dispose();
+	}
+	public void writeJpegImage(BufferedImage bufferedImage, File resultFile, float quality, int mode) throws IOException {
+		ImageOutputStream imageOutputStream = ImageIO.createImageOutputStream(resultFile);
+		Iterator<ImageWriter> iterator = ImageIO.getImageWritersByFormatName("jpeg");
+
+		if (iterator.hasNext() == false) {
+			logger.debug("# ImageWriter not available.");
+			return;
+		}
+
+		ImageWriter imageWriter = iterator.next();
+	
+		ImageWriteParam imageWriteParam = imageWriter.getDefaultWriteParam();
+		imageWriteParam.setCompressionMode(mode);
 		imageWriteParam.setCompressionQuality(quality);
 	
 		imageWriter.setOutput(imageOutputStream);
@@ -147,6 +166,26 @@ public class ImgScalrWrapper {
 			BufferedImage doneImage = Scalr.crop(bufferedImage, x, y, width, height, Scalr.OP_ANTIALIAS);
 
 			writeJpegImage(doneImage, resultFile, 1);
+		}
+	}
+	public void cropCenter(File sourceFile, File resultFile, int width, int height, int mode) throws IOException {
+		BufferedImage bufferedImage = ImageIO.read(sourceFile);
+
+		int count = 0;
+		if(bufferedImage.getWidth() > width) {
+			count++;
+		}
+		if(bufferedImage.getHeight() > height) {
+			count++;
+		}
+
+		if(count > 0) {
+			int x = (bufferedImage.getWidth()-width)/2;
+			int y = (bufferedImage.getHeight()-height)/2;
+
+			BufferedImage doneImage = Scalr.crop(bufferedImage, x, y, width, height, Scalr.OP_ANTIALIAS);
+
+			writeJpegImage(doneImage, resultFile, 1, mode);
 		}
 	}
 }

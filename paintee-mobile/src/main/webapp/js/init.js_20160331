@@ -493,9 +493,7 @@ function setBox(){
 }
 
 // 팝업 닫기
-$(".return_btn").on('click', function(){
-	boxStatus = 'clickedCloseBtn';
-
+$(".return_btn").click(function(){
 	// 구매 정보 초기화
 	closePopup();
 });
@@ -507,48 +505,26 @@ $(".popup_container").click(function(){
 
 function closePopup() {
 	console.log("boxStatus : " + boxStatus);
-	var isPopupOpened = false;
 
-	var openPopupContainer;
-
-	$('.popup_container').each(function( index ) {
-		if($(this).css("display") != "none") {
-			isPopupOpened = true;
-			openPopupContainer = $(this);
-		}
-	});
-
-	if(isPopupOpened) {
-		var divClass = openPopupContainer.attr('class');
-
-		// boxStatus payment
-		if (divClass.indexOf('payment_container') > -1) {
-			// 구매 정보 초기화
-			resetPurchase();
-			purchaseStatus = "";
-			openPopupContainer.hide();
-			history.go(-2);
-			boxStatus = "";
-		} 
-		else if (boxStatus == "rewardStep2") {
-			history.go(-2);
-		}
-		else if (divClass.indexOf('reward_container') > -1
-					|| divClass.indexOf('people_container') > -1
-					|| divClass.indexOf('profile_container') > -1) {
-			openPopupContainer.hide();
-		}
-		else if (divClass.indexOf('upload_container') > -1) {
-			if(boxStatus == "clickedCloseBtn") {
-				openPopupContainer.hide();
-			}
-		}
-		else {
-			history.back();
-		}
+	// boxStatus payment
+	if (boxStatus == "payment") {
+		// 구매 정보 초기화
+		resetPurchase();
+		purchaseStatus = "";
+		$(".purchase_container").hide();
+		history.go(-2);
+		boxStatus = "";
+	} 
+	else if (boxStatus == "rewardStep2") {
+		history.go(-2);
 	}
-
-	boxStatus = "";
+	else {
+		history.back();
+	}
+	if (boxStatus != "uploadPop") {
+		$(".popup_container").hide();
+	}
+    boxStatus = "";
 }
 
 $(".popup_box").click(function(e){

@@ -21,6 +21,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.imageio.ImageWriteParam;
+
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -237,7 +239,6 @@ public class FileInfoGenerator {
 		try {
 			File cropImageFilePath = new File(filePathGenerator.getAbsoluteFilPath(filePath));
 
-			//TODO:크롭, 썸네일 생성해야함.
 			//크롭된 원본 파일 경로
 			if(!cropImageFilePath.exists()) {
 				logger.info("created {} directory", filePath);
@@ -251,6 +252,7 @@ public class FileInfoGenerator {
 			//crop 이미지 생성
 			File cropImageFile = new File(fullPath.toString());
 			imgScalrWrapper.cropCenter(originalFile, cropImageFile, 1080, 1500);
+//			imgScalrWrapper.cropCenter(originalFile, cropImageFile, 1080, 1500, ImageWriteParam.MODE_DISABLED);
 
 			fileInfo.setSize(cropImageFile.length());
 
