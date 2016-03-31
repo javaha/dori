@@ -201,17 +201,37 @@ Structure.prototype = {
         setArtist:          function(name){
                                 this.listArtist.html(name);
                             },
-        setStatus:          function(status){                                                                   
-                                if(status=="preparing"){                                                        
-                                    this.listStatusBtn.addClass("list_status_preparing").html("preparing").click(function(){showCancel(this)});
-                                }else if(status=="sended"){                                                     
-                                    this.listStatusBtn.addClass("list_status_sended").html("sended").click(function(){showResend(this)});
-                                }else if(status=="done"){                                                       
-                                    this.listStatusBtn.addClass("list_status_done").html("delete");             
+        setStatus:          function(listData){                                                                   
+                                if(listData.paintingStatus == "1"){                                                        
+                                    this.listStatusBtn.addClass("list_status_preparing")
+                                                      .html("preparing")
+                                                      .click(function(){
+                                                    	  		showCancel(this, listData);
+                                                    	 	}
+                                                      );
+                                } else if(listData.paintingStatus == "2"){                                                     
+                                    this.listStatusBtn.addClass("list_status_sended")
+                                                      .html("sended")
+                                                      .attr("id", "sendedBtn" + listData.seq)
+                                                      .click(function(){
+						                                  showResend(this, listData);
+						                              });
+                                } else if(listData.paintingStatus == "99"){                                                       
+                                    this.listStatusBtn.addClass("list_status_done")
+                                    				  .html("delete")
+                                    				  .click(function () {
+                                    					  new PurchaseController().delStatusPurchase(listData); 
+                                    				  });             
+                                } else if (listData.paintingStatus == "N"){                                                       
+                                	this.listStatusBtn.addClass("list_status_done")
+					                  				  .html("delete")
+					                  				  .click(function () {
+					                  					  new PurchaseController().delStatusPainting(listData); 
+					                  				  });                          
                                 }
                                 
         },                            
-        buildStructure:     function(type){
+        buildStructure:     function(type, listData){
                                 this.listInfoRow_1.append(this.listInfoSentence);
                                 this.listInfo.append(this.listInfoRow_1);
                                 this.listInfoRow_2.append(this.listInfoPosted);
@@ -223,11 +243,18 @@ Structure.prototype = {
                                 this.container.append(this.listArtist);
                                 this.container.append(this.listPostBtn);
                                 if (type == "my") {
-                                	this.container.append(this.listStatusBtn);  
-                                	this.container.append(this.listCancelBtn);  
-                                	this.container.append(this.listResendBtn);  
-                                	this.container.append(this.listConfirmBtn); 
-                                	this.container.append(this.listStatusStc);
+                                	switch(listData.paintingStatus) {
+                                	case "1":
+                                	case "2":
+                                	case "99":
+                                	case "N":
+                                		this.container.append(this.listStatusBtn);  
+                                		this.container.append(this.listCancelBtn);  
+                                		this.container.append(this.listResendBtn);  
+                                		this.container.append(this.listConfirmBtn); 
+                                		this.container.append(this.listStatusStc);
+                                		break;
+                                	}
                                 }
                                 return this.container;
                             }
@@ -237,7 +264,6 @@ Structure.prototype = {
 function addPainting(swiper, currentIndex, type, listData){
 	
 	if (!listData) { return; }
-	console.log("type :::::::::::::::::::::::::::::::::::::: " + type);
 	var data = {
 		index: swiper.slides.length,
 		paintingId: listData.paintingId,
@@ -263,17 +289,17 @@ function addPainting(swiper, currentIndex, type, listData){
         newSlide.setColor("hsl(90,60%,20%)");
     } else if (type=="my") {
         newSlide.setColor("hsl(250,60%,20%)");
-        newSlide.setStatus("done");   
-        newSlide.setStatus("sended");   
-        newSlide.setStatus("preparing");   
+        newSlide.setStatus(listData);   
     }
     
-    swiper.appendSlide(newSlide.buildStructure(type));
+    swiper.appendSlide(newSlide.buildStructure(type, listData));
     delete newSlide;    
 }
 
-function showCancel(clicked){
-    $(clicked).parent().find(".list_cancel_btn").fadeIn();
+function showCancel(clicked, listData){
+    $(clicked).parent().find(".list_cancel_btn").fadeIn().one("click", function () { 
+   		new PurchaseController().cancelPurchase(listData); 
+    });
     $(clicked).parent().find(".list_status_sentence").empty().html("조금만 기다려주세요, 엽서가 배송준비중입니다. 구매를 취소하려면 Cancel버튼을 이용하세요.").fadeIn().click(function(){hideCancel(this)});
     setTimeout(function(){hideCancel(clicked)}, 5000);
 }
@@ -281,9 +307,12 @@ function hideCancel(clicked){
     $(clicked).parent().find(".list_cancel_btn").fadeOut();
     $(clicked).parent().find(".list_status_sentence").fadeOut();
 }
-function showResend(clicked){
-    $(clicked).parent().find(".list_resend_btn").fadeIn();
-    $(clicked).parent().find(".list_confirm_btn").fadeIn();
+function showResend(clicked, listData){
+    $(clicked).parent().find(".list_resend_btn").fadeIn().one("click", function () { 
+   		new PurchaseController().resendPurchase(listData); 
+   		hideResend(this);
+    });
+    $(clicked).parent().find(".list_confirm_btn").fadeIn().click(function(){hideResend(this)});
     $(clicked).parent().find(".list_status_sentence").empty().html("엽서가 배송되었습니다. 엽서가 도착하면 확인해주세요.").fadeIn().click(function(){hideResend(this)});
     setTimeout(function(){hideResend(clicked)}, 5000);
 }

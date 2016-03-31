@@ -16,6 +16,7 @@ package com.paintee.mobile.purchase.service;
 
 import java.util.Map;
 
+import com.paintee.common.repository.entity.Painting;
 import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 import com.paintee.mobile.support.obejct.LoginedUserVO;
@@ -57,4 +58,44 @@ public interface PurchaseService {
 	 @throws Exception 
 	*/
 	public Map<String, Object> addPurchase(PurchaseSearchVO purchase) throws Exception;
+
+	/**
+	 @fn cancelPurchase
+	 @brief 함수 간략한 설명 : 
+	 @remark
+	 - 함수의 상세 설명 : 사용자가 구매 정보 취소를 한 경우
+	 @param purchase
+	 @return 
+	*/
+	public Map<String, Object> cancelPurchase(PurchaseSearchVO purchase);
+
+	/**
+	 @fn resendPurchase
+	 @brief 함수 간략한 설명 : 
+	 @remark
+	 - 함수의 상세 설명 : 재발송 상태로 변경
+	 @param purchase
+	 @return 
+	*/
+	public Map<String, Object> resendPurchase(PurchaseSearchVO purchase);
+
+	/**
+	 @fn delStatusPainting
+	 @brief 함수 간략한 설명 : 
+	 @remark
+	 - 함수의 상세 설명 : 그림의 상태를 삭제로 변경한다.
+	 @param painting
+	 @return 
+	*/
+	public Map<String, Object> delStatusPainting(Painting painting);
+
+	/**
+	 @fn delStatusPurchase
+	 @brief 함수 간략한 설명 : 
+	 @remark
+	 - 함수의 상세 설명 : 구매의 상태를 삭제로 변경한다.
+	 @param purchase
+	 @return 
+	*/
+	public Map<String, Object> delStatusPurchase(PurchaseSearchVO purchase);
 }

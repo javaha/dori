@@ -25,8 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.paintee.admin.painting.service.PaintingService;
-import com.paintee.common.repository.entity.Purchase;
+import com.paintee.common.repository.entity.Painting;
 import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 import com.paintee.mobile.purchase.service.PurchaseService;
@@ -76,6 +75,66 @@ public class PurchaseRestController {
 		
 		// 구매관련 정보 등록
 		Map<String, Object> result = purchaseService.addPurchase(purchase);
+		return result;
+	}
+	
+	/**
+	 @fn cancelPurchase
+	 @brief 함수 간략한 설명 : 
+	 @remark
+	 - 함수의 상세 설명 : 사용자의 구매 취소 신청시
+	 @param purchase
+	 @param loginedUserVO
+	 @return
+	 @throws Exception 
+	*/
+	@RequestMapping(value="/api/cancelPurchase", method={RequestMethod.POST})
+	public Map<String, Object> cancelPurchase(@RequestBody PurchaseSearchVO purchase, LoginedUserVO loginedUserVO) throws Exception {
+		logger.debug(purchase.toString());
+		purchase.setUserId(loginedUserVO.getUserId());
+		
+		// 구매관련 정보 등록
+		Map<String, Object> result = purchaseService.cancelPurchase(purchase);
+		return result;
+	}
+
+	@RequestMapping(value="/api/resendStatusPurchase", method={RequestMethod.POST})
+	public Map<String, Object> resendPurchase(@RequestBody PurchaseSearchVO purchase) throws Exception {
+		logger.debug(purchase.toString());
+		// 구매관련 정보 등록
+		Map<String, Object> result = purchaseService.resendPurchase(purchase);
+		return result;
+	}
+	
+	/**
+	 @fn delStatusPainting
+	 @brief 함수 간략한 설명 : 
+	 @remark
+	 - 함수의 상세 설명 : 마이페이지에서 그림을 삭제 요청 했을때 처리
+	 @param loginedUserVO
+	 @return
+	 @throws Exception 
+	*/
+	@RequestMapping(value="/api/delStatusPainting", method={RequestMethod.POST})
+	public Map<String, Object> delStatusPainting(@RequestBody Painting painting, LoginedUserVO loginedUserVO) throws Exception {
+		
+		Map<String, Object> result = purchaseService.delStatusPainting(painting);
+		return result;
+	}
+
+	/**
+	 @fn delStatusPurchase
+	 @brief 함수 간략한 설명 : 
+	 @remark
+	 - 함수의 상세 설명 : 마이페이지에서 그림을 삭제 요청 했을때 처리
+	 @param loginedUserVO
+	 @return
+	 @throws Exception 
+	 */
+	@RequestMapping(value="/api/delStatusPurchase", method={RequestMethod.POST})
+	public Map<String, Object> delStatusPurchase(@RequestBody PurchaseSearchVO purchase) throws Exception {
+		
+		Map<String, Object> result = purchaseService.delStatusPurchase(purchase);
 		return result;
 	}
 }

@@ -110,8 +110,6 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public void modPurchaseStatus(Purchase purchase) {
 		
-		// 1. 구매테이블의 상태를 변경
-		purchaseHelper.updateByPrimaryKeySelective(purchase);
 		
 		String paintingId = purchase.getPaintingId();
 		String userId = purchase.getUserId();
@@ -169,5 +167,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 			userHelper.updateUserInfo(user);
 			break;
 		}
+
+		// 1. 구매테이블의 상태를 변경
+		purchaseHelper.updateByPrimaryKeySelective(purchase);
 	}
 }

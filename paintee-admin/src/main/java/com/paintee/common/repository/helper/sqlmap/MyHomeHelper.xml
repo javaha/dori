@@ -9,7 +9,8 @@
   	
 	<!-- 로그인 사용자가 구매한 그림과 업로드한 그림의 목록을 가져오기 -->
   	<select id="selectMyHomePaintingList" resultMap="BaseResultMap">
-		select a.artist_id, 
+		select a.seq,
+		       a.artist_id, 
 			   (select name from TB_USER where user_id = a.artist_id) artist_name, 
 			   (select name from TB_USER where user_id = a.artist_id) sentence_name, 
 			   a.sentence, 
@@ -26,7 +27,8 @@
 		    							#{status}
 		                            </foreach>
 		 union all
-		select a.artist_id, 
+		select b.seq,
+		       b.user_id, 
 			   (select name from TB_USER where user_id = a.artist_id) artist_name, 
 		       (select name from TB_USER where user_id = b.user_id) sentence_name,
 			   b.sentence,
@@ -34,7 +36,7 @@
 			   b.purchase_date,
 			   a.painting_id,
 			   a.posted_num,
-			   a.painting_status,
+			   b.purchase_status,
 			   a.posted_people_cnt,
 			   'P' as type
 		  from TB_PAINTING a, 

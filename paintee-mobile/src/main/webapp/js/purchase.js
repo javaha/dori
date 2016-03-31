@@ -372,6 +372,80 @@ PurchaseController.prototype = {
 		resetPurchase();
 		completePayment(result);
     	dataReload(["initMy();", "initPopular();"]);
+	},
+	cancelPurchase: function (listData) {
+		var controller = this;
+		var data = {
+			seq: listData.seq,
+			userId: listData.artistId,
+			paintingId: listData.paintingId
+		};
+		
+		AjaxCall.call(apiUrl + "/cancelPurchase", 
+			data, 
+			"POST", 
+			function (result) {
+				controller.cancelPurchaseRes(result);			
+			}
+		);
+	},
+	cancelPurchaseRes: function (result) {
+		dataReload(["initMy();"]);
+	},
+	resendPurchase: function (listData) {
+		var controller = this;
+		var data = {
+			seq: listData.seq,
+			purchaseStatus: "4" // 재발송 요청
+		};
+		
+		AjaxCall.call(apiUrl + "/resendStatusPurchase", 
+				data, 
+				"POST", 
+				function (result) {
+					controller.resendPurchaseRes(result, listData.seq);			
+				});
+	},
+	resendPurchaseRes: function (result, seq) {
+		$("#sendedBtn" + seq).remove();
+		alert("재발송 요청이 처리되었습니다.");
+	},
+	delStatusPainting: function (listData) {
+		var controller = this;
+		var data = {
+			seq: listData.seq,
+			userId: listData.artistId,
+			paintingStatus: "D" // 삭제 요청
+		};
+		
+		AjaxCall.call(apiUrl + "/delStatusPainting", 
+				data, 
+				"POST", 
+				function (result) {
+					controller.delStatusPaintingRes(result);			
+				});
+	},
+	delStatusPaintingRes: function (result) {
+		dataReload(["initMy();", "initFollow();", "initPopular();", "initNew();"]);
+		alert("삭제 처리되었습니다.");
+	},
+	delStatusPurchase: function (listData) {
+		var controller = this;
+		var data = {
+			seq: listData.seq,
+			userId: listData.artistId,
+			purchaseStatus: "7" // 삭제 요청
+		};
+		AjaxCall.call(apiUrl + "/delStatusPurchase", 
+				data, 
+				"POST", 
+				function (result) {
+					controller.delStatusPurchaseRes(result);			
+				});
+	},
+	delStatusPurchaseRes: function (result) {
+		dataReload(["initMy();", "initFollow();", "initPopular();"]);
+		alert("삭제 처리되었습니다.");
 	}
 };
 
@@ -397,7 +471,7 @@ function completePayment(result){
     $(".payment_box").empty();
     var payment = new Payment();
     payment.setTitle("Thanks!");
-    payment.setContents("<span data-i18n='[html]purchasePop2.contents'>곧 엽서가 발송됩니다.<br>하지만, 기다리세요, 조금 더 시간이 걸립니다.<br>구매한 엽서는 우편을 통해 배송됩니다. 우편은 충분히 빠르지 않습니다.<br>기다린 만큼 더 큰 기쁨이 될 수 있습니다.<br><br><br><b>Post한 그림을 친구들과 함께 하세요.</b><br><br></span>");
+    payment.setContents("<span data-i18n='[html]purchasePop2.contents'></span>");
     payment.contents.append(payment.sociconFacebook.css("color", "rgb(80,80,80)"));
     payment.contents.append(payment.sociconTwitter.css("color", "rgb(80,80,80)"));
     payment.contents.append(payment.sociconInstagram.css("color", "rgb(80,80,80)"));

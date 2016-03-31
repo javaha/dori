@@ -76,6 +76,7 @@ public class MyHomeRestController {
 		purchaseStatusList.add("2");  // 발송
 		purchaseStatusList.add("4");  // 재발송요청
 		purchaseStatusList.add("5");  // 재발송처리
+		purchaseStatusList.add("99");  // 완료
 
 		search.setPurchaseStatusList(purchaseStatusList);
 		
