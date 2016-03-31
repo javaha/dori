@@ -95,12 +95,10 @@ public class PaintingServiceImpl implements PaintingService {
 	 @brief (Override method) 함수 간략한 설명 : 그림 정보 생성
 	 @remark
 	 - 오버라이드 함수의 상세 설명 : 그림 정보 생성
-	 @see com.paintee.mobile.painting.service.PaintingService#createPainting(com.paintee.common.repository.entity.FileInfo, com.paintee.mobile.support.obejct.LoginedUserVO)
+	 @see com.paintee.mobile.painting.service.PaintingService#createPainting(com.paintee.common.repository.entity.Painting, com.paintee.common.repository.entity.FileInfo, com.paintee.mobile.support.obejct.LoginedUserVO)
 	*/
 	@Transactional
-	public Map<String, Object> createPainting(FileInfo fileInfo, LoginedUserVO loginedUserVO) throws Exception {
-		Painting painting = new Painting();
-
+	public Map<String, Object> createPainting(Painting painting, FileInfo fileInfo, LoginedUserVO loginedUserVO) throws Exception {
 		Long fileGroupSeq = fileService.createFileInfo(fileInfo, null, false, loginedUserVO.getUserId());
 		User user = userHelper.selectByPrimaryKey(loginedUserVO.getUserId());
 

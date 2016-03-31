@@ -19,6 +19,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -91,9 +92,13 @@ public class PaintingRestController {
 		if (painteeFile != null && !painteeFile.isEmpty()) {
 			fileInfo = fileInfoGenerator.makePainteeFileInfo(painteeFile, null, null);
 			logger.debug("fileInfo:{}", fileInfo);
-			Map<String, Object> paintingInfoMap = paintingService.createPainting(fileInfo, loginedUserVO);
-			resultMap.put("painting", paintingInfoMap);
 		}
+
+		Painting painting = new Painting();
+		BeanUtils.copyProperties(paintingCreateVO, painting);
+
+		Map<String, Object> paintingInfoMap = paintingService.createPainting(painting, fileInfo, loginedUserVO);
+		resultMap.put("painting", paintingInfoMap);
 
 		resultMap.put("errorMsg", "");
 		resultMap.put("errorNo", 0);

@@ -51,12 +51,13 @@ public interface PaintingService {
 	 @brief 함수 간략한 설명 : 그림 정보 생성
 	 @remark
 	 - 함수의 상세 설명 : 그림 정보 생성
+	 @param painting
 	 @param fileInfo
 	 @param loginedUserVO
 	 @return 
 	 @throws Exception 
 	*/
-	public Map<String, Object> createPainting(FileInfo fileInfo, LoginedUserVO loginedUserVO) throws Exception;
+	public Map<String, Object> createPainting(Painting painting, FileInfo fileInfo, LoginedUserVO loginedUserVO) throws Exception;
 
 	/**
 	 @fn updatePainting
