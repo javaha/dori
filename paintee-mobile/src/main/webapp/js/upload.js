@@ -238,7 +238,8 @@ function successUpload() {
 	$("#update_painting_sentence_btn").on('click', function(){
 		console.log($('#painteeFile').val());
 		if($('#painteeFile').val() == '') {
-			alert('업로드 파일을 선택하세요.');
+//			alert('업로드 파일을 선택하세요.');
+			alert($.i18n.t('alert.upload.choiceFile'));
 			return;
 		}
 

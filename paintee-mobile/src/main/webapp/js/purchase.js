@@ -300,7 +300,7 @@ function initPayment(){
     var payment = new Payment();
     payment.setTitle("Payment");
     var contents = "<span class='reward_money'>$2</span><br>" 
-    	         + "<span data-i18n='[html]purchasePop1.contents'>추가적인 배송료나 포장비가 없습니다.<br>어디든 $2면 충분합니다.<br><br><br>구매한 $2의 일부는 작가에게 후원금으로 지급됩니다. <br>아름다운 그림을 나눠준 작가에게 큰 힘이 되어주세요.<br><br>아래 구매버튼을 눌러 결재를 계속하세요.</span>";
+    	         + "<span data-i18n='[html]purchasePop1.contents'></span>";
     payment.setContents(contents);
     payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><i class='material-icons'>edit</i><div class='purchase_btn_text'>edit address</div></div><div class='popup_btn payment_btn'><div class='purchase_btn_text'>Payment </div><i class='material-icons'>payment</i></div>");
     payment.buildPayment();
@@ -408,7 +408,7 @@ PurchaseController.prototype = {
 	},
 	resendPurchaseRes: function (result, seq) {
 		$("#sendedBtn" + seq).remove();
-		alert("재발송 요청이 처리되었습니다.");
+		alert($.i18n.t('alert.purchase.processResend'));
 	},
 	delStatusPainting: function (listData) {
 		var controller = this;
@@ -427,7 +427,7 @@ PurchaseController.prototype = {
 	},
 	delStatusPaintingRes: function (result) {
 		dataReload(["initMy();", "initFollow();", "initPopular();", "initNew();"]);
-		alert("삭제 처리되었습니다.");
+		alert($.i18n.t('alert.common.processDelete'));
 	},
 	delStatusPurchase: function (listData) {
 		var controller = this;
@@ -445,7 +445,7 @@ PurchaseController.prototype = {
 	},
 	delStatusPurchaseRes: function (result) {
 		dataReload(["initMy();", "initFollow();", "initPopular();"]);
-		alert("삭제 처리되었습니다.");
+		alert($.i18n.t('alert.common.processDelete'));
 	}
 };
 

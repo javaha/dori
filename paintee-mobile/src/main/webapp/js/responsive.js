@@ -1,5 +1,5 @@
 var responsive;
-  
+setResponsive();  
 function setResponsive() {
 	if ($('div#media-1080').css('display') == 'block') {
 		responsive = 1;

@@ -280,7 +280,7 @@ function addPainting(swiper, currentIndex, type, listData){
     newSlide.setPostedNumber(listData.postedPeopleCnt);
     newSlide.setDate(toEngDateStr(listData.uploadDate));
     newSlide.setArtist(listData.artistName);
-    newSlide.setPainting(listData.paintingId, imageUrl + "/cmm/file/view/" + listData.fileId);
+    newSlide.setPainting(listData.paintingId, imageUrl + "/cmm/file/view/" + responsive + "/" + listData.fileId);
     if (type=="follow") {
         newSlide.setColor("hsl(200,60%,20%)");
     } else if (type=="popular") {
@@ -300,8 +300,9 @@ function showCancel(clicked, listData){
     $(clicked).parent().find(".list_cancel_btn").fadeIn().one("click", function () { 
    		new PurchaseController().cancelPurchase(listData); 
     });
-    $(clicked).parent().find(".list_status_sentence").empty().html("조금만 기다려주세요, 엽서가 배송준비중입니다. 구매를 취소하려면 Cancel버튼을 이용하세요.").fadeIn().click(function(){hideCancel(this)});
+    $(clicked).parent().find(".list_status_sentence").empty().html("<span data-i18n='[html]my.cancelStatusPurchase'></span>").fadeIn().click(function(){hideCancel(this)});
     setTimeout(function(){hideCancel(clicked)}, 5000);
+    exeTranslation('.main_container', lang);
 }
 function hideCancel(clicked){
     $(clicked).parent().find(".list_cancel_btn").fadeOut();
@@ -313,8 +314,9 @@ function showResend(clicked, listData){
    		hideResend(this);
     });
     $(clicked).parent().find(".list_confirm_btn").fadeIn().click(function(){hideResend(this)});
-    $(clicked).parent().find(".list_status_sentence").empty().html("엽서가 배송되었습니다. 엽서가 도착하면 확인해주세요.").fadeIn().click(function(){hideResend(this)});
+    $(clicked).parent().find(".list_status_sentence").empty().html("<span data-i18n='[html]my.sendStatusPurchase'></span>").fadeIn().click(function(){hideResend(this)});
     setTimeout(function(){hideResend(clicked)}, 5000);
+    exeTranslation('.main_container', lang);
 }
 function hideResend(clicked){
     $(clicked).parent().find(".list_resend_btn").fadeOut();
