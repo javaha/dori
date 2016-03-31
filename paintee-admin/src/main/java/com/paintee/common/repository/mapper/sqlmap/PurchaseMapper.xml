@@ -16,7 +16,8 @@
     <result column="sender_addr" property="senderAddr" jdbcType="VARCHAR" />
     <result column="sender_name" property="senderName" jdbcType="VARCHAR" />
     <result column="location" property="location" jdbcType="VARCHAR" />
-    <result column="purchase_status" property="purchaseStatus" jdbcType="CHAR" />
+    <result column="purchase_status" property="purchaseStatus" jdbcType="VARCHAR" />
+    <result column="status_update_date" property="statusUpdateDate" jdbcType="TIMESTAMP" />
     <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -80,7 +81,7 @@
   <sql id="Base_Column_List" >
     seq, user_id, painting_id, purchase_date, sentence, private_at, receiver_basic_addr, 
     receiver_detail_addr, receiver_zipcode, receiver_city, receiver_name, sender_addr, 
-    sender_name, location, purchase_status, created_date
+    sender_name, location, purchase_status, status_update_date, created_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.PurchaseExample" >
     select
@@ -121,14 +122,14 @@
       sentence, private_at, receiver_basic_addr, 
       receiver_detail_addr, receiver_zipcode, receiver_city, 
       receiver_name, sender_addr, sender_name, 
-      location, purchase_status, created_date
-      )
+      location, purchase_status, status_update_date, 
+      created_date)
     values (#{userId,jdbcType=VARCHAR}, #{paintingId,jdbcType=VARCHAR}, #{purchaseDate,jdbcType=TIMESTAMP}, 
       #{sentence,jdbcType=VARCHAR}, #{privateAt,jdbcType=CHAR}, #{receiverBasicAddr,jdbcType=VARCHAR}, 
       #{receiverDetailAddr,jdbcType=VARCHAR}, #{receiverZipcode,jdbcType=VARCHAR}, #{receiverCity,jdbcType=VARCHAR}, 
       #{receiverName,jdbcType=VARCHAR}, #{senderAddr,jdbcType=VARCHAR}, #{senderName,jdbcType=VARCHAR}, 
-      #{location,jdbcType=VARCHAR}, #{purchaseStatus,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP}
-      )
+      #{location,jdbcType=VARCHAR}, #{purchaseStatus,jdbcType=VARCHAR}, #{statusUpdateDate,jdbcType=TIMESTAMP}, 
+      #{createdDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Purchase" >
     <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
@@ -178,6 +179,9 @@
       <if test="purchaseStatus != null" >
         purchase_status,
       </if>
+      <if test="statusUpdateDate != null" >
+        status_update_date,
+      </if>
       <if test="createdDate != null" >
         created_date,
       </if>
@@ -223,7 +227,10 @@
         #{location,jdbcType=VARCHAR},
       </if>
       <if test="purchaseStatus != null" >
-        #{purchaseStatus,jdbcType=CHAR},
+        #{purchaseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="statusUpdateDate != null" >
+        #{statusUpdateDate,jdbcType=TIMESTAMP},
       </if>
       <if test="createdDate != null" >
         #{createdDate,jdbcType=TIMESTAMP},
@@ -282,7 +289,10 @@
         location = #{record.location,jdbcType=VARCHAR},
       </if>
       <if test="record.purchaseStatus != null" >
-        purchase_status = #{record.purchaseStatus,jdbcType=CHAR},
+        purchase_status = #{record.purchaseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusUpdateDate != null" >
+        status_update_date = #{record.statusUpdateDate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.createdDate != null" >
         created_date = #{record.createdDate,jdbcType=TIMESTAMP},
@@ -308,7 +318,8 @@
       sender_addr = #{record.senderAddr,jdbcType=VARCHAR},
       sender_name = #{record.senderName,jdbcType=VARCHAR},
       location = #{record.location,jdbcType=VARCHAR},
-      purchase_status = #{record.purchaseStatus,jdbcType=CHAR},
+      purchase_status = #{record.purchaseStatus,jdbcType=VARCHAR},
+      status_update_date = #{record.statusUpdateDate,jdbcType=TIMESTAMP},
       created_date = #{record.createdDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -357,7 +368,10 @@
         location = #{location,jdbcType=VARCHAR},
       </if>
       <if test="purchaseStatus != null" >
-        purchase_status = #{purchaseStatus,jdbcType=CHAR},
+        purchase_status = #{purchaseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="statusUpdateDate != null" >
+        status_update_date = #{statusUpdateDate,jdbcType=TIMESTAMP},
       </if>
       <if test="createdDate != null" >
         created_date = #{createdDate,jdbcType=TIMESTAMP},
@@ -380,7 +394,8 @@
       sender_addr = #{senderAddr,jdbcType=VARCHAR},
       sender_name = #{senderName,jdbcType=VARCHAR},
       location = #{location,jdbcType=VARCHAR},
-      purchase_status = #{purchaseStatus,jdbcType=CHAR},
+      purchase_status = #{purchaseStatus,jdbcType=VARCHAR},
+      status_update_date = #{statusUpdateDate,jdbcType=TIMESTAMP},
       created_date = #{createdDate,jdbcType=TIMESTAMP}
     where seq = #{seq,jdbcType=INTEGER}
   </update>

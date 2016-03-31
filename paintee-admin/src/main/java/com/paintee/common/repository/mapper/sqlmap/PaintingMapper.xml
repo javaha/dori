@@ -15,6 +15,7 @@
     <result column="share_cnt" property="shareCnt" jdbcType="INTEGER" />
     <result column="file_group_seq" property="fileGroupSeq" jdbcType="BIGINT" />
     <result column="painting_status" property="paintingStatus" jdbcType="CHAR" />
+    <result column="private_at" property="privateAt" jdbcType="CHAR" />
     <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -77,7 +78,8 @@
   </sql>
   <sql id="Base_Column_List" >
     seq, painting_id, upload_date, artist_id, sentence, location, posted_num, posted_people_cnt, 
-    original_size, view_cnt, share_cnt, file_group_seq, painting_status, created_date
+    original_size, view_cnt, share_cnt, file_group_seq, painting_status, private_at, 
+    created_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.PaintingExample" >
     select
@@ -118,12 +120,12 @@
       sentence, location, posted_num, 
       posted_people_cnt, original_size, view_cnt, 
       share_cnt, file_group_seq, painting_status, 
-      created_date)
+      private_at, created_date)
     values (#{paintingId,jdbcType=VARCHAR}, #{uploadDate,jdbcType=TIMESTAMP}, #{artistId,jdbcType=VARCHAR}, 
       #{sentence,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{postedNum,jdbcType=INTEGER}, 
       #{postedPeopleCnt,jdbcType=INTEGER}, #{originalSize,jdbcType=VARCHAR}, #{viewCnt,jdbcType=INTEGER}, 
       #{shareCnt,jdbcType=INTEGER}, #{fileGroupSeq,jdbcType=BIGINT}, #{paintingStatus,jdbcType=CHAR}, 
-      #{createdDate,jdbcType=TIMESTAMP})
+      #{privateAt,jdbcType=CHAR}, #{createdDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.paintee.common.repository.entity.Painting" >
     <selectKey resultType="java.lang.Integer" keyProperty="seq" order="AFTER" >
@@ -167,6 +169,9 @@
       <if test="paintingStatus != null" >
         painting_status,
       </if>
+      <if test="privateAt != null" >
+        private_at,
+      </if>
       <if test="createdDate != null" >
         created_date,
       </if>
@@ -207,6 +212,9 @@
       </if>
       <if test="paintingStatus != null" >
         #{paintingStatus,jdbcType=CHAR},
+      </if>
+      <if test="privateAt != null" >
+        #{privateAt,jdbcType=CHAR},
       </if>
       <if test="createdDate != null" >
         #{createdDate,jdbcType=TIMESTAMP},
@@ -261,6 +269,9 @@
       <if test="record.paintingStatus != null" >
         painting_status = #{record.paintingStatus,jdbcType=CHAR},
       </if>
+      <if test="record.privateAt != null" >
+        private_at = #{record.privateAt,jdbcType=CHAR},
+      </if>
       <if test="record.createdDate != null" >
         created_date = #{record.createdDate,jdbcType=TIMESTAMP},
       </if>
@@ -284,6 +295,7 @@
       share_cnt = #{record.shareCnt,jdbcType=INTEGER},
       file_group_seq = #{record.fileGroupSeq,jdbcType=BIGINT},
       painting_status = #{record.paintingStatus,jdbcType=CHAR},
+      private_at = #{record.privateAt,jdbcType=CHAR},
       created_date = #{record.createdDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -328,6 +340,9 @@
       <if test="paintingStatus != null" >
         painting_status = #{paintingStatus,jdbcType=CHAR},
       </if>
+      <if test="privateAt != null" >
+        private_at = #{privateAt,jdbcType=CHAR},
+      </if>
       <if test="createdDate != null" >
         created_date = #{createdDate,jdbcType=TIMESTAMP},
       </if>
@@ -348,6 +363,7 @@
       share_cnt = #{shareCnt,jdbcType=INTEGER},
       file_group_seq = #{fileGroupSeq,jdbcType=BIGINT},
       painting_status = #{paintingStatus,jdbcType=CHAR},
+      private_at = #{privateAt,jdbcType=CHAR},
       created_date = #{createdDate,jdbcType=TIMESTAMP}
     where seq = #{seq,jdbcType=INTEGER}
   </update>

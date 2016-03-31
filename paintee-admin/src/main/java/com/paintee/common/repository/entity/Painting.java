@@ -30,6 +30,8 @@ public class Painting extends BaseEntity {
 
     private String paintingStatus;
 
+    private String privateAt;
+
     private Date createdDate;
 
     public Integer getSeq() {
@@ -134,6 +136,14 @@ public class Painting extends BaseEntity {
 
     public void setPaintingStatus(String paintingStatus) {
         this.paintingStatus = paintingStatus;
+    }
+
+    public String getPrivateAt() {
+        return privateAt;
+    }
+
+    public void setPrivateAt(String privateAt) {
+        this.privateAt = privateAt;
     }
 
     public Date getCreatedDate() {

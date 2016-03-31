@@ -50,6 +50,7 @@ create  table TB_PURCHASE (
 	sender_name varchar(30) comment '엽서 발신자 이름',
 	location varchar(40) comment '구매자의 국가',
 	purchase_status varchar(8) default '1' comment '구매 진행 상태 (요청-1/발송-2/환불요청-3/재발송요청-4/재발송처리-5/환불처리-6/삭제-7)',
+	status_update_date datetime comment '구매된 날짜',
     created_date datetime default now() comment '생성일시'
 ) COMMENT = '구매';
 
@@ -80,6 +81,7 @@ create table TB_PAINTING (
     share_cnt int default 0 comment 'share 버튼을 통해 공유된 횟수',
     file_group_seq bigint comment '첨부파일 그룹 아이디',
     painting_status char(1) comment '현재 그림의 상태(정상-N/블라인드-B/삭제-D)',
+	private_at char(1) comment '공개/비공개 여부(N-공개/Y-비공개)',
     created_date datetime default now() comment '생성일시'
 ) COMMENT = '페인팅';
 

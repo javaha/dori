@@ -1135,6 +1135,66 @@ public class PurchaseExample {
             return (Criteria) this;
         }
 
+        public Criteria andStatusUpdateDateIsNull() {
+            addCriterion("status_update_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusUpdateDateIsNotNull() {
+            addCriterion("status_update_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusUpdateDateEqualTo(Date value) {
+            addCriterion("status_update_date =", value, "statusUpdateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusUpdateDateNotEqualTo(Date value) {
+            addCriterion("status_update_date <>", value, "statusUpdateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusUpdateDateGreaterThan(Date value) {
+            addCriterion("status_update_date >", value, "statusUpdateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusUpdateDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("status_update_date >=", value, "statusUpdateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusUpdateDateLessThan(Date value) {
+            addCriterion("status_update_date <", value, "statusUpdateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusUpdateDateLessThanOrEqualTo(Date value) {
+            addCriterion("status_update_date <=", value, "statusUpdateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusUpdateDateIn(List<Date> values) {
+            addCriterion("status_update_date in", values, "statusUpdateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusUpdateDateNotIn(List<Date> values) {
+            addCriterion("status_update_date not in", values, "statusUpdateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusUpdateDateBetween(Date value1, Date value2) {
+            addCriterion("status_update_date between", value1, value2, "statusUpdateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusUpdateDateNotBetween(Date value1, Date value2) {
+            addCriterion("status_update_date not between", value1, value2, "statusUpdateDate");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatedDateIsNull() {
             addCriterion("created_date is null");
             return (Criteria) this;

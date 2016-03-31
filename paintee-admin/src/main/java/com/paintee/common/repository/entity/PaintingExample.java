@@ -945,6 +945,76 @@ public class PaintingExample {
             return (Criteria) this;
         }
 
+        public Criteria andPrivateAtIsNull() {
+            addCriterion("private_at is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivateAtIsNotNull() {
+            addCriterion("private_at is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivateAtEqualTo(String value) {
+            addCriterion("private_at =", value, "privateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivateAtNotEqualTo(String value) {
+            addCriterion("private_at <>", value, "privateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivateAtGreaterThan(String value) {
+            addCriterion("private_at >", value, "privateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivateAtGreaterThanOrEqualTo(String value) {
+            addCriterion("private_at >=", value, "privateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivateAtLessThan(String value) {
+            addCriterion("private_at <", value, "privateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivateAtLessThanOrEqualTo(String value) {
+            addCriterion("private_at <=", value, "privateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivateAtLike(String value) {
+            addCriterion("private_at like", value, "privateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivateAtNotLike(String value) {
+            addCriterion("private_at not like", value, "privateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivateAtIn(List<String> values) {
+            addCriterion("private_at in", values, "privateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivateAtNotIn(List<String> values) {
+            addCriterion("private_at not in", values, "privateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivateAtBetween(String value1, String value2) {
+            addCriterion("private_at between", value1, value2, "privateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivateAtNotBetween(String value1, String value2) {
+            addCriterion("private_at not between", value1, value2, "privateAt");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatedDateIsNull() {
             addCriterion("created_date is null");
             return (Criteria) this;
