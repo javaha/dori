@@ -274,7 +274,7 @@ public class FileInfoGenerator {
 
 			thumbnailFile1 = new File(fullPath.toString());
 
-			imgScalrWrapper.resize(cropImageFile, thumbnailFile1, "jpg", 648, 900);
+			imgScalrWrapper.resize(cropImageFile, thumbnailFile1, "png", 648, 900);
 
 			//작은 크기 썸네일
 			fullPath.delete(0, fullPath.length());
