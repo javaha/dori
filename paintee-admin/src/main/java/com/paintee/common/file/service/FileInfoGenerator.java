@@ -25,10 +25,12 @@ import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.paintee.common.aws.s3.AWSS3Helper;
 import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.util.ImgScalrWrapper;
 
@@ -56,6 +58,12 @@ public class FileInfoGenerator {
 
 	@Autowired
 	private ImgScalrWrapper imgScalrWrapper;
+
+    @Autowired
+    private AWSS3Helper awsS3Helper;
+
+    @Value("#{properties['aws.s3.bucketName'] }")
+    private String bucketName;
 
 	/**
 	 @fn makeFileInfo
@@ -276,9 +284,34 @@ public class FileInfoGenerator {
 			thumbnailFile2 = new File(fullPath.toString());
 
 			imgScalrWrapper.resize(cropImageFile, thumbnailFile2, 360, 500);
+
+			//생성된 파일들을 aws 로 전송
+			StringBuilder awsPath = new StringBuilder();
+
+			//crop image
+			awsPath.append(filePath);
+			awsPath.append(newId);
+			awsS3Helper.putObject(bucketName, awsPath.toString(), cropImageFile);
+
+			//thumbnail1
+			awsPath.delete(0, awsPath.length());
+			awsPath.append(filePath);
+			awsPath.append(newId).append("_2");
+			awsS3Helper.putObject(bucketName, awsPath.toString(), thumbnailFile1);
+
+			//thumbnail2
+			awsPath.delete(0, awsPath.length());
+			awsPath.append(filePath);
+			awsPath.append(newId).append("_3");
+			awsS3Helper.putObject(bucketName, awsPath.toString(), thumbnailFile2);
 		} catch (IOException e) {
 			logger.error("exception [{}]", e);
 
+			throw e;
+		} finally {
+			if(originalFile != null) {
+				originalFile.delete();
+			}
 			if(cropImageFile != null) {
 				cropImageFile.delete();
 			}
@@ -287,12 +320,6 @@ public class FileInfoGenerator {
 			}
 			if(thumbnailFile2 != null) {
 				thumbnailFile2.delete();
-			}
-
-			throw e;
-		} finally {
-			if(originalFile != null) {
-				originalFile.delete();
 			}
 		}
 

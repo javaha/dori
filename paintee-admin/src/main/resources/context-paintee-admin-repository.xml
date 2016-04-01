@@ -73,4 +73,13 @@
 		</property>
 	</bean>
 
+	<!-- set up default amazon s3 client from amazon aws sdk -->
+	<bean id="amazonS3Client" class="com.amazonaws.services.s3.AmazonS3Client">
+		<constructor-arg>
+			<bean class="com.amazonaws.auth.BasicAWSCredentials">
+				<constructor-arg name="accessKey" value="${aws.s3.accessKey}"/>
+				<constructor-arg name="secretKey" value="${aws.s3.sceretKey}"/>
+			</bean>
+		</constructor-arg>
+	</bean>
 </beans>

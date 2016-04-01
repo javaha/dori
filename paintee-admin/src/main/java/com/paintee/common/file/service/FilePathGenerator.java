@@ -72,7 +72,7 @@ public class FilePathGenerator {
 		Date today = new Date();
 
 //		filePath.append(baseLocation).append(fileSeparator);
-		filePath.append(fileSeparator);
+//		filePath.append(fileSeparator);
 
 		try {
 			if (middlePath != null && middlePath.trim().length() > 0)
