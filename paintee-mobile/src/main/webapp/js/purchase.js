@@ -302,7 +302,7 @@ function initPayment(){
     var contents = "<span class='reward_money'>$2</span><br>" 
     	         + "<span data-i18n='[html]purchasePop1.contents'></span>";
     payment.setContents(contents);
-    payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><i class='material-icons'>edit</i><div class='purchase_btn_text'>edit address</div></div><div class='popup_btn payment_btn'><div class='purchase_btn_text'>Payment </div><i class='material-icons'>payment</i></div>");
+    payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><i class='material-icons'>edit</i><div class='purchase_btn_text' onclick='history.back();'>edit address</div></div><div class='popup_btn payment_btn'><div class='purchase_btn_text'>Payment </div><i class='material-icons'>payment</i></div>");
     payment.buildPayment();
     $(".payment_btn").click(function(){
         purchaseController.addPurchase();
