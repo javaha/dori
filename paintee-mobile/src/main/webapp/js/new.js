@@ -42,7 +42,7 @@ $(document).ready(function () {
 	// 페이지 로딩 시 Popular 스와이프 홈 화면 정보구성
 	initNew();
 	// 테이블에서 가져올 데이터의 시작 위치를 처음 로딩시 0번째 부터 조회
-	new NewController().getListData(0);
+//	new NewController().getListData(0);
 });
 
 function NewController() {
@@ -51,7 +51,7 @@ function NewController() {
 
 NewController.prototype = {
 	getListData: function (startRow) {
-		// console.log("---startRow---" + startRow);
+		 console.log("---startRow---" + startRow);
 		
 		this.startRow = startRow;
 		var controller = this;
@@ -64,7 +64,7 @@ NewController.prototype = {
 		);
 	},
 	getListDataRes: function (result) {
-		// console.log(result);
+		console.log("new getListDataRes ::: " + JSON.stringify(result));
 		if (!this.startRow) {
 			$("#new_count").text(result.count);
 		}
@@ -79,6 +79,9 @@ NewController.prototype = {
 
 //각각의 home 화면 설정
 function initNew(){
+  // 기존 설정된 슬라이더 제거
+  newSwiper.removeAllSlides();
+	
   var newHome = new Home();
 	  newHome.setTitle("new");
 	  newHome.setExplain("<span data-i18n='new.explain'><span>");
@@ -88,6 +91,8 @@ function initNew(){
 
   // 다국어 변경 적용
   exeTranslation('.main_container', lang);
+  //테이블에서 가져올 데이터의 시작 위치를 처음 로딩시 0번째 부터 조회
+  new NewController().getListData(0);
 }
 
 //전체그림/전체좋아요 숫자설정
