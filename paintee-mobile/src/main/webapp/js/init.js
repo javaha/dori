@@ -572,7 +572,6 @@ function closePopup() {
 		else if (divClass.indexOf('upload_container') > -1) {
 			if(boxStatus == "clickedCloseBtn") {
 				openPopupContainer.hide();
-				console.log("77777777777777777777777777");
 				history.back();
 			}
 		}

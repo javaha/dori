@@ -138,7 +138,6 @@ function createPaintingRes(result, status) {
 		alert('error');
 	}
 }
-
 function resetUpload() {
 	boxStatus = "uploadPop";
 
