@@ -51,7 +51,7 @@ public class ImgScalrWrapper {
 	private final static Logger logger = LoggerFactory.getLogger(ImgScalrWrapper.class);
 
 	/**
-	 @fn writeJpegImage
+	 @fn writeImage
 	 @brief 함수 간략한 설명 : 주어진 BufferedImage 객체를 file로 기록
 	 @remark
 	 - 함수의 상세 설명 : 주어진 BufferedImage 객체를 file로 기록
@@ -60,9 +60,13 @@ public class ImgScalrWrapper {
 	 @param quality - JPEG 압축률(0.0f ~ 1.0f)
 	 @throws IOException 
 	*/
-	public void writeJpegImage(BufferedImage bufferedImage, File resultFile, float quality) throws IOException {
+	public void writeImage(BufferedImage bufferedImage, File resultFile, String imageWritersByFormatName, float quality) throws IOException {
+		if(imageWritersByFormatName == null || imageWritersByFormatName.trim().length() == 0) {
+			imageWritersByFormatName = "JPG";
+		}
+
 		ImageOutputStream imageOutputStream = ImageIO.createImageOutputStream(resultFile);
-		Iterator<ImageWriter> iterator = ImageIO.getImageWritersByFormatName("jpeg");
+		Iterator<ImageWriter> iterator = ImageIO.getImageWritersByFormatName(imageWritersByFormatName);
 
 		if (iterator.hasNext() == false) {
 			logger.debug("# ImageWriter not available.");
@@ -72,28 +76,13 @@ public class ImgScalrWrapper {
 		ImageWriter imageWriter = iterator.next();
 	
 		ImageWriteParam imageWriteParam = imageWriter.getDefaultWriteParam();
-		imageWriteParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-		imageWriteParam.setCompressionQuality(quality);
-	
-		imageWriter.setOutput(imageOutputStream);
-		imageWriter.write(null, new IIOImage(bufferedImage, null, null), imageWriteParam);
-		imageWriter.dispose();
-	}
-	public void writeJpegImage(BufferedImage bufferedImage, File resultFile, float quality, int mode) throws IOException {
-		ImageOutputStream imageOutputStream = ImageIO.createImageOutputStream(resultFile);
-		Iterator<ImageWriter> iterator = ImageIO.getImageWritersByFormatName("jpeg");
 
-		if (iterator.hasNext() == false) {
-			logger.debug("# ImageWriter not available.");
-			return;
+		if(imageWritersByFormatName.toUpperCase().equals("JPEG") 
+			|| imageWritersByFormatName.toUpperCase().equals("JPG")) {
+			imageWriteParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+			imageWriteParam.setCompressionQuality(quality);
 		}
 
-		ImageWriter imageWriter = iterator.next();
-	
-		ImageWriteParam imageWriteParam = imageWriter.getDefaultWriteParam();
-		imageWriteParam.setCompressionMode(mode);
-		imageWriteParam.setCompressionQuality(quality);
-	
 		imageWriter.setOutput(imageOutputStream);
 		imageWriter.write(null, new IIOImage(bufferedImage, null, null), imageWriteParam);
 		imageWriter.dispose();
@@ -110,31 +99,14 @@ public class ImgScalrWrapper {
 	 @param height 높이(단위: pixel)
 	 @throws IOException 
 	*/
-	public void resize(File sourceFile, File resultFile, int width, int height) throws IOException {
+	public void resize(File sourceFile, File resultFile, String imageWritersByFormatName, int width, int height) throws IOException {
 		BufferedImage bufferedImage = ImageIO.read(sourceFile);
 		BufferedImage doneImage = Scalr.resize(bufferedImage, Mode.AUTOMATIC, width, height, Scalr.OP_ANTIALIAS);
 
-		writeJpegImage(doneImage, resultFile, 0.75f);
+		writeImage(doneImage, resultFile, imageWritersByFormatName, 1);
 	}
-
-	/**
-	 @fn crop
-	 @brief 함수 간략한 설명 : 이미지 crop
-	 @remark
-	 - 함수의 상세 설명 : 이미지 crop
-	 @param sourceFile 원본 이미지
-	 @param resultFile 결과 이미지
-	 @param x crop 시작 X 좌표
-	 @param y crop 시작 Y 좌표
-	 @param width 넓이(단위: pixel)
-	 @param height 높이(단위: pixel)
-	 @throws IOException 
-	*/
-	public void crop(File sourceFile, File resultFile, int x, int y, int width, int height) throws IOException {
-		BufferedImage bufferedImage = ImageIO.read(sourceFile);
-		BufferedImage doneImage = Scalr.crop(bufferedImage, x, y, width, height, Scalr.OP_ANTIALIAS);
-	
-		writeJpegImage(doneImage, resultFile, 1);
+	public void resize(File sourceFile, File resultFile, int width, int height) throws IOException {
+		resize(sourceFile, resultFile, "jpeg", width, height);
 	}
 
 	/**
@@ -148,14 +120,14 @@ public class ImgScalrWrapper {
 	 @param height
 	 @throws IOException 
 	*/
-	public void cropCenter(File sourceFile, File resultFile, int width, int height) throws IOException {
+	public void cropCenter(File sourceFile, File resultFile, String imageWritersByFormatName, int width, int height) throws IOException {
 		BufferedImage bufferedImage = ImageIO.read(sourceFile);
 
 		int count = 0;
-		if(bufferedImage.getWidth() > width) {
+		if(bufferedImage.getWidth() >= width) {
 			count++;
 		}
-		if(bufferedImage.getHeight() > height) {
+		if(bufferedImage.getHeight() >= height) {
 			count++;
 		}
 
@@ -164,28 +136,28 @@ public class ImgScalrWrapper {
 			int y = (bufferedImage.getHeight()-height)/2;
 
 			BufferedImage doneImage = Scalr.crop(bufferedImage, x, y, width, height, Scalr.OP_ANTIALIAS);
-
-			writeJpegImage(doneImage, resultFile, 1);
+			writeImage(doneImage, resultFile, imageWritersByFormatName, 1);
 		}
 	}
-	public void cropCenter(File sourceFile, File resultFile, int width, int height, int mode) throws IOException {
-		BufferedImage bufferedImage = ImageIO.read(sourceFile);
+	public void cropCenter(File sourceFile, File resultFile, int width, int height) throws IOException {
+		cropCenter(sourceFile, resultFile, "PNG", width, height);
+	}
 
-		int count = 0;
-		if(bufferedImage.getWidth() > width) {
-			count++;
+	public static void main(String args[]) {
+		ImgScalrWrapper imgScalrWrapper = new ImgScalrWrapper();
+		File cropImageFile = new File("D:/p0.png");
+		File thumbnailFile1 = new File("D:/thumbnailFile1.png");
+		File thumbnailFile2 = new File("D:/thumbnailFile2.png");
+
+		String[] format = ImageIO.getWriterFormatNames();
+		for(String a: format){
+			System.out.println(a);
 		}
-		if(bufferedImage.getHeight() > height) {
-			count++;
-		}
-
-		if(count > 0) {
-			int x = (bufferedImage.getWidth()-width)/2;
-			int y = (bufferedImage.getHeight()-height)/2;
-
-			BufferedImage doneImage = Scalr.crop(bufferedImage, x, y, width, height, Scalr.OP_ANTIALIAS);
-
-			writeJpegImage(doneImage, resultFile, 1, mode);
+		try {
+			imgScalrWrapper.resize(cropImageFile, thumbnailFile1, "jpg", 648, 900);
+			imgScalrWrapper.cropCenter(cropImageFile, thumbnailFile2, "png", 648, 900);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

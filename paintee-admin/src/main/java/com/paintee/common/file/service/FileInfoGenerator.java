@@ -262,7 +262,7 @@ public class FileInfoGenerator {
 
 			//crop 이미지 생성
 			cropImageFile = new File(fullPath.toString());
-			imgScalrWrapper.cropCenter(originalFile, cropImageFile, 1080, 1500);
+			imgScalrWrapper.cropCenter(originalFile, cropImageFile, "png", 1080, 1500);
 //			imgScalrWrapper.cropCenter(originalFile, cropImageFile, 1080, 1500, ImageWriteParam.MODE_DISABLED);
 
 			fileInfo.setSize(cropImageFile.length());
@@ -274,7 +274,7 @@ public class FileInfoGenerator {
 
 			thumbnailFile1 = new File(fullPath.toString());
 
-			imgScalrWrapper.resize(cropImageFile, thumbnailFile1, 648, 900);
+			imgScalrWrapper.resize(cropImageFile, thumbnailFile1, "jpg", 648, 900);
 
 			//작은 크기 썸네일
 			fullPath.delete(0, fullPath.length());
@@ -283,7 +283,7 @@ public class FileInfoGenerator {
 
 			thumbnailFile2 = new File(fullPath.toString());
 
-			imgScalrWrapper.resize(cropImageFile, thumbnailFile2, 360, 500);
+			imgScalrWrapper.resize(cropImageFile, thumbnailFile2, "png", 360, 500);
 
 			//생성된 파일들을 aws 로 전송
 			StringBuilder awsPath = new StringBuilder();
