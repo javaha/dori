@@ -22,11 +22,10 @@
 		       (select name from TB_USER where user_id = a.artist_id) artist_name
 		  from (select <include refid="com.paintee.common.repository.mapper.PaintingMapper.Base_Column_List" />
 				  from TB_PAINTING
-		<where>
+				 where private_at = 'N'
 			<if test="paintingStatus != null and paintingStatus != ''">
 				 and painting_status = #{paintingStatus}
 			</if> 
-		</where>
 				 order by upload_date desc 
 				 limit #{startRow}, #{rowPerPage}) a
   	</select>

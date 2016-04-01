@@ -30,6 +30,9 @@ function postedInfoRes(result, status) {
 
 		initUpload(postedCount, uploadCount);
 		setBox();
+		
+		replaceHistory({"call": "uploadPop"});
+	    addHistory({"call": "upload"});
 	}
 }
 

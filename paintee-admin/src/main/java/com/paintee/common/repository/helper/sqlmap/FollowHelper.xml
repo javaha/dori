@@ -26,7 +26,8 @@
 		 where a.artist_id in (select following from TB_FOLLOW where user_id = #{userId})
 		   and a.painting_status in <foreach item="status" collection="paintingStatusList" open="(" close=")" separator=",">
 		    							#{status}
-		                            </foreach>		 
+		                            </foreach>
+		   and a.private_at != 'Y'                        		 
 		 union all
 		select a.artist_id, 
 			   (select name from TB_USER where user_id = a.artist_id) artist_name, 
@@ -41,6 +42,7 @@
 		  from TB_PAINTING a, 
 		       TB_PURCHASE b
 		 where a.painting_id = b.painting_id
+		   and a.private_at = 'N'
     	   and b.private_at = #{privateAt}
 		   and b.purchase_status in <foreach item="status" collection="purchaseStatusList" open="(" close=")" separator=",">
 		    							#{status}
