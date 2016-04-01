@@ -138,7 +138,9 @@ function Structure(data) {
         this.listInfoPosted     =$("<div>").addClass("list_info_posted");
         this.listInfoDate       =$("<div>").addClass("list_info_date");
 
-        this.listPainting       =$("<div>").addClass("list_painting").attr("index", this.index);
+        this.listPainting       =$("<div>").addClass("list_painting").attr("index", this.index); // img 태그로 수정
+        // mobile 기기의 pixel ratio를 반영한 가변 이미지 반영
+        // this.listPainting       =$("<img>").addClass("list_painting").attr("index", this.index);
 
         this.bottom             =$("<div>").addClass("bottom_bar");
         this.listArtist         =$("<div>").addClass("list_artist_btn").click(function() {
@@ -179,7 +181,18 @@ Structure.prototype = {
                                     }else{
                                         this.listPainting.css({"width": "648px", "height": "900px"});
                                     }
-                                this.listPainting.css("background-image", "url(" + imageUrl + ")");
+                                /*
+                            	// mobile 기기의 pixel ratio를 반영한 가변 이미지 반영
+                                this.listPainting.attr("src", "p0-s.png");
+                                if(window.devicePixelRatio<=1){
+                                    this.listPainting.attr("srcset", imageUrl+"-m.png 729w, "+imageUrl+"-s.png 405w");
+                                }else if(window.devicePixelRatio>1 && window.devicePixelRatio<=2){
+                                    this.listPainting.attr("srcset", imageUrl+"-l.png 675w, "+imageUrl+"-m.png 405w, "+imageUrl+"-s.png 225w");
+                                }else if(window.devicePixelRatio>2){
+                                    this.listPainting.attr("srcset", imageUrl+"-l.png 450w, "+imageUrl+"-m.png 270w, "+imageUrl+"-s.png 150w");
+                                }
+                            	*/
+                                this.listPainting.css("background-image", "url(" + imageUrl + ")"); // 가변이미지 코딩으로 대체
                                 this.listPainting.swipe({
                                     swipeUp:function(){
                                         loadDetail(paintingId, color, colorDark);
