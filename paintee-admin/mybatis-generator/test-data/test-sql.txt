@@ -106,3 +106,4 @@ insert into TB_CODE(code_group, code_value, code_name) values('purchaseStatus', 
 insert into TB_CODE(code_group, code_value, code_name) values('purchaseStatus', '5', '재발송처리');
 insert into TB_CODE(code_group, code_value, code_name) values('purchaseStatus', '6', '환불처리');
 insert into TB_CODE(code_group, code_value, code_name) values('purchaseStatus', '7', '삭제');
+insert into TB_CODE(code_group, code_value, code_name) values('purchaseStatus', '99', '완료');

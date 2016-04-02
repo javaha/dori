@@ -88,9 +88,6 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public Map<String, Object> addPurchase(PurchaseSearchVO purchase) throws Exception {
 		logger.debug("구매추가 : {}", purchase);
 
-		// 구매 테이블 데이터 추가
-		purchaseHelper.insertSelective(purchase);
-		
 		String userId = purchase.getUserId();
 		String paintingId = purchase.getPaintingId();
 		
@@ -100,6 +97,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 		                        .andPaintingIdEqualTo(paintingId);
 		int puchaseCount = purchaseHelper.countByExample(example);
 		logger.debug("구매카운트 : {}", puchaseCount);
+		
+		// 구매 테이블 데이터 추가
+		purchaseHelper.insertSelective(purchase);
 		
 		// 그림 테이블 정보 업데이트 - posted_num 무조건 1 증가, posted_people_cnt (구매 테이블에 해당 사용자가 산적이 있는지 확인 후 증가 시킴)
 		Painting painting = new Painting();
@@ -183,6 +183,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		statusList.add("3");
 		statusList.add("4");
 		statusList.add("5");
+		statusList.add("99");
 		PurchaseExample example = new PurchaseExample();
 		example.createCriteria().andUserIdEqualTo    (userId)
 		                        .andPaintingIdEqualTo(paintingId)
@@ -223,10 +224,10 @@ public class PurchaseServiceImpl implements PurchaseService {
 	 @brief (Override method) 함수 간략한 설명 :
 	 @remark
 	 - 오버라이드 함수의 상세 설명 : 구매상태를 재발송요청으로 변경한다. 
-	 @see com.paintee.mobile.purchase.service.PurchaseService#resendPurchase(com.paintee.common.repository.entity.vo.PurchaseSearchVO)
+	 @see com.paintee.mobile.purchase.service.PurchaseService#updateStatusPurchase(com.paintee.common.repository.entity.vo.PurchaseSearchVO)
 	*/
 	@Override
-	public Map<String, Object> resendPurchase(PurchaseSearchVO purchase) {
+	public Map<String, Object> updateStatusPurchase(PurchaseSearchVO purchase) {
 		purchaseHelper.updateByPrimaryKeySelective(purchase);
 		
 		Map<String, Object> result = new HashMap<>();

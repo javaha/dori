@@ -47,8 +47,10 @@
 	{
 		"content1": "당신의 그림이 post될 때 마다 reward가 쌓입니다.<br> 지금까지 (영)",	
 		"content2": "회 post된 당신이 얻은 총 Reward는(영)",	
-		"content3": "입니다.<br><br><br>지금 Reward를 신청하면 남은 (영)",	
-		"content4": "에<br><b>수수료 $5</b>가 제외된 금액을 받을 수 있습니다.(영)"	
+		"content3": "입니다.<br><br><br>(영)",
+		"content4": "지금 Reward를 신청하면 수수료 $5가 제외된 (영)",	
+		"content5": "을 받을 수 있습니다.(영)",	
+		"content6": "리워드가 $10 이상일 때 리워드를 신청할 수 있습니다.(영)"	
 	},
 	"rewardPop2": 
 	{
@@ -61,7 +63,9 @@
 	},	
 	"purchasePop1": 
 	{
-		"contents": "추가적인 배송료나 포장비가 없습니다.<br>어디든 $2면 충분합니다.<br><br><br>구매한 $2의 일부는 작가에게 후원금으로 지급됩니다. <br>아름다운 그림을 나눠준 작가에게 큰 힘이 되어주세요.<br><br>아래 구매버튼을 눌러 결재를 계속하세요.(영)"
+		"contents": "추가적인 배송료나 포장비가 없습니다.<br>어디든 $2면 충분합니다.<br><br><br>구매한 $2의 일부는 작가에게 후원금으로 지급됩니다. <br>아름다운 그림을 나눠준 작가에게 큰 힘이 되어주세요.<br><br>아래 구매버튼을 눌러 결재를 계속하세요.(영)",
+		"sender": "sender(영)",
+		"address": "address(영)"
 	},	
 	"purchasePop2": 
 	{
@@ -90,7 +94,8 @@
 			"existEmail": "이미 사용중인 이름 입니다.(영)",
 			"differentPassword": "비밀번호와 비밀번화 확인 값이 일치하지 않습니다.(영)",
 			"delPainting": "삭제된 그림 입니다.(영)",
-			"processDelete": "삭제 처리되었습니다.(영)"
+			"processDelete": "삭제 처리되었습니다.(영)",
+			"wantDelete": "삭제 하시겠습니까?(영)"
 		},
 		"purchase" : {
 			"limitEnterCount": "줄바꿈은 5회까지 가능합니다.(영)",
@@ -103,7 +108,8 @@
 			"emptyZipcode": "우편번호를 입력하세요.(영)",
 			"inputOnlyNumber": "우편번호는 숫자만 가능합니다.(영)",
 			"changeAddress": "그림 구매시 변경된 주소로 기존 주소를 바꾸시겠습니까?(영)",
-			"processResend": "재발송 요청이 처리되었습니다.(영)"
+			"processResend": "재발송 요청이 처리되었습니다.(영)",
+			"processComplete": "재발송 요청이 처리되었습니다.(한)"
 		},
 		"reward" : {
 			"existRequest": "이미 신청중인 리워드가 있습니다.(영)",

@@ -98,11 +98,11 @@ public class PurchaseRestController {
 		return result;
 	}
 
-	@RequestMapping(value="/api/resendStatusPurchase", method={RequestMethod.POST})
+	@RequestMapping(value={"/api/resendStatusPurchase", "/api/completeStatusPurchase"}, method={RequestMethod.POST})
 	public Map<String, Object> resendPurchase(@RequestBody PurchaseSearchVO purchase) throws Exception {
 		logger.debug(purchase.toString());
 		// 구매관련 정보 등록
-		Map<String, Object> result = purchaseService.resendPurchase(purchase);
+		Map<String, Object> result = purchaseService.updateStatusPurchase(purchase);
 		return result;
 	}
 	

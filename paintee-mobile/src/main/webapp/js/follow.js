@@ -145,6 +145,10 @@ FollowController.prototype = {
 		initFollow();
 	},
 	delFollowing : function(following, name) {
+		if (!confirm($.i18n.t('alert.common.wantDelete'))) {
+			return ;
+		}
+		
 		console.log("FollowController.delFollowing ");
 		this.following = following;
 		var controller = this;

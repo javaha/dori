@@ -688,6 +688,18 @@ body{
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.purchase_input3{
+    box-sizing: border-box;
+    width: 49%;
+    background-color: rgb(240,240,240);
+    border: 0;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: rgb(30,30,30);
+    margin-bottom: 10px;
+    margin-left: 1%;
+}
 .purchase_button{
     display: inline-block;
     padding: .5em 1em;

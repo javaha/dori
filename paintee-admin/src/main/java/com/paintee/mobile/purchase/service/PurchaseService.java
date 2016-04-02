@@ -70,14 +70,17 @@ public interface PurchaseService {
 	public Map<String, Object> cancelPurchase(PurchaseSearchVO purchase);
 
 	/**
-	 @fn resendPurchase
+	 @fn updateStatusPurchase
 	 @brief 함수 간략한 설명 : 
 	 @remark
-	 - 함수의 상세 설명 : 재발송 상태로 변경
+	 - 함수의 상세 설명 
+	   : 완료 또는 재발송 상태로 변경
+	   : My 페이지의 사용자가 그림의 sended 버튼을 클릭 후 Confirm 버튼을 클릭 시 완료 상태로 변경
+	   : My 페이지의 사용자가 그림의 sended 버튼을 클릭 후 Resend 버튼을 클릭 시 재발송 상태로 변경 
 	 @param purchase
 	 @return 
 	*/
-	public Map<String, Object> resendPurchase(PurchaseSearchVO purchase);
+	public Map<String, Object> updateStatusPurchase(PurchaseSearchVO purchase);
 
 	/**
 	 @fn delStatusPainting

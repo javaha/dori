@@ -255,6 +255,7 @@ Structure.prototype = {
                                 this.container.append(this.bottom);
                                 this.container.append(this.listArtist);
                                 this.container.append(this.listPostBtn);
+                                // 마이페이지의 그림 하단의 상태표시 버튼
                                 if (type == "my") {
                                 	switch(listData.paintingStatus) {
                                 	case "1":
@@ -326,7 +327,10 @@ function showResend(clicked, listData){
    		new PurchaseController().resendPurchase(listData); 
    		hideResend(this);
     });
-    $(clicked).parent().find(".list_confirm_btn").fadeIn().click(function(){hideResend(this)});
+    $(clicked).parent().find(".list_confirm_btn").fadeIn().click(function(){
+    	new PurchaseController().completePurchase(listData); 
+    	hideResend(this)
+    });
     $(clicked).parent().find(".list_status_sentence").empty().html("<span data-i18n='[html]my.sendStatusPurchase'></span>").fadeIn().click(function(){hideResend(this)});
     setTimeout(function(){hideResend(clicked)}, 5000);
     exeTranslation('.main_container', lang);

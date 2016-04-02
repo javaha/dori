@@ -50,6 +50,9 @@ function initPurchasePop(result) {
     setWidth();
     
     setPostUI($("[name=location]").val());
+    
+    // 다국어 처리
+    exeTranslation('.base_position', lang);
 }
 
 function setPurchase(){
@@ -409,6 +412,30 @@ PurchaseController.prototype = {
 	resendPurchaseRes: function (result, seq) {
 		$("#sendedBtn" + seq).remove();
 		alert($.i18n.t('alert.purchase.processResend'));
+	},
+	completePurchase: function (listData) {
+		var controller = this;
+		var data = {
+				seq: listData.seq,
+				purchaseStatus: "99" // 완료
+		};
+		
+		AjaxCall.call(apiUrl + "/completeStatusPurchase", 
+				data, 
+				"POST", 
+				function (result) {
+			controller.completePurchaseRes(result, listData);			
+		});
+	},
+	completePurchaseRes: function (result, listData) {
+		$("#sendedBtn" + listData.seq).off("click");
+		$("#sendedBtn" + listData.seq).removeClass("list_status_sended")
+				                      .addClass("list_status_done")
+				                      .html("delete")
+				                      .click(function () {
+					       				  new PurchaseController().delStatusPurchase(listData); 
+					       			  }); 
+		alert($.i18n.t('alert.purchase.processComplete'));
 	},
 	delStatusPainting: function (listData) {
 		var controller = this;

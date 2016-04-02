@@ -44,7 +44,7 @@ function Personal(username){
 	this.username = username;
     this.container  = $("<div>").addClass("personal_container").addClass("swiper-slide");
     this.list       = $("<div>").addClass("list_container").addClass("swiper_container_personal");
-    this.homeBtn    = $("<div>").addClass("home_btn").css("font-weight", 700).html(username);
+    this.homeBtn    = $("<div>").addClass("home_btn").css("font-weight", 700).html(username).click(function(){currentSwiper.slideTo(0);});
     this.bottom     = $("<div>").addClass("bottom_bar").css("background-color", "hsl(250,60%,20%)");
     this.wrapper    = $("<div>").addClass("swiper-wrapper");
     this.scroll     = $("<div>").addClass("swiper-scrollbar").addClass("swiper-scrollbar-personal");
