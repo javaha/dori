@@ -53,9 +53,11 @@ Upload.prototype = {
         $(this.bottom).html(bottom);
     },
     buildUpload : function(){
+    	$('#upload_popup_box').css('backgroundImage', '');
+
         $(".upload_box").append(this.title);
         $(".upload_box").append(this.contents);
-        $(".upload_box").append($('<div>').addClass('painting_preview').css('text-align', 'center'));
+//        $(".upload_box").append($('<div>').addClass('painting_preview').css('text-align', 'center'));
         $(".upload_box").append(this.bottom);
     }
 }
@@ -141,7 +143,7 @@ function createPaintingRes(result, status) {
 function resetUpload() {
 	boxStatus = "uploadPop";
 
-	$('.painting_preview').empty();
+//	$('.painting_preview').empty();
 	$('.uploadFileBox').empty();
 	$('.uploadFileBox').html("<label for='painteeFile' class='upload_btn_text'>Select image file </label><i class='material-icons'>folder</i>");
 
@@ -208,7 +210,8 @@ function successUpload() {
 		var previewReader = new FileReader();
 
 		previewReader.addEventListener("load", function () {
-			$('.painting_preview').append('<img src="'+ previewReader.result +'" width="120px" height="150px"/>');
+//			$('.painting_preview').append('<img src="'+ previewReader.result +'" width="120px" height="150px"/>');
+			$('#upload_popup_box').css('backgroundImage', 'url('+previewReader.result+')').css('background-size', '100% 100%').css('background-color', 'rgba(255, 255, 255, 0.5)');
 		}, false);
 
 		previewReader.readAsDataURL(previewFile);
