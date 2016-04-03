@@ -68,9 +68,9 @@ public class PaintingRestController {
 	 @return 
 	*/
 	@RequestMapping(value="/api/painting/{paintingId}", method={RequestMethod.GET})
-	public PaintingVO detailPainting(@PathVariable String paintingId) throws Exception {
+	public PaintingVO detailPainting(@PathVariable String paintingId, LoginedUserVO loginedUserVO) throws Exception {
 
-		return paintingService.getPaintingInfo(paintingId);
+		return paintingService.getPaintingInfo(paintingId, loginedUserVO);
 	}
 	
 	/**

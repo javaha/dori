@@ -232,9 +232,9 @@ public class FileInfoGenerator {
 		fileInfo.setId(newId);
 		fileInfo.setName(newId);
 		fileInfo.setOriName(multipartFile.getOriginalFilename());
-		fileInfo.setExtension(FilenameUtils.getExtension(multipartFile.getOriginalFilename()));
+		fileInfo.setExtension("png");
 		fileInfo.setPath(filePath);
-		fileInfo.setContentType(multipartFile.getContentType());
+		fileInfo.setContentType("image/png");
 		fileInfo.setDisplayName(displayName);
 		fileInfo.setCreatedDate(today);
 

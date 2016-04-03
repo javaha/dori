@@ -37,7 +37,8 @@ public class PaintingVO extends Painting {
 	
 	private String artistName;
 	private FileInfo fileInfo;
-	
+	private Boolean followed;
+
 	public String getArtistName() {
 		return artistName;
 	}
@@ -49,5 +50,11 @@ public class PaintingVO extends Painting {
 	}
 	public void setFileInfo(FileInfo fileInfo) {
 		this.fileInfo = fileInfo;
+	}
+	public Boolean getFollowed() {
+		return followed;
+	}
+	public void setFollowed(Boolean followed) {
+		this.followed = followed;
 	}
 }

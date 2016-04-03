@@ -29,9 +29,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.paintee.common.file.service.FileService;
 import com.paintee.common.repository.entity.FileInfo;
+import com.paintee.common.repository.entity.FollowExample;
 import com.paintee.common.repository.entity.Painting;
 import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.PaintingVO;
+import com.paintee.common.repository.helper.FollowHelper;
 import com.paintee.common.repository.helper.PaintingHelper;
 import com.paintee.common.repository.helper.UserHelper;
 import com.paintee.mobile.support.obejct.LoginedUserVO;
@@ -64,7 +66,10 @@ public class PaintingServiceImpl implements PaintingService {
 	@Autowired
 	private UserHelper userHelper;
 
-	public PaintingVO getPaintingInfo(String paintingId) throws Exception {
+	@Autowired
+	private FollowHelper followHelper;
+
+	public PaintingVO getPaintingInfo(String paintingId, LoginedUserVO loginedUserVO) throws Exception {
 		/*
 		PaintingExample example = new PaintingExample();
 		PaintingExample.Criteria pWhere = example.createCriteria();
@@ -72,11 +77,6 @@ public class PaintingServiceImpl implements PaintingService {
 		Painting painting = paintingHelper.selectByExample(example).get(0);
 		*/
 		PaintingVO painting = paintingHelper.selectPaintingInfo(paintingId);
-		logger.debug("painting2:{}", painting);
-
-		Map<String, Object> resultMap = BeanUtils.describe(painting);
-
-		logger.debug("resultMap2:{}", resultMap);
 
 		//파일정보 조회
 		List<FileInfo> fileInfoList = fileService.getFileInfoList(painting.getFileGroupSeq());
@@ -85,8 +85,23 @@ public class PaintingServiceImpl implements PaintingService {
 			FileInfo fileInfo = fileInfoList.get(0);
 
 			painting.setFileInfo(fileInfo);
-			resultMap.put("fileId", fileInfo.getId());
 		}
+
+		painting.setFollowed(false);
+
+		if(loginedUserVO != null) {
+			FollowExample followExample = new FollowExample();
+			FollowExample.Criteria where = followExample.createCriteria();
+			where.andUserIdEqualTo(loginedUserVO.getUserId());
+			where.andFollowingEqualTo(painting.getArtistId());
+
+			int followCount = followHelper.countByExample(followExample);
+			if(followCount > 0) {
+				painting.setFollowed(true);
+			}
+		}
+
+		logger.debug("painting2:{}", painting);
 
 		return painting;
 	}

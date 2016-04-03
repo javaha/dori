@@ -37,7 +37,15 @@ function DetailStructure(paintingId, paintingInfo){
     this.detailArtist       =$("<div>").addClass("detail_artist").addClass("swiper-slide");
     this.detailArtistTop    =$("<div>").addClass("detail_artist_top");
     this.detailArtistBtn    =$("<div>").addClass("detail_artist_btn");
-    this.detailArtistFollow =$("<div>").addClass("detail_artist_follow");
+
+    this.followed = paintingInfo.followed;
+
+    if(paintingInfo.followed || (userInfo && this.artistId == userInfo.userId)) {
+    	this.detailArtistFollow =$("<div>").addClass("detail_artist_followed");
+    } else {
+    	this.detailArtistFollow =$("<div>").addClass("detail_artist_follow");
+    }
+
     this.detailArtistSentence=$("<div>").addClass("detail_artist_sentence");
     this.detailArtistDate   =$("<div>").addClass("detail_artist_date");
     this.detailArtistBottom =$("<div>").addClass("detail_artist_bottom").html("Share to ");
@@ -129,8 +137,14 @@ DetailStructure.prototype = {
         console.log(this.artistId);
         
         var picArtistId = this.artistId;
+        var artistName = this.artistName;
+
         //follow 버튼 이벤트
-        this.detailArtistFollow.on('click', function() { detailController.artistFollow(picArtistId); });
+        if(this.followed) {
+        	this.detailArtistFollow.on('click', function() { alert(artistName + $.i18n.t('alert.detail.existFollow')); });
+        } else if(!userInfo || this.artistId != userInfo.userId) {
+        	this.detailArtistFollow.on('click', function() { detailController.artistFollow(picArtistId); });
+        }
 
         //소셜 공유 이벤트
         this.sociconFacebook    =$("<span>").addClass("social_btn").addClass("socicon-facebook");
@@ -139,7 +153,6 @@ DetailStructure.prototype = {
         this.sociconPinterest   =$("<span>").addClass("social_btn").addClass("socicon-pinterest");
         
         var paintingId = this.paintingId;
-        var artistName = this.artistName;
         var fileId = this.fileId;
         
         // 소셜 공유

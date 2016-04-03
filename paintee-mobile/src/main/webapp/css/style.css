@@ -445,7 +445,15 @@ body{
     text-align: right;
     color: rgb(200,200,200);
     cursor: pointer;
-}       
+}
+ .detail_artist_followed{
+    float: left;
+    margin-left: 5%;
+    line-height: 40px;
+    text-align: right;
+    color: rgb(100,100,100);
+    cursor: pointer;
+}
 .detail_artist_sentence{
     display: table-cell;
     text-align: center;

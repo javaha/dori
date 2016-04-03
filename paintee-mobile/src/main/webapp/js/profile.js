@@ -12,6 +12,11 @@ ProfileController.prototype = {
 
 			var userInfo = result.userInfo;
 
+			if(userInfo.providerId != "PAINTEE") {
+				$('#profileUserPassword').attr('disabled', true);
+				$('#profileConfirmPassord').attr('disabled', true);
+			}
+
 			$('#profileUserName').val(userInfo.name);
 			$('#profileIntroduction').val(userInfo.introduce);
 			$('#profileBasicAddr').val(userInfo.basicAddr);

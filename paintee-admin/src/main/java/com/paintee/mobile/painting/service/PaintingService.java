@@ -43,9 +43,10 @@ public interface PaintingService {
 	 @remark
 	 - 함수의 상세 설명 : 그림에 대한 상세 정보를 조회 한다.
 	 @param paintingId
+	 @param loginedUserVO
 	 @return 
 	*/
-	public PaintingVO getPaintingInfo(String paintingId) throws Exception;
+	public PaintingVO getPaintingInfo(String paintingId, LoginedUserVO loginedUserVO) throws Exception;
 	
 	/**
 	 @fn createPainting

@@ -175,8 +175,8 @@ public class SignUpServiceImpl implements SignUpService {
 
 		//paintee follow
 		Follow follow = new Follow();
-		follow.setFollowing(newUserId);
-		follow.setUserId(painteeUserId);
+		follow.setFollowing(painteeUserId);
+		follow.setUserId(newUserId);
 
 		followHelper.insertSelective(follow);
 

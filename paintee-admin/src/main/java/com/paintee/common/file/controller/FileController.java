@@ -269,6 +269,43 @@ public class FileController {
 
 		return new ResponseEntity<>(fileByte, httpHeaders, HttpStatus.OK);
 	}
+	@RequestMapping(value="/file/download/{fileType}/{fileId}")
+	public ResponseEntity<byte[]> download(@PathVariable Integer fileType, @PathVariable String fileId, HttpServletResponse response) throws Exception {
+		if (fileId == null || fileId.trim().length() == 0) {
+			throw new Exception("File does not exist.");
+		}
+		if (fileType == null) {
+			throw new Exception("File does not exist.");
+		}
+
+		if (fileType < 1 || fileType > 3) {
+			throw new Exception("File does not exist.");
+		}
+
+		FileInfo fileInfo = fileService.getFileInfo(fileId);
+
+		if (fileInfo == null) {
+			throw new Exception("File does not exist.");
+		}
+
+		StringBuilder filePath = new StringBuilder();
+		if(fileType == 1) {
+			filePath.append(fileInfo.getPath()).append(fileInfo.getName());
+		} else {
+			filePath.append(fileInfo.getPath()).append(fileInfo.getName()).append("_").append(fileType);
+		}
+
+		byte[] fileByte = awsS3Helper.download(bucketName, filePath.toString());
+
+		String fileName = URLEncoder.encode(fileInfo.getOriName(), "UTF-8").replaceAll("\\+", "%20");
+
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		httpHeaders.setContentLength(fileByte.length);
+		httpHeaders.setContentDispositionFormData("attachment", fileName);
+
+		return new ResponseEntity<>(fileByte, httpHeaders, HttpStatus.OK);
+	}
 //	public void download(@PathVariable String fileId, HttpServletResponse response) throws Exception {
 //		if (fileId == null || fileId.toString().trim().length() == 0) {
 //			throw new Exception("File does not exist.");
