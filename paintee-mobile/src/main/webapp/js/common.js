@@ -87,7 +87,7 @@ function getCharCount(value) {
 function shareSocial(data) {
 	var url = "";
 //	var hostAndFileName = "www.paintee.com:8080/index.html?";
-	var hostAndFileName = "www.paintee.com:9080/index.html?";
+	var hostAndFileName = "www.paintee.com:8080/index.html?";
 	hostAndFileName = encodeURIComponent(hostAndFileName);
 	var param = "user=" + data.name + "&page=" + data.page;
 		param = encodeURIComponent(param);
@@ -112,3 +112,10 @@ function shareSocial(data) {
 	if (pop) pop.focus();  
 
 }
+
+function toDate (timestamp, dateFormat) {
+    var date = new Date(timestamp);
+
+    var retVal = $.datepicker.formatDate(dateFormat, date);
+    return retVal;
+};

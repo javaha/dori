@@ -64,7 +64,7 @@ public class PaintingServiceImpl implements PaintingService {
 	@Autowired
 	private UserHelper userHelper;
 
-	public Map<String, Object> getPaintingInfo(String paintingId) throws Exception {
+	public PaintingVO getPaintingInfo(String paintingId) throws Exception {
 		/*
 		PaintingExample example = new PaintingExample();
 		PaintingExample.Criteria pWhere = example.createCriteria();
@@ -84,10 +84,11 @@ public class PaintingServiceImpl implements PaintingService {
 		if(fileInfoList != null && fileInfoList.size() > 0) {
 			FileInfo fileInfo = fileInfoList.get(0);
 
+			painting.setFileInfo(fileInfo);
 			resultMap.put("fileId", fileInfo.getId());
 		}
 
-		return resultMap;
+		return painting;
 	}
 
 	/**

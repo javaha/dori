@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.paintee.common.file.service.FileInfoGenerator;
 import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.repository.entity.Painting;
+import com.paintee.common.repository.entity.vo.PaintingVO;
 import com.paintee.mobile.painting.service.PaintingService;
 import com.paintee.mobile.support.obejct.LoginedUserVO;
 
@@ -67,7 +68,7 @@ public class PaintingRestController {
 	 @return 
 	*/
 	@RequestMapping(value="/api/painting/{paintingId}", method={RequestMethod.GET})
-	public Map<String, Object> detailPainting(@PathVariable String paintingId) throws Exception {
+	public PaintingVO detailPainting(@PathVariable String paintingId) throws Exception {
 
 		return paintingService.getPaintingInfo(paintingId);
 	}

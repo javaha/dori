@@ -11,11 +11,11 @@ function DetailStructure(paintingId, paintingInfo){
     this.uploadDate     = uploadDate;
     this.postedNum      = postedNum;
     */
-    this.fileId         = paintingInfo.fileId;
+    this.fileId         = paintingInfo.fileInfo.id;
     this.artistName     = paintingInfo.artistName;
     this.artistId       = paintingInfo.artistId;
-    this.artistSentence = paintingInfo.artistSentence;
-    this.uploadDate     = paintingInfo.uploadDate;
+    this.artistSentence = paintingInfo.sentence;
+    this.uploadDate     = toDate(paintingInfo.uploadDate, 'M d, yy');
     this.postedNum      = paintingInfo.postedNum;
     // 히스토리 사용 부분 추가
     this.colorDark      = paintingInfo.colorDark;

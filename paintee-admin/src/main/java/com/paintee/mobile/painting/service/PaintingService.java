@@ -18,6 +18,7 @@ import java.util.Map;
 
 import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.repository.entity.Painting;
+import com.paintee.common.repository.entity.vo.PaintingVO;
 import com.paintee.mobile.support.obejct.LoginedUserVO;
 
 /**
@@ -44,7 +45,7 @@ public interface PaintingService {
 	 @param paintingId
 	 @return 
 	*/
-	public Map<String, Object> getPaintingInfo(String paintingId) throws Exception;
+	public PaintingVO getPaintingInfo(String paintingId) throws Exception;
 	
 	/**
 	 @fn createPainting
