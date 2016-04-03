@@ -9,6 +9,12 @@
 		    <if test="postCnt != null">
 			   	  ,post_cnt = post_cnt + #{postCnt}
 		    </if>	   
+		    <if test="earnTotalMoney != null">
+			   	  ,earn_total_money = earn_total_money + #{earnTotalMoney} 
+		    </if>	   
+		    <if test="earnRewordMoney != null">
+			   	  ,earn_reword_money = earn_reword_money + #{earnRewordMoney}  
+		    </if>	   
 		    <if test="uploadCnt != null">
 			   	  ,upload_cnt = upload_cnt + #{uploadCnt}
 		    </if>	   
@@ -39,27 +45,4 @@
 		</trim>
 		 where user_id = #{userId}
   	</update>
-	
-	<!-- 회원의 구매 정보를 업데이트(전체 판매 금액 증가) -->
-  	<update id="updateUserEarnTotalMoney">
-		update TB_USER 
-		   set earn_total_money = earn_total_money + #{earnTotalMoney} 
-		 where user_id = #{userId}
-<!-- 		 where user_id = (select artist_id from TB_PAINTING where painting_id = #{paintingId}) -->
-  	</update>
-
-  	<!-- 회원의 구매 정보를 업데이트(리워드 전체 금액) -->
-  	<update id="updateUserEarnRewardMoney">
-		update TB_USER 
-		   set earn_reword_money = earn_reword_money + #{earnRewordMoney}  
-		 where user_id = #{userId}
-  	</update>
-  	
-	<!-- 구매 상태를 요청에서 비정상 처리시 리워드 금액 차감된 것을 되돌린다. -->
-  	<update id="updateUserRewardMoney">
-		update TB_USER 
-		   set earn_total_money = earn_total_money + #{money}, 
-		       earn_reword_money = earn_reword_money - #{money}  
-		 where user_id = #{userId}
-	</update>  	
 </mapper>

@@ -60,16 +60,6 @@ public interface PurchaseService {
 	public Map<String, Object> addPurchase(PurchaseSearchVO purchase) throws Exception;
 
 	/**
-	 @fn cancelPurchase
-	 @brief 함수 간략한 설명 : 
-	 @remark
-	 - 함수의 상세 설명 : 사용자가 구매 정보 취소를 한 경우
-	 @param purchase
-	 @return 
-	*/
-	public Map<String, Object> cancelPurchase(PurchaseSearchVO purchase);
-
-	/**
 	 @fn updateStatusPurchase
 	 @brief 함수 간략한 설명 : 
 	 @remark

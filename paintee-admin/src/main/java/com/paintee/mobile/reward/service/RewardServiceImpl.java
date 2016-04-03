@@ -89,20 +89,13 @@ public class RewardServiceImpl implements RewardService {
 		
 		// 사용자 테이블 리워드 관련 정보 업데이트
 		User user = new User();
-		// 요청한 리워드 금액 + 수수료
 		
-		/*
-		float commission = 5.0f;
-		if ("99".equals(reward.getBank())) {
-			commission = 7.0f;
-		}
+		// 요청한 리워드 금액 + 수수료
 		user.setUserId(reward.getUserId());
-		user.setEarnRewordMoney(reward.getEarmRequestedMoney() + commission);
-		 */
 		user.setEarnRewordMoney(reward.getEarmRequestedMoney() + (float)reward.getEarmRequestedCommission());
 		
 		// 사용자 테이블 업데이트
-		userHelper.updateUserEarnRewardMoney(user);
+		userHelper.updateUserInfo(user);
 	}
 
 	/**
@@ -126,7 +119,7 @@ public class RewardServiceImpl implements RewardService {
 	 - 오버라이드 함수의 상세 설명 : 사용자의 리워드 관련 정보를 변경한다.
 	   1. 리워드 요청 정보 삭제
 	   2. 사용자 테이블 리워드 정보 수정
-	      - 요청 수수료와 요청 금액을 합산한 금액을 tb_user 테이블의 earn_total_money에 더하고, earn_reward_money에서 뺀다.	 
+	      - 요청 수수료와 요청 금액을 합산한 금액을 tb_user 테이블의 earn_reward_money에서 뺀다.	 
 	 @see com.paintee.mobile.reward.service.RewardService#cancelReward(com.paintee.common.repository.entity.vo.RewardSearchVO)
 	*/
 	@Override
@@ -137,7 +130,7 @@ public class RewardServiceImpl implements RewardService {
 		// 2. 사용자 테이블 리워드 정보 수정
 		UserVO user = new UserVO();
 		user.setUserId(search.getUserId());
-		user.setMoney(search.getMoney());
-		userHelper.updateUserRewardMoney(user);
+		user.setEarnRewordMoney(-((float)search.getMoney()));
+		userHelper.updateUserInfo(user);
 	}
 }

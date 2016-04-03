@@ -142,19 +142,20 @@ public class PurchaseServiceImpl implements PurchaseService {
 			user.setUserId(pInfo.getArtistId());
 			user.setEarnTotalMoney(new Float(0.5));
 			
-			userHelper.updateUserEarnTotalMoney(user);
+			userHelper.updateUserInfo(user);
 			break;
 			
 		// 환불처리 	
 		case "6":  
 			// 회원의 그림을 이전에 구매했는지 카운트를 조회
-			// 구매상태가 요청-1/발송-2/환불요청-3/재발송요청-4/재발송처리-5/환불처리-6/삭제-7 
+			// 구매상태가 요청-1/발송-2/환불요청-3/재발송요청-4/재발송처리-5/환불처리-6/삭제-7/완료-99
 			List<String> statusList = new ArrayList<>();
 			statusList.add("1");
 			statusList.add("2");
-			statusList.add("3");
 			statusList.add("4");
 			statusList.add("5");
+			statusList.add("7");
+			statusList.add("99");
 			PurchaseExample example = new PurchaseExample();
 			example.createCriteria().andUserIdEqualTo    (userId)
 			                        .andPaintingIdEqualTo(paintingId)
@@ -173,8 +174,12 @@ public class PurchaseServiceImpl implements PurchaseService {
 			}
 			painting.setPostedNum(-1);
 			paintingHelper.updatePaintingPurchaseInfo(painting);
+			user = new User();
+			user.setUserId(userId);
+			user.setPostCnt(-1);
+			userHelper.updateUserInfo(user);
+			break;
 			
-		// 삭제와 환불처리 상태일 경우 공통으로 구매자의 구매카운트를 감소시킨다.
 		// 회원 테이블 정보 추가 - 구매카운트(post_cnt) 감소
 		case "7":
 			user = new User();

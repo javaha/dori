@@ -159,72 +159,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	 @fn 
 	 @brief (Override method) 함수 간략한 설명 :
 	 @remark
-	 - 오버라이드 함수의 상세 설명 : 
-	   1. 구매테이블에 데이터의 상태를 환불요청으로 변경한다.
-	   2. 회원 테이블 정보 업데이트 
-	      - 구매자의 구매카운트(post_cnt) 1 감소
-	   3. 그림 테이블 정보 업데이트 
-	      - posted_num 무조건 1 감소, 
-	      - posted_people_cnt (구매 테이블에 해당 사용자가 구매한적이 있는지 확인 후 감소 시킴)   
-	   --------------------------------------------------------------------
-	 @see com.paintee.mobile.purchase.service.PurchaseService#cancelPurchase(com.paintee.common.repository.entity.vo.PurchaseSearchVO)
-	*/
-	@Override
-	public Map<String, Object> cancelPurchase(PurchaseSearchVO purchase) {
-		
-		String userId = purchase.getUserId();
-		String paintingId = purchase.getPaintingId();
-		
-		// 회원의 그림을 이전에 구매했는지 카운트를 조회
-		// 구매상태가 요청-1/발송-2/환불요청-3/재발송요청-4/재발송처리-5/환불처리-6/삭제-7/완료-99 
-		List<String> statusList = new ArrayList<>();
-		statusList.add("1");
-		statusList.add("2");
-		statusList.add("3");
-		statusList.add("4");
-		statusList.add("5");
-		statusList.add("99");
-		PurchaseExample example = new PurchaseExample();
-		example.createCriteria().andUserIdEqualTo    (userId)
-		                        .andPaintingIdEqualTo(paintingId)
-		                        .andPurchaseStatusIn(statusList);
-		int puchaseCount = purchaseHelper.countByExample(example);
-		logger.debug("구매카운트 : {}", puchaseCount);
-		
-		// 그림 테이블 정보 업데이트 - posted_num 무조건 1 감소, 
-		// posted_people_cnt (구매 테이블에 해당 사용자가 그림을 1번만 구매한 경우 확인 후 감소 시킴)
-		Painting painting = new Painting();
-		painting.setPaintingId(paintingId);
-		if (puchaseCount == 1) {
-			painting.setPostedPeopleCnt(-1);
-		} else {
-			painting.setPostedPeopleCnt(0);
-		}
-		painting.setPostedNum(-1);
-		paintingHelper.updatePaintingPurchaseInfo(painting);
-		
-		// 회원 테이블 정보 추가 - 구매카운트(post_cnt) 감소
-		User user = new User();
-		user.setUserId(userId);
-		user.setPostCnt(-1);
-		userHelper.updateUserInfo(user);
-		
-		// 구매상태를 환불 요청으로
-		purchase.setStatusUpdateDate(new Date());
-		purchaseHelper.updateByPrimaryKeySelective(purchase);
-		
-		Map<String, Object> result = new HashMap<>();
-		// 에러정보
-		result.put("errorNo", 0);
-		result.put("errorMsg", "");
-		return result;
-	}
-
-	/**
-	 @fn 
-	 @brief (Override method) 함수 간략한 설명 :
-	 @remark
-	 - 오버라이드 함수의 상세 설명 : 구매상태를 재발송요청으로 변경한다. 
+	 - 오버라이드 함수의 상세 설명 : 구매 상태를 변경한다.
 	 @see com.paintee.mobile.purchase.service.PurchaseService#updateStatusPurchase(com.paintee.common.repository.entity.vo.PurchaseSearchVO)
 	*/
 	@Override

@@ -76,7 +76,7 @@ public class RewardServiceImpl implements RewardService {
 	 @remark
 	 - 오버라이드 함수의 상세 설명 : 	 
 	    1. 비정상 변경시 처리할 일
-		   - 요청 수수료와 요청 금액을 합산한 금액을 tb_user 테이블의 earn_total_money에 더하고, earn_reward_money에서 뺀다.	
+		   - 요청 수수료와 요청 금액을 합산한 금액을 tb_user 테이블의 earn_reward_money에서 뺀다.	
 	    2. 완료 변경시 처리할 일
 	       - 리워드 테이블에 상태만 적용하면 된다.	 
 	 @see com.paintee.admin.reward.service.RewardService#modRewardStatus(com.paintee.common.repository.entity.Reward)
@@ -88,11 +88,11 @@ public class RewardServiceImpl implements RewardService {
 		
 		// 비정상으로 변경
 		if ("A".equalsIgnoreCase(reward.getRewardStatus())) {
-			int money = reward.getEarmRequestedCommission() + reward.getEarmRequestedMoney();
+			float money = reward.getEarmRequestedCommission() + reward.getEarmRequestedMoney();
 			UserVO user = new UserVO();
-			user.setMoney(money);
 			user.setUserId(reward.getUserId());
-			userHelper.updateUserRewardMoney(user);
+			user.setEarnRewordMoney(-money);
+			userHelper.updateUserInfo(user);
 		}
 	}
 }

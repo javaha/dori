@@ -17,10 +17,9 @@
 	    SELECT a.earn_total_money,
 			   a.earn_reword_money,
 			   a.earn_total_money - a.earn_reword_money AS remain_money,
-			   (SELECT COUNT(*)
-			      FROM TB_PURCHASE a, TB_PAINTING b
-			     WHERE a.painting_id = b.painting_id
-			       AND b.artist_id = #{userId}) as sell_count,
+			   (SELECT sum(posted_num)
+			      FROM TB_PAINTING
+			     WHERE artist_id = #{userId}) as sell_count,
 			   (SELECT count(*) 
 			      FROM TB_REWARD
 			     WHERE reward_status = 'R'

@@ -52,7 +52,7 @@ function initReward(){
     var html =  "<span data-i18n='[html]rewardPop.content4'></span>" + 
 				"<b>$" + (data.reward.remainMoney - 5) + " </b>" + 
 				"<span data-i18n='[html]rewardPop.content5'></span><br>";
-    if (data.reward.earnTotalMoney < 10) {
+    if (data.reward.remainMoney < 10) {
     	html = "<span data-i18n='[html]rewardPop.content6'></span><br>";
     }
     reward.setContents(
