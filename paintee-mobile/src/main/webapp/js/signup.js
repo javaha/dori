@@ -24,7 +24,7 @@ SignupController.prototype = {
 //				alert('회원가입이 정상적으로 처리되었습니다.\n이메일을 확인하세요.');
 			} else if(result.providerId == 'FACEBOOK') {
 				setUserInfoCookie(result);
-				alert($.i18n.t('alert.signup.processMemberJoin'));
+				alert($.i18n.t('alert.signup.processSocialMemberJoin'));
 //				alert('회원가입이 정상적으로 처리되었습니다.');
 			}
 			location.href = "/";

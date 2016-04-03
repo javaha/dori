@@ -34,12 +34,14 @@ import com.paintee.common.mail.HtmlContentBuilder;
 import com.paintee.common.mail.MailService;
 import com.paintee.common.repository.entity.ConfirmHash;
 import com.paintee.common.repository.entity.ConfirmHashExample;
+import com.paintee.common.repository.entity.Follow;
 import com.paintee.common.repository.entity.Login;
 import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.UserExample;
 import com.paintee.common.repository.entity.UserSocial;
 import com.paintee.common.repository.entity.vo.SignupUserVO;
 import com.paintee.common.repository.helper.ConfirmHashHelper;
+import com.paintee.common.repository.helper.FollowHelper;
 import com.paintee.common.repository.helper.LoginHelper;
 import com.paintee.common.repository.helper.UserHelper;
 import com.paintee.common.repository.helper.UserSocialHelper;
@@ -91,6 +93,12 @@ public class SignUpServiceImpl implements SignUpService {
 
 	@Autowired
 	private PasswordGenerator passwordGenerator;
+
+	@Autowired
+	private FollowHelper followHelper;
+
+	@Value("#{config['common.user.paintee.id'] }")
+	private String painteeUserId;
 
 	/**
 	 @fn 
@@ -164,6 +172,13 @@ public class SignUpServiceImpl implements SignUpService {
 
 			resultMap.put("hash", login.getHash());
 		}
+
+		//paintee follow
+		Follow follow = new Follow();
+		follow.setFollowing(newUserId);
+		follow.setUserId(painteeUserId);
+
+		followHelper.insertSelective(follow);
 
 		resultMap.put("errorNo", 0);
 		resultMap.put("email", user.getEmail());

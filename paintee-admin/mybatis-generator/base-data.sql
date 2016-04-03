@@ -1,0 +1,2 @@
+insert into `TB_USER`(`user_id`, `language`, `provider_id`, `password`,`email`, `name`,`user_status`,`created_date`) values 
+('00000000-0000-0000-0000-000000000000','ko','PAINTEE','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','paintee.service@gmail.com','paintee','N', now());
