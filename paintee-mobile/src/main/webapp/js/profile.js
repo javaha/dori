@@ -14,7 +14,14 @@ ProfileController.prototype = {
 
 			if(userInfo.providerId != "PAINTEE") {
 				$('#profileUserPassword').attr('disabled', true);
+				$('#profileUserPassword').addClass('input_disable');
 				$('#profileConfirmPassord').attr('disabled', true);
+				$('#profileConfirmPassord').addClass('input_disable');
+			} else {
+				$('#profileUserPassword').attr('disabled', false);
+				$('#profileUserPassword').removeClass('input_disable');
+				$('#profileConfirmPassord').attr('disabled', false);
+				$('#profileConfirmPassord').removeClass('input_disable');
 			}
 
 			$('#profileUserName').val(userInfo.name);

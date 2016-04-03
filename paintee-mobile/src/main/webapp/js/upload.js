@@ -211,7 +211,7 @@ function successUpload() {
 
 		previewReader.addEventListener("load", function () {
 //			$('.painting_preview').append('<img src="'+ previewReader.result +'" width="120px" height="150px"/>');
-			$('#upload_popup_box').css('backgroundImage', 'url('+previewReader.result+')').css('background-size', '100% 100%').css('background-color', 'rgba(255, 255, 255, 0.5)');
+			$('#upload_popup_box').css('backgroundImage', 'url('+previewReader.result+')').css('background-size', '100% 100%');
 		}, false);
 
 		previewReader.readAsDataURL(previewFile);

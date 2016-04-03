@@ -138,6 +138,12 @@ public class PaintingServiceImpl implements PaintingService {
 		resultMap.put("paintingId", painting.getPaintingId());
 		resultMap.put("fileId", fileInfo.getId());
 
+		User updateUploadCount = new User();
+		updateUploadCount.setUserId(loginedUserVO.getUserId());
+		updateUploadCount.setUploadCnt(user.getUploadCnt()+1);
+
+		userHelper.updateByPrimaryKeySelective(updateUploadCount);
+
 		return resultMap;
 	}
 	

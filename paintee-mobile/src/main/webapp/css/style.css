@@ -1755,3 +1755,7 @@ screen and (-o-min-device-pixel-ratio: 2.5) {
         font-size: 25px;
     }
 }
+
+.input_disable{
+    background-color: rgb(190,190,190);
+}
