@@ -145,7 +145,7 @@ public class FileController {
 //		out.flush();
 //	}
 
-	@RequestMapping(value="/file/view/{fileType}/{fileId}")
+	@RequestMapping(value={"/file/view/{fileType}/{fileId}", "/file/view/{fileType}/{fileId}.png"})
 	public ResponseEntity<byte[]> view(@PathVariable Integer fileType, @PathVariable String fileId, HttpServletResponse response) throws Exception {
 		if (fileId == null || fileId.trim().length() == 0) {
 			throw new Exception("File does not exist.");
@@ -179,6 +179,7 @@ public class FileController {
 
 		return new ResponseEntity<>(fileByte, httpHeaders, HttpStatus.CREATED);
 	}
+	
 //	public void view(@PathVariable Integer fileType, @PathVariable String fileId, HttpServletResponse response) throws Exception {
 //		if (fileId == null || fileId.trim().length() == 0) {
 //			throw new Exception("File does not exist.");
