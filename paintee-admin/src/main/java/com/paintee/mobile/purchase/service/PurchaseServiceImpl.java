@@ -176,7 +176,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		String paintingId = purchase.getPaintingId();
 		
 		// 회원의 그림을 이전에 구매했는지 카운트를 조회
-		// 구매상태가 요청-1/발송-2/환불요청-3/재발송요청-4/재발송처리-5/환불처리-6/삭제-7 
+		// 구매상태가 요청-1/발송-2/환불요청-3/재발송요청-4/재발송처리-5/환불처리-6/삭제-7/완료-99 
 		List<String> statusList = new ArrayList<>();
 		statusList.add("1");
 		statusList.add("2");

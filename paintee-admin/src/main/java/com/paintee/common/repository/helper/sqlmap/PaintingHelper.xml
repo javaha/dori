@@ -18,8 +18,7 @@
 		       (select name from TB_USER where user_id = a.artist_id) artist_name
 		  from (select <include refid="com.paintee.common.repository.mapper.PaintingMapper.Base_Column_List" />
 				  from TB_PAINTING
-				 order by upload_date desc 
-				 limit #{startRow}, #{rowPerPage}) a
+				 order by upload_date desc) a
   	</select>
 
   	<select id="selectPaintingUpdateListCount" resultType="int">

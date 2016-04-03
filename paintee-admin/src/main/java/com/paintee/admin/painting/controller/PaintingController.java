@@ -63,18 +63,11 @@ public class PaintingController {
 	 @return 
 	*/
 	@RequestMapping(value="/list", method={RequestMethod.GET})
-	public void list(@RequestParam(name="pageNo", required=false, defaultValue="1") Integer pageNo, Model model) {
+	public void list(Model model) {
 		// 데이터 조건 설정
-		PaintingSearchVO search = new PaintingSearchVO();
-		search.setStartRow((pageNo - 1) * 5);
-		search.setRowPerPage(10);
-		Map<String, Object> result = paintingService.getPatingList(search);
-		
-		// 화면 페이징 처리
-		PageVO pageVO = new PageVO(
-				"/admin/painting/list", pageNo, 
-				(int)result.get("count"), (List<Object>)result.get("list"));
-		model.addAttribute(pageVO);
+		Map<String, Object> result = paintingService.getPatingList();
+		model.addAttribute("list", result.get("list"));
+		model.addAttribute("count", result.get("count"));
 	}
 	
 	

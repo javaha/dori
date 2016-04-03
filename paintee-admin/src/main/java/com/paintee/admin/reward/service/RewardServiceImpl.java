@@ -56,12 +56,12 @@ public class RewardServiceImpl implements RewardService {
 	private UserHelper userHelper;
 	
 	@Override
-	public Map<String, Object> getRewardList(RewardSearchVO search) {
+	public Map<String, Object> getRewardList() {
 		
-		List<RewardResultVO> list = rewardHelper.selectRewardList(search);
+		List<RewardResultVO> list = rewardHelper.selectRewardList();
 		logger.debug("list : " + list);
 		
-		int count = rewardHelper.selectRewardListCount(search);
+		int count = rewardHelper.selectRewardListCount();
 		logger.debug("전체 개수 : " + count);
 		
 		Map<String, Object> result = new HashMap<>();

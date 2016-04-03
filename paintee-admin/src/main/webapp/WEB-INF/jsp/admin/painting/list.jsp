@@ -21,21 +21,21 @@
 </script>
 <h1>New Upload</h1>
 <hr />
-<table class="table table-striped table-hover table-bordered" >
+<table class="table table-striped table-hover table-upload">
 	<thead>
 		<tr>
-			<th class="tcenter" width="160px">Artist Name</th>
+			<th class="tcenter">Artist Name</th>
 			<th>Sentence</th>
-			<th class="tcenter" width="80px">Posted</th>
-			<th class="tcenter" width="80px">Share</th>
-			<th class="tcenter" width="130px">Posted People</th>
-			<th class="tcenter" width="190px">Created Date</th>
-			<th class="tcenter" width="180px">status</th>
+			<th class="tcenter">Posted</th>
+			<th class="tcenter">Share</th>
+			<th class="tcenter">Posted People</th>
+			<th class="tcenter">Created Date</th>
+			<th class="tcenter">status</th>
 		</tr>
 	</thead>
 	<tbody>
 	<%--  최신 등록된 글부터 출력합니다. --%>
-	<c:forEach var="data" items="${pageVO.list}" varStatus="loop">
+	<c:forEach var="data" items="${list}" varStatus="loop">
 		<tr>
 			<td class="tcenter">
 				<input type="hidden" id="artistId${data.seq}" value="${data.artistId}" />
@@ -66,16 +66,13 @@
 		</tr>
 	</c:forEach>
 	<%--  만약, 게시글이 하나도 등록되어 있지 않다면 --%>
-	<c:if test="${empty pageVO.list}">
+	<c:if test="${empty list}">
 		<tr>
 			<td colspan='7'>No Content</td>
 		</tr>
 	</c:if>
 	</tbody>
 </table>
-
-<%-- 페이징 처리 --%>
-<navi:page />
 
 <script>
 	$("[name=paintingSel]").change(function (event) {

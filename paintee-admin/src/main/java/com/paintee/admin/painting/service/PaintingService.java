@@ -45,7 +45,7 @@ public interface PaintingService {
 	 @return
 	 @throws Exception 
 	*/
-	public Map<String, Object> getPatingList(PaintingSearchVO search);
+	public Map<String, Object> getPatingList();
 
 	/**
 	 @fn modPaintingStatus

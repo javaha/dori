@@ -65,7 +65,7 @@ public interface PaintingHelper extends PaintingMapper {
 	 @param search
 	 @return 
 	 */
-	public List<PaintingVO> selectPaintingUpdateList(PaintingSearchVO search);
+	public List<PaintingVO> selectPaintingUpdateList();
 	
 	/**
 	 @fn selectPaintingUpdateList
@@ -75,7 +75,7 @@ public interface PaintingHelper extends PaintingMapper {
 	 @param search
 	 @return 
 	 */
-	public Integer selectPaintingUpdateListCount(PaintingSearchVO search);
+	public Integer selectPaintingUpdateListCount();
 	
 	/**
 	 @fn sumPostedNum

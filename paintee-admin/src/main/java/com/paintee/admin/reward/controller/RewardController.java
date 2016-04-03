@@ -57,29 +57,16 @@ public class RewardController {
 	
 	/**
 	 @fn test
-	 @brief 함수 간략한 설명 : test view 화면
+	 @brief 함수 간략한 설명 : 
 	 @remark
-	 - 함수의 상세 설명 : test view 화면
+	 - 함수의 상세 설명 : 
 	 @return 
 	*/
 	@RequestMapping(value="/list", method={RequestMethod.GET})
-	public void list(@RequestParam(name="pageNo", required=false, defaultValue="1") Integer pageNo, Model model) {
-		// 데이터 조건 설정
-		RewardSearchVO search = new RewardSearchVO();
-		search.setStartRow((pageNo - 1) * 5);
-		search.setRowPerPage(10);
-		// 목록에 조회할 상태
-		List<String> rewardStatus = new ArrayList<>();
-		rewardStatus.add("R");  // 요청
-		search.setRewardStatus(rewardStatus);
-		
-		Map<String, Object> result = rewardService.getRewardList(search);
-		
-		// 화면 페이징 처리
-		PageVO pageVO = new PageVO(
-				"/admin/reward/list", pageNo, 
-				(int)result.get("count"), (List<Object>)result.get("list"));
-		model.addAttribute(pageVO);
+	public void list(Model model) {
+		Map<String, Object> result = rewardService.getRewardList();
+		model.addAttribute("list", result.get("list"));
+		model.addAttribute("count", result.get("count"));
 	}
 	
 	/**
@@ -94,41 +81,8 @@ public class RewardController {
 	public Map<String, Object> modReward(Reward reward) {
 		rewardService.modRewardStatus(reward);
 		
-		int money = reward.getEarmRequestedCommission() + reward.getEarmRequestedMoney();
-		System.out.println("money ::: " + money);
-		
 		Map<String, Object> result = new HashMap<>();
 		result.put("msg", "상태가 변경되었습니다.");
 		return result;
 	}
-	/*
-	@RequestMapping(value="/mod", method={RequestMethod.POST})
-	public String modReward(@RequestParam(name="pageNo", required=false, defaultValue="1") Integer pageNo, 
-			Reward reward, RedirectAttributes model) {
-		System.out.println("reward ::: " + reward);
-		rewardService.modRewardStatus(reward);
-		
-		model.addFlashAttribute("msg", "상태가 변경되었습니다.");
-		return "redirect:/admin/reward/list";
-	}
-	*/
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -46,7 +46,7 @@ public interface RewardService {
 	 @return
 	 @throws Exception 
 	*/
-	public Map<String, Object> getRewardList(RewardSearchVO search);
+	public Map<String, Object> getRewardList();
 
 	public void modRewardStatus(Reward reward);
 }

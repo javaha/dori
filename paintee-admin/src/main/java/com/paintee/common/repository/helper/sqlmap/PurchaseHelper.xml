@@ -37,8 +37,7 @@
 		       (select name from TB_USER where user_id = a.user_id) user_name
 		  from (select <include refid="com.paintee.common.repository.mapper.PurchaseMapper.Base_Column_List" />
 				  <include refid="purchaseFromWhere" />
-				 order by purchase_date desc 
-				 limit #{startRow}, #{rowPerPage}) a
+				 order by purchase_date desc) a
   	</select>
 
   	<select id="selectPurchaseListCount" resultType="int">

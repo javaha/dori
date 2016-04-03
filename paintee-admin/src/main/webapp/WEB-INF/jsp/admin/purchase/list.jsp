@@ -7,7 +7,7 @@
 		// 요청일 경우  발송, 환불요청, 삭제만 가능함
 		case "1":  
 			switch (item.value) {
-			case "4": case "5": case "6": 
+			case "4": case "5": case "6": case "99": 
 				$(item).remove();
 				break;
 			}
@@ -15,7 +15,7 @@
 		// 발송일 경우 재발송처리, 삭제만 가능함	
 		case "2":  
 			switch (item.value) {
-			case "1": case "3": case "4": case "6": 
+			case "1": case "3": case "4": case "6": case "99": 
 				$(item).remove();
 				break;
 			}
@@ -23,7 +23,7 @@
 		// 환불요청일 경우 환불처리, 삭제만 가능함	
 		case "3":  
 			switch (item.value) {
-			case "1": case "2": case "4": case "5": 
+			case "1": case "2": case "4": case "5": case "99": 
 				$(item).remove();
 				break;
 			}
@@ -31,7 +31,7 @@
 		// 재발송 요청일 경우 재발송 처리, 삭제만 가능함	
 		case "4":  
 			switch (item.value) {
-			case "1": case "2": case "3": case "6": 
+			case "1": case "2": case "3": case "6": case "99": 
 				$(item).remove();
 				break;
 			}
@@ -39,7 +39,15 @@
 		// 재발송 처리일 경우 삭제만 가능함	
 		case "5":  
 			switch (item.value) {
-			case "1": case "2": case "3": case "4":  case "6":
+			case "1": case "2": case "3": case "4":  case "6": case "99":
+				$(item).remove();
+				break;
+			}
+			break;
+		// 완료일 경우	
+		case "99":  
+			switch (item.value) {
+			case "1": case "2": case "3": case "4":  case "5": case "6": case "7":
 				$(item).remove();
 				break;
 			}
@@ -49,21 +57,25 @@
 </script>
 <h1>New Purchase</h1>
 <hr />
-<table class="table table-striped table-hover table-bordered" >
+<table class="table table-striped table-hover table-purchase">
 	<thead>
 		<tr>
-			<th class="tcenter" width="130px">구매자</th>
-			<th class="tcenter" width="130px">보내는사람</th>
-			<th class="tcenter" width="130px">받는사람</th>
-			<th>주소</th>
-			<th class="tcenter" width="80px">도시</th>
-			<th class="tcenter" width="190px">구매일</th>
-			<th class="tcenter" width="180px">상태</th>
+			<th class="tcenter">구매자</th>
+			<th class="tcenter">보내는사람</th>
+			<th class="tcenter">받는사람</th>
+			<th class="tcenter">도시</th>
+			<th class="tcenter">구매일</th>
+			<th class="tcenter">다운로드</th>
+			<th class="tcenter">상태</th>
+		</tr>
+		<tr>
+			<th colspan="3">한마디</th>
+			<th colspan="4">주소</th>
 		</tr>
 	</thead>
 	<tbody>
 	<%--  최신 등록된 글부터 출력합니다. --%>
-	<c:forEach var="data" items="${pageVO.list}">
+	<c:forEach var="data" items="${list}">
 		<tr>
 			<td class="tcenter">
 				<input type="hidden" id="purchaseStatus${data.seq}" value="${data.purchaseStatus}" />
@@ -73,11 +85,11 @@
 			</td>
  			<td class="tcenter">${data.senderName}</td> 
 			<td class="tcenter">${data.receiverName}</td>
-			<td>(${data.receiverZipcode})${data.receiverBasicAddr} ${data.receiverDetailAddr}</td>
 			<td class="tcenter">${data.receiverCity}</td>
 			<td class="tcenter">
 				<fmt:formatDate value="${data.purchaseDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 			</td>
+			<td class="tcenter"><a href="/cmm/file/download/${data.fileInfo.id}">다운</a></td>
 			<td class="tcenter">
 				<select id="purchaseSel${data.seq}" name="purchaseSel">
 				<c:forEach var="status" items="${statusList}">
@@ -93,18 +105,19 @@
 				</script>
 			</td>
 		</tr>
+		<tr>
+			<td colspan="3">${data.sentence}</td>
+			<td colspan="4">(${data.receiverZipcode})${data.receiverBasicAddr} ${data.receiverDetailAddr}</td>
+		</tr>
 	</c:forEach>
 	<%--  만약, 게시글이 하나도 등록되어 있지 않다면 --%>
-	<c:if test="${empty pageVO.list}">
+	<c:if test="${empty list}">
 		<tr>
 			<td colspan='7'>No Content</td>
 		</tr>
 	</c:if>
 	</tbody>
 </table>
-
-<%-- 페이징 처리 --%>
-<navi:page />
 
 <form name="purchaseForm" method="post" action="${pageContext.request.contextPath}/admin/purchase/mod">
 	<input type="hidden" name="seq" />

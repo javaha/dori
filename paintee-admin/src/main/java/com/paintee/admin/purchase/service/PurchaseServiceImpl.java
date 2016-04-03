@@ -27,6 +27,8 @@ import org.springframework.stereotype.Service;
 
 import com.paintee.common.repository.entity.Code;
 import com.paintee.common.repository.entity.CodeExample;
+import com.paintee.common.repository.entity.FileInfo;
+import com.paintee.common.repository.entity.FileInfoExample;
 import com.paintee.common.repository.entity.Painting;
 import com.paintee.common.repository.entity.Purchase;
 import com.paintee.common.repository.entity.PurchaseExample;
@@ -34,6 +36,7 @@ import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.PaintingVO;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 import com.paintee.common.repository.entity.vo.PurchaseVO;
+import com.paintee.common.repository.helper.FileInfoHelper;
 import com.paintee.common.repository.helper.PaintingHelper;
 import com.paintee.common.repository.helper.PurchaseHelper;
 import com.paintee.common.repository.helper.UserHelper;
@@ -70,6 +73,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Autowired
 	private PaintingHelper paintingHelper;
 	
+	@Autowired
+	private FileInfoHelper fileInfoHelper;	
 	
 	@Override
 	public Map<String, Object> getPurchaseList(PurchaseSearchVO search) {
@@ -79,6 +84,22 @@ public class PurchaseServiceImpl implements PurchaseService {
 		
 		int count = purchaseHelper.selectPurchaseListCount(search);
 		logger.debug("전체 개수 : " + count);
+		
+		// 파일을 다운받기 위해서 파일정보 조회
+		for (PurchaseVO purchase : list) {
+			PaintingVO painting =  paintingHelper.selectPaintingInfo(purchase.getPaintingId());
+			
+			FileInfoExample fileInfoExample = new FileInfoExample();
+			FileInfoExample.Criteria fileWhere = fileInfoExample.createCriteria();
+			fileWhere.andFileGroupSeqEqualTo(painting.getFileGroupSeq());
+	
+			List<FileInfo> fileInfoList = fileInfoHelper.selectByExample(fileInfoExample);
+	
+			if(fileInfoList != null && fileInfoList.size() > 0) {
+				FileInfo fileInfo = fileInfoList.get(0);
+				purchase.setFileInfo(fileInfo);
+			}
+		}
 		
 		// 은행 목록 조회
 		CodeExample example = new CodeExample();

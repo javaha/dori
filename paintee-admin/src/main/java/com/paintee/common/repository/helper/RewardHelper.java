@@ -57,7 +57,7 @@ public interface RewardHelper extends RewardMapper {
 	 @param rewardSearchVO
 	 @return 
 	 */
-	public List<RewardResultVO> selectRewardList(RewardSearchVO rewardSearchVO);
+	public List<RewardResultVO> selectRewardList();
 
 	/**
 	 @fn selectPurchaseListCount
@@ -67,7 +67,7 @@ public interface RewardHelper extends RewardMapper {
 	 @param rewardSearchVO
 	 @return 
 	*/
-	public Integer selectRewardListCount(RewardSearchVO rewardSearchVO);
+	public Integer selectRewardListCount();
 	
 	/**
 	 @fn selectRewardHistoryList

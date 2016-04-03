@@ -15,7 +15,6 @@
 package com.paintee.admin.purchase.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,12 +23,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.paintee.admin.purchase.service.PurchaseService;
-import com.paintee.common.paging.PageVO;
 import com.paintee.common.repository.entity.Purchase;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 
@@ -63,32 +59,27 @@ public class PurchaseController {
 	 @return 
 	*/
 	@RequestMapping(value="/list", method={RequestMethod.GET})
-	public void list(@RequestParam(name="pageNo", required=false, defaultValue="1") Integer pageNo, Model model) {
+	public void list(Model model) {
 		// 데이터 조건 설정
 		PurchaseSearchVO search = new PurchaseSearchVO();
-		search.setStartRow((pageNo - 1) * 5);
-		search.setRowPerPage(10);
 		
 		// 목록에 조회할 상태
+		// 구매상태가 요청-1/발송-2/환불요청-3/재발송요청-4/재발송처리-5/환불처리-6/삭제-7/완료-99
 		List<String> purchaseStatus = new ArrayList<>();
-		purchaseStatus.add("1");  // 환불처리
-		purchaseStatus.add("2");  // 삭제
-		purchaseStatus.add("3");  // 삭제
-		purchaseStatus.add("4");  // 삭제
-		purchaseStatus.add("5");  // 삭제
+		purchaseStatus.add("1"); 
+		purchaseStatus.add("2"); 
+		purchaseStatus.add("3"); 
+		purchaseStatus.add("4"); 
+		purchaseStatus.add("5"); 
+		purchaseStatus.add("99");
 		search.setStatusList(purchaseStatus);
-		
 		
 		Map<String, Object> result = purchaseService.getPurchaseList(search);
 		
-		// 화면 페이징 처리
-		PageVO pageVO = new PageVO(
-				"/admin/purchase/list", pageNo, 
-				(int)result.get("count"), (List<Object>)result.get("list"));
-		model.addAttribute(pageVO);
+		model.addAttribute("list", result.get("list"));
+		model.addAttribute("count", result.get("count"));
 		model.addAttribute("statusList", result.get("statusList"));
 	}
-	
 	
 	/**
 	 @fn modPurchase
@@ -98,8 +89,7 @@ public class PurchaseController {
 	 @return 
 	 */
 	@RequestMapping(value="/mod", method={RequestMethod.POST})
-	public String modReward(@RequestParam(name="pageNo", required=false, defaultValue="1") Integer pageNo, 
-			Purchase purchase, RedirectAttributes model) {
+	public String modReward(Purchase purchase, RedirectAttributes model) {
 		System.out.println("purchase ::: " + purchase);
 		purchaseService.modPurchaseStatus(purchase);
 		model.addFlashAttribute("msg", "상태가 변경되었습니다.");

@@ -2,22 +2,22 @@
 <%@ include file="/WEB-INF/jsp/template/header.jsp" %>
 <h1>New Reward</h1>
 <hr />
-<table class="table table-striped table-hover table-bordered" >
+<table class="table table-striped table-hover table-reward">
 	<thead>
 		<tr>
-			<th class="tcenter" width="130px">요청자</th>
-			<th class="tcenter" width="130px">은행</th>
+			<th class="tcenter">요청자</th>
+			<th class="tcenter">은행</th>
 			<th class="tcenter">계좌번호</th>
-			<th class="tcenter" width="130px">계좌주명</th>
-			<th class="tcenter" width="110px">요청수수료</th>
-			<th class="tcenter" width="110px">요청금액</th>
-			<th class="tcenter" width="190px">요청일시</th>
-			<th class="tcenter" width="180px">상태</th>
+			<th class="tcenter">계좌주명</th>
+			<th class="tcenter">요청수수료</th>
+			<th class="tcenter">요청금액</th>
+			<th class="tcenter">요청일시</th>
+			<th class="tcenter">상태</th>
 		</tr>
 	</thead>
 	<tbody>
 	<%--  최신 등록된 글부터 출력합니다. --%>
-	<c:forEach var="data" items="${pageVO.list}">
+	<c:forEach var="data" items="${list}">
 		<tr>
 			<td class="tcenter">
 				<input type="hidden" id="userId${data.seq}" value="${data.userId}" />
@@ -48,16 +48,13 @@
 		</tr>
 	</c:forEach>
 	<%--  만약, 게시글이 하나도 등록되어 있지 않다면 --%>
-	<c:if test="${empty pageVO.list}">
+	<c:if test="${empty list}">
 		<tr>
 			<td colspan='8'>No Content</td>
 		</tr>
 	</c:if>
 	</tbody>
 </table>
-
-<%-- 페이징 처리 --%>
-<navi:page />
 
 <script>
 	$("[name=rewardStatus]").change(function (event) {

@@ -62,12 +62,12 @@ public class PaintingServiceImpl implements PaintingService {
 	private FileInfoHelper fileInfoHelper;
 	
 	@Override
-	public Map<String, Object> getPatingList(PaintingSearchVO search) {
+	public Map<String, Object> getPatingList() {
 		
-		List<PaintingVO> list = paintingHelper.selectPaintingUpdateList(search);
+		List<PaintingVO> list = paintingHelper.selectPaintingUpdateList();
 		logger.debug("list : " + list);
 		
-		int count = paintingHelper.selectPaintingUpdateListCount(search);
+		int count = paintingHelper.selectPaintingUpdateListCount();
 		logger.debug("전체 개수 : " + count);
 		
 		// 파일정보 조회
