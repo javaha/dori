@@ -14,6 +14,8 @@
 */
 package com.paintee.mobile.posted.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +51,14 @@ public class PostedRestController {
 
 		// 데이터 조건 설정
 		postedSearchVO.setPrivateAt("N");
-		postedSearchVO.setPurchaseStatus("2");
+		List<String> purchaseStatusList = new ArrayList<>();
+		purchaseStatusList.add("1");
+		purchaseStatusList.add("2");
+		purchaseStatusList.add("4");
+		purchaseStatusList.add("5");
+		purchaseStatusList.add("99");
+
+		postedSearchVO.setPurchaseStatusList(purchaseStatusList);
 
 		Map<String, Object> result = postedService.getPostedData(postedSearchVO);
 

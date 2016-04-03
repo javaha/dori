@@ -306,7 +306,6 @@ public class FileInfoGenerator {
 			awsS3Helper.putObject(bucketName, awsPath.toString(), thumbnailFile2);
 		} catch (IOException e) {
 			logger.error("exception [{}]", e);
-
 			throw e;
 		} finally {
 			if(originalFile != null) {

@@ -58,7 +58,7 @@ public interface UserHelper extends UserMapper {
 	public void updateUserEarnTotalMoney(User user);
 
 	/**
-	 @fn updateUserEarnRewordMoney
+	 @fn updateUserEarnRewardMoney
 	 @brief 함수 간략한 설명 : 구매시의 리워드 금액 증가
 	 @remark
 	 - 함수의 상세 설명 : 

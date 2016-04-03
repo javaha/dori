@@ -69,7 +69,7 @@ public class PostedServiceImpl implements PostedService {
 
 		PurchaseExample example = new PurchaseExample();
 		PurchaseExample.Criteria where =  example.createCriteria();
-		where.andPurchaseStatusEqualTo(searchVO.getPurchaseStatus());
+		where.andPurchaseStatusIn(searchVO.getPurchaseStatusList());
 		where.andPrivateAtEqualTo(searchVO.getPrivateAt());
 
 		int count = purchaseHelper.countByExample(example);

@@ -14,6 +14,8 @@
 */
 package com.paintee.common.repository.entity.vo;
 
+import java.util.List;
+
 /**
 @class PostedSearchVO
 com.paintee.common.repository.entity.vo \n
@@ -34,6 +36,7 @@ public class PostedSearchVO extends PagingVO {
 
 	private String privateAt;
 	private String purchaseStatus;
+	private List<String> purchaseStatusList;
 	private String paintingId;
 
 	public String getPrivateAt() {
@@ -58,5 +61,13 @@ public class PostedSearchVO extends PagingVO {
 
 	public void setPaintingId(String paintingId) {
 		this.paintingId = paintingId;
+	}
+
+	public List<String> getPurchaseStatusList() {
+		return purchaseStatusList;
+	}
+
+	public void setPurchaseStatusList(List<String> purchaseStatusList) {
+		this.purchaseStatusList = purchaseStatusList;
 	}
 }
