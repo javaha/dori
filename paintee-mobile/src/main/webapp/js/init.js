@@ -162,6 +162,7 @@ function Structure(data) {
         this.listStatusBtn      =$("<div>").addClass("list_status_btn");                 
         this.listStatusStc      =$("<div>").addClass("list_status_sentence");            
         this.listCancelBtn      =$("<div>").addClass("list_cancel_btn").html("Cancel");  
+        this.listRefundBtn      =$("<div>").addClass("list_refund_btn").html("Cancel Refund");  
         this.listResendBtn      =$("<div>").addClass("list_resend_btn").html("Resend");  
         this.listConfirmBtn     =$("<div>").addClass("list_confirm_btn").html("Confirm"); 
 }
@@ -218,17 +219,24 @@ Structure.prototype = {
                                 if(listData.paintingStatus == "1"){                                                        
                                     this.listStatusBtn.addClass("list_status_preparing")
                                                       .html("preparing")
+                                                      .attr("id", "exeBtn" + listData.seq)
                                                       .click(function(){
                                                     	  		showCancel(this, listData);
-                                                    	 	}
-                                                      );
+                                                      });
                                 } else if(listData.paintingStatus == "2"){                                                     
                                     this.listStatusBtn.addClass("list_status_sended")
                                                       .html("sended")
-                                                      .attr("id", "sendedBtn" + listData.seq)
+                                                      .attr("id", "exeBtn" + listData.seq)
                                                       .click(function(){
 						                                  showResend(this, listData);
 						                              });
+                                } else if(listData.paintingStatus == "3"){                                                     
+                                    this.listStatusBtn.addClass("list_status_refund")
+					                                  .html("refund")
+					                                  .attr("id", "exeBtn" + listData.seq)
+					                                  .click(function(){
+							                              showRefund(this, listData);
+							                          });
                                 } else if(listData.paintingStatus == "99"){                                                       
                                     this.listStatusBtn.addClass("list_status_done")
                                     				  .html("delete")
@@ -260,10 +268,12 @@ Structure.prototype = {
                                 	switch(listData.paintingStatus) {
                                 	case "1":
                                 	case "2":
+                                	case "3":
                                 	case "99":
                                 	case "N":
                                 		this.container.append(this.listStatusBtn);  
                                 		this.container.append(this.listCancelBtn);  
+                                		this.container.append(this.listRefundBtn);  
                                 		this.container.append(this.listResendBtn);  
                                 		this.container.append(this.listConfirmBtn); 
                                 		this.container.append(this.listStatusStc);
@@ -313,6 +323,7 @@ function addPainting(swiper, currentIndex, type, listData){
 function showCancel(clicked, listData){
     $(clicked).parent().find(".list_cancel_btn").fadeIn().one("click", function () { 
    		new PurchaseController().cancelPurchase(listData); 
+   		hideCancel(this);
     });
     $(clicked).parent().find(".list_status_sentence").empty().html("<span data-i18n='[html]my.cancelStatusPurchase'></span>").fadeIn().click(function(){hideCancel(this)});
     setTimeout(function(){hideCancel(clicked)}, 5000);
@@ -321,6 +332,20 @@ function showCancel(clicked, listData){
 function hideCancel(clicked){
     $(clicked).parent().find(".list_cancel_btn").fadeOut();
     $(clicked).parent().find(".list_status_sentence").fadeOut();
+}
+
+function showRefund(clicked, listData){
+	$(clicked).parent().find(".list_refund_btn").fadeIn().one("click", function () { 
+		new PurchaseController().cancelRefundPurchase(listData); 
+		hideRefund(this);
+	});
+	$(clicked).parent().find(".list_status_sentence").empty().html("<span data-i18n='[html]my.refundStatusPurchase'></span>").fadeIn().click(function(){hideRefund(this)});
+	setTimeout(function(){hideRefund(clicked)}, 5000);
+	exeTranslation('.main_container', lang);
+}
+function hideRefund(clicked){
+	$(clicked).parent().find(".list_refund_btn").fadeOut();
+	$(clicked).parent().find(".list_status_sentence").fadeOut();
 }
 function showResend(clicked, listData){
     $(clicked).parent().find(".list_resend_btn").fadeIn().one("click", function () { 

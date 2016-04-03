@@ -160,7 +160,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	 @brief (Override method) 함수 간략한 설명 :
 	 @remark
 	 - 오버라이드 함수의 상세 설명 : 
-	   1. 구매테이블에 데이터를 삭제한다.
+	   1. 구매테이블에 데이터의 상태를 환불요청으로 변경한다.
 	   2. 회원 테이블 정보 업데이트 
 	      - 구매자의 구매카운트(post_cnt) 1 감소
 	   3. 그림 테이블 정보 업데이트 
@@ -209,8 +209,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 		user.setPostCnt(-1);
 		userHelper.updateUserInfo(user);
 		
-		// 구매정보 삭제
-		purchaseHelper.deleteByPrimaryKey(purchase.getSeq());
+		// 구매상태를 환불 요청으로
+		purchase.setStatusUpdateDate(new Date());
+		purchaseHelper.updateByPrimaryKeySelective(purchase);
 		
 		Map<String, Object> result = new HashMap<>();
 		// 에러정보

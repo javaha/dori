@@ -381,6 +381,7 @@ PurchaseController.prototype = {
 		var data = {
 			seq: listData.seq,
 			userId: listData.artistId,
+			purchaseStatus: "3", // 환불 요청
 			paintingId: listData.paintingId
 		};
 		
@@ -388,12 +389,19 @@ PurchaseController.prototype = {
 			data, 
 			"POST", 
 			function (result) {
-				controller.cancelPurchaseRes(result);			
+				controller.cancelPurchaseRes(result, listData);			
 			}
 		);
 	},
-	cancelPurchaseRes: function (result) {
-		dataReload(["initMy();"]);
+	cancelPurchaseRes: function (result, listData) {
+		$("#exeBtn" + listData.seq).off("click");
+		$("#exeBtn" + listData.seq).removeClass("list_status_preparing")
+				                   .addClass("list_status_refund")
+				                   .html("refund")
+				                   .click(function () {
+				                	   showRefund(this, listData);
+					       		   }); 
+		alert($.i18n.t('alert.purchase.processCancel'));
 	},
 	resendPurchase: function (listData) {
 		var controller = this;
@@ -410,8 +418,31 @@ PurchaseController.prototype = {
 				});
 	},
 	resendPurchaseRes: function (result, seq) {
-		$("#sendedBtn" + seq).remove();
+		$("#exeBtn" + seq).remove();
 		alert($.i18n.t('alert.purchase.processResend'));
+	},
+	cancelRefundPurchase: function (listData) {
+		var controller = this;
+		var data = {
+				seq: listData.seq,
+				purchaseStatus: "1" // 요청
+		};
+		AjaxCall.call(apiUrl + "/cancelRefundPurchase", 
+				data, 
+				"POST", 
+				function (result) {
+			controller.cancelRefundPurchaseRes(result, listData);			
+		});
+	},
+	cancelRefundPurchaseRes: function (result, listData) {
+		$("#exeBtn" + listData.seq).off("click");
+		$("#exeBtn" + listData.seq).removeClass("list_status_refund")
+				                   .addClass("list_status_preparing")
+				                   .html("preparing")
+				                   .click(function () {
+				                	   showCancel(this, listData);
+					       		   }); 
+		alert($.i18n.t('alert.purchase.processCancelRefund'));
 	},
 	completePurchase: function (listData) {
 		var controller = this;
@@ -428,8 +459,8 @@ PurchaseController.prototype = {
 		});
 	},
 	completePurchaseRes: function (result, listData) {
-		$("#sendedBtn" + listData.seq).off("click");
-		$("#sendedBtn" + listData.seq).removeClass("list_status_sended")
+		$("#exeBtn" + listData.seq).off("click");
+		$("#exeBtn" + listData.seq).removeClass("list_status_sended")
 				                      .addClass("list_status_done")
 				                      .html("delete")
 				                      .click(function () {
