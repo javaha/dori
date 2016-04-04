@@ -17,18 +17,18 @@ function postedInfoRes(result, status) {
 	if(result.errorNo == 0) {
 		var postedCount = parseInt(result.postedCount, 10);
 		var uploadedCount = parseInt(result.uploadedCount, 10);
-		var uploadCount = 1;
+		var doTotaluploadCount = 1;
 
 		if(postedCount >= baseUploadCount) {
-			uploadCount = Math.floor(postedCount/baseUploadCount) + 1;
+			doTotaluploadCount = Math.floor(postedCount/baseUploadCount) + 1;
 		}
 
-		doUploadCount = uploadCount - uploadedCount;
+		doUploadCount = doTotaluploadCount - uploadedCount;
 
 		boxStatus = "upload"
 		$(".upload_container").show();
 
-		initUpload(postedCount, uploadCount);
+		initUpload(postedCount, doTotaluploadCount, uploadedCount);
 		setBox();
 		
 		replaceHistory({"call": "uploadPop"});
@@ -125,11 +125,19 @@ function createPainting() {
 		formData.append("privateAt", 'N');
 	}
 
+	/* 4.3 수정 */
+	$("#successUploadDoneBtn").html("<div class='purchase_btn_text'>processing </div><img src='spinner.png' class='spinner'>");
+	$(".stopper").show();
+
 	AjaxCall.callMultipart(apiUrl+"/painting", formData, createPaintingRes);
 }
 function createPaintingRes(result, status) {
 	if(result.errorNo == 0) {
 		dataReload(["initMy();", "initFollow();", "initNew();"]);
+
+		//4.4 수정
+		$(".stopper").hide();
+
 		selectMenu(3);
 		$(".popup_container").hide();
 		$(".upload_box").empty();
@@ -156,17 +164,22 @@ function resetUpload() {
 		}
 	});
 }
-function initUpload(postedCount, uploadCount){
+function initUpload(postedCount, doTotaluploadCount, uploadedCount){
     $(".upload_box").empty();
     var upload = new Upload();
     upload.setTitle("Upload Painting");
 //    upload.setContents("당신의 그림이 Post될 때 마다,<br>추가로 업로드할 수 있는 그림의 수가 늘어납니다.<br>지금까지 253회 Post된 당신은 최대 50개의 그림을 올릴 수 있고<br> 지금 <span class='reward_money'>7</span>개 의 그림을 더 올릴 수 있습니다.<br><br><br>업로드를 위해서는<br>가로 사이즈 <b>1080px</b> 세로 사이즈 <b>1440px</b><br>이상의 이미지가 필요합니다.");
-    upload.setContents("<span data-i18n='[html]uploadPop.content1'></span>"+postedCount+"<span data-i18n='[html]uploadPop.content2'></span>"+uploadCount+"<span data-i18n='[html]uploadPop.content3'></span><span class='reward_money'>"+doUploadCount+"</span><span data-i18n='[html]uploadPop.content4'></span>");
+    upload.setContents("<span data-i18n='[html]uploadPop.content1'></span>"+postedCount+"<span data-i18n='[html]uploadPop.content2'></span>"+doTotaluploadCount+"<span data-i18n='[html]uploadPop.content3'></span><span class='reward_money'>"+doUploadCount+"</span><span data-i18n='[html]uploadPop.content4'></span>");
     upload.setBottom("<div class='popup_btn upload_btn uploadFileBox'></div>");
     upload.buildUpload();
 
     if(doUploadCount > 0) {
         resetUpload();
+    }
+
+    console.log("uploadedCount:"+uploadedCount);
+    if(uploadedCount == 0) {
+    	showAboutUpload();
     }
 
     delete upload;
@@ -201,7 +214,7 @@ function successUpload() {
 
     uploadSuccess.setTitle("Upload Painting");
     uploadSuccess.setContents('<span data-i18n="[html]uploadPop.successContent"></span><br><div class="upload_sentence"><span class="character_counter"><span id="paintingSentenceCount">0</span>/200</span><textarea id="painting_sentence_text" name="painting_sentence_text" class="upload_sentence_textarea" length="200"></textarea><input id="painting_private" name="painting_private" type="checkbox"> private</div>');
-    uploadSuccess.setBottom("<div class='popup_cancle_btn upload_btn uploadFileBox'><i class='material-icons'>folder</i><label for='painteeFile' class='upload_btn_text'>Select image file </label></div><div class='popup_btn upload_btn'><div id='update_painting_sentence_btn' class='purchase_btn_text'>Done </div><i class='material-icons'>done</i></div>");
+    uploadSuccess.setBottom("<div id='successUploadDoneBtn'><div class='popup_cancle_btn upload_btn uploadFileBox'><i class='material-icons'>folder</i><label for='painteeFile' class='upload_btn_text'>Select image file </label></div><div class='popup_btn upload_btn'><div id='update_painting_sentence_btn' class='purchase_btn_text'>Done </div><i class='material-icons'>done</i></div></div>");
     uploadSuccess.buildUpload();
 
 	//미리보기 생성

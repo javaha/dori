@@ -75,7 +75,7 @@
             <div class="side_menu_margin"></div>
             <div class="side_menu_minor" id="menu_upload">upload</div>
             <div class="side_menu_minor" id="menu_reward">reward</div>
-            <div class="side_menu_minor">about</div>
+            <div class="side_menu_minor" id="menu_about">about</div>
             <div class="side_menu_minor">search</div>
             <div class="side_menu_btn"><i class="material-icons" style="font-size:24px">menu</i></div>
             <div class="side_menu_close"><i class="material-icons" style="font-size:24px">close</i></div>
@@ -419,11 +419,12 @@
             <div class="about_navi_tab tab_faq">FAQ</div>
             <div class="about_navi_tab tab_contact">Contact</div>
         </div>
-        <div class="about_guide">
-            <i class="material-icons">keyboard_arrow_up</i><br>
-            Swipe up to start
-        </div>
-        <div class="return_btn" style="z-index:50;"><i class="material-icons">close</i></div>
+		<!--	4.3 수정: about guide	-->
+		<div class="about_guide">
+			<i class="material-icons">keyboard_arrow_up</i><br>
+			Swipe up to start
+		</div>
+		<div class="return_btn" style="z-index:50;"><i class="material-icons">close</i></div>
     </div>
 
     <!--  해상도 관련  -->
@@ -431,12 +432,16 @@
 	<div id="media-648"></div>
 	<div id="media-1080"></div>
 
+	<!--  spinner 표출시 마우스 입력을 막는 div  -->
+	<div class="stopper"></div>
+
     <!--  Scripts-->
     <script src="/js/jquery/jquery-2.1.1.js"></script>
     <script src="/js/jquery/jquery-ui/jquery-ui.min.js"></script>
     <script src="/js/swiper.jquery.min.js"></script>
     <script src="/js/jquery.touchSwipe.min.js"></script>
 
+	<script src="/js/spinner.js"></script>
     <script src="/js/facebook.js"></script>
 	<script src="/js/common-ajax.js"></script>
 	<script src="/js/common.js"></script>
@@ -465,7 +470,7 @@
     <script src="/js/daumAddrApi.js"></script>
 	
 	<script src="/js/responsive.js"></script>
-	
+
 	<script>
 		$(function () {
 			exeTranslation('.about_container', lang);

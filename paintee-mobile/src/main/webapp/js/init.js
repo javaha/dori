@@ -1,8 +1,8 @@
 $(function () {
 	// 로그인 되어있지 않은 경우 about 페이지 띄우기
 	if(!userInfo) {
-		showAbout();
-	} 
+		showAboutOverview();
+	}
 });
 // 전역변수 설정
 var mainWidth;
@@ -74,10 +74,14 @@ function setSideMenu() {
 			}
 		);
 	}
+
+	// 사이드메뉴 about 링크
+	$('#menu_about').on('click', function() { showAbout(); });
 }
 
 
 var imageUrl="http://localhost:8090";
+//var imageUrl="http://192.168.43.89:8090";
 //var imageUrl="http://192.168.0.3:8090";
 //var imageUrl="http://www.paintee.com:8090";
 var apiUrl=imageUrl+"/api";
@@ -597,6 +601,8 @@ $(".popup_container").click(function(){
     popName = "";  // 다시 초기화
 });
 
+var openedAboutUploadPopup = false;
+
 function closePopup() {
 	console.log("boxStatus : " + boxStatus);
 	var isPopupOpened = false;
@@ -631,7 +637,7 @@ function closePopup() {
 			openPopupContainer.hide();
 		}
 		else if (divClass.indexOf('upload_container') > -1) {
-			if(boxStatus == "clickedCloseBtn") {
+			if(boxStatus == "clickedCloseBtn" && openedAboutUploadPopup == false) {
 				openPopupContainer.hide();
 				history.back();
 			}
@@ -641,6 +647,7 @@ function closePopup() {
 		}
 	}
 
+	openedAboutUploadPopup = false;
 	boxStatus = "";
 }
 
