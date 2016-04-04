@@ -2,6 +2,8 @@ var purchaseController;
 // 구매화면으로 이동
 function purchase(paintingId, artistName) {
 	
+	
+	
 	if (userID == "") {
 		showLogin();
 		return ;
@@ -336,7 +338,9 @@ PurchaseController.prototype = {
 		);		
 	},
 	purchasePopInfoRes: function (result) {
-		console.log("성공함");
+		if (result.count == 0) {
+			showAboutPost();
+		}
 		initPurchasePop(result);
 	},
 	addPurchase: function () {

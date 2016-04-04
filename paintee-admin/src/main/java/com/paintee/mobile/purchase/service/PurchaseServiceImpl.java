@@ -14,7 +14,6 @@
 */
 package com.paintee.mobile.purchase.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -151,8 +150,17 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public User purchasePopInfo(LoginedUserVO loginedUserVO) {
-		return userHelper.selectByPrimaryKey(loginedUserVO.getUserId());
+	public Map<String, Object> purchasePopInfo(LoginedUserVO loginedUserVO) {
+		PurchaseExample example = new PurchaseExample();
+		example.createCriteria().andUserIdEqualTo    (loginedUserVO.getUserId());
+		int count = purchaseHelper.countByExample(example);
+		User user = userHelper.selectByPrimaryKey(loginedUserVO.getUserId());
+		
+		Map<String, Object> result = new HashMap<>();
+		// 에러정보
+		result.put("count", count);
+		result.put("user", user);
+		return result;
 	}
 
 	/**

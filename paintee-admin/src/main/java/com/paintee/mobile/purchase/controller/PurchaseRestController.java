@@ -59,10 +59,7 @@ public class PurchaseRestController {
 	public Map<String, Object> purchasePopInfo(LoginedUserVO loginedUserVO) throws Exception {
 		
 		// 구매관련 정보 등록
-		User user = purchaseService.purchasePopInfo(loginedUserVO);
-		
-		Map<String, Object> result = new HashMap<>();
-		result.put("user", user);
+		Map<String, Object> result = purchaseService.purchasePopInfo(loginedUserVO);
 		return result;
 	}
 	

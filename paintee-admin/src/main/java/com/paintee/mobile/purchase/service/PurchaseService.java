@@ -47,8 +47,8 @@ public interface PurchaseService {
 	 @param loginedUserVO
 	 @return 
 	*/
-	public User purchasePopInfo(LoginedUserVO loginedUserVO);
-
+	public  Map<String, Object> purchasePopInfo(LoginedUserVO loginedUserVO);
+	
 	/**
 	 @fn addPurchase
 	 @brief 함수 간략한 설명 : 구매정보를 등록한다.
