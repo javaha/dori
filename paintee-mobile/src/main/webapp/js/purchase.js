@@ -2,8 +2,6 @@ var purchaseController;
 // 구매화면으로 이동
 function purchase(paintingId, artistName) {
 	
-	
-	
 	if (userID == "") {
 		showLogin();
 		return ;
@@ -311,11 +309,17 @@ function initPayment(){
     payment.buildPayment();
     $(".payment_btn").click(function(){
         purchaseController.addPurchase();
+        showPurchaseSpinner();
     })
     delete payment;
     
     // 다국어 처리
     exeTranslation('.base_position', lang);
+}
+
+function showPurchaseSpinner(){
+    $(".payment_btn").html("<div class='purchase_btn_text'>processing </div><img src='spinner.png' class='spinner'>");
+    $(".stopper").show();
 }
 
 function PurchaseController(paintingId, artistName) {
@@ -375,6 +379,9 @@ PurchaseController.prototype = {
 	},
 	addPurchaseRes: function (result) {
 		// console.log("addPurchaseRes---");
+        // 스피너 화면 중지
+		$(".stopper").hide();
+	    
 		// 기존 입력 내용 지우기
 		resetPurchase();
 		completePayment(result);
