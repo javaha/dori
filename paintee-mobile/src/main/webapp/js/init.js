@@ -1,3 +1,9 @@
+$(function () {
+	// 로그인 되어있지 않은 경우 about 페이지 띄우기
+	if(!userInfo) {
+		showAbout();
+	} 
+});
 // 전역변수 설정
 var mainWidth;
 var slideWidth;
