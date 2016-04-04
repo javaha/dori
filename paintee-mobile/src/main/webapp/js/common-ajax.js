@@ -1,6 +1,6 @@
 //ajax function...............................................
 var AjaxCall = {
-	call: function (url, data, type, successFunc) {
+	call: function (url, data, type, successFunc, showProcess) {
 
 		var option = {
 			url: url,
@@ -77,7 +77,6 @@ var AjaxCall = {
 			}
 		};
 
-		console.log(option);
 		$.ajax(option);
 		return;
 	},
