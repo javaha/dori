@@ -79,7 +79,6 @@ function setSideMenu() {
 	$('#menu_about').on('click', function() { showAbout(); });
 }
 
-
 var imageUrl="http://localhost:8090";
 //var imageUrl="http://192.168.43.89:8090";
 //var imageUrl="http://192.168.0.3:8090";
@@ -148,9 +147,9 @@ function Structure(data) {
         this.listInfoPosted     =$("<div>").addClass("list_info_posted");
         this.listInfoDate       =$("<div>").addClass("list_info_date");
 
-        this.listPainting       =$("<div>").addClass("list_painting").attr("index", this.index); // img 태그로 수정
+//        this.listPainting       =$("<div>").addClass("list_painting").attr("index", this.index); // img 태그로 수정
         // mobile 기기의 pixel ratio를 반영한 가변 이미지 반영
-        // this.listPainting       =$("<img>").addClass("list_painting").attr("index", this.index);
+         this.listPainting       =$("<img>").addClass("list_painting").attr("index", this.index);
 
         this.bottom             =$("<div>").addClass("bottom_bar");
         this.listArtist         =$("<div>").addClass("list_artist_btn").click(function() {
@@ -186,23 +185,25 @@ Structure.prototype = {
         setDate:            function(date){
                                 this.listInfoDate.html(date)
                             },
-        setPainting:        function(paintingId, imageUrl){
-                                    if(mainWidth<729){
-                                        this.listPainting.css({"width": mainWidth*0.8, "height": mainWidth*10/9});
-                                    }else{
-                                        this.listPainting.css({"width": "648px", "height": "900px"});
-                                    }
+//        setPainting:        function(paintingId, imageUrl){
+       	setPainting:        function(paintingId, fileId){
+                                if(mainWidth<729){
+                                    this.listPainting.css({"width": mainWidth*0.8, "height": mainWidth*10/9});
+                                }else{
+                                    this.listPainting.css({"width": "648px", "height": "900px"});
+                                }
                                 /*
                             	// mobile 기기의 pixel ratio를 반영한 가변 이미지 반영
-                                this.listPainting.attr("src", "p0-s.png");
+                                 */
+                                var urls = getImageUrls(fileId);
+                                this.listPainting.attr("src", urls[2]);
                                 if(window.devicePixelRatio<=1){
-                                    this.listPainting.attr("srcset", imageUrl+"-m.png 729w, "+imageUrl+"-s.png 405w");
+                                    this.listPainting.attr("srcset", urls[1], urls[2]);
                                 }else if(window.devicePixelRatio>1 && window.devicePixelRatio<=2){
-                                    this.listPainting.attr("srcset", imageUrl+"-l.png 675w, "+imageUrl+"-m.png 405w, "+imageUrl+"-s.png 225w");
+                                    this.listPainting.attr("srcset", urls[0], urls[1], urls[2]);
                                 }else if(window.devicePixelRatio>2){
-                                    this.listPainting.attr("srcset", imageUrl+"-l.png 450w, "+imageUrl+"-m.png 270w, "+imageUrl+"-s.png 150w");
+                                    this.listPainting.attr("srcset", urls[0], urls[1], urls[2]);
                                 }
-                            	*/
                             	
                             	/*
                             	// image lazy loading을 사용할 경우, 아래 코드 이용 + swiper 초기화시 lazyLoading: true 선언 필요
@@ -216,7 +217,7 @@ Structure.prototype = {
                                 }
                             	*/
                             	
-                                this.listPainting.css("background-image", "url(" + imageUrl + ")"); // 가변이미지 코딩으로 대체
+//                                this.listPainting.css("background-image", "url(" + imageUrl + ")"); // 가변이미지 코딩으로 대체
                                 this.listPainting.swipe({
                                     swipeUp:function(){
                                         loadDetail(paintingId, color, colorDark);
@@ -327,7 +328,8 @@ function addPainting(swiper, currentIndex, type, listData){
     newSlide.setPostedNumber(listData.postedPeopleCnt);
     newSlide.setDate(toEngDateStr(listData.uploadDate));
     newSlide.setArtist(listData.artistName);
-    newSlide.setPainting(listData.paintingId, imageUrl + "/cmm/file/view/" + responsive + "/" + listData.fileId);
+//    newSlide.setPainting(listData.paintingId, imageUrl + "/cmm/file/view/" + responsive + "/" + listData.fileId);
+    newSlide.setPainting(listData.paintingId, listData.fileId);
     if (type=="follow") {
         newSlide.setColor("hsl(200,60%,20%)");
     } else if (type=="popular") {
