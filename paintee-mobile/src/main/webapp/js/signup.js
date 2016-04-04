@@ -91,7 +91,7 @@ SignupController.prototype = {
 			param.accessGubun = "W";
 			param.language = signupLanguage;
 
-			$("#signup_btn").html("<div class=''>Processing </div><img src='spinner.png' class='spinner'>");
+			$("#signup_btn").html("<img src='spinner.png' class='spinner'>");
 			$(".stopper").show();
 
 			AjaxCall.call(apiUrl+"/signup", param, "POST", function (result, status) { controller.doSignupRes(result, status); });
