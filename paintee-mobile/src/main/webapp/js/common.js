@@ -115,6 +115,16 @@ function shareSocial(data) {
 	if (pop) pop.focus();  
 
 }
+function urlCopy(data) {
+	var url = "http%3A//";
+	var hostAndFileName = "www.paintee.com:8080/index.html?";
+	hostAndFileName = encodeURIComponent(hostAndFileName);
+	var param = "user=" + data.name + "&page=" + data.page;
+		param = encodeURIComponent(param);
+
+	url += hostAndFileName + param;
+	
+}
 
 function toDate (timestamp, dateFormat) {
     var date = new Date(timestamp);
