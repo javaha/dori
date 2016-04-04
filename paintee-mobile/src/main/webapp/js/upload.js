@@ -126,17 +126,17 @@ function createPainting() {
 	}
 
 	/* 4.3 수정 */
-	$("#successUploadDoneBtn").html("<div class='purchase_btn_text'>processing </div><img src='spinner.png' class='spinner'>");
+	$("#update_painting_sentence_btn").html("<div class='purchase_btn_text'>Processing </div><img src='spinner.png' class='spinner'>");
 	$(".stopper").show();
 
 	AjaxCall.callMultipart(apiUrl+"/painting", formData, createPaintingRes);
 }
 function createPaintingRes(result, status) {
+	//4.4 수정
+	$(".stopper").hide();
+
 	if(result.errorNo == 0) {
 		dataReload(["initMy();", "initFollow();", "initNew();"]);
-
-		//4.4 수정
-		$(".stopper").hide();
 
 		selectMenu(3);
 		$(".popup_container").hide();
@@ -214,7 +214,7 @@ function successUpload() {
 
     uploadSuccess.setTitle("Upload Painting");
     uploadSuccess.setContents('<span data-i18n="[html]uploadPop.successContent"></span><br><div class="upload_sentence"><span class="character_counter"><span id="paintingSentenceCount">0</span>/200</span><textarea id="painting_sentence_text" name="painting_sentence_text" class="upload_sentence_textarea" length="200"></textarea><input id="painting_private" name="painting_private" type="checkbox"> private</div>');
-    uploadSuccess.setBottom("<div id='successUploadDoneBtn'><div class='popup_cancle_btn upload_btn uploadFileBox'><i class='material-icons'>folder</i><label for='painteeFile' class='upload_btn_text'>Select image file </label></div><div class='popup_btn upload_btn'><div id='update_painting_sentence_btn' class='purchase_btn_text'>Done </div><i class='material-icons'>done</i></div></div>");
+    uploadSuccess.setBottom("<div class='popup_cancle_btn upload_btn uploadFileBox'><i class='material-icons'>folder</i><label for='painteeFile' class='upload_btn_text'>Select image file </label></div><div id='update_painting_sentence_btn' class='popup_btn upload_btn'><div class='purchase_btn_text'>Done </div><i class='material-icons'>done</i></div>");
     uploadSuccess.buildUpload();
 
 	//미리보기 생성
@@ -254,7 +254,6 @@ function successUpload() {
 	});
 
 	$("#update_painting_sentence_btn").on('click', function(){
-		console.log($('#painteeFile').val());
 		if($('#painteeFile').val() == '') {
 //			alert('업로드 파일을 선택하세요.');
 			alert($.i18n.t('alert.upload.choiceFile'));

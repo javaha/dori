@@ -17,8 +17,11 @@ SignupController.prototype = {
 		}
 	},
 	doSignupRes: function(result, status) {
+		//4.4 수정
+		$(".stopper").hide();
+
 		if(result.errorNo == 0) {
-			console.log(result);
+
 			if(result.providerId == 'PAINTEE') {
 				alert($.i18n.t('alert.signup.processMemberJoin'));
 //				alert('회원가입이 정상적으로 처리되었습니다.\n이메일을 확인하세요.');
@@ -27,6 +30,7 @@ SignupController.prototype = {
 				alert($.i18n.t('alert.signup.processSocialMemberJoin'));
 //				alert('회원가입이 정상적으로 처리되었습니다.');
 			}
+
 			location.href = "/";
 		} else if(result.errorNo != 0) {
 			alert($.i18n.t('alert.common.confirmEmailPass'));
@@ -86,6 +90,9 @@ SignupController.prototype = {
 
 			param.accessGubun = "W";
 			param.language = signupLanguage;
+
+			$("#signup_btn").html("<div class=''>Processing </div><img src='spinner.png' class='spinner'>");
+			$(".stopper").show();
 
 			AjaxCall.call(apiUrl+"/signup", param, "POST", function (result, status) { controller.doSignupRes(result, status); });
 		} else if(result.errorNo == 1) {

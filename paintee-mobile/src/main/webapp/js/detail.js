@@ -67,7 +67,15 @@ function DetailStructure(paintingId, paintingInfo){
 
 DetailStructure.prototype = {
     setBG       : function(fileId){
-        this.detailBgImg.attr("src", imageUrl+"/cmm/file/view/"+responsive+"/"+fileId);
+        this.detailBgImg.attr("src", getImageUrls(fileId));
+        if(window.devicePixelRatio<=1){
+            this.detailBgImg.attr("srcset", getImageUrls(fileId, 1));
+        }else if(window.devicePixelRatio>1 && window.devicePixelRatio<=2){
+            this.detailBgImg.attr("srcset", getImageUrls(fileId, 2));
+        }else if(window.devicePixelRatio>2){
+            this.detailBgImg.attr("srcset", getImageUrls(fileId, 3));
+        }
+//        this.detailBgImg.attr("src", imageUrl+"/cmm/file/view/"+responsive+"/"+fileId);
     },
     setArtist   : function(artistName){
     	var paintingId = this.paintingId;
