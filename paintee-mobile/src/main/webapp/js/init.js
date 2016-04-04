@@ -206,9 +206,9 @@ Structure.prototype = {
                             	
                             	/*
                             	// image lazy loading을 사용할 경우, 아래 코드 이용 + swiper 초기화시 lazyLoading: true 선언 필요
-                                this.listPainting.attr("src", "p0-s.png");
+                                this.listPainting.attr("data-src", "p0-s.png");
                                 if(window.devicePixelRatio<=1){
-                                    this.listPainting.attr("srcset", imageUrl+"-m.png 729w, "+imageUrl+"-s.png 405w");
+                                    this.listPainting.attr("data-srcset", imageUrl+"-m.png 729w, "+imageUrl+"-s.png 405w");
                                 }else if(window.devicePixelRatio>1 && window.devicePixelRatio<=2){
                                     this.listPainting.attr("data-srcset", imageUrl+"-l.png 675w, "+imageUrl+"-m.png 405w, "+imageUrl+"-s.png 225w");
                                 }else if(window.devicePixelRatio>2){
