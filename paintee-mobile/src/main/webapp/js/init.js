@@ -193,6 +193,19 @@ Structure.prototype = {
                                     this.listPainting.attr("srcset", imageUrl+"-l.png 450w, "+imageUrl+"-m.png 270w, "+imageUrl+"-s.png 150w");
                                 }
                             	*/
+                            	
+                            	/*
+                            	// image lazy loading을 사용할 경우, 아래 코드 이용 + swiper 초기화시 lazyLoading: true 선언 필요
+                                this.listPainting.attr("src", "p0-s.png");
+                                if(window.devicePixelRatio<=1){
+                                    this.listPainting.attr("srcset", imageUrl+"-m.png 729w, "+imageUrl+"-s.png 405w");
+                                }else if(window.devicePixelRatio>1 && window.devicePixelRatio<=2){
+                                    this.listPainting.attr("data-srcset", imageUrl+"-l.png 675w, "+imageUrl+"-m.png 405w, "+imageUrl+"-s.png 225w");
+                                }else if(window.devicePixelRatio>2){
+                                    this.listPainting.attr("data-srcset", imageUrl+"-l.png 450w, "+imageUrl+"-m.png 270w, "+imageUrl+"-s.png 150w");
+                                }
+                            	*/
+                            	
                                 this.listPainting.css("background-image", "url(" + imageUrl + ")"); // 가변이미지 코딩으로 대체
                                 this.listPainting.swipe({
                                     swipeUp:function(){
