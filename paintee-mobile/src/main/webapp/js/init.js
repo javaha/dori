@@ -195,14 +195,13 @@ Structure.prototype = {
                                 /*
                             	// mobile 기기의 pixel ratio를 반영한 가변 이미지 반영
                                  */
-                                var urls = getImageUrls(fileId);
-                                this.listPainting.attr("src", urls[2]);
+                                this.listPainting.attr("src", getImageUrls(fileId));
                                 if(window.devicePixelRatio<=1){
-                                    this.listPainting.attr("srcset", urls[1], urls[2]);
+                                    this.listPainting.attr("srcset", getImageUrls(fileId, 1));
                                 }else if(window.devicePixelRatio>1 && window.devicePixelRatio<=2){
-                                    this.listPainting.attr("srcset", urls[0], urls[1], urls[2]);
+                                    this.listPainting.attr("srcset", getImageUrls(fileId, 2));
                                 }else if(window.devicePixelRatio>2){
-                                    this.listPainting.attr("srcset", urls[0], urls[1], urls[2]);
+                                    this.listPainting.attr("srcset", getImageUrls(fileId, 3));
                                 }
                             	
                             	/*
