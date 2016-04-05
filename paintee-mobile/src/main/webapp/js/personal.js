@@ -59,7 +59,10 @@ Personal.prototype = {
                             spaceBetween: mainWidth*0.05,
                             mousewheelControl : true,
                             scrollbar: '.swiper-scrollbar-personal',
-                            scrollbarHide: true
+                            scrollbarHide: true,
+                            lazyLoading: true,
+                            lazyLoadingInPrevNext: true,
+                            lazyLoadingInPrevNextAmount: 3                            
                         })
                     },
     buildStructure  : function(){
@@ -128,7 +131,7 @@ PersonalController.prototype = {
 			setPersonal(result);
 		}
 		for ( var index in result.list) {
-			addPainting(personal.swiper, 1, "my", result.list[index]);
+			addPainting(personal.swiper, 1, "personal", result.list[index]);
 		}
 		if (controller.paintingId) {
 			personal.swiper.slideTo(personal.swiper.slides.length - 1, 0);

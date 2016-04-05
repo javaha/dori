@@ -186,7 +186,8 @@ Structure.prototype = {
                                 this.listInfoDate.html(date)
                             },
 //        setPainting:        function(paintingId, imageUrl){
-       	setPainting:        function(paintingId, fileId){
+       	setPainting:        function(paintingId, fileId, type){
+       							console.log("type ::: " + type);
                                 if(mainWidth<729){
                                     this.listPainting.css({"width": mainWidth*0.8, "height": mainWidth*10/9});
                                 }else{
@@ -195,28 +196,32 @@ Structure.prototype = {
                                 /*
                             	// mobile 기기의 pixel ratio를 반영한 가변 이미지 반영
                                  */
-                                this.listPainting.attr("src", getImageUrls(fileId));
-                                if(window.devicePixelRatio<=1){
-                                    this.listPainting.attr("srcset", getImageUrls(fileId, 1));
-                                }else if(window.devicePixelRatio>1 && window.devicePixelRatio<=2){
-                                    this.listPainting.attr("srcset", getImageUrls(fileId, 2));
-                                }else if(window.devicePixelRatio>2){
-                                    this.listPainting.attr("srcset", getImageUrls(fileId, 3));
+                                if (type != "personal") {
+                                	this.listPainting.attr("src", getImageUrls(fileId));
+                                	if (window.devicePixelRatio) {
+	                                	if(window.devicePixelRatio<=1){
+	                                		this.listPainting.attr("srcset", getImageUrls(fileId, 1));
+	                                	}else if(window.devicePixelRatio>1 && window.devicePixelRatio<=2){
+	                                		this.listPainting.attr("srcset", getImageUrls(fileId, 2));
+	                                	}else if(window.devicePixelRatio>2){
+	                                		this.listPainting.attr("srcset", getImageUrls(fileId, 3));
+	                                	}
+                                	}
+                                } else {
+                                	// image lazy loading을 사용할 경우, 아래 코드 이용 + swiper 초기화시 lazyLoading: true 선언 필요
+                                	this.listPainting.attr("data-src", getImageUrls(fileId));
+                                	if (window.devicePixelRatio) {
+                                		if(window.devicePixelRatio<=1){
+                                			this.listPainting.attr("data-srcset", getImageUrls(fileId, 1));
+                                		}else if(window.devicePixelRatio>1 && window.devicePixelRatio<=2){
+                                			this.listPainting.attr("data-srcset", getImageUrls(fileId, 2));
+                                		}else if(window.devicePixelRatio>2){
+                                			this.listPainting.attr("data-srcset", getImageUrls(fileId, 3));
+                                		}
+                                		
+                                	}
                                 }
                             	
-                            	/*
-                            	// image lazy loading을 사용할 경우, 아래 코드 이용 + swiper 초기화시 lazyLoading: true 선언 필요
-                                this.listPainting.attr("data-src", "p0-s.png");
-                                if(window.devicePixelRatio<=1){
-                                    this.listPainting.attr("data-srcset", imageUrl+"-m.png 729w, "+imageUrl+"-s.png 405w");
-                                }else if(window.devicePixelRatio>1 && window.devicePixelRatio<=2){
-                                    this.listPainting.attr("data-srcset", imageUrl+"-l.png 675w, "+imageUrl+"-m.png 405w, "+imageUrl+"-s.png 225w");
-                                }else if(window.devicePixelRatio>2){
-                                    this.listPainting.attr("data-srcset", imageUrl+"-l.png 450w, "+imageUrl+"-m.png 270w, "+imageUrl+"-s.png 150w");
-                                }
-                            	*/
-                            	
-//                                this.listPainting.css("background-image", "url(" + imageUrl + ")"); // 가변이미지 코딩으로 대체
                                 this.listPainting.swipe({
                                     swipeUp:function(){
                                         loadDetail(paintingId, color, colorDark);
@@ -328,17 +333,17 @@ function addPainting(swiper, currentIndex, type, listData){
     newSlide.setDate(toEngDateStr(listData.uploadDate));
     newSlide.setArtist(listData.artistName);
 //    newSlide.setPainting(listData.paintingId, imageUrl + "/cmm/file/view/" + responsive + "/" + listData.fileId);
-    newSlide.setPainting(listData.paintingId, listData.fileId);
+    newSlide.setPainting(listData.paintingId, listData.fileId, type);
     if (type=="follow") {
         newSlide.setColor("hsl(200,60%,20%)");
     } else if (type=="popular") {
         newSlide.setColor("hsl(330,60%,20%)");
     } else if (type=="new") {
         newSlide.setColor("hsl(90,60%,20%)");
-    } else if (type=="my") {
+    } else if (type=="my" || type=="personal") {
         newSlide.setColor("hsl(250,60%,20%)");
         newSlide.setStatus(listData);   
-    }
+	} 
     
     swiper.appendSlide(newSlide.buildStructure(type, listData));
     delete newSlide;    
