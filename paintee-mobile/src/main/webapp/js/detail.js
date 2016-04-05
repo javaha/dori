@@ -179,7 +179,7 @@ DetailStructure.prototype = {
         });
         //url 복사
         $("#detail_url_copy").click(function() {
-        	urlCopy();
+        	urlCopy(data);
         });
     }
 }

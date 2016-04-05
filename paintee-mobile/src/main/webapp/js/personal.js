@@ -107,7 +107,7 @@ function setPersonal(result) {
     	shareSocial({name: personal.username, type: "twitter"});
     });
     $(".material-icons").click(function() {
-    	copyToClipboard("http://www.paintee.com:9080/index.html?user=aaaa1111");
+    	urlCopy({"name": personal.username});
     });
     
     $("#personalFollow").click(function () {
