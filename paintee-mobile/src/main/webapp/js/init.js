@@ -29,14 +29,6 @@ if(userInfo) {
 // 나중에 로그인 사용자의 언어를 설정해야 한다.
 var lang = "en";
 
-//if(userInfo) {
-//	console.log('userInfo.location:'+userInfo.location);
-//	lang = userInfo.location;
-//}
-
-console.log('lang:'+lang);
-console.log('userID:'+userID);
-
 // 최초 화면 로딩시 해야할 일
 $(function () {
 	setSideMenu();  // 사이드 메뉴 설정
@@ -153,7 +145,6 @@ function Structure(data) {
 
         this.bottom             =$("<div>").addClass("bottom_bar");
         this.listArtist         =$("<div>").addClass("list_artist_btn").click(function() {
-        							console.log("currentSwiper : " + currentSwiper);
 						        	// 히스토리 설정
 						        	replaceHistory({"call": "list", "mainIndex": mainSwiper.activeIndex, "index": currentSwiper.activeIndex ? currentSwiper.activeIndex : data.index});
 						        	addHistory({"call": "personal"});
@@ -187,7 +178,6 @@ Structure.prototype = {
                             },
 //        setPainting:        function(paintingId, imageUrl){
        	setPainting:        function(paintingId, fileId, type){
-       							console.log("type ::: " + type);
                                 if(mainWidth<729){
                                     this.listPainting.css({"width": mainWidth*0.8, "height": mainWidth*10/9});
                                 }else{
@@ -612,7 +602,6 @@ $(".popup_container").click(function(){
 var openedAboutUploadPopup = false;
 
 function closePopup() {
-	console.log("boxStatus : " + boxStatus);
 	var isPopupOpened = false;
 
 	var openPopupContainer;
@@ -627,7 +616,6 @@ function closePopup() {
 	if(isPopupOpened) {
 		var divClass = openPopupContainer.attr('class');
 
-		console.log(divClass);
 		// boxStatus payment
 		if (divClass.indexOf('payment_container') > -1) {
 			// 구매 정보 초기화
@@ -672,7 +660,6 @@ $(".popup_box").click(function(e){
  *   팔로우 대상 변경 시 : Follow, 
  */
 function dataReload(loadPages) {
-	console.log("dataReload.....");
 	for (var index in loadPages) {
 		eval(loadPages[index]);
 	}
@@ -689,7 +676,6 @@ $(".side_menu_lang_select").change(function(event) {
 			{"language": lang}, 
 			"PUT", 
 			function (result) {
-				console.log(result);			
 			}
 		);
 	} 

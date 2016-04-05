@@ -17,12 +17,10 @@ var followSwiper = new Swiper('.swiper_container_follow', {
 });
 
 followSwiper.on("onSlideChangeStart", function(swiper) {
-	console.log("followSwiper onSlideChangeStart");
 	if (userID !== "") {
 		// 화면에 로딩된 슬라이드 그림 개수
 		var slidesCnt = swiper.slides.length - 1;
 		// 만약, 현재 선택한 슬라이드가 로딩된 슬라이드의 수보다 하나 작을 경우 서버에 5개의 그림을 재요청
-		console.log(swiper.slides.length + "-" + swiper.activeIndex);
 		if (slidesCnt - 1 <= swiper.activeIndex && slidesCnt < 100) {
 			new FollowController().getListData(slidesCnt);
 		}
@@ -63,11 +61,9 @@ FollowController.prototype = {
 		);
 	}, 	
 	getHomeCountRes : function (result) {
-		console.log("FollowController.getHomeCountRes ::: " + result);
 		setFollowHome(result);
 	}, 	
 	getListData : function(startRow) {
-		console.log("FollowController.getListData startRow ::: " + startRow);
 
 		var controller = this;
 		AjaxCall.call(
@@ -79,7 +75,6 @@ FollowController.prototype = {
 		);
 	},
 	getListDataRes : function(result) {
-		console.log("FollowController.getListDataRes ::: " + result);
 		for ( var index in result.list) {
 			addPainting(followSwiper, 1, "follow", result.list[index]);
 			if (followSwiper.slides.length > 100) {
@@ -88,7 +83,6 @@ FollowController.prototype = {
 		}
 	},
 	getFollowsList : function() {
-		console.log("FollowController.getFollowsList ");
 
 		var controller = this;
 		AjaxCall.call(
@@ -101,13 +95,11 @@ FollowController.prototype = {
 		);
 	},
 	getFollowsListRes : function(result) {
-		console.log("FollowController.getFollowsListRes ::: " + JSON.stringify(result));
 		for ( var index in result.list) {
 			addFollows(result.list[index].followsName, result.list[index].followsCount);
 		}
 	},
 	getFollowingList : function() {
-		console.log("FollowController.getFollowingList ");
 
 		var controller = this;
 		AjaxCall.call(
@@ -120,13 +112,11 @@ FollowController.prototype = {
 		);
 	},
 	getFollowngListRes : function(result) {
-		console.log("FollowController.getFollowngListRes ::: " + JSON.stringify(result));
 		for ( var index in result.list) {
 			addFollowing(result.list[index].followingName);
 		}
 	},
 	addFollow : function(btn, name) {
-		console.log("FollowController.addFollow ");
 		this.btn = btn;
 		var controller = this;
 		AjaxCall.call(
@@ -149,7 +139,6 @@ FollowController.prototype = {
 			return ;
 		}
 		
-		console.log("FollowController.delFollowing ");
 		this.following = following;
 		var controller = this;
 		AjaxCall.call(
@@ -187,7 +176,6 @@ function initFollow() {
 }
 
 function setFollowHome(result) {
-	console.log("setFollowHome ::: " + JSON.stringify(result));
 	followSwiper.removeAllSlides();
 	var followHome = new Home();
 	var content1 = $("<div>").addClass("home_btn_follow").html("follows ")

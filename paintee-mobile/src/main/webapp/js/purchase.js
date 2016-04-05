@@ -18,9 +18,6 @@ function initPurchasePop(result) {
 	replaceHistory({"call": "purchasePop"});
     addHistory({"call": "purchaseStep1"});
     
-	// console.log("purchase : " + paintingId);
-	console.log("result : " + JSON.stringify(result));
-    
 	purchaseController.basicAddr  = result.user.basicAddr;
 	purchaseController.detailAddr = result.user.detailAddr;
 	 
@@ -56,7 +53,6 @@ function initPurchasePop(result) {
 }
 
 function setPurchase(){
-	// console.log("setPurchase");
     if(mainWidth<500){
         purchaseWidth = mainWidth*0.9;
         if(purchaseStatus!="address"){
@@ -87,7 +83,6 @@ function setPurchase(){
 }
 
 $(".purchase_next_btn").click(function(){
-	// console.log("purchase_next_btn");
     purchaseStatus="address";
     if(mainWidth<500){
         $(".purchase_box").css("left", -purchaseWidth);
@@ -101,7 +96,6 @@ $(".purchase_next_btn").click(function(){
 });
 
 $(".purchase_prev_btn").click(function(){
-	// console.log("purchase_prev_btn");
     purchaseStatus="sentence";
     if(mainWidth<500){
         purchaseWidth = mainWidth*0.9;
@@ -124,7 +118,6 @@ $(".purchase_container").click(function(){
 });
 
 function closePurchaseStep01() {
-	console.log("purchase_container");
     $(".purchase_container").hide();
     purchaseStatus = "";
     boxStatus = "";
@@ -133,7 +126,6 @@ function closePurchaseStep01() {
 }
 
 $(".purchase_box").click(function(e){
-	// console.log("purchase_box");
     e.stopPropagation();
 });
 
@@ -143,7 +135,6 @@ $("[name=location]").change(function(e){
 });
 
 function setPostUI(type) {
-	console.log("type : " + type);
 	if (type == 'Korea') {
 		// 기본 주소 선택시 
 		$("[name=receiverCity]").attr("disabled", "disabled");
@@ -348,7 +339,6 @@ PurchaseController.prototype = {
 		initPurchasePop(result);
 	},
 	addPurchase: function () {
-		// console.log("addPurchase");
 		var controller = this;
 		
 		// userId는 로그인 후 쿠키에서 가져와서 처리하도록 해야함
@@ -372,13 +362,11 @@ PurchaseController.prototype = {
 			data, 
 			"POST", 
 			function (result) {
-				// console.log("ajax 호출 결과...");
 				controller.addPurchaseRes(result);			
 			}
 		);
 	},
 	addPurchaseRes: function (result) {
-		// console.log("addPurchaseRes---");
         // 스피너 화면 중지
 		$(".stopper").hide();
 	    
@@ -520,8 +508,6 @@ PurchaseController.prototype = {
 
 // 구매 입력 내용 지우기
 function resetPurchase() {
-	 console.log("resetPurchase -- ");
-	// console.log("sentence -- " + $("[name=sentence]").val(""));
 	$("[name=privateAt]").prop("checked", false),
 	$("[name=sentence]").val("");
 	$("[name=receiverBasicAddr]").val("");
@@ -535,8 +521,6 @@ function resetPurchase() {
 }
 
 function completePayment(result){
-	console.log("completePayment ::: " + JSON.stringify(result));
-	// console.log("sentence : " + $("[name=sentence]").val());
     $(".payment_box").empty();
     var payment = new Payment();
     payment.setTitle("Thanks!");

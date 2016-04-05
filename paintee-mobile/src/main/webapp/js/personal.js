@@ -19,7 +19,6 @@ function showPersonal(username, paintingId){
     	// 화면에 로딩된 슬라이드 그림 개수
 		var slidesCnt = swiper.slides.length - 1;
 		// 만약, 현재 선택한 슬라이드가 로딩된 슬라이드의 수보다 하나 작을 경우 서버에 5개의 그림을 재요청
-		console.log(swiper.slides.length + "-" + swiper.activeIndex);
 		if (slidesCnt - 1 <= swiper.activeIndex && slidesCnt < 100) {
 			new PersonalController().getPersonInfo(slidesCnt);
 		}
@@ -78,8 +77,6 @@ Personal.prototype = {
 }
 
 function initPersonal(paintingId) {
-	console.log("paintingId ::: " + paintingId);
-	
 	// 기본 페이지 로딩 시의 데이터 조회
 	new PersonalController(paintingId).getPersonInfo(0);
 }
@@ -119,7 +116,6 @@ function setPersonal(result) {
 			alert(personal.username + $.i18n.t('alert.detail.existFollow'));
 			return;
 		}
-		console.log(result.personal.artistId);
 		selectedArtistId = result.personal.artistId; 
 		selectedArtistName = personal.username; 
     	new DetailController().artistFollow(result.personal.artistId);
@@ -143,7 +139,6 @@ PersonalController.prototype = {
 		if (this.paintingId) {
 			param += "&paintingId=" + this.paintingId;
 		}
-		console.log("param ::: " + param);
 		AjaxCall.call(
 			apiUrl + "/index/personal" + param, 
 			null,
@@ -160,11 +155,17 @@ PersonalController.prototype = {
 			setPersonal(result);
 		}
 		for ( var index in result.list) {
-			addPainting(personal.swiper, 1, "personal", result.list[index]);
+			var pageType = "my";
+			// 소셜에서 들어온 경우 Lazy Loading을 위해서 값 설정을 변경함
+			if (controller.paintingId) pageType = "personal";
+			
+			addPainting(personal.swiper, 1, pageType, result.list[index]);
 		}
+		/*
 		if (controller.paintingId) {
 			personal.swiper.slideTo(personal.swiper.slides.length - 1, 0);
 		}
+		*/
 	}
 };
 
@@ -179,7 +180,6 @@ function getRequest() {
         }
         return get;
     } else {
-//  		console.log("소셜에서 누르고 들어온 경우 아님");
         return false;
     }
 }
@@ -190,7 +190,6 @@ var get = getRequest();
 if(get) {
 //	get.page = 'b0645fc6-a7bb-4f61-a133-d29ae45c4801';
 //	get.user = 'a01';
-	console.log("개인 페이지 들어옴 : " + JSON.stringify(get));
     if(get.page) {
         loadDetail(get.page, "200,60%,50%", "200,60%,20%");
         showPersonal(get.user, get.page);

@@ -47,7 +47,6 @@ function showAboutOverview(){	  // 4.3 수정
 	$(".swiper_container_overview").show();
 	$(".about_guide").show();
 	if(overviewSwiper==""){
-		console.log("1");
 		overviewSwiper = new Swiper('.swiper_container_overview', {
 			slidesPerView: 'auto',
 			pagination: '.swiper-pagination-overview',
@@ -70,7 +69,6 @@ function showAboutPost(){	   // 4.3 수정
 	$(".swiper_container_post").show();
 	$(".about_guide").show();
 	if(postSwiper==""){
-		console.log("1");
 		postSwiper = new Swiper('.swiper_container_post', {
 			slidesPerView: 'auto',
 			pagination: '.swiper-pagination-post',

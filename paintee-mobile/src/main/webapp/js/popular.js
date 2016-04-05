@@ -17,11 +17,9 @@ var popularSwiper = new Swiper('.swiper_container_popular', {
 });
 
 popularSwiper.on("onSlideChangeStart", function(swiper){
-	// console.log("popularSwiper onSlideChangeStart");
 	// 화면에 로딩된 슬라이드 그림 개수
 	var slidesCnt = swiper.slides.length - 1;
 	// 만약, 현재 선택한 슬라이드가 로딩된 슬라이드의 수보다 하나 작을 경우 서버에 5개의 그림을 재요청
-	// console.log(swiper.slides.length + "-" + swiper.activeIndex);
 	if (slidesCnt - 1 <= swiper.activeIndex && slidesCnt < 100) {
 		var controller = new PopularController();
 		controller.getListData(slidesCnt);
@@ -30,13 +28,11 @@ popularSwiper.on("onSlideChangeStart", function(swiper){
 
 // list 상태에서 mode container 스와이프 방지 && 마우스휠 해제/설정 && 페이지네이션 show/hide
 popularSwiper.on("onTransitionEnd", function(swiper){
-	// console.log("popularSwiper onTransitionEnd");
 	listLock(swiper);
 });
 
 //side menu에 이벤트 설정
 $("#menu_popular").on('click', function(){
-	// console.log("popularSwiper menu_popular");
     selectMenu(1);
 });
 
@@ -45,7 +41,6 @@ $("#menu_popular").on('click', function(){
 popularSwiper.disableMousewheelControl();
 
 popularSwiper.on("onSetTranslate", function(swiper, translate){
-	// console.log("popularSwiper onSetTranslate");
 	swipeToMenu(swiper, translate);
 });
 
@@ -66,7 +61,6 @@ PopularController.prototype = {
 		);
 	},
 	getListDataRes: function (result) {
-		// console.log(result + "this.startRow : " + this.startRow);
 		if (!this.startRow) {
 			$("#popular_count").text(result.count);
 		}
@@ -81,7 +75,6 @@ PopularController.prototype = {
 
 //각각의 home 화면 설정
 function initPopular(){
-	// console.log("init popular");
 	// 기존 설정된 슬라이더 제거
 	popularSwiper.removeAllSlides();
 	
@@ -103,7 +96,6 @@ function initPopular(){
 
 //전체그림/전체좋아요 숫자설정
 function totalPainting(){
-	// console.log("totalPainting");
 
     var contents = $("<div>");
     contents.html("<span id='popular_count'>0</span><span data-i18n='popular.content'></span>")

@@ -1,7 +1,6 @@
 window.history.pushState("dummy", "", "");
 window.addEventListener("popstate", function(e) {
 	if(e.state){
-		console.log("e.state.call :: " + e.state.call);
 		if (e.state.call == "detailPop") {
 			processDetailClose();
 		} 
@@ -51,9 +50,6 @@ window.addEventListener("popstate", function(e) {
 		}
 		// 개인페이지에서 리스트로 이동
 		else if (e.state.call == "list") {
-			console.log("e.state.index : " + e.state.index);
-			console.log("e.state.mainIndex : " + e.state.mainIndex);
-			
 			hidePersonal();
 
 			switch (e.state.mainIndex) {
@@ -114,7 +110,6 @@ window.addEventListener("popstate", function(e) {
  * @param data
  */
 function addHistory(data) {
-	console.log("history add");
 	window.history.pushState(data, "", "");
 }
 

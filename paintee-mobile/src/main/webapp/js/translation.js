@@ -4,7 +4,6 @@
  * @param lang
  */
 function exeTranslation(area, lang) {
-	console.log("exeTranslation ::: " + lang);
 	if (!lang) lang = "en";
 	
 	$.i18n.init({

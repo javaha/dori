@@ -12,11 +12,9 @@ var newSwiper = new Swiper('.swiper_container_new', {
 })
 
 newSwiper.on("onSlideChangeStart", function(swiper){
-	// console.log("newSwiper onSlideChangeStart");
 	// 화면에 로딩된 슬라이드 그림 개수
 	var slidesCnt = swiper.slides.length - 1;
 	// 만약, 현재 선택한 슬라이드가 로딩된 슬라이드의 수보다 하나 작을 경우 서버에 5개의 그림을 재요청
-	// console.log(swiper.slides.length + "-" + swiper.activeIndex);
 	if (slidesCnt - 1 <= swiper.activeIndex && slidesCnt < 100) {
 		var controller = new NewController();
 		controller.getListData(slidesCnt);
@@ -51,7 +49,6 @@ function NewController() {
 
 NewController.prototype = {
 	getListData: function (startRow) {
-		 console.log("---startRow---" + startRow);
 		
 		this.startRow = startRow;
 		var controller = this;
@@ -64,7 +61,6 @@ NewController.prototype = {
 		);
 	},
 	getListDataRes: function (result) {
-		console.log("new getListDataRes ::: " + JSON.stringify(result));
 		if (!this.startRow) {
 			$("#new_count").text(result.count);
 		}

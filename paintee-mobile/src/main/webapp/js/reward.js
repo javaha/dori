@@ -38,7 +38,6 @@ function initReward(){
     addHistory({"call": "rewardStep1"});
     
 	var data = rewardController.result;
-	console.log(JSON.stringify(data));
     $(".reward_box").empty();
     var reward = new Reward();
     reward.setTitle("Reward");
@@ -77,7 +76,6 @@ function initReward(){
 
 function checkReward(){
 	var data = rewardController.result;
-	console.log("data : " + JSON.stringify(data));
 	if (data.reward.requestCount > 0) {
 		alert($.i18n.t('alert.reward.existRequest'));
 		return;
@@ -229,8 +227,6 @@ function addRewarded(data) {
 }
 
 function showRewarded(result){
-	console.log("showRewarded ::: " + JSON.stringify(result));
-    
     $(".reward_box").empty();
     var reward = new Reward();
     reward.setTitle("Reward History");
@@ -276,7 +272,6 @@ RewardController.prototype = {
 	}, 	
 	getRewardInfoRes : function (result) {
 		rewardController.result = result;
-		console.log("RewardController.getRewardInfoRes ::: " + JSON.stringify(result));
 		initReward();
 		setBox();
 	},

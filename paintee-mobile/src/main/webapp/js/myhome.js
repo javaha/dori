@@ -21,7 +21,6 @@ mySwiper.on("onSlideChangeStart", function(swiper) {
 		// 화면에 로딩된 슬라이드 그림 개수
 		var slidesCnt = swiper.slides.length - 1;
 		// 만약, 현재 선택한 슬라이드가 로딩된 슬라이드의 수보다 하나 작을 경우 서버에 5개의 그림을 재요청
-		console.log(swiper.slides.length + "-" + swiper.activeIndex);
 		if (slidesCnt - 1 <= swiper.activeIndex && slidesCnt < 100) {
 			new MyHomeController().getHomeInfo(slidesCnt);
 		}
@@ -55,7 +54,6 @@ MyHomeController.prototype = {
 		
 		var upload = ($("#uploadBtn").hasClass("home_btn_inactive")) ? "N" : "Y";
 		var post   = ($("#postBtn"  ).hasClass("home_btn_inactive")) ? "N" : "Y";
-		console.log(upload + "---" + post);
 		this.startRow = startRow;
 		var controller = this;
 		AjaxCall.call(
@@ -71,8 +69,6 @@ MyHomeController.prototype = {
 		// 처음 로딩시에만 메인화면 구성
 		if (this.startRow == 0) {
 			setMyHome(result);
-			console.log("result.uploadClass : " + result.uploadClass);
-			console.log("result.postClass : " + result.postClass);
 			
 			if (result.uploadClass == "N") $("#uploadBtn").addClass("home_btn_inactive");
 			if (result.postClass   == "N") $("#postBtn"  ).addClass("home_btn_inactive");
@@ -97,7 +93,6 @@ function initMy(){
         delete myHome;
         delete logInBtn;
     }else{
-    	console.log("initMy() login 후 데이터 가져오기");
 		// 로그인 상태일 경우 홈카운트 가져오기
     	// 테이블에서 가져올 데이터의 시작 위치를 처음 로딩시 0번째 부터 조회
 		new MyHomeController().getHomeInfo(0);
