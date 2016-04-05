@@ -27,7 +27,6 @@ import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.repository.entity.FileInfoExample;
 import com.paintee.common.repository.entity.Painting;
 import com.paintee.common.repository.entity.User;
-import com.paintee.common.repository.entity.vo.PaintingSearchVO;
 import com.paintee.common.repository.entity.vo.PaintingVO;
 import com.paintee.common.repository.helper.FileInfoHelper;
 import com.paintee.common.repository.helper.PaintingHelper;

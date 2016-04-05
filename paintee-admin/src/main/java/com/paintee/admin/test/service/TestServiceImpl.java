@@ -14,10 +14,7 @@
 */
 package com.paintee.admin.test.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.paintee.common.repository.helper.FollowHelper;
 
 /**
 @class TestServiceImpl
@@ -37,8 +34,8 @@ com.paintee.admin.test.service \n
 */
 @Service(value="com.paintee.admin.test.service.TestServiceImpl")
 public class TestServiceImpl implements TestService {
-	@Autowired
-	private FollowHelper followHelper;
+//	@Autowired
+//	private FollowHelper followHelper;
 
 	/**
 	 @fn 

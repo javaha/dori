@@ -25,7 +25,6 @@ import org.springframework.stereotype.Service;
 
 import com.paintee.common.repository.entity.Reward;
 import com.paintee.common.repository.entity.vo.RewardResultVO;
-import com.paintee.common.repository.entity.vo.RewardSearchVO;
 import com.paintee.common.repository.entity.vo.UserVO;
 import com.paintee.common.repository.helper.RewardHelper;
 import com.paintee.common.repository.helper.UserHelper;

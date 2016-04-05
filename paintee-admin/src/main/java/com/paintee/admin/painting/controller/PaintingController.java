@@ -15,7 +15,6 @@
 package com.paintee.admin.painting.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +22,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paintee.admin.painting.service.PaintingService;
-import com.paintee.admin.test.service.TestService;
-import com.paintee.common.paging.PageVO;
 import com.paintee.common.repository.entity.Painting;
-import com.paintee.common.repository.entity.Purchase;
-import com.paintee.common.repository.entity.vo.PaintingSearchVO;
 
 /**
 @class PaintingController

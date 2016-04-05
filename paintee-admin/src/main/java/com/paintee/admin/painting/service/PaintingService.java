@@ -17,7 +17,6 @@ package com.paintee.admin.painting.service;
 import java.util.Map;
 
 import com.paintee.common.repository.entity.Painting;
-import com.paintee.common.repository.entity.vo.PaintingSearchVO;
 
 /**
 @class PaintingService
