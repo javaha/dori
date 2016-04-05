@@ -269,7 +269,10 @@ function Follows() {
 	this.freind = $("<div>").addClass("people_list_add")
 			                .html("<div class='people_list_btn_text'> </div><i class='material-icons' style='color:rgba(120,120,120,0.5)'>done</i>");
 	this.build = function(name, isfriend) {
-		$(this.name).html(name);
+		$(this.name).html(name).click(function () {
+			history.back();
+			showPersonal(name);
+		});;
 		$(this.follows).append(this.name);
 		if (isfriend) {
 			$(this.follows).append(this.freind);
@@ -316,7 +319,10 @@ function Following() {
 	this.btn = $("<div>").addClass("people_list_remove")
 			             .html("<div class='people_list_btn_text'></div><i class='material-icons'>clear</i>");
 	this.build = function(name) {
-		$(this.name).html(name);
+		$(this.name).html(name).click(function () {
+			history.back();
+			showPersonal(name);
+		});
 		$(this.following).append(this.name);
 		$(this.following).append(this.btn);
 		

@@ -209,6 +209,7 @@ Structure.prototype = {
                                 	}
                                 } else {
                                 	// image lazy loading을 사용할 경우, 아래 코드 이용 + swiper 초기화시 lazyLoading: true 선언 필요
+                                	this.listPainting.attr("src", getImageUrls(fileId));
                                 	this.listPainting.attr("data-src", getImageUrls(fileId));
                                 	if (window.devicePixelRatio) {
                                 		if(window.devicePixelRatio<=1){
