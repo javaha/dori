@@ -147,11 +147,14 @@ public class UserServiceImpl implements UserService {
 
 		int postedCount = paintingHelper.sumPostedNum(loginedUserVO.getUserId());
 
-		PaintingExample paintingExample = new PaintingExample();
-		PaintingExample.Criteria where = paintingExample.createCriteria();
-		where.andArtistIdEqualTo(loginedUserVO.getUserId());
-		
-		int uploadedCount = paintingHelper.countByExample(paintingExample);
+//		PaintingExample paintingExample = new PaintingExample();
+//		PaintingExample.Criteria where = paintingExample.createCriteria();
+//		where.andArtistIdEqualTo(loginedUserVO.getUserId());
+
+//		int uploadedCount = paintingHelper.countByExample(paintingExample);
+
+		User user = userHelper.selectByPrimaryKey(loginedUserVO.getUserId());
+		int uploadedCount = user.getUploadCnt();
 
 		resultMap.put("postedCount", postedCount);
 		resultMap.put("uploadedCount", uploadedCount);
