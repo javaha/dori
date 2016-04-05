@@ -620,6 +620,7 @@ function closePopup() {
 	if(isPopupOpened) {
 		var divClass = openPopupContainer.attr('class');
 
+		console.log(divClass);
 		// boxStatus payment
 		if (divClass.indexOf('payment_container') > -1) {
 			// 구매 정보 초기화
@@ -642,6 +643,8 @@ function closePopup() {
 				openPopupContainer.hide();
 				history.back();
 			}
+		} else if(divClass.indexOf('username_container') > -1) {
+			openPopupContainer.hide();
 		}
 		else {
 			history.back();

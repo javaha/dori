@@ -30,7 +30,7 @@ function postedInfoRes(result, status) {
 
 		initUpload(postedCount, doTotaluploadCount, uploadedCount);
 		setBox();
-		
+
 		replaceHistory({"call": "uploadPop"});
 	    addHistory({"call": "upload"});
 	}
@@ -222,12 +222,33 @@ function successUpload() {
 	if (previewFile) {
 		var previewReader = new FileReader();
 
+		
 		previewReader.addEventListener("load", function () {
+			var boxWidth = $('#upload_popup_box').width();
+			var originalWidth = this.width;
+			console.log("boxWidth:"+boxWidth+", originalWidth:"+originalWidth);
 //			$('.painting_preview').append('<img src="'+ previewReader.result +'" width="120px" height="150px"/>');
-			$('#upload_popup_box').css('backgroundImage', 'url('+previewReader.result+')').css('background-size', '100% 100%');
+			$('#upload_popup_box').css('backgroundImage', 'url('+previewReader.result+')').css('background-size', boxWidth/1080*originalWidth).css('background-position', 'center center');
 		}, false);
 
+		var image = new Image();
+
 		previewReader.readAsDataURL(previewFile);
+		previewReader.onload = function(_file) {
+			image.src = previewReader.result;
+
+			image.onload = function() {
+				var boxWidth = $('#upload_popup_box').width();
+				var originalWidth = this.width;
+				console.log("boxWidth:"+boxWidth+", originalWidth:"+originalWidth);
+//				$('.painting_preview').append('<img src="'+ previewReader.result +'" width="120px" height="150px"/>');
+				$('#upload_popup_box').css('backgroundImage', 'url('+previewReader.result+')').css('background-size', boxWidth/1080*originalWidth).css('background-position', 'center center');
+			};
+
+			image.onerror= function() {
+				failUpload();
+			};
+		};
 	}
 
 	//구매시의 한마디 

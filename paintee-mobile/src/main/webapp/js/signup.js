@@ -1,3 +1,6 @@
+var signupSocialAuthResponse = {};
+var signupSocialProviderId = '';
+
 function SignupController() {
 }
 
@@ -91,7 +94,13 @@ SignupController.prototype = {
 			param.accessGubun = "W";
 			param.language = signupLanguage;
 
-			$("#signup_btn").html("<img src='spinner.png' class='spinner'>");
+			if(param.providerId == 'PAINTEE') {
+				$("#signup_btn").html("<img src='spinner.png' class='spinner'>");
+			} else if(param.providerId == 'FACEBOOK') {
+				$("#social_username_signup_btn").html("<div class='purchase_btn_text'>Processing </div> <img src='spinner.png' class='spinner'>");
+				signupSocialAuthResponse = {};
+				signupSocialProviderId = '';
+			}
 			$(".stopper").show();
 
 			AjaxCall.call(apiUrl+"/signup", param, "POST", function (result, status) { controller.doSignupRes(result, status); });
@@ -119,16 +128,15 @@ SignupController.prototype = {
 }
 
 function registSocialUser(response, providerId) {
-	var accessToken = response.authResponse.accessToken;
-	var expireTime = response.authResponse.expiresIn;
-	var userId = response.authResponse.userID;
 	var providerId = providerId;
+	signupSocialAuthResponse = response;
+	signupSocialProviderId = providerId;
 
 	if (response.status === 'connected') {
 		FB.api('/me', {fields: 'email,name'}, function(response) {
+			signupSocialAuthResponse.email = response.email;
 
-			// Logged into your app and Facebook.
-			new SignupController().validFacebookSignup(response.email, response.name, accessToken, expireTime, userId, providerId);
+			showUsername();
 		});
 	} else if (response.status === 'not_authorized') {
 		// The person is logged into Facebook, but not your app.
@@ -140,6 +148,20 @@ function registSocialUser(response, providerId) {
 	}
 }
 
+$('#social_username_signup_btn').on('click', function() {
+	checkSignupUsername();
+});
+
+function checkSignupUsername() {
+	var accessToken = signupSocialAuthResponse.authResponse.accessToken;
+	var expireTime = signupSocialAuthResponse.authResponse.expiresIn;
+	var userId = signupSocialAuthResponse.authResponse.userID;
+	var username = $('#signup_social_username').val();
+
+	// Logged into your app and Facebook.
+	new SignupController().validFacebookSignup(signupSocialAuthResponse.email, username, accessToken, expireTime, userId, signupSocialProviderId);
+}
+
 $('#signup_btn').on("click", function() { new SignupController().doSignup(); });
 
 $('#signup_facebook_btn').on('click', function() {
@@ -147,3 +169,26 @@ $('#signup_facebook_btn').on('click', function() {
 		registSocialUser(response, "FACEBOOK")
 	}, {scope: 'email,user_likes'});
 });
+
+/*  4.4 수정  */
+function showUsername(){
+	boxStatus = "username";
+	setBox();
+	sideOff();
+	$(".username_container").show();
+}
+
+/*  4.4 수정  */
+function setBox(){
+	if(boxStatus=="upload"){
+		if(mainHeight>=400 && mainWidth >= 288){
+			$(".popup_box").height(mainHeight*0.8);
+			$(".popup_box").width($(".popup_box").height()*0.72);
+
+			if($(".popup_box").width()>mainWidth*0.8){
+				$(".popup_box").width(mainWidth*0.8);
+				$(".popup_box").height(mainWidth*10/9);
+			}
+		}	
+	}
+}
