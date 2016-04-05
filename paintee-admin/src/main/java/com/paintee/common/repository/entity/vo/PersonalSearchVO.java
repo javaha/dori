@@ -38,6 +38,7 @@ public class PersonalSearchVO extends PagingVO {
 	private String paintingId;
 	private Integer seq;
 	private List<String> paintingStatusList;
+	private String loginId;
 
 	public String getArtistName() {
 		return artistName;
@@ -69,5 +70,13 @@ public class PersonalSearchVO extends PagingVO {
 
 	public void setPaintingStatusList(List<String> paintingStatusList) {
 		this.paintingStatusList = paintingStatusList;
+	}
+
+	public String getLoginId() {
+		return loginId;
+	}
+
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 }

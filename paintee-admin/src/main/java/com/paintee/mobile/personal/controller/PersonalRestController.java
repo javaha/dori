@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.paintee.common.repository.entity.vo.PersonalSearchVO;
 import com.paintee.mobile.personal.service.PersonalService;
+import com.paintee.mobile.support.obejct.LoginedUserVO;
 
 /**
 @class PersonalRestController
@@ -52,7 +53,7 @@ public class PersonalRestController {
 	private PersonalService personalService;
 
 	@RequestMapping(value="/api/index/personal", method=RequestMethod.GET)
-	public Map<String, Object> personalInfo(PersonalSearchVO search) throws Exception {
+	public Map<String, Object> personalInfo(PersonalSearchVO search, LoginedUserVO loginedUserVO) throws Exception {
 		
 		Map<String, Object> resultMap = new HashMap<>();
 		logger.debug("personalInfo ::: search:{}", search);
@@ -67,6 +68,7 @@ public class PersonalRestController {
 		paintingStatusList.add("N");  // 정상
 		search.setPaintingStatusList(paintingStatusList);
 		
+		search.setLoginId(loginedUserVO.getUserId());
 		resultMap = personalService.getPersonalPaintingInfo(search);
 		
 		// 에러정보

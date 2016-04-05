@@ -60,6 +60,7 @@ Personal.prototype = {
                             mousewheelControl : true,
                             scrollbar: '.swiper-scrollbar-personal',
                             scrollbarHide: true,
+                            preloadImages: false,
                             lazyLoading: true,
                             lazyLoadingInPrevNext: true,
                             lazyLoadingInPrevNextAmount: 3                            
@@ -88,13 +89,41 @@ function setPersonal(result) {
     personalHome.setTitle(personal.username);
     var introduce = (result.personal.introduce) ? "<br />" + result.personal.introduce : "";
     personalHome.setExplain(personal.username + "<span data-i18n='personal.contents'>님이 업로드한 그림들입니다.</span>" + introduce);
-    var content1 =
-        $("<div>").addClass("home_btn_my").html("uploaded ").append($("<b>").html(" " + result.personal.uploadCount))
+    var contents1 = $("<div>").addClass("follow_artist").html("<i class='material-icons' style='font-size:12px'>star</i> <span id='personalFollow'>follow artist</span><br><br>");
+    var contents2 = $("<div>").addClass("detail_artist_bottom").html("Share to <span class='social_btn socicon-facebook'></span><span class='social_btn socicon-twitter'></span><i class='social_btn material-icons' id='materialBtn'>public</i>");  // 수정부분
+    
     personalHome.hideNext();
-    personalHome.setContents(content1);
+    personalHome.setContents(contents1);
+    personalHome.setAdd(contents2); 
     personal.swiper.appendSlide(personalHome.buildStructure());
     delete personalHome;
     delete content1;
+    
+    var data = {name: personal.username};
+    $(".socicon-facebook").click(function() {
+    	shareSocial({name: personal.username, type: "facebook"});
+    });
+    $(".socicon-twitter").click(function() {
+    	shareSocial({name: personal.username, type: "twitter"});
+    });
+    $(".material-icons").click(function() {
+    	copyToClipboard("http://www.paintee.com:9080/index.html?user=aaaa1111");
+    });
+    
+    $("#personalFollow").click(function () {
+    	if (!userInfo) {
+    		alert($.i18n.t('alert.common.notLogin'));
+    		return;
+    	}
+		if (result.personal.followCnt != 0) {
+			alert(personal.username + $.i18n.t('alert.detail.existFollow'));
+			return;
+		}
+		console.log(result.personal.artistId);
+		selectedArtistId = result.personal.artistId; 
+		selectedArtistName = personal.username; 
+    	new DetailController().artistFollow(result.personal.artistId);
+    }); // 수정부분
     
     // 다국어 처리
     exeTranslation('.main_container', lang);      
@@ -166,6 +195,12 @@ if(get) {
         loadDetail(get.page, "200,60%,50%", "200,60%,20%");
         showPersonal(get.user, get.page);
     } else if(get.user) {
+    	// 트위트의 경우 마지막에 / 가 URL 뒤에 추가되는 경우가 생겨서 삭제처리함
+    	var len = get.user.length;
+    	var lastChar = get.user.substr(len -1, 1);
+    	if (lastChar == "/") {
+    		get.user = get.user.substr(0, len -1);
+    	}
         showPersonal(get.user);
     }
 };

@@ -230,13 +230,15 @@ DetailController.prototype = {
 	},
 	artistFollow: function(artistId) {
 		var controller = this;
-
+		
 		console.log("artistFollow=>artistId:"+artistId);
 		console.log("artistFollow=>selectedArtistId:"+selectedArtistId);
-		AjaxCall.call(apiUrl+"/user/"+selectedArtistId+"/follow", null, "POST", function(result, status) { controller.artistFollowRes(result, status); });
+		// 개인페이지에서 사용하는 부분이 있어 selectedArtistId 이 없을 경우 artistId를 사용하도록 변경. 04-05
+		AjaxCall.call(apiUrl+"/user/"+(selectedArtistId ? selectedArtistId : artistId)+"/follow", null, "POST", function(result, status) { controller.artistFollowRes(result, status); });
 	},
 	artistFollowRes: function(result, status) {
 		console.log(selectedArtistId);
+		console.log(result);
 		if(result.errorNo == 0) {
 			dataReload(["initFollow();"]);
 			alert(selectedArtistName + $.i18n.t('alert.detail.processFollow'));

@@ -87,10 +87,14 @@ function getCharCount(value) {
 function shareSocial(data) {
 	var url = "";
 //	var hostAndFileName = "www.paintee.com:8080/index.html?";
-	var hostAndFileName = "www.paintee.com:8080/index.html?";
+	var hostAndFileName = "www.paintee.com:9080/index.html?";
 	hostAndFileName = encodeURIComponent(hostAndFileName);
-	var param = "user=" + data.name + "&page=" + data.page;
-		param = encodeURIComponent(param);
+	var param = "user=" + data.name;
+	if (data.page) {
+		param += "&page=" + data.page;
+	}
+	param = encodeURIComponent(param);
+	
 	switch (data.type) {
 	case "facebook":
 		url = "https://www.facebook.com/sharer/sharer.php?u=http://" + hostAndFileName + param;
@@ -149,4 +153,18 @@ function getImageUrls(fileId, ratio) {
 		return imageUrl + "/cmm/file/view/1/" + fileId + " 675w, " + imageUrl + "/cmm/file/view/2/" + fileId + " 405w, " + imageUrl + "/cmm/file/view/3/" + fileId + " 225w";
 	if (ratio == 3) 
 		return imageUrl + "/cmm/file/view/1/" + fileId + " 450w, " + imageUrl + "/cmm/file/view/2/" + fileId + " 270w, " + imageUrl + "/cmm/file/view/3/" + fileId + " 150w";
+}
+
+/**
+ * 주소 복사기능 
+ * @param url
+ */
+function copyToClipboard(url) {
+    var IE = (document.all) ? true : false;
+    if (IE) {
+         window.clipboardData.setData('Text', url);
+         alert($.i18n.t('alert.common.copyAddress'));
+    } else {
+        temp = prompt($.i18n.t('alert.common.copyToClipboard'), url);
+    }
 }

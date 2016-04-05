@@ -38,6 +38,8 @@ public class PersonalVO extends Painting {
 	private Integer uploadCount;
 	private String artistName;
 	private String introduce;
+	private Integer followCnt;
+	private String artistId;
 	
 	public String getFileId() {
 		return fileId;
@@ -69,5 +71,21 @@ public class PersonalVO extends Painting {
 
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
+	}
+
+	public Integer getFollowCnt() {
+		return followCnt;
+	}
+
+	public void setFollowCnt(Integer followCnt) {
+		this.followCnt = followCnt;
+	}
+
+	public String getArtistId() {
+		return artistId;
+	}
+
+	public void setArtistId(String artistId) {
+		this.artistId = artistId;
 	}
 }

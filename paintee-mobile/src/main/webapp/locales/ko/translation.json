@@ -110,7 +110,10 @@
 			"differentPassword": "비밀번호와 비밀번화 확인 값이 일치하지 않습니다.(한)",
 			"delPainting": "삭제된 그림 입니다.(한)",
 			"processDelete": "삭제 처리되었습니다.(한)",
-			"wantDelete": "삭제 하시겠습니까?(한)"
+			"wantDelete": "삭제 하시겠습니까?(한)",
+			"notLogin": "로그인 후 가능합니다.(한)",
+			"copyAddress": "주소가 복사되었습니다. Ctrl+V로 붙여 넣기 하세요.(한)",
+			"copyToClipboard": "Ctrl+C를 눌러 클립보드로 복사하세요(한)"
 		},
 		"purchase" : {
 			"limitEnterCount": "줄바꿈은 5회까지 가능합니다.(한)",
