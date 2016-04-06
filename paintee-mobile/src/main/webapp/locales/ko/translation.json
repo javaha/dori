@@ -113,7 +113,8 @@
 			"wantDelete": "삭제 하시겠습니까?(한)",
 			"notLogin": "로그인 후 가능합니다.(한)",
 			"copyAddress": "주소가 복사되었습니다. Ctrl+V로 붙여 넣기 하세요.(한)",
-			"copyToClipboard": "Ctrl+C를 눌러 클립보드로 복사하세요(한)"
+			"copyToClipboard": "Ctrl+C를 눌러 클립보드로 복사하세요(한)",
+			"unkownServerError": "서버에 장애가 발생하였습니다.\n잠시후 다시이용해주세요.(한)"
 		},
 		"purchase" : {
 			"limitEnterCount": "줄바꿈은 5회까지 가능합니다.(한)",
