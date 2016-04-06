@@ -82,13 +82,15 @@ public class PostedServiceImpl implements PostedService {
 		for (Purchase purchase : list) {
 			User user = userHelper.selectByPrimaryKey(purchase.getUserId());
 
-			Map<String, Object> tmpMap = new HashMap<>();
-			tmpMap.put("purchaseSeq", purchase.getSeq());
-			tmpMap.put("userId", purchase.getUserId());
-			tmpMap.put("userName", user.getName());
-			tmpMap.put("sentence", purchase.getSentence());
+			if(user != null) {
+				Map<String, Object> tmpMap = new HashMap<>();
+				tmpMap.put("purchaseSeq", purchase.getSeq());
+				tmpMap.put("userId", purchase.getUserId());
+				tmpMap.put("userName", user.getName());
+				tmpMap.put("sentence", purchase.getSentence());
 
-			resultList.add(tmpMap);
+				resultList.add(tmpMap);
+			}
 		}
 
 		resultMap.put("count", count);
