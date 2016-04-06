@@ -447,35 +447,43 @@
     <script src="/js/jquery/jquery-ui/jquery-ui.min.js"></script>
     <script src="/js/swiper.jquery.min.js"></script>
     <script src="/js/jquery.touchSwipe.min.js"></script>
-
-	<script src="/js/spinner.js"></script>
-    <script src="/js/facebook.js"></script>
-	<script src="/js/common.js"></script>
-	<script src="/js/common-ajax.js"></script>
-    <script src="/js/detail.js"></script>
-    <script src="/js/init.js"></script>
-
 	<!-- 다국어 지원 라이브러리 -->
 	<script src="/js/jquery/i18next.min.js"></script>
-	<script src="/js/translation.js"></script>
 
-    <script src="/js/myhome.js"></script>
-    <script src="/js/follow.js"></script>
-    <script src="/js/popular.js"></script>
-    <script src="/js/new.js"></script>
-    <script src="/js/personal.js"></script>
-    <script src="/js/purchase.js"></script>
-    <script src="/js/login.js"></script>
-    <script src="/js/reward.js"></script>
-    <script src="/js/signup.js"></script>
-    <script src="/js/profile.js"></script>
-    <script src="/js/upload.js"></script>
-    <script src="/js/history.js"></script>
-	<script src="/js/about.js"></script>
+	<!-- 다국어 지원 -->
+	<script src="/js/util/translation.js"></script>
+	<!-- 히스토리  -->
+    <script src="/js/util/history.js"></script>
 
+	<!-- 다음 주소 -->
+<!-- 	<script src="/js/util/postcode.v2.js"></script> -->
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?1"></script>
-    <script src="/js/daumAddrApi.js"></script>
+    <script src="/js/util/daumAddrApi.js"></script>
+	<!-- 페이스북 로그인 -->    
+    <script src="/js/util/facebook.js"></script>
+	<script src="/js/util/spinner.js"></script>
 	
+	<!-- 공통 -->    
+	<script src="/js/util/common.js"></script>
+	<!-- 공통 AJAX -->    
+	<script src="/js/util/common-ajax.js"></script>
+
+	<!--  메인페이지 관련 스크립트 -->
+    <script src="/js/index/detail.js"></script>
+    <script src="/js/index/init.js"></script>
+    <script src="/js/index/myhome.js"></script>
+    <script src="/js/index/follow.js"></script>
+    <script src="/js/index/popular.js"></script>
+    <script src="/js/index/new.js"></script>
+    <script src="/js/index/personal.js"></script>
+    <script src="/js/index/purchase.js"></script>
+    <script src="/js/index/login.js"></script>
+    <script src="/js/index/reward.js"></script>
+    <script src="/js/index/signup.js"></script>
+    <script src="/js/index/profile.js"></script>
+    <script src="/js/index/upload.js"></script>
+	<script src="/js/index/about.js"></script>
+
 	<script>
 		$(function () {
 			exeTranslation('.about_container', lang);
