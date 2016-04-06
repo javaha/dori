@@ -103,7 +103,7 @@ function setPersonal(result) {
     $(".socicon-twitter").click(function() {
     	shareSocial({name: personal.username, type: "twitter"});
     });
-    $(".material-icons").click(function() {
+    $("#materialBtn").click(function() {
     	urlCopy({"name": personal.username});
     });
     
@@ -144,6 +144,11 @@ PersonalController.prototype = {
 			null,
 			"GET", 
 			function(result) {
+				// 에러코드 100 번일 경우 사용자 작가 개인 페이지 호출 시 작가가 존재하지 않는 경우
+				if (result.errorNo == 100) {
+					alert($.i18n.t('alert.common.notExistArtist'));
+					location.href = "/";
+				}  	
 				controller.getPersonInfoRes(result);
 			}
 		);
@@ -184,13 +189,16 @@ function getRequest() {
     }
 }
 
+var callType;
 var get = getRequest();
 // user만 있으면 개인페이지로 이동, user, page가 있으면 상세화면으로 이동
 // http://localhost:9080/index.html?user=a01&page=b0645fc6-a7bb-4f61-a133-d29ae45c4801
 if(get) {
 //	get.page = 'b0645fc6-a7bb-4f61-a133-d29ae45c4801';
 //	get.user = 'a01';
+	callType = "social";
     if(get.page) {
+    	
         loadDetail(get.page, "200,60%,50%", "200,60%,20%");
         showPersonal(get.user, get.page);
     } else if(get.user) {

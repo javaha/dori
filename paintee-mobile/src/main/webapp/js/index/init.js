@@ -1,6 +1,6 @@
 $(function () {
 	// 로그인 되어있지 않은 경우 about 페이지 띄우기
-	if(!userInfo) {
+	if(!userInfo && callType != "social") {
 		showAboutOverview();
 	}
 });

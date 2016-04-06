@@ -79,6 +79,12 @@ public class PersonalServiceImpl implements PersonalService {
 		}
 		
 		Map<String, Object> result = new HashMap<>();
+		String artistId = personalVO.getArtistId();
+		String paintingId = personalVO.getPaintingId();
+		if (artistId == null) {
+			result.put("errorNo", "100");
+			return result;
+		} 
 		result.put("personal", personalVO);
 		result.put("list", list);
 		return result;

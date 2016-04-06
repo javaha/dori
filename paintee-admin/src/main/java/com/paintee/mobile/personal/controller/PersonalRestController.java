@@ -57,9 +57,6 @@ public class PersonalRestController {
 		
 		Map<String, Object> resultMap = new HashMap<>();
 		logger.debug("personalInfo ::: search:{}", search);
-
-		int errorNo = 0;
-		String errorMsg = "";
 		
 		// 요청 데이터 페이징 정보
 		search.setRowPerPage(5);
@@ -67,14 +64,10 @@ public class PersonalRestController {
 		List<String> paintingStatusList = new ArrayList<>();
 		paintingStatusList.add("N");  // 정상
 		search.setPaintingStatusList(paintingStatusList);
-		
-		search.setLoginId(loginedUserVO.getUserId());
+		if (loginedUserVO != null) {
+			search.setLoginId(loginedUserVO.getUserId());
+		}
 		resultMap = personalService.getPersonalPaintingInfo(search);
-		
-		// 에러정보
-		resultMap.put("errorNo", errorNo);
-		resultMap.put("errorMsg", errorMsg);
-		
 		return resultMap;
 	}
 	
