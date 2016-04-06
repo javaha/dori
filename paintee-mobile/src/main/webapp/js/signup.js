@@ -82,7 +82,7 @@ SignupController.prototype = {
 		var controller = this;
 
 		if(result.errorNo == 0) {
-			console.log('regist user');
+			// console.log('regist user');
 
 			//TODO:Language 정보 취득 (현재 브라우저의 location 정보를 넣음.)
 			var signupLanguage = 'en';
@@ -140,7 +140,7 @@ function registSocialUser(response, providerId) {
 		});
 	} else if (response.status === 'not_authorized') {
 		// The person is logged into Facebook, but not your app.
-		console.log('Please log into this app.');
+		// console.log('Please log into this app.');
 	} else {
 		// The person is not logged into Facebook, so we're not sure if
 		// they are logged into this app or not.

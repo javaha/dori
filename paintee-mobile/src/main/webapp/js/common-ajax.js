@@ -17,10 +17,10 @@ var AjaxCall = {
 				}
 			},
 			error: function (jqXHR, textStatus, errorThrown) {
-				console.log(jqXHR);
-				console.log(jqXHR.responseText);
-				console.log(textStatus);
-				console.log(errorThrown);
+				// console.log(jqXHR);
+				// console.log(jqXHR.responseText);
+				// console.log(textStatus);
+				// console.log(errorThrown);
 
 				if (jqXHR.responseText != null) {
 					try {
@@ -202,7 +202,7 @@ var setUserInfoCookie = function(userInfo) {
 	var expire = new Date();
 	expire.setDate(expire.getDate() + cDay);
 	cookies = 'userInfo=' + escape(cValue) + '; path=/ ';
-	console.log(cookies);
+	// console.log(cookies);
 	if(typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
 	document.cookie = cookies;
 };
@@ -213,7 +213,7 @@ var clearUserInfoCookie = function() {
 	var expire = new Date();
 	expire.setDate(expire.getDate() + cDay);
 	cookies = 'userInfo=' + escape(cValue) + '; path=/ ';
-	console.log(cookies);
+	// console.log(cookies);
 	if(typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
 	document.cookie = cookies;
 };
@@ -240,7 +240,7 @@ var getUserInfoCookie = function() {
 	if(cValue != null && cValue != '') {
 		userInfo = JSON.parse(unescape(cValue));
 	}
-	console.log(userInfo);
+	// console.log(userInfo);
 	return userInfo;
 };
 

@@ -145,7 +145,7 @@ DetailStructure.prototype = {
 
         var detailController = new DetailController();
 
-        console.log(this.artistId);
+        // console.log(this.artistId);
         
         var picArtistId = this.artistId;
         var artistName = this.artistName;
@@ -209,7 +209,7 @@ DetailController.prototype = {
 		AjaxCall.call(apiUrl+"/painting/"+paintingId, null, "GET", function (result, status) { controller.getDetailDataRes(result, status, paintingId, color, colorDark); });
 	},
 	getDetailDataRes: function (result, status, paintingId, color, colorDark) {
-		console.log("getDetailDataRes", color, colorDark);
+		// console.log("getDetailDataRes", color, colorDark);
 		//loadDetail 에서 하던내용
 		
 		// 히스트리에서 사용하기 위해서 객체 변수 추가
@@ -231,14 +231,14 @@ DetailController.prototype = {
 	artistFollow: function(artistId) {
 		var controller = this;
 		
-		console.log("artistFollow=>artistId:"+artistId);
-		console.log("artistFollow=>selectedArtistId:"+selectedArtistId);
+		// console.log("artistFollow=>artistId:"+artistId);
+		// console.log("artistFollow=>selectedArtistId:"+selectedArtistId);
 		// 개인페이지에서 사용하는 부분이 있어 selectedArtistId 이 없을 경우 artistId를 사용하도록 변경. 04-05
 		AjaxCall.call(apiUrl+"/user/"+(selectedArtistId ? selectedArtistId : artistId)+"/follow", null, "POST", function(result, status) { controller.artistFollowRes(result, status); });
 	},
 	artistFollowRes: function(result, status) {
-		console.log(selectedArtistId);
-		console.log(result);
+		// console.log(selectedArtistId);
+		// console.log(result);
 		if(result.errorNo == 0) {
 			dataReload(["initFollow();"]);
 			alert(selectedArtistName + $.i18n.t('alert.detail.processFollow'));
@@ -350,7 +350,7 @@ function changeMode(swiper){
 
 //디테일화면의 스크롤 잠금
 function lockPosted(swiper){
- console.log("lock!");
+ // console.log("lock!");
 
  postedLock = true;
  hidePosted(swiper);
@@ -362,7 +362,7 @@ function lockPosted(swiper){
 
 //디테일화면의 스크롤 열기
 function unlockPosted(swiper){
- console.log("unlock!");
+ // console.log("unlock!");
 
  postedLock = false;
  swiper.params.freeMode = true;
@@ -439,7 +439,7 @@ function addPosted(swiper, postedInfo) {
 //Detail화면의 댓글 무한스크롤 (10개씩 추가)
 function callPosted(swiper){
 	var isPostedEnd;
-	console.log(swiper.slides.length+":"+swiper.activeIndex);
+	// console.log(swiper.slides.length+":"+swiper.activeIndex);
 
 	var rowPerPage = 5;
 	var detailPostedCnt = swiper.slides.length - initPostedSlideCnt;

@@ -8,7 +8,7 @@ ProfileController.prototype = {
 	},
 	getUserInfoRes: function(result, status) {
 		if(result.errorNo == 0) {
-			console.log(result);
+			// console.log(result);
 
 			var userInfo = result.userInfo;
 
@@ -100,7 +100,7 @@ ProfileController.prototype = {
 		var controller = this;
 
 		if(result.errorNo == 0) {
-			console.log('update user');
+			// console.log('update user');
 			var param = {};
 
 			if($('#profileUserPassword').val() != '') {

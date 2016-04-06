@@ -17,7 +17,7 @@ LogInController.prototype = {
 	},
 	doLoginRes: function(result, status) {
 		if(result.errorNo == 0) {
-			console.log(result);
+			// console.log(result);
 			setUserInfoCookie(result);
 
 			//login 후 cookie 를 페이지에 적용하기 위하여 새로고침해야함.
@@ -50,7 +50,7 @@ LogInController.prototype = {
 	},
 	doResetPasswodRes: function(result, status) {
 		if(result.errorNo == 0) {
-			console.log(result);
+			// console.log(result);
 			alert($.i18n.t('alert.login.resetPassSendMail'));
 //			alert('비밀번호 초기화 메일 발송.');
 		} else if(result.errorNo == 401) {
@@ -63,7 +63,7 @@ LogInController.prototype = {
 
 // 로그인과 함께 다시 side menu 초기화
 function logIn(){
-    console.log("log in!!!");
+    // console.log("log in!!!");
 
     var userEmail = $('#userEmail').val();
     var userPassword = $('#userPassword').val();
@@ -83,7 +83,7 @@ function logIn(){
 }
 
 function logout() {
-    console.log("log out!!!");
+    // console.log("log out!!!");
 
     clearUserInfoCookie();
     
@@ -144,7 +144,7 @@ function loginSocialUser(response, providerId) {
 		});
 	} else if (response.status === 'not_authorized') {
 		// The person is logged into Facebook, but not your app.
-		console.log('Please log into this app.');
+		// console.log('Please log into this app.');
 	} else {
 		// The person is not logged into Facebook, so we're not sure if
 		// they are logged into this app or not.

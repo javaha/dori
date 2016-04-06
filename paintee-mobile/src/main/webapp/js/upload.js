@@ -177,7 +177,7 @@ function initUpload(postedCount, doTotaluploadCount, uploadedCount){
         resetUpload();
     }
 
-    console.log("uploadedCount:"+uploadedCount);
+    // console.log("uploadedCount:"+uploadedCount);
     if(uploadedCount == 0) {
     	showAboutUpload();
     }
@@ -226,7 +226,7 @@ function successUpload() {
 		previewReader.addEventListener("load", function () {
 			var boxWidth = $('#upload_popup_box').width();
 			var originalWidth = this.width;
-			console.log("boxWidth:"+boxWidth+", originalWidth:"+originalWidth);
+			// console.log("boxWidth:"+boxWidth+", originalWidth:"+originalWidth);
 //			$('.painting_preview').append('<img src="'+ previewReader.result +'" width="120px" height="150px"/>');
 			$('#upload_popup_box').css('backgroundImage', 'url('+previewReader.result+')').css('background-size', boxWidth/1080*originalWidth).css('background-position', 'center center');
 		}, false);
@@ -240,7 +240,7 @@ function successUpload() {
 			image.onload = function() {
 				var boxWidth = $('#upload_popup_box').width();
 				var originalWidth = this.width;
-				console.log("boxWidth:"+boxWidth+", originalWidth:"+originalWidth);
+				// console.log("boxWidth:"+boxWidth+", originalWidth:"+originalWidth);
 //				$('.painting_preview').append('<img src="'+ previewReader.result +'" width="120px" height="150px"/>');
 				$('#upload_popup_box').css('backgroundImage', 'url('+previewReader.result+')').css('background-size', boxWidth/1080*originalWidth).css('background-position', 'center center');
 			};
