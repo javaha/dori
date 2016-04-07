@@ -25,10 +25,16 @@ import org.springframework.stereotype.Service;
 
 import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.repository.entity.FileInfoExample;
+import com.paintee.common.repository.entity.Painting;
+import com.paintee.common.repository.entity.PaintingExample;
+import com.paintee.common.repository.entity.User;
+import com.paintee.common.repository.entity.UserExample;
 import com.paintee.common.repository.entity.vo.PersonalSearchVO;
 import com.paintee.common.repository.entity.vo.PersonalVO;
 import com.paintee.common.repository.helper.FileInfoHelper;
+import com.paintee.common.repository.helper.PaintingHelper;
 import com.paintee.common.repository.helper.PersonalHelper;
+import com.paintee.common.repository.helper.UserHelper;
 
 /**
 @class PersonalServiceImpl
@@ -51,6 +57,12 @@ public class PersonalServiceImpl implements PersonalService {
 
 	@Autowired
 	private PersonalHelper personalHelper;
+	
+	@Autowired
+	private UserHelper userHelper;
+	
+	@Autowired
+	private PaintingHelper paintingHelper;
 	
 	@Autowired
 	private FileInfoHelper fileInfoHelper;
@@ -80,13 +92,49 @@ public class PersonalServiceImpl implements PersonalService {
 		
 		Map<String, Object> result = new HashMap<>();
 		String artistId = personalVO.getArtistId();
-		String paintingId = personalVO.getPaintingId();
 		if (artistId == null) {
 			result.put("errorNo", "100");
 			return result;
 		} 
 		result.put("personal", personalVO);
 		result.put("list", list);
+		return result;
+	}
+
+	@Override
+	public Map<String, Object> getPersonalPaintingStatus(Painting painting) {
+
+		// 요청한 그림이 존재하는지를 판단
+		PaintingExample example = new PaintingExample();
+		PaintingExample.Criteria where = example.createCriteria();
+		where.andPaintingIdEqualTo(painting.getPaintingId())
+		     .andPaintingStatusEqualTo("N");
+		
+		int count = paintingHelper.countByExample(example);
+		
+		Map<String, Object> result = new HashMap<>();
+		if (count == 0) {
+			result.put("errorNo", "100");
+			return result;
+		} 
+		result.put("errorNo", "0");
+		return result;
+	}
+
+	@Override
+	public Map<String, Object> getPersonalArtistStatus(User user) {
+		UserExample example = new UserExample();
+		UserExample.Criteria where = example.createCriteria();
+		where.andNameEqualTo(user.getName());
+		
+		int count = userHelper.countByExample(example);
+		Map<String, Object> result = new HashMap<>();
+		// 요청한 사용자가 없는 경우
+		if (count == 0) {
+			result.put("errorNo", "100");
+			return result;
+		} 
+		result.put("errorNo", "0");
 		return result;
 	}
 }

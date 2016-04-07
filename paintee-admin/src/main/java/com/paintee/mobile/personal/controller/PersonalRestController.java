@@ -26,7 +26,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.paintee.common.repository.entity.Painting;
+import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.PersonalSearchVO;
+import com.paintee.common.repository.entity.vo.PersonalVO;
 import com.paintee.mobile.personal.service.PersonalService;
 import com.paintee.mobile.support.obejct.LoginedUserVO;
 
@@ -71,5 +74,14 @@ public class PersonalRestController {
 		return resultMap;
 	}
 	
+	@RequestMapping(value="/api/index/personal/pictureStatus", method=RequestMethod.GET)
+	public Map<String, Object> pictureStatus(Painting painting) throws Exception {
+		return personalService.getPersonalPaintingStatus(painting);
+	}
+	
+	@RequestMapping(value="/api/index/personal/artistStatus", method=RequestMethod.GET)
+	public Map<String, Object> artistStatus(User user) throws Exception {
+		return personalService.getPersonalArtistStatus(user);
+	}
 
 }

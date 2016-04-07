@@ -204,11 +204,11 @@ function DetailController() {
 
 DetailController.prototype = {
 	//디테일화면에서 보여질 데이터 조회
-	getDetailData: function (paintingId, color, colorDark) {
+	getDetailData: function (paintingId, color, colorDark, call) {
 		var controller = this;
-		AjaxCall.call(apiUrl+"/painting/"+paintingId, null, "GET", function (result, status) { controller.getDetailDataRes(result, status, paintingId, color, colorDark); });
+		AjaxCall.call(apiUrl+"/painting/"+paintingId, null, "GET", function (result, status) { controller.getDetailDataRes(result, status, paintingId, color, colorDark, call); });
 	},
-	getDetailDataRes: function (result, status, paintingId, color, colorDark) {
+	getDetailDataRes: function (result, status, paintingId, color, colorDark, call) {
 		// console.log("getDetailDataRes", color, colorDark);
 		//loadDetail 에서 하던내용
 		
@@ -227,7 +227,12 @@ DetailController.prototype = {
 		$(".detail_postbar").css("background-color", "hsla("+colorDark+", 1)");
 
 		lockPosted(detailSwiper);
-	},
+		
+		// 소셜공유에서 직접 호출한 경우
+		if (call == 'personal') {
+			showPersonal(get.user, get.page);
+		}
+ 	},
 	artistFollow: function(artistId) {
 		var controller = this;
 		
@@ -251,9 +256,9 @@ DetailController.prototype = {
 };
 
 //디테일화면 표시
-function loadDetail(paintingId, color, colorDark) {
+function loadDetail(paintingId, color, colorDark, call) {
 	selectedPaintingId = paintingId;
-	detailController = new DetailController().getDetailData(paintingId, color, colorDark);
+	detailController = new DetailController().getDetailData(paintingId, color, colorDark, call);
 }
 
 //디테일화면 초기화

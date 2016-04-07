@@ -171,6 +171,44 @@ PersonalController.prototype = {
 			personal.swiper.slideTo(personal.swiper.slides.length - 1, 0);
 		}
 		*/
+	},
+	getPictureStatus : function (paintingId) {
+		var controller = this;
+		AjaxCall.call(
+				apiUrl + "/index/personal/pictureStatus?paintingId=" + paintingId, 
+				null,
+				"GET", 
+				function(result) {
+					// 에러코드 100 번일 경우 사용자 작가 개인 페이지 호출 시 작가의 그림이 존재하지 않는 경우
+					if (result.errorNo == 100) {
+						alert($.i18n.t('alert.common.notExistPicture'));
+//						location.href = "/";
+					}  
+					// 그림이 존재하는 경우만 상세 페이지 호출
+					else {
+						loadDetail(get.page, "200,60%,50%", "200,60%,20%", "personal");
+					}
+				}
+		);
+	},
+	getArtistStatus : function (name) {
+		var controller = this;
+		AjaxCall.call(
+				apiUrl + "/index/personal/artistStatus?name=" + name, 
+				null,
+				"GET", 
+				function(result) {
+					// 에러코드 100 번일 경우 사용자 작가 개인 페이지 호출 시 작가의 그림이 존재하지 않는 경우
+					if (result.errorNo == 100) {
+						alert($.i18n.t('alert.common.notExistArtist'));
+					}  
+					// 그림 작가가 있을 경우에 다음 단계 진행
+					else {
+						// 개인페이지 진행
+						processPersonalView();
+					}
+				}
+		);
 	}
 };
 
@@ -193,14 +231,18 @@ var callType;
 var get = getRequest();
 // user만 있으면 개인페이지로 이동, user, page가 있으면 상세화면으로 이동
 // http://localhost:9080/index.html?user=a01&page=b0645fc6-a7bb-4f61-a133-d29ae45c4801
-if(get) {
-//	get.page = 'b0645fc6-a7bb-4f61-a133-d29ae45c4801';
-//	get.user = 'a01';
+if (get) {
 	callType = "social";
+	if(get.user) {
+		new PersonalController().getArtistStatus(get.user);
+	}
+};
+
+function processPersonalView() {
     if(get.page) {
-    	
-        loadDetail(get.page, "200,60%,50%", "200,60%,20%");
-        showPersonal(get.user, get.page);
+    	new PersonalController().getPictureStatus(get.page)
+//        loadDetail(get.page, "200,60%,50%", "200,60%,20%", "personal");
+//        showPersonal(get.user, get.page);
     } else if(get.user) {
     	// 트위트의 경우 마지막에 / 가 URL 뒤에 추가되는 경우가 생겨서 삭제처리함
     	var len = get.user.length;
@@ -210,4 +252,5 @@ if(get) {
     	}
         showPersonal(get.user);
     }
-};
+	
+}

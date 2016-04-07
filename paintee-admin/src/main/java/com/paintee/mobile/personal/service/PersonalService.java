@@ -16,6 +16,8 @@ package com.paintee.mobile.personal.service;
 
 import java.util.Map;
 
+import com.paintee.common.repository.entity.Painting;
+import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.PersonalSearchVO;
 
 /**
@@ -44,4 +46,24 @@ public interface PersonalService {
 	 @return 
 	*/
 	public Map<String, Object> getPersonalPaintingInfo(PersonalSearchVO searchVO);
+
+	/**
+	 @fn getPersonalPaintingStatus
+	 @brief 함수 간략한 설명 : 
+	 @remark
+	 - 함수의 상세 설명 : 
+	 @param painting
+	 @return 
+	*/
+	public Map<String, Object> getPersonalPaintingStatus(Painting painting);
+
+	/**
+	 @fn getPersonalArtistStatus
+	 @brief 함수 간략한 설명 : 
+	 @remark
+	 - 함수의 상세 설명 : 
+	 @param search
+	 @return 
+	*/
+	public Map<String, Object> getPersonalArtistStatus(User user);
 }

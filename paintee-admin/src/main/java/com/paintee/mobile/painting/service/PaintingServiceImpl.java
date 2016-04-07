@@ -77,7 +77,7 @@ public class PaintingServiceImpl implements PaintingService {
 		Painting painting = paintingHelper.selectByExample(example).get(0);
 		*/
 		PaintingVO painting = paintingHelper.selectPaintingInfo(paintingId);
-
+		
 		//파일정보 조회
 		List<FileInfo> fileInfoList = fileService.getFileInfoList(painting.getFileGroupSeq());
 
