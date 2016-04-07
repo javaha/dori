@@ -251,6 +251,7 @@ function processPersonalView() {
     		get.user = get.user.substr(0, len -1);
     	}
         showPersonal(get.user);
+        get = "";
     }
 	
 }

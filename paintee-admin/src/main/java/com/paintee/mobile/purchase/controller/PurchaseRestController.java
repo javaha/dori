@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paintee.common.repository.entity.Painting;
@@ -56,10 +57,10 @@ public class PurchaseRestController {
 	private PurchaseService purchaseService;
 	
 	@RequestMapping(value="/api/purchasePopInfo", method={RequestMethod.GET})
-	public Map<String, Object> purchasePopInfo(LoginedUserVO loginedUserVO) throws Exception {
-		
+	public Map<String, Object> purchasePopInfo(@RequestParam("paintingId") String paintingId, LoginedUserVO loginedUserVO) throws Exception {
+		logger.debug("purchasePopInfo paintingId ::: {}", paintingId);
 		// 구매관련 정보 등록
-		Map<String, Object> result = purchaseService.purchasePopInfo(loginedUserVO);
+		Map<String, Object> result = purchaseService.purchasePopInfo(paintingId, loginedUserVO);
 		return result;
 	}
 	

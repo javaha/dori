@@ -47,7 +47,7 @@ public interface PurchaseService {
 	 @param loginedUserVO
 	 @return 
 	*/
-	public  Map<String, Object> purchasePopInfo(LoginedUserVO loginedUserVO);
+	public  Map<String, Object> purchasePopInfo(String paintingId, LoginedUserVO loginedUserVO);
 	
 	/**
 	 @fn addPurchase

@@ -324,10 +324,15 @@ function PurchaseController(paintingId, artistName) {
 PurchaseController.prototype = {
 	purchasePopInfo: function () {
 		var controller = this;
-		AjaxCall.call(apiUrl + "/purchasePopInfo", 
+		AjaxCall.call(apiUrl + "/purchasePopInfo?paintingId=" + controller.paintingId, 
 			"", 
 			"GET", 
 			function (result) {
+				// 해당 그림이 정상 상태가 이닐경우
+				if (result.errorNo == "100") {
+					alert($.i18n.t('alert.common.delPainting'));
+					return;	
+				}
 				controller.purchasePopInfoRes(result);			
 			}
 		);		

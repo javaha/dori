@@ -231,6 +231,7 @@ DetailController.prototype = {
 		// 소셜공유에서 직접 호출한 경우
 		if (call == 'personal') {
 			showPersonal(get.user, get.page);
+			get = "";
 		}
  	},
 	artistFollow: function(artistId) {

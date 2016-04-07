@@ -76,6 +76,8 @@ public class PaintingServiceImpl implements PaintingService {
 		pWhere.andPaintingIdEqualTo(paintingId);
 		Painting painting = paintingHelper.selectByExample(example).get(0);
 		*/
+		
+		logger.debug("paintingId ::: " + paintingId);
 		PaintingVO painting = paintingHelper.selectPaintingInfo(paintingId);
 		
 		//파일정보 조회
