@@ -166,11 +166,11 @@ PersonalController.prototype = {
 			
 			addPainting(personal.swiper, 1, pageType, result.list[index]);
 		}
-		/*
+//		/*
 		if (controller.paintingId) {
 			personal.swiper.slideTo(personal.swiper.slides.length - 1, 0);
 		}
-		*/
+//		*/
 	},
 	getPictureStatus : function (paintingId) {
 		var controller = this;
@@ -228,15 +228,18 @@ function getRequest() {
 }
 
 var callType;
-var get = getRequest();
+var get;
+$(document).ready(function () {
+	get = getRequest();
 // user만 있으면 개인페이지로 이동, user, page가 있으면 상세화면으로 이동
 // http://localhost:9080/index.html?user=a01&page=b0645fc6-a7bb-4f61-a133-d29ae45c4801
-if (get) {
-	callType = "social";
-	if(get.user) {
-		new PersonalController().getArtistStatus(get.user);
-	}
-};
+	if (get) {
+		callType = "social";
+		if(get.user) {
+			new PersonalController().getArtistStatus(get.user);
+		}
+	};
+});
 
 function processPersonalView() {
     if(get.page) {
@@ -253,5 +256,4 @@ function processPersonalView() {
         showPersonal(get.user);
         get = "";
     }
-	
 }
