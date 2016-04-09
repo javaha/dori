@@ -48,52 +48,58 @@ com.paintee.mobile.follow.controller \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - follow rest controller
+ - Follow 목록 정보 controller
 */
 @RestController(value="com.paintee.mobile.follow.controller.FollowRestController")
 public class FollowRestController {
+
 	private final static Logger logger = LoggerFactory.getLogger(FollowRestController.class);
 
 	@Autowired
 	private FollowService followService;
 
+	/**
+	 @fn followCount
+	 @brief 함수 간략한 설명 : 로그인 사용자의 팔로잉 사용자 카운트와 팔로워의 카운트
+	 @remark
+	 - 함수의 상세 설명 : 로그인 사용자의 팔로잉 사용자 카운트와 팔로워의 카운트
+	 @param loginedUserVO
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value="/api/index/follow/count", method=RequestMethod.GET)
 	public Map<String, Object> followCount(LoginedUserVO loginedUserVO) throws Exception {
-		
-		Map<String, Object> resultMap = new HashMap<>();
-		logger.debug("loginedUserVO:{}", loginedUserVO);
-		int errorNo = 0;
-		String errorMsg = "";
-		
-		// 로그인 사용자 아이디
-		String userId = loginedUserVO.getUserId();
-		
 		// 데이터 조건 설정
 		FollowSearchVO search = new FollowSearchVO();
 		
 		// 로그인 사용자 아이디
-		search.setUserId(userId);
+		search.setUserId(loginedUserVO.getUserId());
 		
 		FollowVO follow = followService.getFollowCount(search);
+		
+		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("follow", follow);
-		resultMap.put("errorNo", errorNo);
-		resultMap.put("errorMsg", errorMsg);
+		resultMap.put("errorNo", 0);
+		resultMap.put("errorMsg", "");
 
 		return resultMap;
 	}
 	
+	/**
+	 @fn paintingList
+	 @brief 함수 간략한 설명 : Follow 목록 그림 정보 조회
+	 @remark
+	 - 함수의 상세 설명 : 로그인한 사용자가 follow 하는 사람들이 구매하거나 업로드한 그림의 목록을 조회
+	                <br />최근순으로 표시하고 구매한 그림과 업로드한 그림의 순서는 없이 동일하게 표출함
+	 @param loginedUserVO
+	 @param startRow
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value="/api/index/follow/list", method=RequestMethod.GET)
 	public Map<String, Object> paintingList(LoginedUserVO loginedUserVO, 
 			@RequestParam(name="startRow", required=false, defaultValue="0") Integer startRow) 
 					throws Exception {
-		
-		Map<String, Object> resultMap = new HashMap<>();
-
-		logger.debug("loginedUserVO:{}", loginedUserVO);
-		logger.debug("startRow:{}", startRow);
-		
-		int errorNo = 0;
-		String errorMsg = "";
 		
 		// 로그인 사용자 아이디
 		String userId = loginedUserVO.getUserId();
@@ -124,112 +130,121 @@ public class FollowRestController {
 		// 로그인 사용자 아이디
 		search.setUserId(userId);
 		
+		Map<String, Object> resultMap = new HashMap<>();
 		resultMap = followService.getFollowPaintingInfo(search);
-		resultMap.put("errorNo", errorNo);
-		resultMap.put("errorMsg", errorMsg);
-
+		resultMap.put("errorNo", 0);
+		resultMap.put("errorMsg", "");
 		return resultMap;
 	}
 	
+	/**
+	 @fn followsList
+	 @brief 함수 간략한 설명 : 로그인한 사용자를 팔로잉한 사용자의 목록을 조회
+	 @remark
+	 - 함수의 상세 설명 : 로그인한 사용자를 팔로잉한 사용자의 목록을 조회
+	 @param loginedUserVO
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value={"/api/index/follows"}, method=RequestMethod.GET)
 	public Map<String, Object> followsList(LoginedUserVO loginedUserVO) throws Exception {
 		
 		logger.debug("loginedUserVO:{}", loginedUserVO);
-
-		Map<String, Object> resultMap = new HashMap<>();
-		
-		int errorNo = 0;
-		String errorMsg = "";
-		
-		// 로그인 사용자 아이디
-		String userId = loginedUserVO.getUserId();
 		
 		// 데이터 조건 설정
 		FollowSearchVO search = new FollowSearchVO();
 		
 		// 로그인 사용자 아이디
-		search.setUserId(userId);
+		search.setUserId(loginedUserVO.getUserId());
 		
+		Map<String, Object> resultMap = new HashMap<>();
+
 		List<FollowVO> list = followService.getFollowsList(search);
 		resultMap.put("list", list);
-		resultMap.put("errorNo", errorNo);
-		resultMap.put("errorMsg", errorMsg);
+		resultMap.put("errorNo", 0);
+		resultMap.put("errorMsg", "");
 		
 		return resultMap;
 	}
 
+	/**
+	 @fn addFollows
+	 @brief 함수 간략한 설명 : 로그인 사용자의 팔로워를 추가 
+	 @remark
+	 - 함수의 상세 설명 : 로그인 사용자의 팔로워를 추가 
+	 @param loginedUserVO
+	 @param follow
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value={"/api/index/follows"}, method=RequestMethod.POST)
 	public Map<String, Object> addFollows(LoginedUserVO loginedUserVO, @RequestBody Follow follow) throws Exception {
 		
 		logger.debug("Follow ::: {}", follow);
 		
-		Map<String, Object> resultMap = new HashMap<>();
-		
-		int errorNo = 0;
-		String errorMsg = "";
-		
 		// 로그인 사용자 아이디
-		String userId = loginedUserVO.getUserId();
-		
-		// 로그인 사용자 아이디
-		follow.setUserId(userId);
+		follow.setUserId(loginedUserVO.getUserId());
 		
 		followService.addFollows(follow);
 		
-		resultMap.put("errorNo", errorNo);
-		resultMap.put("errorMsg", errorMsg);
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("errorNo", 0);
+		resultMap.put("errorMsg", "");
 		return resultMap;
 	}
 
+	/**
+	 @fn followingList
+	 @brief 함수 간략한 설명 : 로그인한 사용자가 팔로잉한 사용자의 목록을 조회 
+	 @remark
+	 - 함수의 상세 설명 : 로그인한 사용자가 팔로잉한 사용자의 목록을 조회 
+	 @param loginedUserVO
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value={"/api/index/following"}, method=RequestMethod.GET)
 	public Map<String, Object> followingList(LoginedUserVO loginedUserVO) throws Exception {
-		
 		logger.debug("loginedUserVO:{}", loginedUserVO);
-		
-		Map<String, Object> resultMap = new HashMap<>();
-		
-		int errorNo = 0;
-		String errorMsg = "";
-		
-		// 로그인 사용자 아이디
-		String userId = loginedUserVO.getUserId();
 		
 		// 데이터 조건 설정
 		FollowSearchVO search = new FollowSearchVO();
 		
 		// 로그인 사용자 아이디
-		search.setUserId(userId);
+		search.setUserId(loginedUserVO.getUserId());
 		
+		Map<String, Object> resultMap = new HashMap<>();
 		List<FollowVO> list = followService.getFollowingList(search);
 		resultMap.put("list", list);
-		resultMap.put("errorNo", errorNo);
-		resultMap.put("errorMsg", errorMsg);
+		resultMap.put("errorNo", 0);
+		resultMap.put("errorMsg", "");
 		
 		return resultMap;
 	}
 	
+	/**
+	 @fn delFollowing
+	 @brief 함수 간략한 설명 : 로그인 사용자의 팔로워를 삭제 
+	 @remark
+	 - 함수의 상세 설명 : 로그인 사용자의 팔로워를 삭제 
+	 @param loginedUserVO
+	 @param name
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value={"/api/index/following/{name}"}, method=RequestMethod.DELETE)
 	public Map<String, Object> delFollowing(LoginedUserVO loginedUserVO, @PathVariable String name) throws Exception {
-		
 		logger.debug("Follow ::: {}", name);
-		
-		Map<String, Object> resultMap = new HashMap<>();
-		
-		int errorNo = 0;
-		String errorMsg = "";
-		
-		// 로그인 사용자 아이디
-		String userId = loginedUserVO.getUserId();
 		
 		// 로그인 사용자 아이디
 		Follow follow = new Follow();
-		follow.setUserId(userId);
+		follow.setUserId(loginedUserVO.getUserId());
 		follow.setFollowing(name);
 		
 		followService.delFollows(follow);
 		
-		resultMap.put("errorNo", errorNo);
-		resultMap.put("errorMsg", errorMsg);
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("errorNo", 0);
+		resultMap.put("errorMsg", "");
 		return resultMap;
 	}	
 }

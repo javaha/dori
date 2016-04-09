@@ -27,7 +27,7 @@
 		   and a.painting_status in <foreach item="status" collection="paintingStatusList" open="(" close=")" separator=",">
 		    							#{status}
 		                            </foreach>
-		   and a.private_at != 'Y'                        		 
+		   and a.private_at = 'N'                        		 
 		 union all
 		select a.artist_id, 
 			   (select name from TB_USER where user_id = a.artist_id) artist_name, 
@@ -52,7 +52,7 @@
 		 limit #{startRow}, #{rowPerPage}
   	</select>  	
   	
-	<!-- 로그인 사용자가 팔로잉한 사용자가 구매한 그림과 업로드한 그림의 목록을 가져오기 -->
+	<!-- 로그인 사용자의 팔로잉한 사용자 카운트와 팔로워의 카운트 -->
   	<select id="selectFollowCount" resultMap="BaseResultMap">
   	     select (select count(*) from TB_FOLLOW where user_id = #{userId}) as following_count,
   	            (select count(*) from TB_FOLLOW where following = #{userId}) as follows_count

@@ -49,6 +49,7 @@ function PopularController() {
 }
 
 PopularController.prototype = {
+	// 목록 데이터 요청 AJAX	
 	getListData: function (startRow) {
 		this.startRow = startRow;
 		var controller = this;
@@ -60,6 +61,7 @@ PopularController.prototype = {
 			}
 		);
 	},
+	// 목록 데이터 요청 후 결과 처리 함수
 	getListDataRes: function (result) {
 		if (!this.startRow) {
 			$("#popular_count").text(result.count);
@@ -79,12 +81,10 @@ function initPopular(){
 	popularSwiper.removeAllSlides();
 	
     var popularHome = new Home();
-
     popularHome.setTitle("Popular");
     popularHome.setExplain("<span data-i18n='popular.explain'><span>");
-    popularHome.setContents(totalPainting());
+    popularHome.setContents($("<div>").html("<span id='popular_count'>0</span><span data-i18n='popular.content'></span>"));
     popularSwiper.appendSlide(popularHome.buildStructure());
-
     delete popularHome;
   
 	// 다국어 변경 적용
@@ -92,12 +92,4 @@ function initPopular(){
 	
     //테이블에서 가져올 데이터의 시작 위치를 처음 로딩시 0번째 부터 조회
 	new PopularController().getListData(0);
-}
-
-//전체그림/전체좋아요 숫자설정
-function totalPainting(){
-
-    var contents = $("<div>");
-    contents.html("<span id='popular_count'>0</span><span data-i18n='popular.content'></span>")
-    return contents;
 }

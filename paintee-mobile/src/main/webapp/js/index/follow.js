@@ -45,10 +45,10 @@ followSwiper.on("onSetTranslate", function(swiper, translate) {
 	swipeToMenu(swiper, translate)
 });
 
-function FollowController() {
-}
+function FollowController() {}
 
 FollowController.prototype = {
+	// 팔로워 목록 홈 카운드 요청 AJAX
 	getHomeCount : function () {
 		var controller = this;
 		AjaxCall.call(
@@ -60,9 +60,11 @@ FollowController.prototype = {
 			}
 		);
 	}, 	
+	// 팔로워 목록 홈 카운드 요청 후 처리 함수
 	getHomeCountRes : function (result) {
 		setFollowHome(result);
 	}, 	
+	// 팔로워 목록 그림 요청 AJAX
 	getListData : function(startRow) {
 
 		var controller = this;
@@ -74,6 +76,7 @@ FollowController.prototype = {
 			}
 		);
 	},
+	// 팔로워 목록 그림 요청 후 처리 함수
 	getListDataRes : function(result) {
 		for ( var index in result.list) {
 			addPainting(followSwiper, 1, "follow", result.list[index]);
@@ -82,6 +85,7 @@ FollowController.prototype = {
 			}
 		}
 	},
+	// 로그인 사용자의 Follows 목록 요청 AJAX
 	getFollowsList : function() {
 
 		var controller = this;
@@ -94,11 +98,13 @@ FollowController.prototype = {
 			}
 		);
 	},
+	// 로그인 사용자의 Follows 목록 요청 후 처리 함수
 	getFollowsListRes : function(result) {
 		for ( var index in result.list) {
 			addFollows(result.list[index].followsName, result.list[index].followsCount);
 		}
 	},
+	// 로그인 사용자의 Following 목록 요청 AJAX
 	getFollowingList : function() {
 
 		var controller = this;
@@ -111,11 +117,13 @@ FollowController.prototype = {
 			}
 		);
 	},
+	// 로그인 사용자의 Following 목록 요청 후 처리 함수
 	getFollowngListRes : function(result) {
 		for ( var index in result.list) {
 			addFollowing(result.list[index].followingName);
 		}
 	},
+	// 로그인 사용자의 팔로워 추가 요청 AJAX
 	addFollow : function(btn, name) {
 		this.btn = btn;
 		var controller = this;
@@ -128,12 +136,14 @@ FollowController.prototype = {
 				}
 		);
 	},
+	// 로그인 사용자의 팔로워 추가 요청 후 처리 함수
 	addFollowRes : function(result) {
 		// 추가한 사용자의 추가버튼을 비활성화 시키고 스타일을 변경 처리함
 		this.btn.off("click");  // 이벤트 제거
 		this.btn.find("i").css("color", "rgba(120,120,120,0.5)").html("done");
 		initFollow();
 	},
+	// 로그인 사용자의 팔로워 삭제 요청 AJAX
 	delFollowing : function(following, name) {
 		if (!confirm($.i18n.t('alert.common.wantDelete'))) {
 			return ;
@@ -150,6 +160,7 @@ FollowController.prototype = {
 				}
 		);
 	},
+	// 로그인 사용자의 팔로워 삭제 요청 후 처리 함수
 	delFollowingRes : function(result) {
 		// 화면에서 선택한 사용자의 이름을 제거
 		this.following.remove();
@@ -175,6 +186,7 @@ function initFollow() {
 	}
 }
 
+// Follow 홈 화면을 구성
 function setFollowHome(result) {
 	followSwiper.removeAllSlides();
 	var followHome = new Home();

@@ -26,12 +26,10 @@ import org.springframework.stereotype.Service;
 import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.repository.entity.FileInfoExample;
 import com.paintee.common.repository.entity.Follow;
-import com.paintee.common.repository.entity.FollowExample;
 import com.paintee.common.repository.entity.vo.FollowSearchVO;
 import com.paintee.common.repository.entity.vo.FollowVO;
 import com.paintee.common.repository.helper.FileInfoHelper;
 import com.paintee.common.repository.helper.FollowHelper;
-import com.paintee.common.repository.helper.UserHelper;
 
 /**
 @class FollowServiceImpl
@@ -46,21 +44,34 @@ com.paintee.mobile.follow.service \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - follow service 구현채
+ - follow service 구현체
 */
 @Service(value="com.paintee.mobile.follow.service.FollowServiceImpl")
 public class FollowServiceImpl implements FollowService {
+	
 	private final static Logger logger = LoggerFactory.getLogger(FollowServiceImpl.class);
 
+	/**
+	@brief Follow 대한 데이터 처리를 진행하는 헬퍼객체
+	 */
 	@Autowired
 	private FollowHelper followHelper;
 	
+	/**
+	@brief 업로드된 그림의 파일 정보를 관리하는 헬퍼객체
+	 */
 	@Autowired
 	private FileInfoHelper fileInfoHelper;
 	
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 로그인 사용자가 팔로잉한 사용자가 구매한 그림과 업로드한 그림의 목록을 가져오기
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 로그인 사용자가 팔로잉한 사용자가 구매한 그림과 업로드한 그림의 목록을 가져오기
+	 @see com.paintee.mobile.follow.service.FollowService#getFollowPaintingInfo(com.paintee.common.repository.entity.vo.FollowSearchVO)
+	*/
 	@Override
 	public Map<String, Object> getFollowPaintingInfo(FollowSearchVO searchVO) {
-		
 		
 		List<FollowVO> list = followHelper.selectFollowPaintingList(searchVO);
 		logger.debug("list ::: {}", list);
@@ -80,32 +91,65 @@ public class FollowServiceImpl implements FollowService {
 		}
 		
 		Map<String, Object> result = new HashMap<>();
-//		result.put("count", count);
 		result.put("list", list);
 		return result;
 	}
 
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 로그인 사용자의 팔로잉한 사용자 카운트와 팔로워의 카운트
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 로그인 사용자의 팔로잉한 사용자 카운트와 팔로워의 카운트
+	 @see com.paintee.mobile.follow.service.FollowService#getFollowCount(com.paintee.common.repository.entity.vo.FollowSearchVO)
+	*/
 	@Override
 	public FollowVO getFollowCount(FollowSearchVO search) {
 		return followHelper.selectFollowCount(search);
 	}
-
 	
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 로그인한 사용자를 팔로잉한 사용자의 목록을 조회
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 로그인한 사용자를 팔로잉한 사용자의 목록을 조회
+	 @see com.paintee.mobile.follow.service.FollowService#getFollowsList(com.paintee.common.repository.entity.vo.FollowSearchVO)
+	*/
 	@Override
 	public List<FollowVO> getFollowsList(FollowSearchVO search) {
 		return followHelper.selectFollowsList(search);
 	}
 	
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 로그인한 사용자가 팔로잉한 사용자의 목록을 조회
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 로그인한 사용자가 팔로잉한 사용자의 목록을 조회
+	 @see com.paintee.mobile.follow.service.FollowService#getFollowingList(com.paintee.common.repository.entity.vo.FollowSearchVO)
+	*/
 	@Override
 	public List<FollowVO> getFollowingList(FollowSearchVO search) {
 		return followHelper.selectFollowingList(search);
 	}
 
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 로그인 사용자의 팔로워를 추가
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 로그인 사용자의 팔로워를 추가 
+	 @see com.paintee.mobile.follow.service.FollowService#addFollows(com.paintee.common.repository.entity.Follow)
+	*/
 	@Override
 	public void addFollows(Follow follow) {
 		followHelper.insertFollowByName(follow);
 	}
 
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 로그인 사용자의 팔로워를 삭제
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 로그인 사용자의 팔로워를 삭제
+	 @see com.paintee.mobile.follow.service.FollowService#delFollows(com.paintee.common.repository.entity.Follow)
+	*/
 	@Override
 	public void delFollows(Follow follow) {
 		followHelper.deleteFollowByName(follow);
