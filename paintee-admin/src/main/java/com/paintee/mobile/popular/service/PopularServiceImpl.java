@@ -32,32 +32,42 @@ com.paintee.mobile.popular.service \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - 상세설명 은 여기에 기입해 주세요.
- -# 여기는 리스트로 표시됩니다.
+ - 인기 그림 정보 서비스 객체
 */
 @Service(value="com.paintee.mobile.popular.service.PopularServiceImpl")
 public class PopularServiceImpl implements PopularService {
 	private final static Logger logger = LoggerFactory.getLogger(PopularServiceImpl.class);
 	
+	/**
+	@brief 구매에 대한 데이터 처리를 관리하는 헬퍼객체
+	 */
 	@Autowired
 	private PurchaseHelper purchaseHelper;
 
+	/**
+	@brief 인기 그림의 데이터 처리를 관리하는 헬퍼객체
+	 */
 	@Autowired
 	private PopularHelper popularHelper;
 	
+	/**
+	@brief 업로드된 그림의 파일 정보를 관리하는 헬퍼객체
+	 */
 	@Autowired
 	private FileInfoHelper fileInfoHelper;
 	
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : Pouplar 목록 정보 조회
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 인기 그림의 정보를 조회하는 기능 
+	 @see com.paintee.mobile.popular.service.PopularService#getPopularInfo(com.paintee.common.repository.entity.vo.PaintingSearchVO)
+	*/
 	@Override
 	public Map<String, Object> getPopularInfo(PaintingSearchVO search) throws Exception {
 		PurchaseExample example = new PurchaseExample();
 		PurchaseExample.Criteria where =  example.createCriteria();
-		List<String> sList = new ArrayList<>();
-		sList.add("1");  // 요청
-		sList.add("2");  // 발송
-		sList.add("4");  // 재발송요청
-		sList.add("5");  // 재발송처리
-		where.andPurchaseStatusIn(sList);
+		where.andPurchaseStatusIn(search.getPurchaseStatusList());
 		
 		int count = purchaseHelper.countByExample(example);
 		logger.debug("전체 개수 : " + count);

@@ -6,18 +6,19 @@
 	</resultMap>
 
 	<!-- 구매일자가 120일 미만인 그림중에서 많이 팔린 순으로 가져오기 -->
-  	<select id="selectPopularPaintingList" resultMap="BaseResultMap">
-		select a.artist_id, (select name from TB_USER where user_id = a.artist_id) artist_name,
-		       a.sentence, a.file_group_seq, 
-		       a.upload_date, a.painting_id, 
-		       a.posted_num, a.posted_people_cnt
+  	<select id="selectPopularPaintingList" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.vo.PaintingSearchVO">
+		select (select name from TB_USER where user_id = a.artist_id) artist_name,
+		       <include refid="com.paintee.common.repository.mapper.PaintingMapper.Base_Column_List" />
 		  from TB_PAINTING a, 
-		       (select painting_id
+		       (select painting_id as p_id
 				  from TB_PURCHASE
 				 where to_days(now()) - to_days(purchase_date) &lt;= 120
+				   and purchase_status in <foreach item="status" collection="purchaseStatusList" open="(" close=")" separator=",">
+			   								  #{status}
+			                        	  </foreach>
 		         group by painting_id) b
-		 where a.painting_id = b.painting_id
-		   and a.private_at = 'N'
+		 where a.painting_id = b.p_id
+		   and a.private_at = #{privateAt}
 		   and a.painting_status = #{paintingStatus}
 		 order by posted_num desc 
 		 limit #{startRow}, #{rowPerPage}

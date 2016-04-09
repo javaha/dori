@@ -32,9 +32,16 @@ com.paintee.common.repository.helper \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - 상세설명 은 여기에 기입해 주세요.
- -# 여기는 리스트로 표시됩니다.
+ - 인기 그림 데이터베이스 처리 헬퍼
 */
 public interface PopularHelper {
+	/**
+	 @fn selectPopularPaintingList
+	 @brief 함수 간략한 설명 : 
+	 @remark
+	 - 함수의 상세 설명 : 120일 이내 가장 많이 구매된 그림의 정보를 조회
+	 @param popular
+	 @return 
+	*/
 	List<PopularVO> selectPopularPaintingList(PaintingSearchVO popular);
 }
