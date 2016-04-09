@@ -25,7 +25,6 @@ import org.springframework.stereotype.Service;
 
 import com.paintee.common.repository.entity.FileInfo;
 import com.paintee.common.repository.entity.FileInfoExample;
-import com.paintee.common.repository.entity.vo.FollowVO;
 import com.paintee.common.repository.entity.vo.MyHomeSearchVO;
 import com.paintee.common.repository.entity.vo.MyHomeVO;
 import com.paintee.common.repository.helper.FileInfoHelper;
@@ -50,12 +49,26 @@ com.paintee.mobile.follow.service \n
 public class MyHomeServiceImpl implements MyHomeService {
 	private final static Logger logger = LoggerFactory.getLogger(MyHomeServiceImpl.class);
 
+	/**
+	@brief My 목록 관련 정보를 관리하는 헬퍼객체
+	 */
 	@Autowired
 	private MyHomeHelper myhomeHelper;
 	
+	/**
+	@brief 업로드된 그림의 파일 정보를 관리하는 헬퍼객체
+	 */
 	@Autowired
 	private FileInfoHelper fileInfoHelper;
 	
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 내가 업로드 하거나 포스트한 그림의 정보를 조회
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 내가 업로드 하거나 포스트한 그림의 정보를 조회<br />그림이 삭제된 경우 내가 내 그림을 구매한 경우 해당 그림은 보이지 않지만 
+	                        <br />다른 사람이 삭제된 그림을 구매한 경우 해당 그림 정보를 조회한다.
+	 @see com.paintee.mobile.myhome.service.MyHomeService#getMyHomePaintingInfo(com.paintee.common.repository.entity.vo.MyHomeSearchVO)
+	*/
 	@Override
 	public Map<String, Object> getMyHomePaintingInfo(MyHomeSearchVO searchVO) {
 		
@@ -90,6 +103,8 @@ public class MyHomeServiceImpl implements MyHomeService {
 		result.put("list", list);
 		result.put("uploadClass", searchVO.getUpload());
 		result.put("postClass", searchVO.getPost());
+		result.put("errorNo", 0);
+		result.put("errorMsg", "");
 		return result;
 	}
 }

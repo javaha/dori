@@ -46,11 +46,36 @@
 		    							#{status}
 		                            </foreach>
 		   and b.user_id = #{userId}
-		 order by upload_date desc
+		   <!-- 그림의 원 작가가 자신의 그림을 구매한 경우의 케이스 처리
+		   and b.user_id != a.artist_id
+		 union all
+		select b.seq,
+		       b.user_id, 
+			   (select name from TB_USER where user_id = a.artist_id) artist_name, 
+		       (select name from TB_USER where user_id = b.user_id) sentence_name,
+			   b.sentence,
+			   a.file_group_seq,
+			   b.purchase_date,
+			   a.painting_id,
+			   a.posted_num,
+			   b.purchase_status,
+			   a.posted_people_cnt,
+			   'P' as type
+		  from TB_PAINTING a, 
+		       TB_PURCHASE b
+		 where a.painting_id = b.painting_id
+		   and b.purchase_status in <foreach item="status" collection="purchaseStatusList" open="(" close=")" separator=",">
+		    							#{status}
+		                            </foreach>
+		   and a.painting_status != 'D'                         
+		   and b.user_id = #{userId}
+		   and b.user_id = a.artist_id
+		    -->
+		 order by seq desc
 		 limit #{startRow}, #{rowPerPage}
   	</select>  	
   	
-	<!-- 로그인 사용자가 팔로잉한 사용자가 구매한 그림과 업로드한 그림의 목록을 가져오기 -->
+	<!-- My 목록의 홈 정보 조회 -->
   	<select id="selectMyHomeInfo" resultType="com.paintee.common.repository.entity.vo.MyHomeVO">
   	     select (select introduce from TB_USER where user_id = #{userId}) as introduce,
   	            (select count(*) 

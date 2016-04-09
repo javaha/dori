@@ -16,9 +16,7 @@ package com.paintee.mobile.myhome.service;
 
 import java.util.Map;
 
-import com.paintee.common.repository.entity.vo.FollowSearchVO;
 import com.paintee.common.repository.entity.vo.MyHomeSearchVO;
-import com.paintee.common.repository.entity.vo.MyHomeVO;
 
 /**
 @class MyHomeService
@@ -39,10 +37,10 @@ public interface MyHomeService {
 
 	/**
 	 @fn getFollowPaintingInfo
-	 @brief 함수 간략한 설명 : 인덱스 페이지의 follow 정보를 조회
+	 @brief 함수 간략한 설명 : 내가 업로드 하거나 포스트한 그림의 정보를 조회
 	 @remark
-	 - 함수의 상세 설명 : 로그인 사용자의 팔로잉과 팔로워의 카운트를 조회한다.
-	                         로그인한 사용자의 following 한 사용자들의 업로드 및 구매 그림 정보를 조회한다.
+	 - 함수의 상세 설명 : 내가 업로드 하거나 포스트한 그림의 정보를 조회<br />그림이 삭제된 경우 내가 내 그림을 구매한 경우 해당 그림은 보이지 않지만 
+	                        <br />다른 사람이 삭제된 그림을 구매한 경우 해당 그림 정보를 조회한다.
 	 @param search
 	 @return 
 	*/

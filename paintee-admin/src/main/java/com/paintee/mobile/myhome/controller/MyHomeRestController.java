@@ -15,7 +15,6 @@
 package com.paintee.mobile.myhome.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +42,7 @@ com.paintee.mobile.follow.controller \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - follow rest controller
+ - My 목록 정보 controller
 */
 @RestController(value="com.paintee.mobile.follow.controller.MyHomeRestController")
 public class MyHomeRestController {
@@ -52,16 +51,21 @@ public class MyHomeRestController {
 	@Autowired
 	private MyHomeService myhomeService;
 
+	/**
+	 @fn myhomeInfo
+	 @brief 함수 간략한 설명 : My 목록 정보 조회
+	 @remark
+	 - 함수의 상세 설명 : 내가 업로드 하거나 포스트한 그림의 정보를 조회
+	 @param loginedUserVO
+	 @param search
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value="/api/index/myhome/info", method=RequestMethod.GET)
-	public Map<String, Object> myhomeInfo(LoginedUserVO loginedUserVO, MyHomeSearchVO search) 
-					throws Exception {
+	public Map<String, Object> myhomeInfo(LoginedUserVO loginedUserVO, MyHomeSearchVO search) throws Exception {
 		
-		Map<String, Object> resultMap = new HashMap<>();
 		logger.debug("loginedUserVO:{}", loginedUserVO);
 		logger.debug("search:{}", search);
-
-		int errorNo = 0;
-		String errorMsg = "";
 		
 		// 로그인 사용자 아이디
 		String userId = loginedUserVO.getUserId();
@@ -84,7 +88,6 @@ public class MyHomeRestController {
 		List<String> paintingStatusList = new ArrayList<>();
 		paintingStatusList.add("N");  // 정상
 		paintingStatusList.add("B");  // 블라인드
-
 		search.setPaintingStatusList(paintingStatusList);
 		
 		// 로그인 사용자 아이디
@@ -92,13 +95,8 @@ public class MyHomeRestController {
 		
 		// 목록에서 버튼 토글시 처리위해 항목 분리
 		search.setArtistId(userId);
-		resultMap = myhomeService.getMyHomePaintingInfo(search);
-		
-		// 에러정보
-		resultMap.put("errorNo", errorNo);
-		resultMap.put("errorMsg", errorMsg);
-		
-		return resultMap;
+
+		return myhomeService.getMyHomePaintingInfo(search);
 	}
 	
 
