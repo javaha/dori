@@ -132,7 +132,8 @@
 			"processResend": "재발송 요청이 처리되었습니다.(영)",
 			"processCancel": "환불요청이 처리되었습니다.(영)",
 			"processCancelRefund": "환불요청 취소가 처리되었습니다.(영)",
-			"processComplete": "재발송 요청이 처리되었습니다.(한)"
+			"processComplete": "재발송 요청이 처리되었습니다.(영)",
+			"finishPurchaseService": "제공된 구매서비스가 종료되었습니다.(영)"
 		},
 		"reward" : {
 			"existRequest": "이미 신청중인 리워드가 있습니다.(영)",

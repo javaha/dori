@@ -29,12 +29,26 @@ com.paintee.common.repository.entity.vo \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - 상세설명 은 여기에 기입해 주세요.
- -# 여기는 리스트로 표시됩니다.
+ - 그림 목록 조회시 사용되는 검색 조건 처리 VO
 */
 public class PaintingSearchVO extends PagingVO {
 	
-    private String paintingStatus;
+    /**
+	@brief 직렬화 버젼 키
+	*/
+	private static final long serialVersionUID = -1913077104807476258L;
+	
+	/**
+	@brief 그림 상태
+	*/
+	private String paintingStatus;
+    /**
+    @brief 그림 업로드 시 공개/비공개
+    */
+    private String privateAt;
+    /**
+    @brief 업로드된 그림의 파일 정보
+     */
 	private FileInfo fileInfo;
 	
 	public String getPaintingStatus() {
@@ -42,6 +56,12 @@ public class PaintingSearchVO extends PagingVO {
 	}
 	public void setPaintingStatus(String paintingStatus) {
 		this.paintingStatus = paintingStatus;
+	}
+	public String getPrivateAt() {
+		return privateAt;
+	}
+	public void setPrivateAt(String privateAt) {
+		this.privateAt = privateAt;
 	}
 	public FileInfo getFileInfo() {
 		return fileInfo;

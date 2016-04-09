@@ -14,7 +14,7 @@ function purchase(paintingId, artistName) {
 }
 
 function initPurchasePop(result) {
-	
+	console.log(JSON.stringify(result));
 	replaceHistory({"call": "purchasePop"});
     addHistory({"call": "purchaseStep1"});
     
@@ -32,7 +32,7 @@ function initPurchasePop(result) {
     // 기존 설정된 이벤트 제거
     $(".purchase_pay_btn").off("click");
     $(".purchase_pay_btn" ).click(function() {
-    	payment();
+    	payment(result.user.serviceCnt);
     });
 
     // 우편번호 입력박스 키이벤트 등록
@@ -175,11 +175,7 @@ $("[name=sentence]").blur(function () {
 });
 
 //결재화면
-/**
- * 차후 구현 예정
- * noPostCard의 값이 있는 경우 발송없이 결재
- */
-function payment() {
+function payment(serviceCnt) {
 
 	addHistory({"call": "purchaseStep2"});
 	
@@ -190,7 +186,7 @@ function payment() {
     boxStatus = "payment";
     $(".purchase_container").hide();
     $(".payment_container").show();
-    initPayment();
+    initPayment(serviceCnt);
     setBox();
 }
 
@@ -289,16 +285,27 @@ Payment.prototype = {
     }
 }
 
-function initPayment(){
+function initPayment(serviceCnt){
     $(".payment_box").empty();
     var payment = new Payment();
     payment.setTitle("Payment");
     var contents = "<span class='reward_money'>$2</span><br>" 
-    	         + "<span data-i18n='[html]purchasePop1.contents'></span>";
+    	         + "<span data-i18n='[html]purchasePop1.contents'></span>"
+    	         // ---------------------------------------
+    	         // 서비스 - 임시 오픈 이후에는 삭제해야 함
+    	         + "<br />구매서비스 : " + serviceCnt + "개";
+    			 // ---------------------------------------
     payment.setContents(contents);
     payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><i class='material-icons'>edit</i><div class='purchase_btn_text' onclick='history.back();'>edit address</div></div><div class='popup_btn payment_btn'><div class='purchase_btn_text'>Payment </div><i class='material-icons'>payment</i></div>");
     payment.buildPayment();
     $(".payment_btn").click(function(){
+    	// ---------------------------------------
+    	// 서비스 - 임시 오픈 이후에는 삭제해야 함
+    	if (serviceCnt <= 0) {
+    		alert($.i18n.t('alert.purchase.finishPurchaseService'));
+    		return;
+    	}
+    	// ---------------------------------------
         purchaseController.addPurchase();
         showPurchaseSpinner();
     })

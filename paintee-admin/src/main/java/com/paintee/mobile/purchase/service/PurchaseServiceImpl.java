@@ -130,6 +130,11 @@ public class PurchaseServiceImpl implements PurchaseService {
 		
 		user.setPostCnt(1);
 		
+		// ---------------------------------------
+    	// 서비스 - 임시 오픈 이후에는 삭제해야 함
+		user.setServiceCnt(-1);
+		// ---------------------------------------
+		
 		userHelper.updateUserInfo(user);
 		
 		// 구매 후 공유를 할 수 있게 하기 위해 그림 정보를 가져온다.

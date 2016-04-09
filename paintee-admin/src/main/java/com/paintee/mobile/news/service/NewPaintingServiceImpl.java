@@ -14,11 +14,9 @@ import com.paintee.common.repository.entity.FileInfoExample;
 import com.paintee.common.repository.entity.PaintingExample;
 import com.paintee.common.repository.entity.vo.NewPaintingVO;
 import com.paintee.common.repository.entity.vo.PaintingSearchVO;
-import com.paintee.common.repository.entity.vo.PopularVO;
 import com.paintee.common.repository.helper.FileInfoHelper;
 import com.paintee.common.repository.helper.NewPaintingHelper;
 import com.paintee.common.repository.helper.PaintingHelper;
-import com.paintee.common.repository.helper.PopularHelper;
 
 /**
 @class PopularServiceImpl
@@ -33,27 +31,42 @@ com.paintee.mobile.popular.service \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - 상세설명 은 여기에 기입해 주세요.
- -# 여기는 리스트로 표시됩니다.
+ - 신규 업로드 그림 정보 서비스 객체
 */
 @Service(value="com.paintee.mobile.news.service.NewPaintingServiceImpl")
 public class NewPaintingServiceImpl implements NewPaintingService {
 	private final static Logger logger = LoggerFactory.getLogger(NewPaintingServiceImpl.class);
 	
+	/**
+	@brief 그림에 대한 데이터 처리를 진행하는 헬퍼객체
+	 */
 	@Autowired
 	private PaintingHelper paintingHelper;
 
+	/**
+	@brief 신규 업로드 그림에 대한 데이터 처리를 진행하는 헬퍼객체
+	*/
 	@Autowired
 	private NewPaintingHelper newPaintingHelper;
 	
+	/**
+	@brief 업로드된 그림의 파일 정보를 관리하는 헬퍼객체
+	 */
 	@Autowired
 	private FileInfoHelper fileInfoHelper;
 	
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : new 목록 정보 조회
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 신규 업로드된 그림의 정보를 조회하는 기능 
+	 @see com.paintee.mobile.news.service.NewPaintingService#getNewPatingInfo(com.paintee.common.repository.entity.vo.PaintingSearchVO)
+	*/
 	@Override
 	public Map<String, Object> getNewPatingInfo(PaintingSearchVO search) throws Exception {
+		
 		PaintingExample example = new PaintingExample();
-		PaintingExample.Criteria where =  example.createCriteria();
-		where.andPaintingStatusEqualTo("N");
+		example.createCriteria().andPaintingStatusEqualTo("N").andPrivateAtEqualTo("N");
 		
 		int count = paintingHelper.countByExample(example);
 		logger.debug("전체 개수 : " + count);

@@ -38,23 +38,35 @@ com.paintee.mobile.news.controller \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - 상세설명 은 여기에 기입해 주세요.
- -# 여기는 리스트로 표시됩니다.
+ - 신규 업로드 그림 정보 컨트롤러 객체
 */
 @RestController(value="com.paintee.mobile.news.controller.NewPaintingRestController")
 public class NewPaintingRestController {
+	
+	/**
+	@brief 신규 업로드 그림에 대한 정보를 처리하는 서비스 객체
+	*/
 	@Autowired
 	private NewPaintingService newPaintingService;
 	
+	/**
+	 @fn index
+	 @brief 함수 간략한 설명 : 신규 업로드 목록
+	 @remark
+	 - 함수의 상세 설명 : 신규 업로드 목록의 정보를 조회함(신규그림 홈, 목록 그림 정보)
+	 @param startRow
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value="/api/newIndex", method={RequestMethod.GET})
 	public Map<String, Object> index(@RequestParam(name="startRow", required=false, defaultValue="0") Integer startRow) throws Exception {
 		// 데이터 조건 설정
 		PaintingSearchVO search = new PaintingSearchVO();
 		search.setStartRow(startRow);
 		search.setRowPerPage(5);
-		search.setPaintingStatus("N");
+		search.setPaintingStatus("N"); // 그림의 상태가 정상인 것만 조회
+		search.setPrivateAt("N"); // 공개된 그림만 조회
 		
-		Map<String, Object> result = newPaintingService.getNewPatingInfo(search);
-		return result;
+		return newPaintingService.getNewPatingInfo(search);
 	}
 }

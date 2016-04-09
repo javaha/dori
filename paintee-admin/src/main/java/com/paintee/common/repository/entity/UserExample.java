@@ -875,76 +875,6 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andLanguageIsNull() {
-            addCriterion("language is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLanguageIsNotNull() {
-            addCriterion("language is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLanguageEqualTo(String value) {
-            addCriterion("language =", value, "language");
-            return (Criteria) this;
-        }
-
-        public Criteria andLanguageNotEqualTo(String value) {
-            addCriterion("language <>", value, "language");
-            return (Criteria) this;
-        }
-
-        public Criteria andLanguageGreaterThan(String value) {
-            addCriterion("language >", value, "language");
-            return (Criteria) this;
-        }
-
-        public Criteria andLanguageGreaterThanOrEqualTo(String value) {
-            addCriterion("language >=", value, "language");
-            return (Criteria) this;
-        }
-
-        public Criteria andLanguageLessThan(String value) {
-            addCriterion("language <", value, "language");
-            return (Criteria) this;
-        }
-
-        public Criteria andLanguageLessThanOrEqualTo(String value) {
-            addCriterion("language <=", value, "language");
-            return (Criteria) this;
-        }
-
-        public Criteria andLanguageLike(String value) {
-            addCriterion("language like", value, "language");
-            return (Criteria) this;
-        }
-
-        public Criteria andLanguageNotLike(String value) {
-            addCriterion("language not like", value, "language");
-            return (Criteria) this;
-        }
-
-        public Criteria andLanguageIn(List<String> values) {
-            addCriterion("language in", values, "language");
-            return (Criteria) this;
-        }
-
-        public Criteria andLanguageNotIn(List<String> values) {
-            addCriterion("language not in", values, "language");
-            return (Criteria) this;
-        }
-
-        public Criteria andLanguageBetween(String value1, String value2) {
-            addCriterion("language between", value1, value2, "language");
-            return (Criteria) this;
-        }
-
-        public Criteria andLanguageNotBetween(String value1, String value2) {
-            addCriterion("language not between", value1, value2, "language");
-            return (Criteria) this;
-        }
-
         public Criteria andUploadCntIsNull() {
             addCriterion("upload_cnt is null");
             return (Criteria) this;
@@ -1862,6 +1792,136 @@ public class UserExample {
 
         public Criteria andCreatedDateNotBetween(Date value1, Date value2) {
             addCriterion("created_date not between", value1, value2, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageIsNull() {
+            addCriterion("language is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageIsNotNull() {
+            addCriterion("language is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageEqualTo(String value) {
+            addCriterion("language =", value, "language");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageNotEqualTo(String value) {
+            addCriterion("language <>", value, "language");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageGreaterThan(String value) {
+            addCriterion("language >", value, "language");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageGreaterThanOrEqualTo(String value) {
+            addCriterion("language >=", value, "language");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageLessThan(String value) {
+            addCriterion("language <", value, "language");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageLessThanOrEqualTo(String value) {
+            addCriterion("language <=", value, "language");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageLike(String value) {
+            addCriterion("language like", value, "language");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageNotLike(String value) {
+            addCriterion("language not like", value, "language");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageIn(List<String> values) {
+            addCriterion("language in", values, "language");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageNotIn(List<String> values) {
+            addCriterion("language not in", values, "language");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageBetween(String value1, String value2) {
+            addCriterion("language between", value1, value2, "language");
+            return (Criteria) this;
+        }
+
+        public Criteria andLanguageNotBetween(String value1, String value2) {
+            addCriterion("language not between", value1, value2, "language");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceCntIsNull() {
+            addCriterion("service_cnt is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceCntIsNotNull() {
+            addCriterion("service_cnt is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceCntEqualTo(Integer value) {
+            addCriterion("service_cnt =", value, "serviceCnt");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceCntNotEqualTo(Integer value) {
+            addCriterion("service_cnt <>", value, "serviceCnt");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceCntGreaterThan(Integer value) {
+            addCriterion("service_cnt >", value, "serviceCnt");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceCntGreaterThanOrEqualTo(Integer value) {
+            addCriterion("service_cnt >=", value, "serviceCnt");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceCntLessThan(Integer value) {
+            addCriterion("service_cnt <", value, "serviceCnt");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceCntLessThanOrEqualTo(Integer value) {
+            addCriterion("service_cnt <=", value, "serviceCnt");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceCntIn(List<Integer> values) {
+            addCriterion("service_cnt in", values, "serviceCnt");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceCntNotIn(List<Integer> values) {
+            addCriterion("service_cnt not in", values, "serviceCnt");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceCntBetween(Integer value1, Integer value2) {
+            addCriterion("service_cnt between", value1, value2, "serviceCnt");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceCntNotBetween(Integer value1, Integer value2) {
+            addCriterion("service_cnt not between", value1, value2, "serviceCnt");
             return (Criteria) this;
         }
     }

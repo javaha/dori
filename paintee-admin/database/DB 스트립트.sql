@@ -24,7 +24,8 @@ create table TB_USER (
 	point int  default 0 comment '엽서를 구매할 수 있는 포인트',
 	user_status char(1) default 'T' comment '계정 상태(임시(회원가입후 email confirm 전)-T/정상(회원가입후 email confirm 후)-N/정지-S/휴먼-Q)',
 	sns_type char(1) comment '쇼셜을 통한 회원가입 (F-facebook, T-twitter)',
-    created_date datetime default now() comment '생성일시'
+    created_date datetime default now() comment '생성일시',
+    service_cnt int comment '오픈전 임시 구매카운트 제공'
 ) comment = '회원';
 
 create table TB_FOLLOW (

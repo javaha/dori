@@ -14,7 +14,6 @@
 */
 package com.paintee.mobile.purchase.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -27,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paintee.common.repository.entity.Painting;
-import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 import com.paintee.mobile.purchase.service.PurchaseService;
 import com.paintee.mobile.support.obejct.LoginedUserVO;

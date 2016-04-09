@@ -24,7 +24,8 @@ var AjaxCall = {
 
 						if (object.errorNo == 9999) {
 							clearUserInfoCookie();
-						}
+							
+						} 
 					} catch (e) {
 					}
 				}
