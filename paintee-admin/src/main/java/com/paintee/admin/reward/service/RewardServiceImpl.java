@@ -1,12 +1,12 @@
 /**
-@file PurchaseServiceImpl.java
+@file RewardServiceImpl.java
 @section 파일생성정보
 |    항  목       |      내  용       |
 | :-------------: | -------------   |
-| File name | PurchaseServiceImpl.java |    
-| Package | com.paintee.mobile.painting.service |    
+| File name | RewardServiceImpl.java |    
+| Package | com.paintee.admin.reward.service |    
 | Project name | paintee-admin |    
-| Type name | PurchaseServiceImpl |    
+| Type name | RewardServiceImpl |    
 | Company | Paintee | 
 | Create Date | 2016 2016. 3. 2. 오후 10:59:36 |
 | Author | Administrator |
@@ -30,9 +30,9 @@ import com.paintee.common.repository.helper.RewardHelper;
 import com.paintee.common.repository.helper.UserHelper;
 
 /**
-@class PurchaseServiceImpl
-com.paintee.mobile.painting.service \n
-   ㄴ PurchaseServiceImpl.java
+@class RewardServiceImpl
+com.paintee.admin.reward.service \n
+   ㄴ RewardServiceImpl.java
  @section 클래스작성정보
     |    항  목       |      내  용       |
     | :-------------: | -------------   |
@@ -54,6 +54,13 @@ public class RewardServiceImpl implements RewardService {
 	@Autowired
 	private UserHelper userHelper;
 	
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 관리자 리워드 목록 정보를 조회한다.
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 관리자 리워드 목록 정보를 조회한다.
+	 @see com.paintee.admin.reward.service.RewardService#getRewardList()
+	*/
 	@Override
 	public Map<String, Object> getRewardList() {
 		

@@ -4,7 +4,7 @@
 |    항  목       |      내  용       |
 | :-------------: | -------------   |
 | File name | PurchaseController.java |    
-| Package | com.paintee.admin.test.controller |    
+| Package | com.paintee.admin.purchase.controller |    
 | Project name | paintee-admin |    
 | Type name | PurchaseController |    
 | Company | Paintee | 
@@ -31,7 +31,7 @@ import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 
 /**
 @class PurchaseController
-com.paintee.admin.test.controller \n
+com.paintee.admin.purchase.controller \n
    ㄴ PurchaseController.java
  @section 클래스작성정보
     |    항  목       |      내  용       |
@@ -42,7 +42,7 @@ com.paintee.admin.test.controller \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - jsp view 를 포함한 controller
+ - 관리자 구매 목록 및 상태 변경을 처리하는 controller
 */
 @Controller(value="com.paintee.admin.purchase.PurchaseController")
 @RequestMapping(value="/admin/purchase")
@@ -52,10 +52,10 @@ public class PurchaseController {
 	private PurchaseService purchaseService;
 	
 	/**
-	 @fn test
-	 @brief 함수 간략한 설명 : test view 화면
+	 @fn list
+	 @brief 함수 간략한 설명 : 구매 목록 데이터를 조회한다.
 	 @remark
-	 - 함수의 상세 설명 : test view 화면
+	 - 함수의 상세 설명 : 구매 목록 데이터를 조회한다. 환불처리와 삭제된 데이터를 제외한다.
 	 @return 
 	*/
 	@RequestMapping(value="/list", method={RequestMethod.GET})
@@ -83,14 +83,13 @@ public class PurchaseController {
 	
 	/**
 	 @fn modPurchase
-	 @brief 함수 간략한 설명 : 구매 상태 변경
+	 @brief 함수 간략한 설명 : 구매 상태 변경한다.
 	 @remark
-	 - 함수의 상세 설명 : 
+	 - 함수의 상세 설명 : 구매 상태를 변경한다.
 	 @return 
 	 */
 	@RequestMapping(value="/mod", method={RequestMethod.POST})
-	public String modReward(Purchase purchase, RedirectAttributes model) {
-		System.out.println("purchase ::: " + purchase);
+	public String modPurchase(Purchase purchase, RedirectAttributes model) {
 		purchaseService.modPurchaseStatus(purchase);
 		model.addFlashAttribute("msg", "상태가 변경되었습니다.");
 		return "redirect:/admin/purchase/list";

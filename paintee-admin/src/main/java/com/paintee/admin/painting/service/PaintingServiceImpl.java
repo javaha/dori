@@ -60,6 +60,13 @@ public class PaintingServiceImpl implements PaintingService {
 	@Autowired
 	private FileInfoHelper fileInfoHelper;
 	
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 :
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 
+	 @see com.paintee.admin.painting.service.PaintingService#getPatingList()
+	*/
 	@Override
 	public Map<String, Object> getPatingList() {
 		
@@ -89,6 +96,16 @@ public class PaintingServiceImpl implements PaintingService {
 		return result;
 	}
 
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 그림 상태 변경
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 
+	     그림의 상태를 변경한다.
+	   <br />1. 그림의 상태를 삭제로 변경 시 사용자의 업로드 카운트를 감소시킨다.
+	   <br />2. 정상으로 변경되는 경우 기존 그림의 상태를 조회한 다음 그림의 상태가 삭제였을 경우 작가의 업로드 카운트를 증가시킨다.
+	 @see com.paintee.admin.painting.service.PaintingService#modPaintingStatus(com.paintee.common.repository.entity.Painting)
+	*/
 	@Override
 	public void modPaintingStatus(Painting painting) {
 		

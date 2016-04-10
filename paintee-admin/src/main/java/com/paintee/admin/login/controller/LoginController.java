@@ -35,7 +35,7 @@ com.paintee.admin.test.controller \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - jsp view 를 포함한 controller
+ - 관리자 로그인, 로그아웃 처리를 포함한 controller
 */
 @Controller(value="com.paintee.admin.login.LoginController")
 @RequestMapping(value="/admin/login")
@@ -43,9 +43,9 @@ public class LoginController {
 	
 	/**
 	 @fn test
-	 @brief 함수 간략한 설명 : 로그인 처리
+	 @brief 함수 간략한 설명 : 관리자 로그인 처리
 	 @remark
-	 - 함수의 상세 설명 : 
+	 - 함수의 상세 설명 : 관리자 로그인 처리 
 	 @return 
 	*/
 	@RequestMapping(value="/login")
@@ -65,6 +65,14 @@ public class LoginController {
 		return result;
 	}
 	
+	/**
+	 @fn logout
+	 @brief 함수 간략한 설명 : 관리자 로그아웃 처리 
+	 @remark
+	 - 함수의 상세 설명 : 관리자 로그아웃 처리
+	 @param session
+	 @return 
+	*/
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();

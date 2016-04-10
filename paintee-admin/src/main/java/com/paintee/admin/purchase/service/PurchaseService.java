@@ -4,7 +4,7 @@
 |    항  목       |      내  용       |
 | :-------------: | -------------   |
 | File name | PurchaseService.java |    
-| Package | com.paintee.mobile.painting.service |    
+| Package | com.paintee.admin.purchase.service |    
 | Project name | paintee-admin |    
 | Type name | PurchaseService |    
 | Company | Paintee | 
@@ -21,7 +21,7 @@ import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 
 /**
 @class PurchaseService
-com.paintee.mobile.painting.service \n
+com.paintee.admin.purchase.service \n
    ㄴ PurchaseService.java
  @section 클래스작성정보
     |    항  목       |      내  용       |
@@ -32,7 +32,7 @@ com.paintee.mobile.painting.service \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - 그림에 대한 service
+ - 관리자의 구매 목록 정보를 처리하는 service
 */
 public interface PurchaseService {
 	
@@ -51,7 +51,7 @@ public interface PurchaseService {
 	 @fn modPurchaseStatus
 	 @brief 함수 간략한 설명 : 구매상태 변경
 	 @remark
-	 - 함수의 상세 설명 : 
+	 - 함수의 상세 설명 :  구매상태 변경 처리한다.
 	 @param reward
 	 */
 	public void modPurchaseStatus(Purchase reward);

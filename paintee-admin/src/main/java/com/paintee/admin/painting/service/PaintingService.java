@@ -50,7 +50,7 @@ public interface PaintingService {
 	 @fn modPaintingStatus
 	 @brief 함수 간략한 설명 : 그림의 업로드된 상태를 변경 
 	 @remark
-	 - 함수의 상세 설명 : 
+	 - 함수의 상세 설명 : 그림의 업로드된 상태를 변경 
 	 @param painting
 	 */
 	public void modPaintingStatus(Painting painting);

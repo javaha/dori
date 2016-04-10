@@ -4,7 +4,7 @@
 |    항  목       |      내  용       |
 | :-------------: | -------------   |
 | File name | RewardController.java |    
-| Package | com.paintee.admin.test.controller |    
+| Package | com.paintee.admin.reward.controller |    
 | Project name | paintee-admin |    
 | Type name | RewardController |    
 | Company | Paintee | 
@@ -29,7 +29,7 @@ import com.paintee.common.repository.entity.Reward;
 
 /**
 @class RewardController
-com.paintee.admin.test.controller \n
+com.paintee.admin.reward.controller \n
    ㄴ RewardController.java
  @section 클래스작성정보
     |    항  목       |      내  용       |
@@ -40,7 +40,7 @@ com.paintee.admin.test.controller \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - jsp view 를 포함한 controller
+ - 관리자 리워드 목록 및 상태 변경을 처리하는 controller
 */
 @Controller(value="com.paintee.admin.reward.RewardController")
 @RequestMapping(value="/admin/reward")
@@ -50,10 +50,10 @@ public class RewardController {
 	private RewardService rewardService;
 	
 	/**
-	 @fn test
-	 @brief 함수 간략한 설명 : 
+	 @fn list
+	 @brief 함수 간략한 설명 : 리워드 목록 데이터를 조회한다.
 	 @remark
-	 - 함수의 상세 설명 : 
+	 - 함수의 상세 설명 : 리워드 목록 데이터를 조회한다.
 	 @return 
 	*/
 	@RequestMapping(value="/list", method={RequestMethod.GET})

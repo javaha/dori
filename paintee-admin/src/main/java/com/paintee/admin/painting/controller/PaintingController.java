@@ -51,9 +51,9 @@ public class PaintingController {
 	
 	/**
 	 @fn test
-	 @brief 함수 간략한 설명 : test view 화면
+	 @brief 함수 간략한 설명 : 신규 그림 정보를 조회 
 	 @remark
-	 - 함수의 상세 설명 : test view 화면
+	 - 함수의 상세 설명 : 신규 그림 정보를 조회
 	 @return 
 	*/
 	@RequestMapping(value="/list", method={RequestMethod.GET})
@@ -63,7 +63,6 @@ public class PaintingController {
 		model.addAttribute("list", result.get("list"));
 		model.addAttribute("count", result.get("count"));
 	}
-	
 	
 	/**
 	 @fn modPainting

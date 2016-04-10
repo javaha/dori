@@ -55,7 +55,7 @@ com.paintee.mobile.painting.service \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - 그림에 대한 service 구현채
+ - 관리자의 구매 목록에 필요한 정보를 조회하는 service 구현채
 */
 @Service(value="com.paintee.admin.purchase.service.PurchaseServiceImpl")
 public class PurchaseServiceImpl implements PurchaseService {
@@ -76,6 +76,13 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Autowired
 	private FileInfoHelper fileInfoHelper;	
 	
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 관리자 구매 목록 정보 조회
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 관리자의 구매 목록 화면에 필요한 데이터를 조회한다.
+	 @see com.paintee.admin.purchase.service.PurchaseService#getPurchaseList(com.paintee.common.repository.entity.vo.PurchaseSearchVO)
+	*/
 	@Override
 	public Map<String, Object> getPurchaseList(PurchaseSearchVO search) {
 		
