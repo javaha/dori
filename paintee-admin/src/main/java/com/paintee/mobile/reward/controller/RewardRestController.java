@@ -1,12 +1,12 @@
 /**
-@file PurchaseController.java
+@file RewardRestController.java
 @section 파일생성정보
 |    항  목       |      내  용       |
 | :-------------: | -------------   |
-| File name | PurchaseController.java |    
-| Package | com.paintee.mobile.purchase.controller |    
+| File name | RewardRestController.java |    
+| Package | com.paintee.mobile.reward.controller |    
 | Project name | paintee-admin |    
-| Type name | PurchaseController |    
+| Type name | RewardRestController |    
 | Company | Paintee | 
 | Create Date | 2016 2016. 3. 6. 오후 1:33:20 |
 | Author | Administrator |
@@ -18,8 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,14 +28,13 @@ import com.paintee.common.repository.entity.Reward;
 import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.RewardResultVO;
 import com.paintee.common.repository.entity.vo.RewardSearchVO;
-import com.paintee.common.repository.entity.vo.UserVO;
 import com.paintee.mobile.reward.service.RewardService;
 import com.paintee.mobile.support.obejct.LoginedUserVO;
 
 /**
-@class PurchaseController
+@class RewardRestController
 com.paintee.mobile.purchase.controller \n
-   ㄴ PurchaseController.java
+   ㄴ RewardRestController.java
  @section 클래스작성정보
     |    항  목       |      내  용       |
     | :-------------: | -------------   |
@@ -47,17 +44,23 @@ com.paintee.mobile.purchase.controller \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - 상세설명 은 여기에 기입해 주세요.
- -# 여기는 리스트로 표시됩니다.
+ - 
 */
 @RestController(value="com.paintee.mobile.reward.controller.RewardRestController")
 public class RewardRestController {
 	
-	private final static Logger logger = LoggerFactory.getLogger(RewardRestController.class);
-	
 	@Autowired
 	private RewardService rewardService;
 	
+	/**
+	 @fn info
+	 @brief 함수 간략한 설명 : 리워드를 위한 기본 사용자 정보를 조회
+	 @remark
+	 - 함수의 상세 설명 : 리워드를 위한 기본 사용자 정보를 조회
+	 @param loginedUserVO
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value="/api/reward/info", method={RequestMethod.GET})
 	public Map<String, Object> info(LoginedUserVO loginedUserVO) throws Exception {
 		// 구매관련 정보 등록
@@ -68,6 +71,16 @@ public class RewardRestController {
 		return result;
 	}
 	
+	/**
+	 @fn addReward
+	 @brief 함수 간략한 설명 : 리워드 추가
+	 @remark
+	 - 함수의 상세 설명 : 리워드 추가 
+	 @param loginedUserVO
+	 @param reward
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value="/api/reward", method={RequestMethod.POST})
 	public Map<String, Object> addReward(LoginedUserVO loginedUserVO, @RequestBody Reward reward) throws Exception {
 		
@@ -82,6 +95,15 @@ public class RewardRestController {
 		return result;
 	}
 	
+	/**
+	 @fn rewardHistory
+	 @brief 함수 간략한 설명 : 리워드 히스토리
+	 @remark
+	 - 함수의 상세 설명 : 리워드 팝업에서 사용자가 리워드 히스토리 버튼을 클릭 시 해당 사용자의 리워드 히스토리 정보를 조회
+	 @param loginedUserVO
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value="/api/rewardHistory", method={RequestMethod.GET})
 	public List<RewardResultVO> rewardHistory(LoginedUserVO loginedUserVO) throws Exception {
 		// 구매관련 정보 등록
@@ -92,6 +114,16 @@ public class RewardRestController {
 		return result;
 	}
 	
+	/**
+	 @fn cancelReward
+	 @brief 함수 간략한 설명 : 리워드 취소
+	 @remark
+	 - 함수의 상세 설명 : 사용자가 요청한 리워드를 취소한다. 리워드 취소는 요청 상태일 경우만 가능 
+	 @param loginedUserVO
+	 @param search
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value="/api/cancelReward", method={RequestMethod.POST})
 	public Map<String, Object> cancelReward(LoginedUserVO loginedUserVO, @RequestBody RewardSearchVO search) throws Exception {
 		search.setUserId(loginedUserVO.getUserId());

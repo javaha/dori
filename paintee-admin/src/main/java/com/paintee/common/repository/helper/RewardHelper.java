@@ -18,7 +18,6 @@ import java.util.List;
 
 import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.RewardResultVO;
-import com.paintee.common.repository.entity.vo.RewardSearchVO;
 import com.paintee.common.repository.entity.vo.RewardVO;
 import com.paintee.common.repository.mapper.RewardMapper;
 

@@ -13,6 +13,7 @@
         <result column="bank_name" property="bankName" />
 	</resultMap>
     
+    <!-- 리워드 요청 사용자의 정보 조회 -->
   	<select id="selectRewardInfo" resultMap="BaseResultMap" parameterType="com.paintee.common.repository.entity.User">
 	    SELECT a.earn_total_money,
 			   a.earn_reword_money,
@@ -43,11 +44,13 @@
 <!-- 				 limit #{startRow}, #{rowPerPage}) a -->
   	</select>
 
+    <!-- 리워드 전체 카운트 -->
   	<select id="selectRewardListCount" resultType="int">
 		select count(*)
 		  from TB_REWARD
 	</select>  	
   	
+    <!-- 리워드 히스토리 정보 조회 -->
   	<select id="selectRewardHistoryList" resultMap="AdminBaseResultMap" parameterType="com.paintee.common.repository.entity.vo.RewardSearchVO">
 		select a.*, 
 		       (select name from TB_USER where user_id = a.user_id) user_name,
