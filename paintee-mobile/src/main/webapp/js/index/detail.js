@@ -2,15 +2,6 @@
 //function DetailStructure(paintingId, fileId, artistName, artistId, artistSentence, uploadDate, postedNum){
 function DetailStructure(paintingId, paintingInfo){
     this.paintingId     = paintingId;
-
-    /*
-    this.fileId         = fileId;
-    this.artistName     = artistName;
-    this.artistId       = artistId;
-    this.artistSentence = artistSentence;
-    this.uploadDate     = uploadDate;
-    this.postedNum      = postedNum;
-    */
     this.fileId         = paintingInfo.fileInfo.id;
     this.artistName     = paintingInfo.artistName;
     this.artistId       = paintingInfo.artistId;
@@ -75,7 +66,6 @@ DetailStructure.prototype = {
         }else if(window.devicePixelRatio>2){
             this.detailBgImg.attr("srcset", getImageUrls(fileId, 3));
         }
-//        this.detailBgImg.attr("src", imageUrl+"/cmm/file/view/"+responsive+"/"+fileId);
     },
     setArtist   : function(artistName){
     	var paintingId = this.paintingId;
@@ -145,8 +135,6 @@ DetailStructure.prototype = {
 
         var detailController = new DetailController();
 
-        // console.log(this.artistId);
-        
         var picArtistId = this.artistId;
         var artistName = this.artistName;
 
@@ -209,9 +197,6 @@ DetailController.prototype = {
 		AjaxCall.call(apiUrl+"/painting/"+paintingId, null, "GET", function (result, status) { controller.getDetailDataRes(result, status, paintingId, color, colorDark, call); });
 	},
 	getDetailDataRes: function (result, status, paintingId, color, colorDark, call) {
-		// console.log("getDetailDataRes", color, colorDark);
-		//loadDetail 에서 하던내용
-		
 		// 히스트리에서 사용하기 위해서 객체 변수 추가
 		result.color = color;
 		result.colorDark = colorDark;
@@ -236,22 +221,15 @@ DetailController.prototype = {
  	},
 	artistFollow: function(artistId) {
 		var controller = this;
-		
-		// console.log("artistFollow=>artistId:"+artistId);
-		// console.log("artistFollow=>selectedArtistId:"+selectedArtistId);
 		// 개인페이지에서 사용하는 부분이 있어 selectedArtistId 이 없을 경우 artistId를 사용하도록 변경. 04-05
 		AjaxCall.call(apiUrl+"/user/"+(selectedArtistId ? selectedArtistId : artistId)+"/follow", null, "POST", function(result, status) { controller.artistFollowRes(result, status); });
 	},
 	artistFollowRes: function(result, status) {
-		// console.log(selectedArtistId);
-		// console.log(result);
 		if(result.errorNo == 0) {
 			dataReload(["initFollow();"]);
 			alert(selectedArtistName + $.i18n.t('alert.detail.processFollow'));
-//			alert(selectedArtistName+' 님을 Follow 하였습니다.');
 		} else if(result.errorNo == 501){
 			alert(selectedArtistName + $.i18n.t('alert.detail.existFollow'));
-//			alert(selectedArtistName+' 님은 이미 Follow 되어있습니다.');
 		}
 	}
 };
@@ -264,54 +242,51 @@ function loadDetail(paintingId, color, colorDark, call) {
 
 //디테일화면 초기화
 function initDetail(paintingId, paintingInfo){
- isDetail = true;
- postedLock = true;
- postedObj = new Array();
- postedIndex = new Array();
-
- selectedArtistId = paintingInfo.artistId;
- selectedArtistName = paintingInfo.artistName;
-
- //this.detailStructure = new DetailStructure(index);
-// this.detailStructure = new DetailStructure(paintingId, paintingInfo.fileId, paintingInfo.artistName, paintingInfo.artistId, paintingInfo.sentence, paintingInfo.uploadDate, paintingInfo.postedNum);
- this.detailStructure = new DetailStructure(paintingId, paintingInfo);
- this.detailStructure.buildDetail();
-
- this.detailSwiper = new Swiper('.swiper_container_detail', {
-     direction: 'vertical',
-     slidesPerView: 'auto',
-     centeredSlides: false,
-     freeMode: false,
-     freeModeMomentumRatio: 0.4,
-     freeModeMomentumBounceRatio: 0.5,
-     mousewheelControl : true,
-     scrollbar: '.swiper-scrollbar-detail',
-     scrollbarHide: true
- });
- this.detailSwiper.on("onSliderMove", function(swiper){
-     changeMode(swiper);
- });
- this.detailSwiper.on("onSetTranslate", function(swiper){
-     changeMode(swiper);
- });
+	isDetail = true;
+	postedLock = true;
+	postedObj = new Array();
+	postedIndex = new Array();
+	
+	selectedArtistId = paintingInfo.artistId;
+	selectedArtistName = paintingInfo.artistName;
+	
+	this.detailStructure = new DetailStructure(paintingId, paintingInfo);
+	this.detailStructure.buildDetail();
+	this.detailSwiper = new Swiper('.swiper_container_detail', {
+	     direction: 'vertical',
+	     slidesPerView: 'auto',
+	     centeredSlides: false,
+	     freeMode: false,
+	     freeModeMomentumRatio: 0.4,
+	     freeModeMomentumBounceRatio: 0.5,
+	     mousewheelControl : true,
+	     scrollbar: '.swiper-scrollbar-detail',
+	     scrollbarHide: true
+	});
+	this.detailSwiper.on("onSliderMove", function(swiper){
+	     changeMode(swiper);
+	});
+	this.detailSwiper.on("onSetTranslate", function(swiper){
+	     changeMode(swiper);
+	});
 }
 
 //디테일화면 css값 설정
 function setDetailLayout(){
- mainWidth = $(window).width();
- mainHeight = $(window).height();
- $(".detail_bg_container").css("height", mainHeight-50);
- $(".detail_bg_container").find("img").css("height", "100%");
- $(".detail_margin").css("height", mainHeight-50);
- $(".detail_artist_sentence").css("width", mainWidth);
- $(".detail_artist_sentence").css("height", $(".detail_artist").height()-100);
- if(mainHeight<625){
-     postedLockBreakpoint = -250;
-     $(".detail_artist_sentence").css("height", 150);
- }else{
-     postedLockBreakpoint = -(mainHeight*0.4);
-     $(".detail_artist_sentence").css("height", -(postedLockBreakpoint)-100);
- };
+    mainWidth = $(window).width();
+    mainHeight = $(window).height();
+    $(".detail_bg_container").css("height", mainHeight-50);
+    $(".detail_bg_container").find("img").css("height", "100%");
+    $(".detail_margin").css("height", mainHeight-50);
+    $(".detail_artist_sentence").css("width", mainWidth);
+    $(".detail_artist_sentence").css("height", $(".detail_artist").height()-100);
+    if(mainHeight<625){
+        postedLockBreakpoint = -250;
+        $(".detail_artist_sentence").css("height", 150);
+    }else{
+        postedLockBreakpoint = -(mainHeight*0.4);
+        $(".detail_artist_sentence").css("height", -(postedLockBreakpoint)-100);
+    };
 }
 
 //디테일화면 닫기
@@ -338,73 +313,69 @@ function processDetailClose() {
 }
 //디테일화면의 스크롤 잠금/열기
 function changeMode(swiper){            
- var translate = swiper.translate;
+    var translate = swiper.translate;
 
- if(translate>50){
-     closeDetail();
- }else if(translate<postedLockBreakpoint){
-     if(postedLock){
-         unlockPosted(swiper);
-     }
-     callPosted(swiper);
- }else if(translate>=postedLockBreakpoint){
-     if(!postedLock){
-         lockPosted(swiper);
-     }
- }
+    if(translate>50){
+        closeDetail();
+    }else if(translate<postedLockBreakpoint){
+        if(postedLock){
+            unlockPosted(swiper);
+        }
+        callPosted(swiper);
+    }else if(translate>=postedLockBreakpoint){
+        if(!postedLock){
+            lockPosted(swiper);
+        }
+    }
 }
 
 //디테일화면의 스크롤 잠금
 function lockPosted(swiper){
- // console.log("lock!");
+    postedLock = true;
+    hidePosted(swiper);
+    swiper.params.freeMode = false;
 
- postedLock = true;
- hidePosted(swiper);
- swiper.params.freeMode = false;
-
- $(".swiper-scrollbar-detail").hide();
- $(".detail_post_btn").appendTo($(".swiper_container_detail"))
+    $(".swiper-scrollbar-detail").hide();
+    $(".detail_post_btn").appendTo($(".swiper_container_detail"))
 }
 
 //디테일화면의 스크롤 열기
 function unlockPosted(swiper){
- // console.log("unlock!");
+    postedLock = false;
+    swiper.params.freeMode = true;
 
- postedLock = false;
- swiper.params.freeMode = true;
+    callPosted(swiper);
 
- callPosted(swiper);
-
- $(".swiper-scrollbar-detail").show();
- $(".detail_post_btn").appendTo($(".detail_postbar"))
+    $(".swiper-scrollbar-detail").show();
+    $(".detail_post_btn").appendTo($(".detail_postbar"))
 }
 
 //Detail화면의 댓글 구조
 function Posted(purchaseSeq, userId, userName, userSentence){
- this.purchaseSeq =purchaseSeq;
- this.userId = userId;
- this.userName = userName;
- this.userSentence = userSentence;
+    this.purchaseSeq =purchaseSeq;
+    this.userId = userId;
+    this.userName = userName;
+    this.userSentence = userSentence;
 
- this.container   =$("<div>").addClass("detail_posted swiper-slide").html("posted by ").css("background-color", "hsl("+colorDark+")");
- this.postee      =$("<div>").addClass("detail_postee_btn");
- this.sentence    =$("<div>").addClass("detail_posted_sentence").css("width", mainWidth*0.96);
+    this.container   =$("<div>").addClass("detail_posted swiper-slide").html("posted by ").css("background-color", "hsl("+colorDark+")");
+    this.postee      =$("<div>").addClass("detail_postee_btn");
+    this.sentence    =$("<div>").addClass("detail_posted_sentence").css("width", mainWidth*0.96);
 }
 Posted.prototype = {
- setPostee:      function(userName){
-     this.postee.html(userName);
- },
- setSentence:    function(userSentence){
-     this.sentence.html(userSentence);
- },
- buildPosted:    function(){
-     this.setPostee(this.userName);
-     this.setSentence(this.userSentence);
-     this.container.append(this.postee);
-     this.container.append(this.sentence);
+    setPostee:      function(userName){
+        this.postee.html(userName);
+    },
+    setSentence:    function(userSentence){
+        this.sentence.html(userSentence);
+    },
+    buildPosted:    function(){
+        this.setPostee(this.userName);
+        this.setSentence(this.userSentence);
+        this.container.append(this.postee);
+        this.container.append(this.sentence);
 
-     return this.container;
- }
+        return this.container;
+    }
 }
 
 var isBlock = false;
@@ -424,7 +395,6 @@ PostedController.prototype = {
 		}
 	},
 	getPostedDataRes: function(result, status) {
-
 		for (var index in result.list) {
 			addPosted(this.swiper, result.list[index]);
 		}
@@ -445,134 +415,16 @@ function addPosted(swiper, postedInfo) {
 //Detail화면의 댓글 무한스크롤 (10개씩 추가)
 function callPosted(swiper){
 	var isPostedEnd;
-	// console.log(swiper.slides.length+":"+swiper.activeIndex);
 
 	var rowPerPage = 5;
 	var detailPostedCnt = swiper.slides.length - initPostedSlideCnt;
 
-	//console.log("detailPostedCnt:"+detailPostedCnt+", "+((swiper.activeIndex+2) - initPostedSlideCnt));
 	if(detailPostedCnt == 0 || detailPostedCnt == ((swiper.activeIndex+3) - initPostedSlideCnt)) {//현재 화면에 출력된 slide 중 가장 마지막 slide 호출시 rowPerPage 만큼 데이터를 요청한다.
 		new PostedController().getPostedData(detailPostedCnt, rowPerPage, swiper);
 	}
-/*
-	if(swiper.slides.length<swiper.activeIndex+10 && swiper.slides.length<=20){
-		for(swiper.slides.length ; swiper.slides.length < swiper.activeIndex+10 ;){
-			if(swiper.slides.length > 20){
-				break;
-			}
-			if(!postedObj[swiper.slides.length-3]){
-				var newPosted = new Posted(swiper.slides.length-3);
-				postedObj[swiper.slides.length-3] = newPosted.buildPosted();
-				postedIndex.push(swiper.slides.length);
-				delete newPosted;
-			}
-		swiper.appendSlide(postedObj[swiper.slides.length-3]);
-		}
-	}
-*/
 }
 
 //Detail화면의 댓글 지우기
 function hidePosted(swiper){
-/*	var tot = swiper.slides.length;
-	var removeIndex = tot-1;
-
-	for(var i=removeIndex; i > 3; i--) {
-		swiper.removeSlide(removeIndex);
-	}*/
-	//swiper.removeSlide(postedObj);
 	swiper.removeSlide(postedIndex);
-	//$(".detail_posted").remove();
 }
-
-/* ori
-DetailStructure.prototype   ={
-    setBG       : function(index){
-        this.detailBgImg.attr("src", "p"+index%5+".png");
-    },
-    setArtist   : function(index){
-        this.detailArtistBtn.html("artist"+index);
-    },
-    setFollow   : function(index){
-        this.detailArtistFollow.append('<i class="material-icons" style="font-size:12px">star</i> follow artist');
-    },
-    setSentence : function(index){
-        this.detailArtistSentence.html("여기에는 작가가 쓴 한마디가 나오겠지?");
-    },
-    setDate     : function(index){
-        this.detailArtistDate.html("05. May");
-    },
-    setPostedNum: function(index){
-        this.detailPostbarPostedNum.html(1+index);
-    },
-    buildDetail : function(){
-        this.setBG(this.index);
-        this.setArtist(this.index);
-        this.setFollow(this.index);
-        this.setSentence(this.index);
-        this.setDate(this.index);
-        this.setPostedNum(this.index);
-
-        this.detailBgContainer.append(this.detailBgImg);
-
-        this.detailMargin.append(this.detailCloseIcon);
-        this.detailMargin.append(this.detailMarginIcon);
-
-        this.detailArtistTop.append(this.detailArtistBtn);
-        this.detailArtistTop.append(this.detailArtistFollow);
-        this.detailArtistSentence.append(this.detailArtistDate);
-        this.detailArtistBottom.append(this.sociconFacebook);
-        this.detailArtistBottom.append(this.sociconTwitter);
-        this.detailArtistBottom.append(this.sociconInstagram);
-        this.detailArtistBottom.append(this.sociconPinterest);
-        this.detailArtist.append(this.detailArtistTop);
-        this.detailArtist.append(this.detailArtistSentence);
-        this.detailArtist.append(this.detailArtistBottom);
-
-        this.detailPostbarPostnum.append(this.detailPostbarPostedNum).append(" people already posted it");
-        this.detailPostbar.append(this.detailPostbarPostnum);
-
-        this.wrapper.append(this.detailMargin);
-        this.wrapper.append(this.detailArtist);
-        this.wrapper.append(this.detailPostbar);
-
-        this.detailContainer.append(this.wrapper);
-
-        this.detail.append(this.detailBgContainer);
-        this.detail.append(this.detailBgBottom);
-        this.detail.append(this.detailContainer);
-        this.detail.append(this.detailPostBtn);
-        this.detail.append(this.detailScroll);
-    }
-}
-
-
-//디테일화면 초기화
-function initDetail(index){
- isDetail = true;
- postedLock = true;
- postedObj = new Array();
- postedIndex = new Array();
-
- this.detailStructure = new DetailStructure(index);
- this.detailStructure.buildDetail();
-
- this.detailSwiper = new Swiper('.swiper_container_detail', {
-     direction: 'vertical',
-     slidesPerView: 'auto',
-     centeredSlides: false,
-     freeMode: false,
-     freeModeMomentumRatio: 0.4,
-     freeModeMomentumBounceRatio: 0.5,
-     mousewheelControl : true,
-     scrollbar: '.swiper-scrollbar-detail',
-     scrollbarHide: true
- });
- this.detailSwiper.on("onSliderMove", function(swiper){
-     changeMode(swiper);
- });
- this.detailSwiper.on("onSetTranslate", function(swiper){
-     changeMode(swiper);
- });
-}
-*/

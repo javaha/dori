@@ -324,7 +324,6 @@ function addPainting(swiper, currentIndex, type, listData){
     newSlide.setPostedNumber(listData.postedPeopleCnt);
     newSlide.setDate(toEngDateStr(listData.uploadDate));
     newSlide.setArtist(listData.artistName);
-//    newSlide.setPainting(listData.paintingId, imageUrl + "/cmm/file/view/" + responsive + "/" + listData.fileId);
     newSlide.setPainting(listData.paintingId, listData.fileId, type);
     if (type=="follow") {
         newSlide.setColor("hsl(200,60%,20%)");
@@ -416,7 +415,6 @@ function mainLock(mainSwiper){
     currentSwiper="";
 };
 
-
 // list 상태에서 mode container 스와이프 방지 && 마우스휠 해제/설정 && 페이지네이션 show/hide
 function listLock(swiper){  
     if(swiper.isBeginning){
@@ -450,12 +448,9 @@ function initMenu(userID){
     }else{
         sideLogin.empty()
         sideLogin.append($("<div>").addClass("side_menu_login_id").html(userID));
-//        sideLogin.append($("<div>").html("edit | logout").click(function(){showProfile()}));
 
-        //TODO:profile edit 버튼과 logout 버튼 분리 디자인 확인해야함.
         var editBtn = $("<a>").html("edit").on("click", function(){showProfile()});
         var logoutBtn = $("<a>").html("logout").on("click", function(){logout()});
-
         var btnGroup = $("<div>").append(editBtn).append(" | ").append(logoutBtn);
 
         sideLogin.append(btnGroup);

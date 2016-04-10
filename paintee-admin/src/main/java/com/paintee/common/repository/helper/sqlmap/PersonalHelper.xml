@@ -33,7 +33,7 @@
         </choose>    
   	</select>  	
 
-	<!-- 그림 작가가 업로드한 그림 카운트 -->
+	<!-- 개인페이지 홈에 필요한 정보 조회 -->
   	<select id="selectPersonalPaintingInfo" resultType="com.paintee.common.repository.entity.vo.PersonalVO">
   	    select (select introduce from TB_USER where name = #{artistName} limit 0, 1) as introduce,
   	    	   (select user_id from TB_USER where name = #{artistName} limit 0, 1) as artistId,

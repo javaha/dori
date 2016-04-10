@@ -131,6 +131,7 @@ function PersonalController(paintingId) {
 }
 
 PersonalController.prototype = {
+	// 개인페이지 홈 정보와 그림 목록을 조회 AJAX
 	getPersonInfo : function (startRow) {
 		this.startRow = startRow;
 		var controller = this;
@@ -153,6 +154,7 @@ PersonalController.prototype = {
 			}
 		);
 	}, 	
+	// 개인페이지 홈 정보와 그림 목록을 조회 후 처리하는 함수
 	getPersonInfoRes : function (result) {
 		var controller = this;
 		// 처음 로딩시에만 메인화면 구성
@@ -161,17 +163,17 @@ PersonalController.prototype = {
 		}
 		for ( var index in result.list) {
 			var pageType = "my";
-			// 소셜에서 들어온 경우 Lazy Loading을 위해서 값 설정을 변경함
+			// 소셜에서 들어온 경우 Lazy Loading을 위해서 값 설정을 변경함 : 다른 페이지와 구분값 설정
 			if (controller.paintingId) pageType = "personal";
 			
 			addPainting(personal.swiper, 1, pageType, result.list[index]);
 		}
-//		/*
+		// 개인페이지에서 상세화면을 닫았을때 요청한 그림을 목로에서 바로 보여주기 위해 슬라이드를 해당 그림으로 이동시킴
 		if (controller.paintingId) {
 			personal.swiper.slideTo(personal.swiper.slides.length - 1, 0);
 		}
-//		*/
 	},
+	// 그림의 상태 조회 AJAX
 	getPictureStatus : function (paintingId) {
 		var controller = this;
 		AjaxCall.call(
@@ -182,15 +184,15 @@ PersonalController.prototype = {
 					// 에러코드 100 번일 경우 사용자 작가 개인 페이지 호출 시 작가의 그림이 존재하지 않는 경우
 					if (result.errorNo == 100) {
 						alert($.i18n.t('alert.common.notExistPicture'));
-//						location.href = "/";
 					}  
-					// 그림이 존재하는 경우만 상세 페이지 호출
 					else {
+						// 그림이 존재하는 경우만 상세 페이지 호출
 						loadDetail(get.page, "200,60%,50%", "200,60%,20%", "personal");
 					}
 				}
 		);
 	},
+	// 작가 상태 조회 AJAX
 	getArtistStatus : function (name) {
 		var controller = this;
 		AjaxCall.call(
@@ -198,11 +200,11 @@ PersonalController.prototype = {
 				null,
 				"GET", 
 				function(result) {
-					// 에러코드 100 번일 경우 사용자 작가 개인 페이지 호출 시 작가의 그림이 존재하지 않는 경우
+					// 에러코드 100 번일 경우 사용자 작가 개인 페이지 호출 시 작가  존재 여부 체크
 					if (result.errorNo == 100) {
 						alert($.i18n.t('alert.common.notExistArtist'));
 					}  
-					// 그림 작가가 있을 경우에 다음 단계 진행
+					// 그림 작가가 있을 경우에만 다음 단계 진행
 					else {
 						// 개인페이지 진행
 						processPersonalView();
@@ -231,11 +233,12 @@ var callType;
 var get;
 $(document).ready(function () {
 	get = getRequest();
-// user만 있으면 개인페이지로 이동, user, page가 있으면 상세화면으로 이동
-// http://localhost:9080/index.html?user=a01&page=b0645fc6-a7bb-4f61-a133-d29ae45c4801
+//  user만 있으면 개인페이지로 이동, user, page가 있으면 상세화면으로 이동
+//  http://localhost:9080/index.html?user=작가이름&page=그림아이디
 	if (get) {
 		callType = "social";
 		if(get.user) {
+			// 작가가 존재하는 지 체크 한 다음 개인페이지 이동여부 진행
 			new PersonalController().getArtistStatus(get.user);
 		}
 	};
@@ -243,9 +246,8 @@ $(document).ready(function () {
 
 function processPersonalView() {
     if(get.page) {
+    	// 개인 페이지의 그림 요청시 해당 그림이 존재할 경우만 다음 단계 진행을 위해 현재 그림의 상태값을 조회
     	new PersonalController().getPictureStatus(get.page)
-//        loadDetail(get.page, "200,60%,50%", "200,60%,20%", "personal");
-//        showPersonal(get.user, get.page);
     } else if(get.user) {
     	// 트위트의 경우 마지막에 / 가 URL 뒤에 추가되는 경우가 생겨서 삭제처리함
     	var len = get.user.length;
