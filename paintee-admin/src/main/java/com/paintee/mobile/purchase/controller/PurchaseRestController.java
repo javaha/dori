@@ -43,8 +43,7 @@ com.paintee.mobile.purchase.controller \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - 상세설명 은 여기에 기입해 주세요.
- -# 여기는 리스트로 표시됩니다.
+ - 구매와 관련된 처리를 진행하는 컨트롤러 
 */
 @RestController(value="com.paintee.mobile.purchase.controller.PurchaseRestController")
 public class PurchaseRestController {
@@ -54,76 +53,86 @@ public class PurchaseRestController {
 	@Autowired
 	private PurchaseService purchaseService;
 	
+	/**
+	 @fn purchasePopInfo
+	 @brief 함수 간략한 설명 : 구매에 필요한 기능 정보를 조회
+	 @remark
+	 - 함수의 상세 설명 : 구매에 필요한 기능 정보를 조회
+	 @param paintingId
+	 @param loginedUserVO
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value="/api/purchasePopInfo", method={RequestMethod.GET})
 	public Map<String, Object> purchasePopInfo(@RequestParam("paintingId") String paintingId, LoginedUserVO loginedUserVO) throws Exception {
 		logger.debug("purchasePopInfo paintingId ::: {}", paintingId);
 		// 구매관련 정보 등록
-		Map<String, Object> result = purchaseService.purchasePopInfo(paintingId, loginedUserVO);
-		return result;
+		return purchaseService.purchasePopInfo(paintingId, loginedUserVO);
 	}
 	
+	/**
+	 @fn addPurchase
+	 @brief 함수 간략한 설명 : 구매 정보를 추가
+	 @remark
+	 - 함수의 상세 설명 : 사용자가 요청한 구매 정보를 추가한다.
+	 @param purchase
+	 @param loginedUserVO
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value="/api/purchase", method={RequestMethod.POST})
 	public Map<String, Object> addPurchase(@RequestBody PurchaseSearchVO purchase, LoginedUserVO loginedUserVO) throws Exception {
 		logger.debug(purchase.toString());
-
 		// 로그인 사용자의 구매자 아이디 입력
 		purchase.setUserId(loginedUserVO.getUserId());
-		
 		// 구매관련 정보 등록
-		Map<String, Object> result = purchaseService.addPurchase(purchase);
-		return result;
+		return purchaseService.addPurchase(purchase);
 	}
 	
+	/**
+	 @fn resendPurchase
+	 @brief 함수 간략한 설명 : 구매 상태 변경 처리
+	 @remark
+	 - 함수의 상세 설명 : 마이페이지에서 그림의 상태 변경을 요청했을때 상태 변경을 처리한다.
+	                <br />1. 재발송 요청시
+	                <br />2. 취소 요청시
+	                <br />3. 완료 요청시
+	                <br />4. 환불취소 요청시
+	 @param purchase
+	 @return
+	 @throws Exception 
+	*/
 	@RequestMapping(value={"/api/resendStatusPurchase", "/api/cancelPurchase", "/api/completeStatusPurchase", "/api/cancelRefundPurchase"}, method={RequestMethod.POST})
-	public Map<String, Object> resendPurchase(@RequestBody PurchaseSearchVO purchase) throws Exception {
+	public Map<String, Object> changeStatusPurchase(@RequestBody PurchaseSearchVO purchase) throws Exception {
 		logger.debug(purchase.toString());
-		// 구매관련 정보 등록
-		Map<String, Object> result = purchaseService.updateStatusPurchase(purchase);
-		return result;
+		return purchaseService.updateStatusPurchase(purchase);
 	}
 	
 	/**
 	 @fn delStatusPainting
-	 @brief 함수 간략한 설명 : 
+	 @brief 함수 간략한 설명 : 그림의 상태를 삭제로 변경 
 	 @remark
-	 - 함수의 상세 설명 : 마이페이지에서 그림을 삭제 요청 했을때 처리
+	 - 함수의 상세 설명 : 마이페이지에서 그림을 삭제 요청 했을때 처리 그림의 상태를 삭제로 변경한다.
 	 @param loginedUserVO
 	 @return
 	 @throws Exception 
 	*/
 	@RequestMapping(value="/api/delStatusPainting", method={RequestMethod.POST})
 	public Map<String, Object> delStatusPainting(@RequestBody Painting painting, LoginedUserVO loginedUserVO) throws Exception {
-		
-		Map<String, Object> result = purchaseService.delStatusPainting(painting);
-		return result;
+		return purchaseService.delStatusPainting(painting);
 	}
 
 	/**
 	 @fn delStatusPurchase
-	 @brief 함수 간략한 설명 : 
+	 @brief 함수 간략한 설명 : 구매 상태를 삭제로 변경
 	 @remark
-	 - 함수의 상세 설명 : 마이페이지에서 그림을 삭제 요청 했을때 처리
+	 - 함수의 상세 설명 : 마이페이지에서 그림을 구매상태를 삭제로 요청 했을때 그림의 구매 상태를 삭제로 변경한다.
 	 @param loginedUserVO
 	 @return
 	 @throws Exception 
 	 */
 	@RequestMapping(value="/api/delStatusPurchase", method={RequestMethod.POST})
 	public Map<String, Object> delStatusPurchase(@RequestBody PurchaseSearchVO purchase) throws Exception {
-		
-		Map<String, Object> result = purchaseService.delStatusPurchase(purchase);
-		return result;
+		return purchaseService.delStatusPurchase(purchase);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

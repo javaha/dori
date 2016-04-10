@@ -51,8 +51,7 @@ com.paintee.mobile.purchase.service \n
     | Class Version | v1.0 |
     | 작업자 | Administrator |
  @section 상세설명
- - 상세설명 은 여기에 기입해 주세요.
- -# 여기는 리스트로 표시됩니다.
+ - 그림의 구매와 연관된 작업을 진행하는 비즈니스 객체
 */
 @Service(value="com.paintee.mobile.purchase.service.PurchaseServiceImpl")
 public class PurchaseServiceImpl implements PurchaseService {
@@ -72,15 +71,15 @@ public class PurchaseServiceImpl implements PurchaseService {
 	
 	/**
 	 @fn 
-	 @brief (Override method) 함수 간략한 설명 : 그림 구매시 해야할 일
+	 @brief (Override method) 함수 간략한 설명 : 그림의 구매 처리를 진행
 	 @remark
-	 - 오버라이드 함수의 상세 설명 : 
-	   1. 구매테이블에 데이터를 입력한다.
-	   2. 회원 테이블 정보 업데이트 
-	      - 구매자의 구매카운트(post_cnt) 증가
-	   3. 그림 테이블 정보 업데이트 
-	      - posted_num 무조건 1 증가, 
-	      - posted_people_cnt (구매 테이블에 해당 사용자가 구매한적이 있는지 확인 후 증가 시킴)   
+	 - 오버라이드 함수의 상세 설명 : 그림의 구매 처리를 진행한다.
+	   <br />1. 구매테이블에 데이터를 입력한다.
+	   <br />2. 회원 테이블 정보 업데이트 
+	   <br />   - 구매자의 구매카운트(post_cnt) 증가
+	   <br />3. 그림 테이블 정보 업데이트 
+	   <br />   - posted_num 무조건 1 증가, 
+	   <br />   - posted_people_cnt (구매 테이블에 해당 사용자가 구매한적이 있는지 확인 후 증가 시킴)   
 	   --------------------------------------------------------------------
 	 @see com.paintee.mobile.purchase.service.PurchaseService#addPurchase(com.paintee.common.repository.entity.Purchase)
 	*/
@@ -155,6 +154,13 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return resultMap;
 	}
 
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 구매에 필요한 기본 정보를 조회
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 구매에 필요한 기본 정보를 조회한다. 만약, 구매하려는 그림이 이미 삭제 상태라면 오류 코드를 설정한다.
+	 @see com.paintee.mobile.purchase.service.PurchaseService#purchasePopInfo(java.lang.String, com.paintee.mobile.support.obejct.LoginedUserVO)
+	*/
 	@Override
 	public Map<String, Object> purchasePopInfo(String paintingId, LoginedUserVO loginedUserVO) {
 		// 요청한 그림이 존재하는지를 판단
@@ -186,7 +192,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 	/**
 	 @fn 
-	 @brief (Override method) 함수 간략한 설명 :
+	 @brief (Override method) 함수 간략한 설명 : 구매 상태를 변경한다.
 	 @remark
 	 - 오버라이드 함수의 상세 설명 : 구매 상태를 변경한다.
 	 @see com.paintee.mobile.purchase.service.PurchaseService#updateStatusPurchase(com.paintee.common.repository.entity.vo.PurchaseSearchVO)
@@ -204,13 +210,12 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 	/**
 	 @fn 
-	 @brief (Override method) 함수 간략한 설명 :
+	 @brief (Override method) 함수 간략한 설명 : 그림의 삭제 요청을 처리
 	 @remark
 	 - 오버라이드 함수의 상세 설명 : 
 	   My 그림 목록에서 로그인 사용자가 자신의 업로드된 그림을 삭제요청 했을 때 처리
-		   1. 작가의 업로드 카운트 감소 
-		   2. 구매 그림의 상태 변경
-		  
+	   <br />1. 작가의 업로드 카운트 감소 
+	   <br />2. 구매 그림의 상태 변경
 	 @see com.paintee.mobile.purchase.service.PurchaseService#delStatusPainting(com.paintee.common.repository.entity.Painting)
 	*/
 	@Override
@@ -231,6 +236,14 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return result;
 	}
 
+	/**
+	 @fn 
+	 @brief (Override method) 함수 간략한 설명 : 구매 상태를 삭제로 처리
+	 @remark
+	 - 오버라이드 함수의 상세 설명 : 구매 상태를 삭제로 처리한다. 
+	                        <br />사용자의 구매 카운트를 감소시키고 구매 정보를 삭제로 변경한다. 
+	 @see com.paintee.mobile.purchase.service.PurchaseService#delStatusPurchase(com.paintee.common.repository.entity.vo.PurchaseSearchVO)
+	*/
 	@Override
 	public Map<String, Object> delStatusPurchase(PurchaseSearchVO purchase) {
 		User user = new User();
