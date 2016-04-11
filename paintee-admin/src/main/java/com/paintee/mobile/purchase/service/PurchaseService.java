@@ -17,7 +17,6 @@ package com.paintee.mobile.purchase.service;
 import java.util.Map;
 
 import com.paintee.common.repository.entity.Painting;
-import com.paintee.common.repository.entity.User;
 import com.paintee.common.repository.entity.vo.PurchaseSearchVO;
 import com.paintee.mobile.support.obejct.LoginedUserVO;
 

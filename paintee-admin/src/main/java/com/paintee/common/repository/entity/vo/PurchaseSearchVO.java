@@ -38,6 +38,7 @@ public class PurchaseSearchVO extends Purchase {
 
 	private List<String> statusList;
 	private String changeAddr;
+	private Integer serviceCnt;
 	private Integer startRow;
 	private Integer rowPerPage;
 	
@@ -52,6 +53,12 @@ public class PurchaseSearchVO extends Purchase {
 	}
 	public void setChangeAddr(String changeAddr) {
 		this.changeAddr = changeAddr;
+	}
+	public Integer getServiceCnt() {
+		return serviceCnt;
+	}
+	public void setServiceCnt(Integer serviceCnt) {
+		this.serviceCnt = serviceCnt;
 	}
 	public Integer getStartRow() {
 		return startRow;

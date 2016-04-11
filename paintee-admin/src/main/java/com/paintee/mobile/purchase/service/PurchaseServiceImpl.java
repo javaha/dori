@@ -129,10 +129,10 @@ public class PurchaseServiceImpl implements PurchaseService {
 		
 		user.setPostCnt(1);
 		
-		// ---------------------------------------
-    	// 서비스 - 임시 오픈 이후에는 삭제해야 함
-		user.setServiceCnt(-1);
-		// ---------------------------------------
+		// 서비스 구매 포인트 차감
+		if (purchase.getServiceCnt() > 0) {
+			user.setServiceCnt(-1);
+		}
 		
 		userHelper.updateUserInfo(user);
 		

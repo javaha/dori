@@ -169,7 +169,6 @@ $("[name=sentence]").keyup(function () {
 $("[name=sentence]").blur(function () {
 	var enter = getEnterCount($("[name=sentence]"));
 	if (enter > 5) {
-//		alert("줄바꿈은 5회까지 가능합니다.");
 		alert($.i18n.t('alert.purchase.limitEnterCount'));
 	}
 });
@@ -289,24 +288,19 @@ function initPayment(serviceCnt){
     $(".payment_box").empty();
     var payment = new Payment();
     payment.setTitle("Payment");
-    var contents = "<span class='reward_money'>$2</span><br>" 
+    var contents = "<span class='reward_money'>" + serviceCnt + "/5</span><br>" 
     	         + "<span data-i18n='[html]purchasePop1.contents'></span>"
-    	         // ---------------------------------------
-    	         // 서비스 - 임시 오픈 이후에는 삭제해야 함
-    	         + "<br />구매서비스 : " + serviceCnt + "개";
-    			 // ---------------------------------------
     payment.setContents(contents);
     payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><i class='material-icons'>edit</i><div class='purchase_btn_text' onclick='history.back();'>edit address</div></div><div class='popup_btn payment_btn'><div class='purchase_btn_text'>Payment </div><i class='material-icons'>payment</i></div>");
     payment.buildPayment();
     $(".payment_btn").click(function(){
     	// ---------------------------------------
-    	// 서비스 - 임시 오픈 이후에는 삭제해야 함
+    	// 서비스 카운트가 없을 경우 결재모드 태워야함
     	if (serviceCnt <= 0) {
-    		alert($.i18n.t('alert.purchase.finishPurchaseService'));
-    		return;
+    		
     	}
     	// ---------------------------------------
-        purchaseController.addPurchase();
+        purchaseController.addPurchase(serviceCnt);
         showPurchaseSpinner();
     })
     delete payment;
@@ -350,7 +344,7 @@ PurchaseController.prototype = {
 		}
 		initPurchasePop(result);
 	},
-	addPurchase: function () {
+	addPurchase: function (serviceCnt) {
 		var controller = this;
 		
 		// userId는 로그인 후 쿠키에서 가져와서 처리하도록 해야함
@@ -368,6 +362,7 @@ PurchaseController.prototype = {
 			location: $("[name=location]").val(),
 			purchaseStatus: "1",
 			changeAddr: controller.changeAddr,
+			serviceCnt: serviceCnt
 		};
 
 		AjaxCall.call(apiUrl + "/purchase", 
@@ -544,10 +539,23 @@ function completePayment(result){
     payment.setBottom("<div class='popup_btn payment_btn'><div class='purchase_btn_text'>Go to my history </div><i class='material-icons'>person</i></div>");
     payment.buildPayment();
     $(".payment_btn").click(function(){
-        $(".popup_container").hide();
+		
+    	$(".popup_container").hide();
+    	$(".payment_container").hide();
+		
+		if ($(".detail").css("display") == "block") {
+		    $(".detail").animate({top: 200, opacity: 0}, 200, "linear", function(){
+		    	$(".detail").empty();
+		    	$(".detail").hide().css("top", 0);
+		    	delete detailStructure;
+		    	delete detailSwiper;
+		    });
+		    isDetail = false; 
+		}
+		
         selectMenu(3);
         mySwiper.slideTo(1);
-    })
+    });
     
     var data = {name: purchaseController.artistName, page: purchaseController.paintingId, fileId: result.fileId};
     $("#fac_share").click(function() {
