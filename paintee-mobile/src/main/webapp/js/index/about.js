@@ -43,6 +43,7 @@ function showAbout(){			   // 4.3 수정
 }
 
 function showAboutOverview(){	  // 4.3 수정
+	boxStatus="about";
 	$(".about_container").show();
 	$(".swiper_container_overview").show();
 	$(".about_guide").show();
@@ -65,6 +66,7 @@ function showAboutOverview(){	  // 4.3 수정
 }
 
 function showAboutPost(){	   // 4.3 수정
+	boxStatus="about";
 	$(".about_container").show();
 	$(".swiper_container_post").show();
 	$(".about_guide").show();
@@ -89,6 +91,7 @@ function showAboutPost(){	   // 4.3 수정
 }
 
 function showAboutUpload(){	 // 4.3 수정
+	boxStatus="about";
 	openedAboutUploadPopup = true;
 
 	$(".about_container").show();
@@ -120,6 +123,7 @@ $(".about_card").swipe({	// 4.3 수정
 		$(".about_navi").hide();
 		$(".about_card").hide();
 		slideAboutNavi(0);
+		boxStatus="";
 	},
 	threshold:10
 });
