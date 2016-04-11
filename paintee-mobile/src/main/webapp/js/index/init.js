@@ -17,6 +17,7 @@ var boxWidth;
 var boxHeight;
 var boxStatus="";
 var popName="";
+var fullImage=false;
 
 var userInfo = getUserInfoCookie();
 
@@ -434,7 +435,7 @@ function listLock(swiper){
         swiper.enableMousewheelControl();
         $(".swiper-scrollbar").show();
         $(".home_btn").show()
-        $(".bottom_bar").css("opacity", 1);
+        if(!fullImage){$(".bottom_bar").css("opacity", 1)};
         currentSwiper=swiper;
     }
 }
@@ -529,6 +530,13 @@ function setWidth() {
         setPurchase();
     }
     setBox();
+    if($(".list_artist_btn").position()){
+        if($(".list_artist_btn").position().top>($(".list_painting").position().top+$(".list_painting").height())){
+            fullImage = true;
+        }else{
+            fullImage = false;
+        }
+    }
 }
 
 // upload/posted 버튼 설정
@@ -570,14 +578,20 @@ function toggleFullScreen() {
 
 // 업로드/리워드가 표시되는 팝업창 사이즈 설정
 function setBox(){
-    if(boxStatus!=""){
-        $(".popup_box").height(mainHeight*0.8);
-        $(".popup_box").width($(".popup_box").height()*0.72);
+    if(boxStatus=="upload"){
+        if(mainHeight>=400 && mainWidth >= 288){
+            $(".popup_box").height(mainHeight*0.8);
+            $(".popup_box").width($(".popup_box").height()*0.72);
 
-        if($(".popup_box").width()>mainWidth*0.8){
-            $(".popup_box").width(mainWidth*0.8);
-            $(".popup_box").height(mainWidth*10/9);
-        }
+            if($(".popup_box").width()>mainWidth*0.8){
+                $(".popup_box").width(mainWidth*0.8);
+                $(".popup_box").height(mainWidth*10/9);
+            }
+        }    
+    }else if(boxStatus=="about"){
+        $(".about_wrapper").width(mainWidth*5);
+        $(".about_card").width(mainWidth);
+        $(".about_navi").css("left", (mainWidth/2)-(aboutIndex*140)-70);
     }
 }
 
