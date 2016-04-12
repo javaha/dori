@@ -361,13 +361,6 @@ PurchaseController.prototype = {
 			changeAddr: controller.changeAddr,
 			serviceCnt: serviceCnt
 		};
-
-		/*
-		$("#ogUrl").attr("content", "http://www.naver.com");
-		$("#ogTitle").attr("content", "네이버");
-		$("#ogDesc").attr("content", "상세설명");
-		$("#ogImage").attr("content", "http://www.dzimg.com/MainBannerImg/1082.jpg");
-		*/
 		
 		AjaxCall.call(apiUrl + "/purchase", 
 			data, 
