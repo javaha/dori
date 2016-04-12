@@ -14,7 +14,7 @@ function purchase(paintingId, artistName) {
 }
 
 function initPurchasePop(result) {
-	console.log(JSON.stringify(result));
+//	console.log(JSON.stringify(result));
 	replaceHistory({"call": "purchasePop"});
     addHistory({"call": "purchaseStep1"});
     
@@ -261,10 +261,9 @@ function Payment(){
     this.title      = $("<div>").addClass("payment_title").addClass("popup_title");
     this.contents   = $("<div>").addClass("payment_contents").addClass("popup_contents");
     this.bottom     = $("<div>").addClass("payment_bottom").addClass("popup_bottom");
-    this.sociconFacebook    =$("<span id='fac_share'>").addClass("social_btn").addClass("socicon-facebook");
-    this.sociconTwitter     =$("<span id='twi_share'>").addClass("social_btn").addClass("socicon-twitter");
-    this.sociconInstagram   =$("<span id='ins_share'>").addClass("social_btn").addClass("socicon-instagram");
-    this.sociconPinterest   =$("<span id='pin_share'>").addClass("social_btn").addClass("socicon-pinterest");
+    this.sociconFacebook =$("<img id='fac_share' src='/ico/social_facebook.png'>").addClass("icon").addClass("social_img");
+    this.sociconTwitter  =$("<img id='twi_share' src='/ico/social_twitter.png'>").addClass("icon").addClass("social_img");
+    this.sociconUrl      =$("<img id='url_share' src='/ico/social_url.png'>").addClass("icon").addClass("social_img");
 }
 
 Payment.prototype = {
@@ -346,8 +345,6 @@ PurchaseController.prototype = {
 	},
 	addPurchase: function (serviceCnt) {
 		var controller = this;
-		
-		// userId는 로그인 후 쿠키에서 가져와서 처리하도록 해야함
 		var data = {
 			userId: userID,
 			paintingId: this.paintingId,
@@ -365,6 +362,13 @@ PurchaseController.prototype = {
 			serviceCnt: serviceCnt
 		};
 
+		/*
+		$("#ogUrl").attr("content", "http://www.naver.com");
+		$("#ogTitle").attr("content", "네이버");
+		$("#ogDesc").attr("content", "상세설명");
+		$("#ogImage").attr("content", "http://www.dzimg.com/MainBannerImg/1082.jpg");
+		*/
+		
 		AjaxCall.call(apiUrl + "/purchase", 
 			data, 
 			"POST", 
@@ -534,8 +538,7 @@ function completePayment(result){
     payment.setContents("<span data-i18n='[html]purchasePop2.contents'></span>");
     payment.contents.append(payment.sociconFacebook.css("color", "rgb(80,80,80)"));
     payment.contents.append(payment.sociconTwitter.css("color", "rgb(80,80,80)"));
-    payment.contents.append(payment.sociconInstagram.css("color", "rgb(80,80,80)"));
-    payment.contents.append(payment.sociconPinterest.css("color", "rgb(80,80,80)"));
+    payment.contents.append(payment.sociconUrl.css("color", "rgb(80,80,80)"));
     payment.setBottom("<div class='popup_btn payment_btn'><div class='purchase_btn_text'>Go to my history </div><i class='material-icons'>person</i></div>");
     payment.buildPayment();
     $(".payment_btn").click(function(){
@@ -564,8 +567,8 @@ function completePayment(result){
     $("#twi_share").click(function() {
     	shareSocial($.extend({type: "twitter"}, data));
     });
-    $("#pin_share").click(function() {
-    	shareSocial($.extend({type: "pinterest"}, data));
+    $("#url_share").click(function() {
+    	urlCopy(data);
     });
     
     delete payment;

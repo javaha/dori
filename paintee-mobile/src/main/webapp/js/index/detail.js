@@ -40,12 +40,10 @@ function DetailStructure(paintingId, paintingInfo){
     this.detailArtistSentence=$("<div>").addClass("detail_artist_sentence");
     this.detailArtistDate   =$("<div>").addClass("detail_artist_date");
     this.detailArtistBottom =$("<div>").addClass("detail_artist_bottom").html("Share to ");
-    this.sociconFacebook    =$("<span id='detail_fac_share'>").addClass("social_btn").addClass("socicon-facebook");
-    this.sociconTwitter     =$("<span id='detail_twi_share'>").addClass("social_btn").addClass("socicon-twitter");
-    this.urlCopyIcon        =$("<span id='detail_url_copy'>").addClass("social_btn").append($("<i>").addClass("material-icons").html("public"));
 
-//    this.sociconInstagram   =$("<span id='detail_ins_share'>").addClass("social_btn").addClass("socicon-instagram");
-//    this.sociconPinterest   =$("<span id='detail_pin_share'>").addClass("social_btn").addClass("socicon-pinterest");
+    this.sociconFacebook =$("<img id='detail_fac_share' src='/ico/social_facebook_white.png'>").addClass("icon").addClass("social_img");
+    this.sociconTwitter  =$("<img id='detail_twi_share' src='/ico/social_twitter_white.png'>").addClass("icon").addClass("social_img");
+    this.urlCopyIcon     =$("<img id='detail_url_copy' src='/ico/social_url_white.png'>").addClass("icon").addClass("social_img");
 
     this.detailPostbar      =$("<div>").addClass("detail_postbar").addClass("swiper-slide");
     this.detailPostbarPostnum=$("<div>").addClass("detail_postbar_postnum");
@@ -112,8 +110,6 @@ DetailStructure.prototype = {
         this.detailArtistBottom.append(this.sociconFacebook);
         this.detailArtistBottom.append(this.sociconTwitter);
         this.detailArtistBottom.append(this.urlCopyIcon);
-//        this.detailArtistBottom.append(this.sociconInstagram);
-//        this.detailArtistBottom.append(this.sociconPinterest);
         this.detailArtist.append(this.detailArtistTop);
         this.detailArtist.append(this.detailArtistSentence);
         this.detailArtist.append(this.detailArtistBottom);
@@ -146,8 +142,10 @@ DetailStructure.prototype = {
         }
 
         //소셜 공유 이벤트
+        /*
         this.sociconFacebook    =$("<span>").addClass("social_btn").addClass("socicon-facebook");
         this.sociconTwitter     =$("<span>").addClass("social_btn").addClass("socicon-twitter");
+        */
 //        this.sociconInstagram   =$("<span>").addClass("social_btn").addClass("socicon-instagram");
 //        this.sociconPinterest   =$("<span>").addClass("social_btn").addClass("socicon-pinterest");
         
@@ -161,9 +159,6 @@ DetailStructure.prototype = {
         });
         $("#detail_twi_share").click(function() {
         	shareSocial($.extend({type: "twitter"}, data));
-        });
-        $("#detail_pin_share").click(function() {
-        	shareSocial($.extend({type: "pinterest"}, data));
         });
         //url 복사
         $("#detail_url_copy").click(function() {

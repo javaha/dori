@@ -1845,3 +1845,18 @@ screen and (-o-min-device-pixel-ratio: 2.5) {
 	padding: 20px;
 	font-weight: 300;
 }
+.icon{
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+}
+/* 소셜 이미지 */
+.social_img {
+    font-size: 18px;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-left: 2px;
+    padding-right: 2px;
+    color: white;
+    cursor: pointer;
+}

@@ -87,7 +87,7 @@ function setPersonal(result) {
     var introduce = (result.personal.introduce) ? "<br />" + result.personal.introduce : "";
     personalHome.setExplain(personal.username + "<span data-i18n='personal.contents'>님이 업로드한 그림들입니다.</span>" + introduce);
     var contents1 = $("<div>").addClass("follow_artist").html("<i class='material-icons' style='font-size:12px'>star</i> <span id='personalFollow'>follow artist</span><br><br>");
-    var contents2 = $("<div>").addClass("detail_artist_bottom").html("Share to <span class='social_btn socicon-facebook'></span><span class='social_btn socicon-twitter'></span><i class='social_btn material-icons' id='materialBtn'>public</i>");  // 수정부분
+    var contents2 = $("<div>").addClass("detail_artist_bottom").html("Share to <img class='icon social_img' id='personal-facebook' src='/ico/social_facebook_white.png'><img class='icon social_img' id='personal-twitter' src='/ico/social_twitter_white.png'><img class='icon social_img' id='personal-url' src='/ico/social_url_white.png'>");  // 수정부분
     
     personalHome.hideNext();
     personalHome.setContents(contents1);
@@ -97,13 +97,13 @@ function setPersonal(result) {
     delete content1;
     
     var data = {name: personal.username};
-    $(".socicon-facebook").click(function() {
+    $("#personal-facebook").click(function() {
     	shareSocial({name: personal.username, type: "facebook"});
     });
-    $(".socicon-twitter").click(function() {
+    $("#personal-twitter").click(function() {
     	shareSocial({name: personal.username, type: "twitter"});
     });
-    $("#materialBtn").click(function() {
+    $("#personal-url").click(function() {
     	urlCopy({"name": personal.username});
     });
     

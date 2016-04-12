@@ -265,7 +265,7 @@ function getCharCount(value) {
 function shareSocial(data) {
 	var url = "";
 //	var hostAndFileName = "www.paintee.com:8080/index.html?";
-	var hostAndFileName = "www.paintee.com:9080/index.html?";
+	var hostAndFileName = "paintee.me:9080/index.html?";
 	hostAndFileName = encodeURIComponent(hostAndFileName);
 	var param = "user=" + data.name;
 	if (data.page) {
@@ -287,9 +287,7 @@ function shareSocial(data) {
 //		url = "https://pinterest.com/pin/create/button?url=http://www.naver.com";
 //		url = "https://pinterest.com/pin/create/button?url=" + encodeURIComponent("http://www.naver.com");
 //		url = "https://pinterest.com/pin/create/button?media=" + imageUrl + "/cmm/file/view/" + data.fileId + "&url=" + encodeURIComponent("http://www.naver.com");
-		
-		https://kr.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.youtube.com%2Fattribution_link%3Fa%3D3qHmOcyQVYY%26u%3D%252Fwatch%253Fv%253DOg_kaPMZxN0%2526feature%253Dshare&description=%EC%8A%B9%EA%B1%B4%EC%9D%B4%EC%9D%98%20%ED%86%A0%EB%AF%B8%EC%B9%B4%EC%B9%B4%EA%B3%A0%20%EC%A0%90%EB%B3%B4%EC%A0%9C%ED%8A%B8%EA%B8%B0%20%EC%86%8C%EA%B0%9C&is_video=true&media=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOg_kaPMZxN0%2Fmaxresdefault.jpg
-		
+//		https://kr.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.youtube.com%2Fattribution_link%3Fa%3D3qHmOcyQVYY%26u%3D%252Fwatch%253Fv%253DOg_kaPMZxN0%2526feature%253Dshare&description=%EC%8A%B9%EA%B1%B4%EC%9D%B4%EC%9D%98%20%ED%86%A0%EB%AF%B8%EC%B9%B4%EC%B9%B4%EA%B3%A0%20%EC%A0%90%EB%B3%B4%EC%A0%9C%ED%8A%B8%EA%B8%B0%20%EC%86%8C%EA%B0%9C&is_video=true&media=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOg_kaPMZxN0%2Fmaxresdefault.jpg
 		break;
 	}
 	
