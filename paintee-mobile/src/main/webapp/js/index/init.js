@@ -568,10 +568,10 @@ function toggleFullScreen() {
 
     if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement) {
         requestFull.call(docEl);
-        $("#fullscreen_btn").find("i").html("fullscreen_exit");
+        $("#fullscreen_btn").find("img").attr("src", "/ico/fullscreen_exit.png");
     }else {
         cancelFull.call(doc);
-        $("#fullscreen_btn").find("i").html("fullscreen");
+        $("#fullscreen_btn").find("img").attr("src", "/ico/fullscreen.png");
     }
 }
 

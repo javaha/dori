@@ -267,7 +267,7 @@ function Follows() {
 	this.btn = $("<div>").addClass("people_list_add")
 			             .html("<div class='people_list_btn_text'> </div><i class='material-icons'>add</i>");
 	this.freind = $("<div>").addClass("people_list_add")
-			                .html("<div class='people_list_btn_text'> </div><i class='material-icons' style='color:rgba(120,120,120,0.5)'>done</i>");
+			                .html("<div class='people_list_btn_text'> </div><img class='icon img_transparent' src='/ico/done.png'>");
 	this.build = function(name, isfriend) {
 		$(this.name).html(name).click(function () {
 			history.back();

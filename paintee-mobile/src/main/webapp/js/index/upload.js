@@ -153,7 +153,7 @@ function resetUpload() {
 
 //	$('.painting_preview').empty();
 	$('.uploadFileBox').empty();
-	$('.uploadFileBox').html("<label for='painteeFile' class='upload_btn_text'>Select image file </label><i class='material-icons'>folder</i>");
+	$('.uploadFileBox').html("<label for='painteeFile' class='upload_btn_text'>Select image file </label><img class='icon' src='/ico/folder.png'>");
 
 	$('#upload_file_input_box').empty();
 	$('#upload_file_input_box').html("<form id='paintingCreateForm' name='paintingCreateForm' method='POST' enctype='multipart/form-data'><input type='file' id='painteeFile' name='painteeFile' title='' class='upload-input-hidden' /></form>");
@@ -206,7 +206,7 @@ function failUpload(){
 	var uploadFail = new Upload();
 	uploadFail.setTitle("Upload Painting");
 	uploadFail.setContents('<span data-i18n="[html]uploadPop.failContent"></span>');
-	uploadFail.setBottom("<div class='popup_btn upload_btn uploadFileBox'><label for='painteeFile' class='upload_btn_text'>Select image file </label><i class='material-icons'>folder</i><input type='file' id='painteeFile' name='painteeFile' title='' class='upload-input-hidden' /></div>");
+	uploadFail.setBottom("<div class='popup_btn upload_btn uploadFileBox'><label for='painteeFile' class='upload_btn_text'>Select image file </label><img class='icon' src='/ico/folder.png'><input type='file' id='painteeFile' name='painteeFile' title='' class='upload-input-hidden' /></div>");
 	uploadFail.buildUpload();
 
     if(doUploadCount > 0) {
@@ -226,7 +226,7 @@ function successUpload() {
 
     uploadSuccess.setTitle("Upload Painting");
     uploadSuccess.setContents('<span data-i18n="[html]uploadPop.successContent"></span><br><div class="upload_sentence"><span class="character_counter"><span id="paintingSentenceCount">0</span>/200</span><textarea id="painting_sentence_text" name="painting_sentence_text" class="upload_sentence_textarea" length="200"></textarea><input id="painting_private" name="painting_private" type="checkbox"> private</div>');
-    uploadSuccess.setBottom("<div class='popup_cancle_btn upload_btn uploadFileBox'><i class='material-icons'>folder</i><label for='painteeFile' class='upload_btn_text'>Select image file </label></div><div id='update_painting_sentence_btn' class='popup_btn upload_btn'><div class='purchase_btn_text'>Done </div><i class='material-icons'>done</i></div>");
+    uploadSuccess.setBottom("<div class='popup_cancle_btn upload_btn uploadFileBox'><img class='icon' src='/ico/folder.png'><label for='painteeFile' class='upload_btn_text'>Select image file </label></div><div id='update_painting_sentence_btn' class='popup_btn upload_btn'><div class='purchase_btn_text'>Done </div><img class='icon' src='/ico/done.png'></div>");
     uploadSuccess.buildUpload();
 
 	//미리보기 생성
