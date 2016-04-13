@@ -213,6 +213,8 @@ DetailController.prototype = {
 			showPersonal(get.user, get.page);
 			get = "";
 		}
+		
+		callPosted(detailSwiper);
  	},
 	artistFollow: function(artistId) {
 		var controller = this;
@@ -309,7 +311,8 @@ function processDetailClose() {
 //디테일화면의 스크롤 잠금/열기
 function changeMode(swiper){            
     var translate = swiper.translate;
-
+    // console.log("translate ::: " + translate);
+    // console.log("postedLockBreakpoint ::: " + postedLockBreakpoint);
     if(translate>50){
         closeDetail();
     }else if(translate<postedLockBreakpoint){
@@ -317,15 +320,21 @@ function changeMode(swiper){
             unlockPosted(swiper);
         }
         callPosted(swiper);
-    }else if(translate>=postedLockBreakpoint){
+    }
+    /*
+    else if(translate>=postedLockBreakpoint){
         if(!postedLock){
             lockPosted(swiper);
         }
     }
+    */
 }
 
 //디테일화면의 스크롤 잠금
 function lockPosted(swiper){
+	
+	// console.log("aaaaa");
+	
     postedLock = true;
     hidePosted(swiper);
     swiper.params.freeMode = false;
@@ -336,6 +345,7 @@ function lockPosted(swiper){
 
 //디테일화면의 스크롤 열기
 function unlockPosted(swiper){
+	// console.log("unlockPosted ::: ");
     postedLock = false;
     swiper.params.freeMode = true;
 
@@ -390,8 +400,11 @@ PostedController.prototype = {
 		}
 	},
 	getPostedDataRes: function(result, status) {
+		// console.log("getPostedDataRes ::: " + result);
 		for (var index in result.list) {
+			// console.log("index ::: " + index);
 			addPosted(this.swiper, result.list[index]);
+			// console.log("this.swiper ::: " + this.swiper);
 		}
 
 		isBlock = false;
