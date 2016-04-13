@@ -318,13 +318,6 @@ function urlCopy(data) {
     }
 }
 
-function toDate (timestamp, dateFormat) {
-    var date = new Date(timestamp);
-
-    var retVal = $.datepicker.formatDate(dateFormat, date);
-    return retVal;
-};
-
 /**
  * 미디어에 따른 이미지 경로를 처리하기 위한 함수
  * 고정된 값을 설정하므로 공통적인 부분을 반환함

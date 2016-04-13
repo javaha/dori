@@ -6,7 +6,7 @@ function DetailStructure(paintingId, paintingInfo){
     this.artistName     = paintingInfo.artistName;
     this.artistId       = paintingInfo.artistId;
     this.artistSentence = paintingInfo.sentence;
-    this.uploadDate     = toDate(paintingInfo.uploadDate, 'dd.mm.yy');
+    this.uploadDate     = toDate(paintingInfo.uploadDate);
     this.postedNum      = paintingInfo.postedNum;
     // 히스토리 사용 부분 추가
     this.colorDark      = paintingInfo.colorDark;
