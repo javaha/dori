@@ -317,7 +317,7 @@ function Following() {
 	this.following = $("<div>").addClass("people_list");
 	this.name = $("<div>").addClass("people_list_name");
 	this.btn = $("<div>").addClass("people_list_remove")
-			             .html("<div class='people_list_btn_text'></div><i class='material-icons'>clear</i>");
+			             .html("<div class='people_list_btn_text'></div><img class='icon' src='/ico/clear_black.png'>");
 	this.build = function(name) {
 		$(this.name).html(name).click(function () {
 			history.back();

@@ -62,7 +62,7 @@ function initReward(){
     		"<span data-i18n='[html]rewardPop.content3'></span>" +
     		html);
     
-    reward.setBottom("<div class='popup_cancle_btn reward_history_btn'><i class='material-icons'>playlist_add_check</i><div class='purchase_btn_text'>History</div></div><div class='popup_btn reward_btn'><div class='purchase_btn_text'>Get reward now </div><img class='icon' src='/ico/attach_money.png'></div>");
+    reward.setBottom("<div class='popup_cancle_btn reward_history_btn'><img class='icon' src='/ico/playlist_add_check.png'><div class='purchase_btn_text'>History</div></div><div class='popup_btn reward_btn'><div class='purchase_btn_text'>Get reward now </div><img class='icon' src='/ico/attach_money.png'></div>");
     reward.buildUpload();
     $(".reward_history_btn").click(function(){
     	rewardController.getRewardHistory();

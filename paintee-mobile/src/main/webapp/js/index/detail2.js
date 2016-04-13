@@ -80,7 +80,7 @@ DetailStructure.prototype = {
         });
     },
     setFollow   : function(artistId){
-        this.detailArtistFollow.append('<img style="width:12px; height: 12px" class="icon" src="/ico/star_white.png"> follow artist');
+        this.detailArtistFollow.append('<i class="material-icons" style="font-size:12px">star</i> follow artist');
     },
     setSentence : function(artistSentence){
         this.detailArtistSentence.html(artistSentence);
@@ -213,8 +213,6 @@ DetailController.prototype = {
 			showPersonal(get.user, get.page);
 			get = "";
 		}
-		
-		callPosted(detailSwiper);
  	},
 	artistFollow: function(artistId) {
 		var controller = this;
@@ -311,8 +309,7 @@ function processDetailClose() {
 //디테일화면의 스크롤 잠금/열기
 function changeMode(swiper){            
     var translate = swiper.translate;
-    // console.log("translate ::: " + translate);
-    // console.log("postedLockBreakpoint ::: " + postedLockBreakpoint);
+    console.log("translate ::: " + translate);
     if(translate>50){
         closeDetail();
     }else if(translate<postedLockBreakpoint){
@@ -321,19 +318,17 @@ function changeMode(swiper){
         }
         callPosted(swiper);
     }
-    /*
     else if(translate>=postedLockBreakpoint){
         if(!postedLock){
             lockPosted(swiper);
         }
     }
-    */
 }
 
 //디테일화면의 스크롤 잠금
 function lockPosted(swiper){
 	
-	// console.log("aaaaa");
+	console.log("aaaaa");
 	
     postedLock = true;
     hidePosted(swiper);
@@ -345,7 +340,7 @@ function lockPosted(swiper){
 
 //디테일화면의 스크롤 열기
 function unlockPosted(swiper){
-	// console.log("unlockPosted ::: ");
+	console.log("unlockPosted ::: ");
     postedLock = false;
     swiper.params.freeMode = true;
 
@@ -400,11 +395,8 @@ PostedController.prototype = {
 		}
 	},
 	getPostedDataRes: function(result, status) {
-		// console.log("getPostedDataRes ::: " + result);
 		for (var index in result.list) {
-			// console.log("index ::: " + index);
 			addPosted(this.swiper, result.list[index]);
-			// console.log("this.swiper ::: " + this.swiper);
 		}
 
 		isBlock = false;
