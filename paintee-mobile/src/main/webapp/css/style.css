@@ -1864,3 +1864,8 @@ screen and (-o-min-device-pixel-ratio: 2.5) {
     color: white;
     cursor: pointer;
 }
+
+.parallax-bg{
+    width: 130%;
+    height: 100%;
+}

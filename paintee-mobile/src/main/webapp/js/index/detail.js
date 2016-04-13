@@ -51,7 +51,7 @@ function DetailStructure(paintingId, paintingInfo){
 
     this.detailPostBtn      =$("<div>").addClass("detail_post_btn").html("post it").click(function(){purchase(paintingId)});
     this.detailScroll       =$("<div>").addClass("swiper-scrollbar").addClass("swiper-scrollbar-detail");
-    this.returnBtn          =$("<div>").addClass("return_btn").append($("<i>").addClass("material-icons").html("keyboard_backspace"));
+    this.returnBtn          =$("<div>").addClass("return_btn").html("<img class='icon' src='/ico/keyboard_backspace.png' />");
 }
 
 DetailStructure.prototype = {

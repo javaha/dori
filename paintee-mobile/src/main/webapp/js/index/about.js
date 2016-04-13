@@ -51,8 +51,7 @@ function showAboutOverview(){	  // 4.3 수정
 		overviewSwiper = new Swiper('.swiper_container_overview', {
 			slidesPerView: 'auto',
 			pagination: '.swiper-pagination-overview',
-			lazyLoading: true,
-			lazyLoadingInPrevNext: true
+			parallax: true
 		});
 		overviewSwiper.on("onSetTranslate", function(swiper, translate){
 			if($(".about_navi").css("display")=="block"){
@@ -74,13 +73,13 @@ function showAboutPost(){	   // 4.3 수정
 		postSwiper = new Swiper('.swiper_container_post', {
 			slidesPerView: 'auto',
 			pagination: '.swiper-pagination-post',
-			lazyLoading: true,
-			lazyLoadingInPrevNext: true
+			parallax: true
 		});
 		postSwiper.on("onSetTranslate", function(swiper, translate){
 			if($(".about_navi").css("display")=="block"){
 				if(translate>(mainWidth/4)){
 					 slideAboutNavi(0)
+					 swiper.slideTo(0)
 				 }else if(translate < -(mainWidth*5.25)){
 					 slideAboutNavi(2)
 					 swiper.slideTo(0)
@@ -101,13 +100,13 @@ function showAboutUpload(){	 // 4.3 수정
 		uploadSwiper = new Swiper('.swiper_container_upload', {
 			slidesPerView: 'auto',
 			pagination: '.swiper-pagination-upload',
-			lazyLoading: true,
-			lazyLoadingInPrevNext: true
+			parallax: true
 		});
 		uploadSwiper.on("onSetTranslate", function(swiper, translate){
 			if($(".about_navi").css("display")=="block"){
 				if(translate>(mainWidth/4)){
 					 slideAboutNavi(1)
+					 swiper.slideTo(0)
 				 }else if(translate < -(mainWidth*5.25)){
 					 slideAboutNavi(3)
 					 swiper.slideTo(0)
