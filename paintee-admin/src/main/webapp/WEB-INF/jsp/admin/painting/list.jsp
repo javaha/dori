@@ -86,7 +86,7 @@
 				"artistId": $("#artistId" + seq).val()
 			};
 			$.ajax({
-					url: "/admin/painting/mod",
+					url: "${pageContext.request.contextPath}/admin/painting/mod",
 					type: "GET",
 					async: true,
 					cache: false,
@@ -104,6 +104,7 @@
 					initStatus(paintingStatus, item);
 				});
 				
+				alert("변경되었습니다.");
 // 				if (result) {
 // 					alert(result.msg);			
 // 				}
