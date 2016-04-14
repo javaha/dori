@@ -229,14 +229,10 @@ function getRequest() {
     }
 }
 
-var callType;
-var get;
 $(document).ready(function () {
-	get = getRequest();
 //  user만 있으면 개인페이지로 이동, user, page가 있으면 상세화면으로 이동
 //  http://localhost:9080/index.html?user=작가이름&page=그림아이디
 	if (get) {
-		callType = "social";
 		if(get.user) {
 			// 작가가 존재하는 지 체크 한 다음 개인페이지 이동여부 진행
 			new PersonalController().getArtistStatus(get.user);

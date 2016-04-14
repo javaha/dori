@@ -1,10 +1,16 @@
 $(function () {
+	get = getRequest();
 	// 로그인 되어있지 않은 경우 about 페이지 띄우기
-	if(!userInfo && callType != "social") {
+	if(!userInfo && !get) {
 		showAboutOverview();
 	}
+	
+	setSideMenu();  // 사이드 메뉴 설정
 });
+	
 // 전역변수 설정
+var get;
+var callType;
 var mainWidth;
 var slideWidth;
 var userID = "";
@@ -19,6 +25,21 @@ var boxStatus="";
 var popName="";
 var fullImage=false;
 
+//get 방식으로 user, painting 가져오기 
+function getRequest() {
+	if(location.search.length > 1) {
+		var get = new Object();
+		var ret = location.search.substr(1).split('&');
+		for(var i = 0; i < ret.length; i++) {
+			var r = ret[i].split('=');
+			get[r[0]] = r[1];
+		}
+		return get;
+	} else {
+		return false;
+	}
+}
+
 var userInfo = getUserInfoCookie();
 
 if(userInfo) {
@@ -27,13 +48,7 @@ if(userInfo) {
 	userID = '';
 }
 
-// 나중에 로그인 사용자의 언어를 설정해야 한다.
 var lang = "en";
-
-// 최초 화면 로딩시 해야할 일
-$(function () {
-	setSideMenu();  // 사이드 메뉴 설정
-});
 
 /**
  * 사이드 메뉴의 액션 설정 및 활성화/비활성화 처리
@@ -72,11 +87,9 @@ function setSideMenu() {
 	$('#menu_about').on('click', function() { showAbout(); });
 }
 
-var imageUrl="http://localhost:8090";
-//var imageUrl="http://192.168.43.89:8090";
-//var imageUrl="http://192.168.0.3:8090";
-//var imageUrl="http://www.paintee.com:8090";
-var apiUrl=imageUrl+"/api";
+//var imageUrl="http://localhost:8090";
+var imageUrl="http://paintee.me";
+var apiUrl = imageUrl + "/api";
 
 setWidth();
 
