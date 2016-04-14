@@ -23,7 +23,7 @@ function DetailStructure(paintingId, paintingInfo){
 
     this.detailMargin       =$("<div>").addClass("detail_margin").addClass("swiper-slide");
     this.detailCloseIcon    =$("<img src='/ico/close.png'>").addClass("icon").addClass("detail_margin_close");
-    this.detailMarginIcon   =$("<img src='/ico/keyboard_arrow_up.png'>").addClass("icon").addClass("detail_margin_guide");
+    this.detailMarginIcon   =$("<img src='/ico/keyboard_arrow_up_black.png'>").addClass("icon").addClass("detail_margin_guide");
 
     this.detailArtist       =$("<div>").addClass("detail_artist").addClass("swiper-slide");
     this.detailArtistTop    =$("<div>").addClass("detail_artist_top");
