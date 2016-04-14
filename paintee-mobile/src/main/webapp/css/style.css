@@ -364,10 +364,6 @@ body{
     left: 0;
     width: 100%;
 }
-.swiper-pagination-bullet:first-child {
-    width: 20px;
-    border-radius: 20%;
-}
 .swiper-pagination-bullet-active {
   opacity: 1;
   background: #fff;
