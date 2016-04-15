@@ -676,6 +676,13 @@ $(".popup_box").click(function(e){
     e.stopPropagation();
 });
 
+$(".home_next").click(function(){
+    mainSwiper.slideNext();
+})
+$(".home_prev").click(function(){
+    mainSwiper.slidePrev();
+})
+
 /**
  *   홈 페이지 데이터 리로딩
  *   그림 구매시 : My, Popular  
