@@ -30,8 +30,8 @@ body{
     position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 150%;
+    width: 130%;
+    height: 100%;
     -webkit-background-size: cover;
     background-size: cover;
     background-position: center;
@@ -363,10 +363,6 @@ body{
     top: 10px;
     left: 0;
     width: 100%;
-}
-.swiper-pagination-bullet:first-child {
-    width: 20px;
-    border-radius: 20%;
 }
 .swiper-pagination-bullet-active {
   opacity: 1;
@@ -760,22 +756,22 @@ body{
     z-index: 40;
 }
 .popup_box{
-    position: relative;
-    width: 80%;
-    max-width: 648px;
-    min-width: 288px;
-    min-height: 400px;
-    margin: auto;
-    top: 10%;
-    color: rgb(80,80,80);
-    background-color: rgba(255,255,255,1);
-    font-size: 14px;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
+	position: relative;
+	width: 80%;
+	max-width: 648px;
+	min-width: 288px;
+	min-height: 400px;
+	margin: auto;
+	top: 10%;
+	color: rgb(80,80,80);
+	background-color: rgba(255,255,255,1);
+	font-size: 14px;
+	box-sizing: border-box;
+	box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
 }
 .popup_pox_margin_bottom{
-    width: 100%;
-    height: 50px;
+	width: 100%;
+	height: 50px;
 }
 .popup_title{
     box-sizing: border-box;
@@ -816,64 +812,6 @@ body{
     font-weight: 400;
     cursor: pointer;
 }
-/*
-
-.upload_container{
-    position: relative;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.8);
-    overflow-x: hidden;
-    overflow-y: scroll;
-    display: none;
-    z-index: 40;
-}
-.upload_box{
-    position: relative;
-    width: 80%;
-    height: 80%;
-    max-width: 648px;
-    min-height: 400px;
-    margin: auto;
-    top: 10%;
-    color: rgb(80,80,80);
-    background-color: rgba(255,255,255,1);
-    font-size: 14px;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
-}
-.upload_title{
-    box-sizing: border-box;
-    font-family: 'Merriweather', serif;
-    width: 100%;
-    height: 50px;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 20px;
-}
-.upload_contents{
-    box-sizing: border-box;
-    width: 100%;
-    padding: 20px;
-    font-weight: 300;
-}
-.upload_bottom{
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    bottom: 0px;
-}
-.upload_btn{
-    position: absolute;
-    right: 0px;
-    text-align: right;
-    padding: 10px;
-    font-size: 14px;
-    font-weight: 400;
-    cursor: pointer;
-}*/
 .upload_sentence{
     box-sizing: border-box;
     width: 100%;
@@ -894,64 +832,6 @@ body{
 .upload_icon{
     font-size: 100px;
 }
-/*
-.reward_container{
-    position: relative;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.8);
-    overflow-x: hidden;
-    overflow-y: scroll;
-    display: none;
-    z-index: 40;
-}
-.reward_box{
-    position: relative;
-    width: 80%;
-    height: 80%;
-    max-width: 648px;
-    min-height: 400px;
-    margin: auto;
-    top: 10%;
-    color: rgb(80,80,80);
-    background-color: rgba(255,255,255,1);
-    font-size: 14px;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
-}
-.reward_title{
-    box-sizing: border-box;
-    font-family: 'Merriweather', serif;
-    width: 100%;
-    height: 50px;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 20px;
-}
-.reward_contents{
-    box-sizing: border-box;
-    width: 100%;
-    padding: 20px;
-    font-weight: 300;
-}
-.reward_bottom{
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    bottom: 0px;
-}
-.reward_btn{
-    position: absolute;
-    right: 0px;
-    text-align: right;
-    padding: 10px;
-    font-size: 14px;
-    font-weight: 400;
-    cursor: pointer;
-}
-*/
 .reward_money{
     font-size: 30px;
     font-weight: 700;
@@ -960,49 +840,6 @@ body{
     font-size: 0.9em;
     color: rgb(180,180,180);
 }
-/*
-.people_container{
-    position: relative;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.8);
-    overflow-x: hidden;
-    overflow-y: scroll;
-    display: none;
-    z-index: 40;
-}
-.people_box{
-    position: relative;
-    width: 80%;
-    height: auto;
-    max-width: 648px;
-    min-height: 400px;
-    margin: auto;
-    top: 10%;
-    color: rgb(80,80,80);
-    background-color: rgba(255,255,255,1);
-    font-size: 14px;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
-}
-.people_title{
-    box-sizing: border-box;
-    font-family: 'Merriweather', serif;
-    width: 100%;
-    height: 50px;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 20px;
-}
-.people_contents{
-    box-sizing: border-box;
-    width: 100%;
-    padding: 20px;
-    font-weight: 300;
-}
-*/
 .people_box{
     height: auto;
 }
@@ -1234,18 +1071,7 @@ body{
     z-index: 40;
 }
 .profile_box{
-    position: relative;
-    width: 80%;
-    height: 80%;
-    max-width: 648px;
-    min-height: 400px;
-    margin: auto;
-    top: 10%;
-    color: rgb(80,80,80);
-    background-color: rgba(255,255,255,1);
-    font-size: 14px;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
+    height: 550px;
 }
 .profile_title{
     box-sizing: border-box;
@@ -1301,159 +1127,41 @@ body{
     font-weight: 400;
     cursor: pointer;
 }
-/*   고해상도 디스플레이   */
-@media  screen and (min-device-pixel-ratio: 1.5),
-screen and (-webkit-min-device-pixel-ratio: 1.5),
-screen and (min-moz-device-pixel-ratio: 1.5),
-screen and (-o-min-device-pixel-ratio: 1.5) {
-        .home_title{
-            font-size: 60px;    
-        }
-        .home_title_margin{
-            height: 20%
-        }
-        .home_container{
-         font-size: 10px;
-        }
-        .list_contents{
-            font-size: 12px;
-        }
-        #side_menu{
-            font-size: 12px;
-        }
-        .list_artist_btn{
-            bottom: 7.5px;
-            left: 2%;
-            height: 35px;
-            line-height: 35px;
-            font-size: 16px;
-        }
-        .list_post_btn{
-            bottom: 7.5px;
-            right: 2%;
-            width: 100px;
-            height: 35px;
-            line-height: 35px;
-            font-size: 15px;
-        }
-        .detail_container{
-            font-size: 12px;
-        }
-        .detail_artist_btn{
-			font-size: 16px;
-        }
-        .detail_post_btn{
-            bottom: 7.5px;
-            right: 2%;
-            width: 100px;
-            height: 35px;
-            line-height: 35px;
-            font-size: 15px;
-        }
-        .purchase_box_middle{
-            font-size: 14px;
-        }
-        .purchase_col_title{
-            font-size: 15px;
-        }
-        .popup_contents{
-            font-size: 11px;
-        }
-        .popup_box{
-            font-size: 11px;
-        }
-        .account_container{
-            font-size: 11px;
-        }
-        .account_title{
-            font-size: 60px;
-        }
+.username_box{
+	width: 80%;
+	height: 288px;
 }
-@media  screen and (min-devicepixel-ratio: 2.5),
-screen and (-webkit-min-device-pixel-ratio: 2.5),
-screen and (min-moz-device-pixel-ratio: 2.5),
-screen and (-o-min-device-pixel-ratio: 2.5) {
-        .home_title{
-            font-size: 50px;    
-        }
-        .home_title_margin{
-            height: 15%
-        }
-        .home_container{
-         font-size: 9px;
-        }
-        .list_contents{
-            font-size: 10px;
-        }
-        #side_menu{
-            font-size: 10px;
-        }
-        .list_artist_btn{
-            bottom: 10px;
-            left: 2%;
-            height: 30px;
-            line-height: 30px;
-            font-size: 15px;
-        }
-        .list_post_btn{
-            bottom: 10px;
-            right: 2%;
-            width: 90px;
-            height: 30px;
-            line-height: 30px;
-            font-size: 13px;
-        }
-        .detail_container{
-            font-size: 10px;
-        }
-        .detail_artist_btn{
-            font-size: 15px;
-        }
-        .detail_post_btn{
-            bottom: 10px;
-            right: 2%;
-            width: 90px;
-            height: 30px;
-            line-height: 30px;
-            font-size: 13px;
-        }
-        .purchase_box_middle{
-            font-size: 12px;
-        }
-        .purchase_col_title{
-            font-size: 14px;
-        }
-        .popup_contents{
-            font-size: 10px;
-        }
-        .popup_box{
-            font-size: 10px;
-        }
-        .account_container{
-            font-size: 10px;
-        }
-        .account_title{
-            font-size: 50px;
-        }
+.username_contents{
+	box-sizing: border-box;
+	width: 100%;
+	padding: 20px;
+	font-weight: 300;
+}
+.icon{
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+}
+.social_img {
+    font-size: 18px;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-left: 2px;
+    padding-right: 2px;
+    color: white;
+    cursor: pointer;
+}
+.parallax-bg{
+    width: 130%;
+    height: 100%;
 }
 
-/*   PC화면   */
-@media screen and (min-width: 729px){
-    .home_container{
-        width: 648px;
-    }
-    .list_contents{
-        width: 648px;
-    }
+.img_transparent {
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
 }
-
-/*   긴화면   */
-@media screen and (min-height: 550px){
-    .home_contents_add{
-        display: block;
-    }
-}
-
 /* input file 숨기기 */
 .uploadFileBox input[type="file"] {
 	position: absolute;
@@ -1536,137 +1244,6 @@ screen and (-o-min-device-pixel-ratio: 2.5) {
     font-weight: 400;         
 }
 
-/* 목록 삭제 등 버튼 추가 :: 2016-03-31 */
-.list_status_btn{
-    position: absolute;
-    right: 2%;
-    bottom: 60px;
-    height: 30px;
-    width: 120px;
-    border-radius: 10px;
-    padding: 5px;
-    background-color: rgba(50,50,50,0.9);
-    cursor: pointer;
-    line-height: 16px;
-    box-sizing: border-box;
-}
-.list_cancel_btn{
-    position: absolute;
-    right: 2%;
-    bottom: 60px;
-    height: 30px;
-    width: 120px;
-    border-radius: 10px;
-    padding: 5px;
-    background-color: rgb(255,255,255);
-    color: hsl(250,60%,20%);
-    font-weight: 900;
-    display: none;
-    cursor: pointer;
-    z-index: 5;
-    line-height: 16px;
-    box-sizing: border-box;
-}
-.list_refund_btn{
-    position: absolute;
-    right: 2%;
-    bottom: 60px;
-    height: 30px;
-    width: 120px;
-    border-radius: 10px;
-    padding: 5px;
-    background-color: rgb(255,255,255);
-    color: hsl(250,60%,20%);
-    font-weight: 900;
-    display: none;
-    cursor: pointer;
-    z-index: 5;
-    line-height: 16px;
-    box-sizing: border-box;
-}
-.list_resend_btn{
-    position: absolute;
-    right: 140px;
-    bottom: 60px;
-    height: 30px;
-    width: 120px;
-    border-radius: 10px;
-    padding: 5px;
-    background-color: rgb(255,255,255);
-    color: hsl(250,60%,20%);
-    font-weight: 900;
-    display: none;
-    cursor: pointer;
-    z-index: 5;
-    line-height: 16px;
-    box-sizing: border-box;
-}
-.list_confirm_btn{
-    position: absolute;
-    right: 2%;
-    bottom: 60px;
-    height: 30px;
-    width: 120px;
-    border-radius: 10px;
-    padding: 5px;
-    background-color: rgb(255,255,255);
-    color: hsl(250,60%,20%);
-    font-weight: 900;
-    display: none;
-    cursor: pointer;
-    z-index: 5;
-    line-height: 16px;
-    box-sizing: border-box;
-}
-.list_status_sentence{
-    position: absolute;
-    left: 0px;
-    bottom: 50px;
-    width: 100%;
-    height: 100px;
-    padding: 5px;
-    box-sizing: border-box;
-    text-align: right;
-    background-color: rgba(0,0,0,0.5);
-    display: none;
-}
-/*   고해상도 디스플레이   */
-@media  screen and (min-device-pixel-ratio: 1.5),
-screen and (-webkit-min-device-pixel-ratio: 1.5),
-screen and (min-moz-device-pixel-ratio: 1.5),
-screen and (-o-min-device-pixel-ratio: 1.5) {
-    .list_status_btn{
-        width: 100px;
-    }
-    .list_cancel_btn{
-        width: 100px;
-    }
-    .list_resend_btn{
-        width: 100px;
-        right: 120px;
-    }
-    .list_confirm_btn{
-        width: 100px;
-    }
-}
-@media  screen and (min-devicepixel-ratio: 2.5),
-screen and (-webkit-min-device-pixel-ratio: 2.5),
-screen and (min-moz-device-pixel-ratio: 2.5),
-screen and (-o-min-device-pixel-ratio: 2.5) {
-    .list_status_btn{
-        width: 90px;
-    }
-    .list_cancel_btn{
-        width: 90px;
-    }
-    .list_resend_btn{
-        width: 90px;
-        right: 110px;
-    }
-    .list_confirm_btn{
-        width: 90px;
-    }           
-}
 
 /*  3/29 추가내용 4/3 변경 적용 */
 .about_container{
@@ -1765,24 +1342,99 @@ screen and (-o-min-device-pixel-ratio: 2.5) {
     /*     4.3 수정: 추가. 기존 style.css에서 swiper-pagination, swiper-pagination-bullet, swiper-pagination-bullet-active 은 삭제       */
 }
 
-
-/*   고해상도 디스플레이   */
-@media  screen and (min-device-pixel-ratio: 1.5),
-screen and (-webkit-min-device-pixel-ratio: 1.5),
-screen and (min-moz-device-pixel-ratio: 1.5),
-screen and (-o-min-device-pixel-ratio: 1.5) {
-    .randing_card_title{
-        font-size: 30px;
-    }
+/* 목록 삭제 등 버튼 추가 :: 2016-03-31 */
+.list_status_btn{
+    position: absolute;
+    right: 2%;
+    bottom: 60px;
+    height: 30px;
+    width: 120px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgba(50,50,50,0.9);
+    cursor: pointer;
+    line-height: 16px;
+    box-sizing: border-box;
 }
-/*   고해상도 디스플레이   */
-@media  screen and (min-device-pixel-ratio: 2.5),
-screen and (-webkit-min-device-pixel-ratio: 2.5),
-screen and (min-moz-device-pixel-ratio: 2.5),
-screen and (-o-min-device-pixel-ratio: 2.5) {
-    .randing_card_title{
-        font-size: 25px;
-    }
+.list_cancel_btn{
+    position: absolute;
+    right: 2%;
+    bottom: 60px;
+    height: 30px;
+    width: 120px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgb(255,255,255);
+    color: hsl(250,60%,20%);
+    font-weight: 900;
+    display: none;
+    cursor: pointer;
+    z-index: 5;
+    line-height: 16px;
+    box-sizing: border-box;
+}
+.list_refund_btn{
+    position: absolute;
+    right: 2%;
+    bottom: 60px;
+    height: 30px;
+    width: 120px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgb(255,255,255);
+    color: hsl(250,60%,20%);
+    font-weight: 900;
+    display: none;
+    cursor: pointer;
+    z-index: 5;
+    line-height: 16px;
+    box-sizing: border-box;
+}
+.list_resend_btn{
+    position: absolute;
+    right: 140px;
+    bottom: 60px;
+    height: 30px;
+    width: 120px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgb(255,255,255);
+    color: hsl(250,60%,20%);
+    font-weight: 900;
+    display: none;
+    cursor: pointer;
+    z-index: 5;
+    line-height: 16px;
+    box-sizing: border-box;
+}
+.list_confirm_btn{
+    position: absolute;
+    right: 2%;
+    bottom: 60px;
+    height: 30px;
+    width: 120px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgb(255,255,255);
+    color: hsl(250,60%,20%);
+    font-weight: 900;
+    display: none;
+    cursor: pointer;
+    z-index: 5;
+    line-height: 16px;
+    box-sizing: border-box;
+}
+.list_status_sentence{
+    position: absolute;
+    left: 0px;
+    bottom: 50px;
+    width: 100%;
+    height: 100px;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: right;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
 }
 
 .input_disable{
@@ -1820,47 +1472,211 @@ screen and (-o-min-device-pixel-ratio: 2.5) {
 	}
 }
 
-/*  4.4 수정  */
-.popup_box{
-	position: relative;
-	width: 80%;
-	max-width: 648px;
-	min-width: 288px;
-	min-height: 400px;
-	margin: auto;
-	top: 10%;
-	color: rgb(80,80,80);
-	background-color: rgba(255,255,255,1);
-	font-size: 14px;
-	box-sizing: border-box;
-	box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
+/*   고해상도 디스플레이   */
+@media  screen and (min-device-pixel-ratio: 1.5),
+screen and (-webkit-min-device-pixel-ratio: 1.5),
+screen and (min-moz-device-pixel-ratio: 1.5),
+screen and (-o-min-device-pixel-ratio: 1.5) {
+        .home_title{
+            font-size: 60px;
+        }
+        .home_title_margin{
+            height: 20%
+        }
+        .home_container{
+         font-size: 10px;
+        }
+        .list_contents{
+            font-size: 12px;
+        }
+        #side_menu{
+            font-size: 12px;
+        }
+        .list_artist_btn{
+            bottom: 7.5px;
+            left: 2%;
+            height: 35px;
+            line-height: 35px;
+            font-size: 16px;
+        }
+        .list_post_btn{
+            bottom: 7.5px;
+            right: 2%;
+            width: 100px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 15px;
+        }
+        .detail_container{
+            font-size: 12px;
+        }
+        .detail_artist_btn{
+			font-size: 16px;
+        }
+        .detail_post_btn{
+            bottom: 7.5px;
+            right: 2%;
+            width: 100px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 15px;
+        }
+        .purchase_box_middle{
+            font-size: 14px;
+        }
+        .purchase_col_title{
+            font-size: 15px;
+        }
+        .popup_contents{
+            font-size: 11px;
+        }
+        .popup_box{
+            font-size: 11px;
+        }
+        .account_container{
+            font-size: 11px;
+        }
+        .account_title{
+            font-size: 60px;
+        }
 }
-.popup_pox_margin_bottom{
-	width: 100%;
-	height: 50px;
+@media  screen and (min-devicepixel-ratio: 2.5),
+screen and (-webkit-min-device-pixel-ratio: 2.5),
+screen and (min-moz-device-pixel-ratio: 2.5),
+screen and (-o-min-device-pixel-ratio: 2.5) {
+        .home_title{
+            font-size: 50px;
+        }
+        .home_title_margin{
+            height: 15%
+        }
+        .home_container{
+         font-size: 9px;
+        }
+        .list_contents{
+            font-size: 10px;
+        }
+        #side_menu{
+            font-size: 10px;
+        }
+        .list_artist_btn{
+            bottom: 10px;
+            left: 2%;
+            height: 30px;
+            line-height: 30px;
+            font-size: 15px;
+        }
+        .list_post_btn{
+            bottom: 10px;
+            right: 2%;
+            width: 90px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 13px;
+        }
+        .detail_container{
+            font-size: 10px;
+        }
+        .detail_artist_btn{
+            font-size: 15px;
+        }
+        .detail_post_btn{
+            bottom: 10px;
+            right: 2%;
+            width: 90px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 13px;
+        }
+        .purchase_box_middle{
+            font-size: 12px;
+        }
+        .purchase_col_title{
+            font-size: 14px;
+        }
+        .popup_contents{
+            font-size: 10px;
+        }
+        .popup_box{
+            font-size: 10px;
+        }
+        .account_container{
+            font-size: 10px;
+        }
+        .account_title{
+            font-size: 50px;
+        }
 }
-.username_box{
-	width: 80%;
-	height: 288px;
+
+/*   PC화면   */
+@media screen and (min-width: 729px){
+    .home_container{
+        width: 648px;
+    }
+    .list_contents{
+        width: 648px;
+    }
 }
-.username_contents{
-	box-sizing: border-box;
-	width: 100%;
-	padding: 20px;
-	font-weight: 300;
+
+/*   긴화면   */
+@media screen and (min-height: 550px){
+    .home_contents_add{
+        display: block;
+    }
 }
-.icon{
-	width: 24px;
-	height: 24px;
-	cursor: pointer;
+/*   고해상도 디스플레이   */
+@media  screen and (min-device-pixel-ratio: 1.5),
+screen and (-webkit-min-device-pixel-ratio: 1.5),
+screen and (min-moz-device-pixel-ratio: 1.5),
+screen and (-o-min-device-pixel-ratio: 1.5) {
+    .list_status_btn{
+        width: 100px;
+    }
+    .list_cancel_btn{
+        width: 100px;
+    }
+    .list_resend_btn{
+        width: 100px;
+        right: 120px;
+    }
+    .list_confirm_btn{
+        width: 100px;
+    }
 }
-/* 소셜 이미지 */
-.social_img {
-    font-size: 18px;
-    margin-left: 2%;
-    margin-right: 2%;
-    padding-left: 2px;
-    padding-right: 2px;
-    color: white;
-    cursor: pointer;
+@media  screen and (min-devicepixel-ratio: 2.5),
+screen and (-webkit-min-device-pixel-ratio: 2.5),
+screen and (min-moz-device-pixel-ratio: 2.5),
+screen and (-o-min-device-pixel-ratio: 2.5) {
+    .list_status_btn{
+        width: 90px;
+    }
+    .list_cancel_btn{
+        width: 90px;
+    }
+    .list_resend_btn{
+        width: 90px;
+        right: 110px;
+    }
+    .list_confirm_btn{
+        width: 90px;
+    }
+}
+
+/*   고해상도 디스플레이   */
+@media  screen and (min-device-pixel-ratio: 1.5),
+screen and (-webkit-min-device-pixel-ratio: 1.5),
+screen and (min-moz-device-pixel-ratio: 1.5),
+screen and (-o-min-device-pixel-ratio: 1.5) {
+    .randing_card_title{
+        font-size: 30px;
+    }
+}
+/*   고해상도 디스플레이   */
+@media  screen and (min-device-pixel-ratio: 2.5),
+screen and (-webkit-min-device-pixel-ratio: 2.5),
+screen and (min-moz-device-pixel-ratio: 2.5),
+screen and (-o-min-device-pixel-ratio: 2.5) {
+    .randing_card_title{
+        font-size: 25px;
+    }
 }
