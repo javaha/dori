@@ -177,18 +177,3 @@ function showUsername(){
 	sideOff();
 	$(".username_container").show();
 }
-
-/*  4.4 수정  */
-function setBox(){
-	if(boxStatus=="upload"){
-		if(mainHeight>=400 && mainWidth >= 288){
-			$(".popup_box").height(mainHeight*0.8);
-			$(".popup_box").width($(".popup_box").height()*0.72);
-
-			if($(".popup_box").width()>mainWidth*0.8){
-				$(".popup_box").width(mainWidth*0.8);
-				$(".popup_box").height(mainWidth*10/9);
-			}
-		}	
-	}
-}
