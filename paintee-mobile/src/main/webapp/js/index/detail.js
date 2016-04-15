@@ -6,7 +6,7 @@ function DetailStructure(paintingId, paintingInfo){
     this.artistName     = paintingInfo.artistName;
     this.artistId       = paintingInfo.artistId;
     this.artistSentence = paintingInfo.sentence;
-    this.uploadDate     = toDate(paintingInfo.uploadDate, 'dd.mm.yy');
+    this.uploadDate     = toDate(paintingInfo.uploadDate);
     this.postedNum      = paintingInfo.postedNum;
     // 히스토리 사용 부분 추가
     this.colorDark      = paintingInfo.colorDark;
@@ -22,8 +22,8 @@ function DetailStructure(paintingId, paintingInfo){
     this.wrapper            =$("<div>").addClass("swiper-wrapper");
 
     this.detailMargin       =$("<div>").addClass("detail_margin").addClass("swiper-slide");
-    this.detailCloseIcon    =$("<i>").addClass("material-icons").addClass("detail_margin_close").html("close");
-    this.detailMarginIcon   =$("<i>").addClass("material-icons").addClass("detail_margin_guide").html("keyboard_arrow_up");
+    this.detailCloseIcon    =$("<img src='/ico/close.png'>").addClass("icon").addClass("detail_margin_close");
+    this.detailMarginIcon   =$("<img src='/ico/keyboard_arrow_up_black.png'>").addClass("icon").addClass("detail_margin_guide");
 
     this.detailArtist       =$("<div>").addClass("detail_artist").addClass("swiper-slide");
     this.detailArtistTop    =$("<div>").addClass("detail_artist_top");
@@ -51,7 +51,7 @@ function DetailStructure(paintingId, paintingInfo){
 
     this.detailPostBtn      =$("<div>").addClass("detail_post_btn").html("post it").click(function(){purchase(paintingId)});
     this.detailScroll       =$("<div>").addClass("swiper-scrollbar").addClass("swiper-scrollbar-detail");
-    this.returnBtn          =$("<div>").addClass("return_btn").append($("<i>").addClass("material-icons").html("keyboard_backspace"));
+    this.returnBtn          =$("<div>").addClass("return_btn").html("<img class='icon' src='/ico/keyboard_backspace.png' />");
 }
 
 DetailStructure.prototype = {
@@ -80,7 +80,7 @@ DetailStructure.prototype = {
         });
     },
     setFollow   : function(artistId){
-        this.detailArtistFollow.append('<i class="material-icons" style="font-size:12px">star</i> follow artist');
+        this.detailArtistFollow.append('<img style="width:12px; height: 12px" class="icon" src="/ico/star_white.png"> follow artist');
     },
     setSentence : function(artistSentence){
         this.detailArtistSentence.html(artistSentence);
@@ -213,6 +213,8 @@ DetailController.prototype = {
 			showPersonal(get.user, get.page);
 			get = "";
 		}
+		
+		callPosted(detailSwiper);
  	},
 	artistFollow: function(artistId) {
 		var controller = this;
@@ -309,7 +311,8 @@ function processDetailClose() {
 //디테일화면의 스크롤 잠금/열기
 function changeMode(swiper){            
     var translate = swiper.translate;
-
+    // console.log("translate ::: " + translate);
+    // console.log("postedLockBreakpoint ::: " + postedLockBreakpoint);
     if(translate>50){
         closeDetail();
     }else if(translate<postedLockBreakpoint){
@@ -317,15 +320,21 @@ function changeMode(swiper){
             unlockPosted(swiper);
         }
         callPosted(swiper);
-    }else if(translate>=postedLockBreakpoint){
+    }
+    /*
+    else if(translate>=postedLockBreakpoint){
         if(!postedLock){
             lockPosted(swiper);
         }
     }
+    */
 }
 
 //디테일화면의 스크롤 잠금
 function lockPosted(swiper){
+	
+	// console.log("aaaaa");
+	
     postedLock = true;
     hidePosted(swiper);
     swiper.params.freeMode = false;
@@ -336,6 +345,7 @@ function lockPosted(swiper){
 
 //디테일화면의 스크롤 열기
 function unlockPosted(swiper){
+	// console.log("unlockPosted ::: ");
     postedLock = false;
     swiper.params.freeMode = true;
 
@@ -390,8 +400,11 @@ PostedController.prototype = {
 		}
 	},
 	getPostedDataRes: function(result, status) {
+		// console.log("getPostedDataRes ::: " + result);
 		for (var index in result.list) {
+			// console.log("index ::: " + index);
 			addPosted(this.swiper, result.list[index]);
+			// console.log("this.swiper ::: " + this.swiper);
 		}
 
 		isBlock = false;

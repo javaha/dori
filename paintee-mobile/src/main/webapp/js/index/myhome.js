@@ -106,7 +106,7 @@ function setMyHome(result) {
     var myHome = new Home();
     myHome.setTitle("my");
     var introduce = (result.my.introduce) ? result.my.introduce : "<span data-i18n='my.login-introduce'></span>";
-    myHome.setExplain("<span data-i18n='[html]my.loginexplain'></span><br>" + introduce + " <i class='material-icons' style='font-size:1em' onclick='showProfile()'>create</i>");
+    myHome.setExplain("<span data-i18n='[html]my.loginexplain'></span><br>" + introduce + " <img class='icon' src='/ico/create_white.png' onclick='showProfile()'>");
     var content1 =
         $("<div>").attr("id", "uploadBtn").addClass("home_btn_my").html("uploaded ").append($("<b>").html(" " + result.my.uploadCount))
     var content2 =

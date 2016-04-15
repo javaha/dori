@@ -74,8 +74,8 @@
             <div class="side_menu_minor" id="menu_reward">reward</div>
             <div class="side_menu_minor" id="menu_about">about</div>
             <div class="side_menu_minor">search</div>
-            <div class="side_menu_btn"><i class="material-icons" style="font-size:24px">menu</i></div>
-            <div class="side_menu_close"><i class="material-icons" style="font-size:24px">close</i></div>
+            <div class="side_menu_btn"><img class="icon" src="/ico/menu.png"></div>
+            <div class="side_menu_close"><img class="icon" src="/ico/close.png"></div>
             <div class="side_menu_bottom">
                 <div class="side_menu_lang">
                     Language
@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="modal"></div>
-        <div id="fullscreen_btn"><i class="material-icons" style="font-size:24px">fullscreen</i></div>
+        <div id="fullscreen_btn"><img class="icon" src="/ico/fullscreen.png"></div>
     </div>
     
     <!--  상세화면  -->
@@ -108,7 +108,7 @@
                     <input type="checkbox" id="privateAt" name="privateAt"> private
                 </div>
                 <div class="purchase_box_bottom">
-                    <div class="purchase_next_btn"><div class="purchase_btn_text">address </div><img class="icon" src="/ico/keyboard_arrow_right.png"></div>
+                    <div class="purchase_next_btn"><div class="purchase_btn_text">address </div><img class="icon" src="/ico/keyboard_arrow_right_black.png"></div>
                 </div>
             </div>
             <div class="purchase_box_right">
@@ -138,7 +138,7 @@
                     </div>
                 </div>
                 <div class="purchase_box_bottom">
-                    <div class="purchase_prev_btn"><img class="icon" src="/ico/keyboard_arrow_left.png"><div class="purchase_btn_text"> Sentence</div></div>
+                    <div class="purchase_prev_btn"><img class="icon" src="/ico/keyboard_arrow_left_black.png"><div class="purchase_btn_text"> Sentence</div></div>
                     <div class="purchase_pay_btn"><div class="purchase_btn_text">Payment </div><img class="icon" src="/ico/payment.png"></div>
                 </div>
             </div>
@@ -326,88 +326,91 @@
     <div class="about_container">
         <div class="about_wrapper">
             <div class="about_card swiper_container_overview">
+            	<div class="parallax-bg" style="background-image:url(./images/about_1.gif)" data-swiper-parallax="-23%"></div>
                 <div class="swiper-wrapper">
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
-                        <div class="randing_card_title" data-i18n='[html]about.randingCardTitle'></div>
-                        <div class="randing_card_contents" data-i18n='[html]about.randingCardContents'></div>
+                        <div class="randing_card_title" data-i18n='[html]about.overview.randingCardTitle'></div>
+                        <div class="randing_card_contents" data-i18n='[html]about.overview.randingCardContents'></div>
                     </div>
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
-                        <div class="randing_card_title" data-i18n='[html]about.randingCardTitle2'></div>
-                        <div class="randing_card_contents"  data-i18n='[html]about.randingCardContents2'></div>
+                        <div class="randing_card_title" data-i18n='[html]about.overview.randingCardTitle2'></div>
+                        <div class="randing_card_contents"  data-i18n='[html]about.overview.randingCardContents2'></div>
                     </div>
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
-                        <div class="randing_card_title" data-i18n='[html]about.randingCardTitle3'></div>
-                        <div class="randing_card_contents" data-i18n='[html]about.randingCardContents3'></div>
+                        <div class="randing_card_title" data-i18n='[html]about.overview.randingCardTitle3'></div>
+                        <div class="randing_card_contents" data-i18n='[html]about.overview.randingCardContents3'></div>
                     </div>              
                 </div>
                 <div class="swiper-pagination swiper-pagination-overview"></div>
             </div>
             <div class="about_card swiper_container_post">
+            	<div class="parallax-bg" style="background-image:url(./images/about_2.gif)" data-swiper-parallax="-22%"></div>
                 <div class="swiper-wrapper">
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
-                        <div class="randing_card_title" data-i18n='[html]about.randingCardTitle4'></div>
-                        <div class="randing_card_contents" data-i18n='[html]about.randingCardContents4'></div>
+                        <div class="randing_card_title" data-i18n='[html]about.post.randingCardTitle1'></div>
+                        <div class="randing_card_contents" data-i18n='[html]about.post.randingCardContents1'></div>
                     </div>
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
-                        <div class="randing_card_title" data-i18n='[html]about.randingCardTitle5'></div>
-                        <div class="randing_card_contents" data-i18n='[html]about.randingCardContents5'></div>
+                        <div class="randing_card_title" data-i18n='[html]about.post.randingCardTitle2'></div>
+                        <div class="randing_card_contents" data-i18n='[html]about.post.randingCardContents2'></div>
                     </div>
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
-                        <div class="randing_card_title" data-i18n='[html]about.randingCardTitle6'></div>
-                        <div class="randing_card_contents" data-i18n='[html]about.randingCardContents6'></div>
+                        <div class="randing_card_title" data-i18n='[html]about.post.randingCardTitle3'></div>
+                        <div class="randing_card_contents" data-i18n='[html]about.post.randingCardContents3'></div>
                     </div>
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
-                        <div class="randing_card_title" data-i18n='[html]about.randingCardTitle7'></div>
-                        <div class="randing_card_contents" data-i18n='[html]about.randingCardContents7'></div>
+                        <div class="randing_card_title" data-i18n='[html]about.post.randingCardTitle4'></div>
+                        <div class="randing_card_contents" data-i18n='[html]about.post.randingCardContents4'></div>
                     </div>
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
-                        <div class="randing_card_title" data-i18n='[html]about.randingCardTitle8'></div>
-                        <div class="randing_card_contents" data-i18n='[html]about.randingCardContents8'></div>
+                        <div class="randing_card_title" data-i18n='[html]about.post.randingCardTitle5'></div>
+                        <div class="randing_card_contents" data-i18n='[html]about.post.randingCardContents5'></div>
                     </div>
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
-                        <div class="randing_card_title" data-i18n='[html]about.randingCardTitle9'></div>
-                        <div class="randing_card_contents" data-i18n='[html]about.randingCardContents9'></div>
+                        <div class="randing_card_title" data-i18n='[html]about.post.randingCardTitle6'></div>
+                        <div class="randing_card_contents" data-i18n='[html]about.post.randingCardContents6'></div>
                     </div>
                 </div>
                 <div class="swiper-pagination swiper-pagination-post"></div>
             </div>
             <div class="about_card swiper_container_upload">
+            	<div class="parallax-bg" style="background-image:url(./images/about_3.gif)" data-swiper-parallax="-22%"></div>
                 <div class="swiper-wrapper">
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
                         <div class="randing_card_title" data-i18n='[html]about.upload.randingCardTitle1'></div>
                         <div class="randing_card_contents" data-i18n='[html]about.upload.randingCardContents1'></div>
                     </div>
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
                         <div class="randing_card_title" data-i18n='[html]about.upload.randingCardTitle2'></div>
                         <div class="randing_card_contents" data-i18n='[html]about.upload.randingCardContents2'></div>
                     </div>
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
                         <div class="randing_card_title" data-i18n='[html]about.upload.randingCardTitle3'></div>
                         <div class="randing_card_contents" data-i18n='[html]about.upload.randingCardContents3'></div>
                     </div>
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
                         <div class="randing_card_title" data-i18n='[html]about.upload.randingCardTitle4'></div>
                         <div class="randing_card_contents" data-i18n='[html]about.upload.randingCardContents4'></div>
                     </div>
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
                         <div class="randing_card_title" data-i18n='[html]about.upload.randingCardTitle5'></div>
                         <div class="randing_card_contents" data-i18n='[html]about.upload.randingCardContents5'></div>
                     </div>
-                    <div data-background="splash_bg.gif" class="randing_card swiper-slide swiper-lazy">
+                    <div class="randing_card swiper-slide">
                         <div class="randing_card_margin"></div>
                         <div class="randing_card_title" data-i18n='[html]about.upload.randingCardTitle6'></div>
                         <div class="randing_card_contents" data-i18n='[html]about.upload.randingCardContents6'></div>
@@ -446,9 +449,9 @@
 
     <!--  Scripts-->
     <script src="/js/jquery/jquery-2.1.1.js"></script>
-    <script src="/js/jquery/jquery-ui/jquery-ui.min.js"></script>
     <script src="/js/swiper.jquery.min.js"></script>
     <script src="/js/jquery.touchSwipe.min.js"></script>
+    
 	<!-- 다국어 지원 라이브러리 -->
 	<script src="/js/jquery/i18next.min.js"></script>
 

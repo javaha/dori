@@ -290,7 +290,7 @@ function initPayment(serviceCnt){
     var contents = "<span class='reward_money'>" + serviceCnt + "/5</span><br>" 
     	         + "<span data-i18n='[html]purchasePop1.contents'></span>"
     payment.setContents(contents);
-    payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><i class='material-icons'>edit</i><div class='purchase_btn_text' onclick='history.back();'>edit address</div></div><div class='popup_btn payment_btn'><div class='purchase_btn_text'>Payment </div><i class='material-icons'>payment</i></div>");
+    payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><img class='icon' src='/ico/create.png'><div class='purchase_btn_text' onclick='history.back();'>edit address</div></div><div class='popup_btn payment_btn'><div class='purchase_btn_text'>Payment </div><img class='icon' src='/ico/payment.png'></div>");
     payment.buildPayment();
     $(".payment_btn").click(function(){
     	// ---------------------------------------
@@ -361,13 +361,6 @@ PurchaseController.prototype = {
 			changeAddr: controller.changeAddr,
 			serviceCnt: serviceCnt
 		};
-
-		/*
-		$("#ogUrl").attr("content", "http://www.naver.com");
-		$("#ogTitle").attr("content", "네이버");
-		$("#ogDesc").attr("content", "상세설명");
-		$("#ogImage").attr("content", "http://www.dzimg.com/MainBannerImg/1082.jpg");
-		*/
 		
 		AjaxCall.call(apiUrl + "/purchase", 
 			data, 
@@ -539,7 +532,7 @@ function completePayment(result){
     payment.contents.append(payment.sociconFacebook.css("color", "rgb(80,80,80)"));
     payment.contents.append(payment.sociconTwitter.css("color", "rgb(80,80,80)"));
     payment.contents.append(payment.sociconUrl.css("color", "rgb(80,80,80)"));
-    payment.setBottom("<div class='popup_btn payment_btn'><div class='purchase_btn_text'>Go to my history </div><i class='material-icons'>person</i></div>");
+    payment.setBottom("<div class='popup_btn payment_btn'><div class='purchase_btn_text'>Go to my history </div><img class='icon' src='/ico/person_black.png'></div>");
     payment.buildPayment();
     $(".payment_btn").click(function(){
 		

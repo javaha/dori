@@ -86,7 +86,7 @@ function setPersonal(result) {
     personalHome.setTitle(personal.username);
     var introduce = (result.personal.introduce) ? "<br />" + result.personal.introduce : "";
     personalHome.setExplain(personal.username + "<span data-i18n='personal.contents'>님이 업로드한 그림들입니다.</span>" + introduce);
-    var contents1 = $("<div>").addClass("follow_artist").html("<i class='material-icons' style='font-size:12px'>star</i> <span id='personalFollow'>follow artist</span><br><br>");
+    var contents1 = $("<div>").addClass("follow_artist").html("<img style='width:12px; height: 12px' class='icon' src='/ico/star_white.png'> <span id='personalFollow'>follow artist</span><br><br>");
     var contents2 = $("<div>").addClass("detail_artist_bottom").html("Share to <img class='icon social_img' id='personal-facebook' src='/ico/social_facebook_white.png'><img class='icon social_img' id='personal-twitter' src='/ico/social_twitter_white.png'><img class='icon social_img' id='personal-url' src='/ico/social_url_white.png'>");  // 수정부분
     
     personalHome.hideNext();
@@ -229,14 +229,10 @@ function getRequest() {
     }
 }
 
-var callType;
-var get;
 $(document).ready(function () {
-	get = getRequest();
 //  user만 있으면 개인페이지로 이동, user, page가 있으면 상세화면으로 이동
 //  http://localhost:9080/index.html?user=작가이름&page=그림아이디
 	if (get) {
-		callType = "social";
 		if(get.user) {
 			// 작가가 존재하는 지 체크 한 다음 개인페이지 이동여부 진행
 			new PersonalController().getArtistStatus(get.user);
