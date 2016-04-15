@@ -5,7 +5,7 @@
 		<div class="container">
 		<br>This page was last modified on 20th March 2016<br/>
 		COPYRIGHT 2016 Paintee.,LTD ALL RIGHTS RESERVED<br/>
-		2016 © |  Paintee, Seocho-gu, Seoul, Korea  |  Telephone: 010 0000 0000  |  E-mail: admin@paintee.com
+		2016 © |  Paintee, Seocho-gu, Seoul, Korea  |  Telephone: 010 0000 0000  |  E-mail: contact@paintee.me
 		</div>
 	</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

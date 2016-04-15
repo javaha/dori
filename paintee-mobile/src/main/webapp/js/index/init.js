@@ -88,7 +88,7 @@ function setSideMenu() {
 }
 
 //var imageUrl="http://localhost:8090";
-var imageUrl="http://paintee.me";
+var imageUrl="http://paintee.me/paintee-admin";
 var apiUrl = imageUrl + "/api";
 
 setWidth();
