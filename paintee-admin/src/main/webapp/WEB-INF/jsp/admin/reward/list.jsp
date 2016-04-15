@@ -73,7 +73,7 @@
 				"earmRequestedMoney": $("#earmRequestedMoney" + rewardId).html().replace("$", "")
 			};
 			$.ajax({
-					url: "${pageContext.request.contextPath}/admin/reward/mod",
+					url: "/admin/reward/mod",
 					type: "GET",
 					async: true,
 					cache: false,
@@ -81,7 +81,6 @@
 			})
 			.done(function (result) {
 				$(selObj).find("option").not(":selected").attr("disabled", "disabled");
-				alert("변경되었습니다.");
 			})
 			.fail(function () {
 				alert("처리시 오류가 발생하였습니다.");

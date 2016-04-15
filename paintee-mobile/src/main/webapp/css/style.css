@@ -364,6 +364,10 @@ body{
     left: 0;
     width: 100%;
 }
+.swiper-pagination-bullet:first-child {
+    width: 20px;
+    border-radius: 20%;
+}
 .swiper-pagination-bullet-active {
   opacity: 1;
   background: #fff;
@@ -756,22 +760,22 @@ body{
     z-index: 40;
 }
 .popup_box{
-	position: relative;
-	width: 80%;
-	max-width: 648px;
-	min-width: 288px;
-	min-height: 400px;
-	margin: auto;
-	top: 10%;
-	color: rgb(80,80,80);
-	background-color: rgba(255,255,255,1);
-	font-size: 14px;
-	box-sizing: border-box;
-	box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
+    position: relative;
+    width: 80%;
+    max-width: 648px;
+    min-width: 288px;
+    min-height: 400px;
+    margin: auto;
+    top: 10%;
+    color: rgb(80,80,80);
+    background-color: rgba(255,255,255,1);
+    font-size: 14px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
 }
 .popup_pox_margin_bottom{
-	width: 100%;
-	height: 50px;
+    width: 100%;
+    height: 50px;
 }
 .popup_title{
     box-sizing: border-box;
@@ -1230,7 +1234,18 @@ body{
     z-index: 40;
 }
 .profile_box{
-    height: 550px;
+    position: relative;
+    width: 80%;
+    height: 80%;
+    max-width: 648px;
+    min-height: 400px;
+    margin: auto;
+    top: 10%;
+    color: rgb(80,80,80);
+    background-color: rgba(255,255,255,1);
+    font-size: 14px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
 }
 .profile_title{
     box-sizing: border-box;
@@ -1285,41 +1300,6 @@ body{
     font-size: 14px;
     font-weight: 400;
     cursor: pointer;
-}
-.username_box{
-	width: 80%;
-	height: 288px;
-}
-.username_contents{
-	box-sizing: border-box;
-	width: 100%;
-	padding: 20px;
-	font-weight: 300;
-}
-.icon{
-	width: 24px;
-	height: 24px;
-	cursor: pointer;
-}
-.social_img {
-    font-size: 18px;
-    margin-left: 2%;
-    margin-right: 2%;
-    padding-left: 2px;
-    padding-right: 2px;
-    color: white;
-    cursor: pointer;
-}
-.parallax-bg{
-    width: 130%;
-    height: 100%;
-}
-
-.img_transparent {
-	filter:alpha(opacity=50);
-	-moz-opacity:0.5;
-	-khtml-opacity: 0.5;
-	opacity: 0.5;
 }
 /*   고해상도 디스플레이   */
 @media  screen and (min-device-pixel-ratio: 1.5),
@@ -1840,3 +1820,47 @@ screen and (-o-min-device-pixel-ratio: 2.5) {
 	}
 }
 
+/*  4.4 수정  */
+.popup_box{
+	position: relative;
+	width: 80%;
+	max-width: 648px;
+	min-width: 288px;
+	min-height: 400px;
+	margin: auto;
+	top: 10%;
+	color: rgb(80,80,80);
+	background-color: rgba(255,255,255,1);
+	font-size: 14px;
+	box-sizing: border-box;
+	box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
+}
+.popup_pox_margin_bottom{
+	width: 100%;
+	height: 50px;
+}
+.username_box{
+	width: 80%;
+	height: 288px;
+}
+.username_contents{
+	box-sizing: border-box;
+	width: 100%;
+	padding: 20px;
+	font-weight: 300;
+}
+.icon{
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+}
+/* 소셜 이미지 */
+.social_img {
+    font-size: 18px;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-left: 2px;
+    padding-right: 2px;
+    color: white;
+    cursor: pointer;
+}
