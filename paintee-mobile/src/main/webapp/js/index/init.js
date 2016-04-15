@@ -480,7 +480,7 @@ function sideOn(){
 
     mainSwiper.lockSwipes();
     $(".modal").show();
-    $(".modal").on("touchstart mousedown", function(e){
+    $(".modal").on("touchstart mousedown clcik", function(e){
         e.stopPropagation();
         sideOff();
     });
