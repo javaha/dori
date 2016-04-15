@@ -265,7 +265,7 @@ function getCharCount(value) {
 function shareSocial(data) {
 	var url = "";
 //	var hostAndFileName = "www.paintee.com:8080/index.html?";
-	var hostAndFileName = "paintee.me:9080/index.html?";
+	var hostAndFileName = "www.paintee.me/index.html?";
 	hostAndFileName = encodeURIComponent(hostAndFileName);
 	var param = "user=" + data.name;
 	if (data.page) {

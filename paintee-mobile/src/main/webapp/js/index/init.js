@@ -72,7 +72,11 @@ function setSideMenu() {
 	$('#menu_about').on('click', function() { showAbout(); });
 }
 
-var imageUrl="http://localhost:8090";
+// Server
+//var imageUrl="http://paintee.me/paintee-admin";
+// local
+var imageUrl="http://localhost/paintee-admin";
+
 //var imageUrl="http://192.168.43.89:8090";
 //var imageUrl="http://192.168.0.3:8090";
 //var imageUrl="http://www.paintee.com:8090";
