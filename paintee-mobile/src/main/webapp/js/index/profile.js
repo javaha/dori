@@ -152,3 +152,7 @@ function setProfilePostUI(type) {
 $('#profileUpdateBtn').on('click', function() {
 	new ProfileController().updateProfile();
 });
+
+$('#logoutBtn').on('click', function(){
+    logout();
+})
