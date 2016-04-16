@@ -127,7 +127,7 @@ function createPainting() {
 	}
 
 	/* 4.3 수정 */
-	$("#update_painting_sentence_btn").html("<div class='purchase_btn_text'>Processing </div><img src='spinner.png' class='spinner'>");
+	$("#update_painting_sentence_btn").html("<div class='purchase_btn_text'>wait </div><img src='spinner.png' class='spinner'>");
 	$(".stopper").show();
 
 	AjaxCall.callMultipart(apiUrl+"/painting", formData, createPaintingRes);

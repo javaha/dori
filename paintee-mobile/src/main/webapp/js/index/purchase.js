@@ -311,7 +311,7 @@ function initPayment(serviceCnt){
 }
 
 function showPurchaseSpinner(){
-    $(".payment_btn").html("<div class='purchase_btn_text'>processing </div><img src='spinner.png' class='spinner'>");
+    $(".payment_btn").html("<div class='purchase_btn_text'>wait </div><img src='spinner.png' class='spinner'>");
     $(".stopper").show();
 }
 

@@ -97,7 +97,7 @@ SignupController.prototype = {
 			if(param.providerId == 'PAINTEE') {
 				$("#signup_btn").html("<img src='spinner.png' class='spinner'>");
 			} else if(param.providerId == 'FACEBOOK') {
-				$("#social_username_signup_btn").html("<div class='purchase_btn_text'>Processing </div> <img src='spinner.png' class='spinner'>");
+				$("#social_username_signup_btn").html("<div class='purchase_btn_text'>wait </div> <img src='spinner.png' class='spinner'>");
 				signupSocialAuthResponse = {};
 				signupSocialProviderId = '';
 			}
