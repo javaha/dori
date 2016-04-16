@@ -260,6 +260,7 @@ function validPurchase() {
 function Payment(){
     this.title      = $("<div>").addClass("payment_title").addClass("popup_title");
     this.contents   = $("<div>").addClass("payment_contents").addClass("popup_contents");
+    this.bottomMargin    = $("<div>").addClass("popup_margin_bottom");
     this.bottom     = $("<div>").addClass("payment_bottom").addClass("popup_bottom");
     this.sociconFacebook =$("<img id='fac_share' src='/ico/social_facebook.png'>").addClass("icon").addClass("social_img");
     this.sociconTwitter  =$("<img id='twi_share' src='/ico/social_twitter.png'>").addClass("icon").addClass("social_img");
@@ -279,6 +280,7 @@ Payment.prototype = {
     buildPayment : function(){
         $(".payment_box").append(this.title);
         $(".payment_box").append(this.contents);
+        $(".payment_box").append(this.bottomMargin);
         $(".payment_box").append(this.bottom);
     }
 }
@@ -568,4 +570,4 @@ function completePayment(result){
     
     // 다국어 처리
     exeTranslation('.base_position', lang);    
-}	
+}

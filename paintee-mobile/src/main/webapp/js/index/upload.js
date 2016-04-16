@@ -39,6 +39,7 @@ function postedInfoRes(result, status) {
 function Upload(){
     this.title      = $("<div>").addClass("upload_title").addClass("popup_title");
     this.contents   = $("<div>").addClass("upload_contents").addClass("popup_contents");
+    this.bottomMargin    = $("<div>").addClass("popup_margin_bottom");
     this.bottom     = $("<div>").addClass("upload_bottom").addClass("popup_bottom");
 }
 
@@ -57,7 +58,7 @@ Upload.prototype = {
 
         $(".upload_box").append(this.title);
         $(".upload_box").append(this.contents);
-//        $(".upload_box").append($('<div>').addClass('painting_preview').css('text-align', 'center'));
+        $(".upload_box").append(this.bottomMargin);
         $(".upload_box").append(this.bottom);
     }
 }
