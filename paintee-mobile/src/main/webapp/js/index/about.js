@@ -1,5 +1,103 @@
 var aboutIndex=0;
 
+function Card(){
+    this.card   = $("<div>").addClass("randing_card").addClass("swiper-slide");
+    this.margin = $("<div>").addClass("randing_card_margin");
+    this.title  = $("<div>").addClass("randing_card_title");
+    this.contents   = $("<div>").addClass("randing_card_contents");
+}
+
+Card.prototype = {
+    buildCard : function(title, contents){
+        $(this.title).attr("data-i18n", title);
+        $(this.contents).attr("data-i18n", contents);
+
+        this.card.append(this.margin);
+        this.card.append(this.title);
+        this.card.append(this.contents);
+    }
+}
+
+function About(){
+    this.parallax   = $("<div>").addClass("parallax-bg").attr("data-swiper-parallax", "-22%");
+    this.wrapper    = $("<div>").addClass("swiper-wrapper");
+    this.pagination = $("<div>").addClass("swiper-pagination")
+}
+
+About.prototype = {
+    setParallax : function(url){
+                    this.parallax.css("background-image", url);
+    },
+    setPagination : function(type){
+                    this.pagination.addClass("swiper-pagination-"+type);
+    },
+    addCard     : function(title, contents){
+                    var newCard = new Card();
+                    newCard.buildCard(title, contents);
+                    this.wrapper.append(newCard.card);
+                    delete newCard;
+                },
+    buildAbout  : function(container){
+                    container.append(this.parallax);
+                    container.append(this.wrapper);
+                    container.append(this.pagination);
+                }
+}
+function buildOverview(){
+    var overview = new About();
+    overview.setParallax("url(./images/about_2.gif)");
+    overview.setPagination("overview");
+    overview.addCard('[html]about.overview.randingCardTitle',
+                     '[html]about.overview.randingCardContents');
+    overview.addCard('[html]about.overview.randingCardTitle2',
+                     '[html]about.overview.randingCardContents2');
+    overview.addCard('[html]about.overview.randingCardTitle3',
+                     '[html]about.overview.randingCardContents3');
+    overview.addCard('[html]about.overview.randingCardTitle2',
+                     '[html]about.overview.randingCardContents2');
+    overview.buildAbout($(".swiper_container_overview"));
+    delete overview;
+};
+
+function buildPost(){
+    var post = new About();
+    post.setParallax("url(about_2.gif)");
+    post.setPagination("post");
+    post.addCard('[html]about.post.randingCardTitle1',
+                 '[html]about.post.randingCardContents1');
+    post.addCard('[html]about.post.randingCardTitle2',
+                 '[html]about.post.randingCardContents2');
+    post.addCard('[html]about.post.randingCardTitle3',
+                 '[html]about.post.randingCardContents3');
+    post.addCard('[html]about.post.randingCardTitle4',
+                 '[html]about.post.randingCardContents4');
+    post.addCard('[html]about.post.randingCardTitle5',
+                 '[html]about.post.randingCardContents5');
+    post.addCard('[html]about.post.randingCardTitle6',
+                 '[html]about.post.randingCardContents6');
+    post.buildAbout($(".swiper_container_post"));
+    delete post;
+};
+
+function buildUpload(){
+    var upload = new About();
+    upload.setParallax("url(about_3.gif)");
+    upload.setPagination("upload");
+    upload.addCard('[html]about.upload.randingCardTitle1',
+                   '[html]about.upload.randingCardContents1');
+    upload.addCard('[html]about.upload.randingCardTitle2',
+                   '[html]about.upload.randingCardContents2');
+    upload.addCard('[html]about.upload.randingCardTitle3',
+                   '[html]about.upload.randingCardContents3');
+    upload.addCard('[html]about.upload.randingCardTitle4',
+                   '[html]about.upload.randingCardContents4');
+    upload.addCard('[html]about.upload.randingCardTitle5',
+                   '[html]about.upload.randingCardContents5');
+    upload.addCard('[html]about.upload.randingCardTitle6',
+                   '[html]about.upload.randingCardContents6');
+    delete upload;
+};
+
 $(".about_wrapper").width(mainWidth*5);
 $(".about_card").width(mainWidth);
 
@@ -48,6 +146,7 @@ function showAboutOverview(){	  // 4.3 수정
 	$(".swiper_container_overview").show();
 	$(".about_guide").show();
 	if(overviewSwiper==""){
+        buildOverview();
 		overviewSwiper = new Swiper('.swiper_container_overview', {
 			slidesPerView: 'auto',
 			pagination: '.swiper-pagination-overview',
@@ -70,6 +169,7 @@ function showAboutPost(){	   // 4.3 수정
 	$(".swiper_container_post").show();
 	$(".about_guide").show();
 	if(postSwiper==""){
+        buildPost();
 		postSwiper = new Swiper('.swiper_container_post', {
 			slidesPerView: 'auto',
 			pagination: '.swiper-pagination-post',
@@ -97,6 +197,7 @@ function showAboutUpload(){	 // 4.3 수정
 	$(".swiper_container_upload").show();
 	$(".about_guide").show();
 	if(uploadSwiper==""){
+        buildUpload();
 		uploadSwiper = new Swiper('.swiper_container_upload', {
 			slidesPerView: 'auto',
 			pagination: '.swiper-pagination-upload',
