@@ -95,6 +95,7 @@ body{
     padding: 5px;
     display: none;
     z-index: 2;
+    cursor: pointer;
 }
 .home_btn_follow{
     width: 100px;
@@ -269,11 +270,13 @@ body{
     max-height: 100px;
     text-align: center;
     margin-top: 50px;
+    cursor: pointer;
 }
 .side_menu_login_id{
     font-family: 'Merriweather', serif;
     font-size: 1.5em;
     font-weight: 700;
+    cursor: pointer;
 }
 .side_menu_major{
     padding: 2%;
