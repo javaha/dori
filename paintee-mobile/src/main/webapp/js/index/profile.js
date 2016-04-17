@@ -115,7 +115,7 @@ ProfileController.prototype = {
 			param.zipcode=$('#profileZipcode').val();
 			param.location=$('#profileLocation option:selected').val();
 
-			AjaxCall.call(apiUrl+"/user/me", param, "POST", function (result, status) { controller.updateProfileRes(result, status); });
+			AjaxCall.call(apiUrl+"/user/me", param, "PUT", function (result, status) { controller.updateProfileRes(result, status); });
 		} else if(result.errorNo == 1) {
 			alert($.i18n.t('alert.profile.existName'));
 //			alert('이미 사용중인 이름 입니다.');
