@@ -289,7 +289,7 @@ function initPayment(serviceCnt){
     $(".payment_box").empty();
     var payment = new Payment();
     payment.setTitle("Payment");
-    var contents = "<span class='reward_money'>" + serviceCnt + "/5</span><br>" 
+    var contents = "<span class='reward_money'>" + serviceCnt + "/3</span><br>" 
     	         + "<span data-i18n='[html]purchasePop1.contents'></span>"
     payment.setContents(contents);
     payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><img class='icon' src='/ico/create.png'><div class='purchase_btn_text' onclick='history.back();'>edit address</div></div><div class='popup_btn payment_btn'><div class='purchase_btn_text'>Payment </div><img class='icon' src='/ico/payment.png'></div>");

@@ -342,3 +342,7 @@ function getImageUrls(fileId, ratio) {
 	if (ratio == 3) 
 		return imageUrl + "/cmm/file/view/1/" + fileId + " 450w, " + imageUrl + "/cmm/file/view/2/" + fileId + " 270w, " + imageUrl + "/cmm/file/view/3/" + fileId + " 150w";
 }
+
+function convertToBr(str) {
+	return str.replace(new RegExp('\r?\n','g'), '<br />');
+}

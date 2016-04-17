@@ -48,7 +48,7 @@ if(userInfo) {
 	userID = '';
 }
 
-var lang = "en";
+var lang = "ko";
 
 /**
  * 사이드 메뉴의 액션 설정 및 활성화/비활성화 처리
@@ -77,7 +77,7 @@ function setSideMenu() {
 			null, 
 			"GET", 
 			function (result) {
-				lang = result.userInfo.language ? result.userInfo.language : "en";
+				lang = result.userInfo.language ? result.userInfo.language : "ko";
 				$(".side_menu_lang_select").val(lang);
 			}
 		);
@@ -182,7 +182,7 @@ function Structure(data) {
 }
 Structure.prototype = {
         setSentence:        function(sentence, wrighter){
-                                this.listInfoSentence.html(sentence+"<br> <span class='list_info_sentence_wrighter'> by <b>"+wrighter+"</b></span>");
+                                this.listInfoSentence.html(convertToBr(sentence)+"<br> <span class='list_info_sentence_wrighter'> by <b>"+wrighter+"</b></span>");
                             },
         setPostedNumber:    function(postedByPeople){
                                 this.listInfoPosted.html("<span class='list_info_posted_num'>"+postedByPeople+"</span> people already posted it")
