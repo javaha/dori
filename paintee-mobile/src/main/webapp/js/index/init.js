@@ -605,6 +605,7 @@ function setBox(){
         $(".about_wrapper").width(mainWidth*5);
         $(".about_card").width(mainWidth);
         $(".about_navi").css("left", (mainWidth/2)-(aboutIndex*140)-70);
+        $(".randing_card_policy_contents").height(mainHeight-200)
     }
 }
 

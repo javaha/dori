@@ -1341,6 +1341,21 @@ body{
     font-weight: 300;
     margin-top: 30px;
 }
+.randing_card_policy_title{
+    width: 100%;
+    margin-top: 70px;
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-size: 12px;
+}
+.randing_card_policy_contents{
+    box-sizing: border-box;
+    padding: 5%;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 300;
+    overflow-y: scroll;
+}
 .swiper-pagination {
     top: 55px;
     /*     4.3 수정: 추가. 기존 style.css에서 swiper-pagination, swiper-pagination-bullet, swiper-pagination-bullet-active 은 삭제       */
