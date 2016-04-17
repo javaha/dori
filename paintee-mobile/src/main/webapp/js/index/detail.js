@@ -172,6 +172,7 @@ var isDetail = false;
 var postedLock = true;
 var postedObj = new Array();
 var postedIndex = new Array();
+var postedNodataIndex = new Array();
 var postedLockBreakpoint;
 
 //화면이 최초 생성시 swiper 에 detail-margin, detail-artist, detail-postbar 3 의 slide 가 미리 등록되어 진다.
@@ -299,7 +300,7 @@ function processDetailClose() {
     	personal.swiper.slideTo(personal.swiper.slides.length - 1, 0);
         // 최초 한번만 동작하게 한다.
     	get.page = null;
-    }        
+    }
     $(".detail").animate({top: 200, opacity: 0}, 200, "linear", function(){
     	$(".detail").empty();
     	$(".detail").hide().css("top", 0);
@@ -400,11 +401,21 @@ PostedController.prototype = {
 		}
 	},
 	getPostedDataRes: function(result, status) {
-		// console.log("getPostedDataRes ::: " + result);
-		for (var index in result.list) {
-			// console.log("index ::: " + index);
-			addPosted(this.swiper, result.list[index]);
-			// console.log("this.swiper ::: " + this.swiper);
+		console.log("getPostedDataRes ::: " + result.list.length);
+		if(result.list && result.list.length == 0 && (this.swiper.slides.length - initPostedSlideCnt) == 0) {
+			var postedInfo = {
+				purchaseSeq: "",
+				userId: "",
+				userName: "",
+				sentence: "데이터가 존재하지 않습니다."
+			};
+			addPosted(this.swiper, postedInfo);
+		} else {
+			for (var index in result.list) {
+//				console.log("index ::: " + index);
+				addPosted(this.swiper, result.list[index]);
+//				console.log("this.swiper ::: " + this.swiper);
+			}
 		}
 
 		isBlock = false;
@@ -412,9 +423,18 @@ PostedController.prototype = {
 }
 
 function addPosted(swiper, postedInfo) {
-	var newPosted = new Posted(postedInfo.purchaseSeq, postedInfo.userId, postedInfo.userName, postedInfo.sentence);
+	var newPosted = new Posted(postedInfo.purchaseSeq, postedInfo.userId, postedInfo.userName, convertToBr(postedInfo.sentence));
 	postedObj[swiper.slides.length-initPostedSlideCnt] = newPosted.buildPosted();
-	postedIndex.push(swiper.slides.length);
+
+	if(postedInfo.purchaseSeq == "" && postedInfo.userId == "" && postedInfo.userName == "") {
+		postedNodataIndex.push(swiper.slides.length);
+	} else {
+		if(postedNodataIndex.length > 0) {
+			swiper.removeSlide(postedNodataIndex);
+			postedNodataIndex.pop();
+		}
+		postedIndex.push(swiper.slides.length);
+	}
 	delete newPosted;
 
 	swiper.appendSlide(postedObj[swiper.slides.length-initPostedSlideCnt]);

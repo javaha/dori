@@ -15,8 +15,14 @@
 			<if test = "paintingId != null and paintingId != ''">
 				AND painting_id = #{paintingId}
 			</if>
-			<if test = "purchaseStatus != null and purchaseStatus != ''">
+			<if test = "purchaseStatus != null and purchaseStatus != '' and purchaseStatusList == null">
 				AND purchase_status = #{purchaseStatus}
+			</if>
+			<if test = "purchaseStatusList != null">
+				AND purchase_status in
+                <foreach collection="purchaseStatusList" item="listItem" open="(" close=")" separator="," >
+                  #{listItem}
+                </foreach>
 			</if>
 			<if test = "privateAt != null and privateAt != ''">
 				AND private_at = #{privateAt}
