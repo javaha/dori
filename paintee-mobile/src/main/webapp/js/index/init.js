@@ -82,9 +82,6 @@ function setSideMenu() {
 			}
 		);
 	}
-
-	// 사이드메뉴 about 링크
-	$('#menu_about').on('click', function() { showAbout(); });
 }
 
 //var imageUrl="http://localhost:8090";

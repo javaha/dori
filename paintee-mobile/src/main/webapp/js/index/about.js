@@ -228,7 +228,13 @@ function showAboutPolicy(){
     $(".about_card_policy").show();
 }
 
-$(".about_card").swipe({	// 4.3 수정
+// 사이드메뉴 about 링크
+$('#menu_about').on('click', function(){
+    showAbout();
+    sideOff();
+});
+
+$(".about_card:lt(3)").swipe({	// 4.3 수정
 	swipeUp:function(){
 		$(".about_container").hide();
 		$(".about_navi").hide();
