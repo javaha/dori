@@ -137,6 +137,7 @@ function setProfilePostUI(type) {
 	if (type == 'Korea') {
 		// 기본 주소 선택시 
 		$("[name=profileCity]").attr("disabled", "disabled");
+        $("[name=profileCity]").addClass("input_disable")
 		$("[name=profileBasicAddr]").attr("readOnly", "readOnly");
 		$("[name=profileBasicAddr]").focus(function () {
 			execDaumPostcode('profile', 'profileZipcode', 'profileBasicAddr')
@@ -145,6 +146,7 @@ function setProfilePostUI(type) {
 		// 주소에 설정된 이벤트 삭제
 		$("[name=profileBasicAddr]").off();
 		$("[name=profileCity]").attr("disabled", false);
+        $("[name=profileCity]").removeClass("input_disable")
 		$("[name=profileBasicAddr]").attr("readOnly", false);
 	}
 }

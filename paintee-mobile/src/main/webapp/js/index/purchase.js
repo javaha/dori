@@ -1,4 +1,5 @@
 var purchaseController;
+var onceAboutPost = true;
 // 구매화면으로 이동
 function purchase(paintingId, artistName) {
 	
@@ -138,6 +139,7 @@ function setPostUI(type) {
 	if (type == 'Korea') {
 		// 기본 주소 선택시 
 		$("[name=receiverCity]").attr("disabled", "disabled");
+        $("[name=receiverCity]").addClass("input_disable")
 		$("[name=receiverZipcode]").attr("readOnly", "readOnly");
 		$("[name=receiverBasicAddr]").attr("readOnly", "readOnly");
 		$("[name=receiverBasicAddr]").focus(function () {
@@ -147,6 +149,7 @@ function setPostUI(type) {
 		// 주소에 설정된 이벤트 삭제
 		$("[name=receiverBasicAddr]").off();
 		$("[name=receiverCity]").attr("disabled", false);
+        $("[name=receiverCity]").removeClass("input_disable")
 		$("[name=receiverZipcode]").attr("readOnly", false);		
 		$("[name=receiverBasicAddr]").attr("readOnly", false);
 	}
@@ -340,7 +343,7 @@ PurchaseController.prototype = {
 		);		
 	},
 	purchasePopInfoRes: function (result) {
-		if (result.count == 0) {
+		if (result.count == 0 && onceAboutPost == true) {
 			showAboutPost();
 		}
 		initPurchasePop(result);

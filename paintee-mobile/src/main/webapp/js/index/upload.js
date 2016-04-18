@@ -1,5 +1,6 @@
 var baseUploadCount = 5;
 var doUploadCount = 0;
+var onceAboutUpload = true;
 
 //업로드화면
 function upload(){
@@ -191,8 +192,10 @@ function initUpload(postedCount, doTotaluploadCount, uploadedCount){
     }
 
     // console.log("uploadedCount:"+uploadedCount);
-    if(uploadedCount == 0) {
+    if(uploadedCount == 0 && onceAboutUpload == true) {
     	showAboutUpload();
+    	boxStatus = "upload"
+    	onceAboutUpload = false;
     }
 
     delete upload;
