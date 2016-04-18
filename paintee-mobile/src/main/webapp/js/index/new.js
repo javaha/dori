@@ -75,6 +75,14 @@ NewController.prototype = {
 	}
 };
 
+// 클릭해서 위아래 전환
+$(".home_next").click(function(){
+    mainSwiper.slideNext();
+})
+$(".home_prev").click(function(){
+    mainSwiper.slidePrev();
+})
+
 // New 홈 화면 및 그림 목록 요청
 function initNew(){
   // 기존 설정된 슬라이더 제거
