@@ -45,7 +45,7 @@ About.prototype = {
 }
 function buildOverview(){
     var overview = new About();
-    overview.setParallax("url(./images/about_2.gif)");
+    overview.setParallax("url(./images/about_1.gif)");
     overview.setPagination("overview");
     overview.addCard('[html]about.overview.randingCardTitle',
                      '[html]about.overview.randingCardContents');
@@ -53,15 +53,13 @@ function buildOverview(){
                      '[html]about.overview.randingCardContents2');
     overview.addCard('[html]about.overview.randingCardTitle3',
                      '[html]about.overview.randingCardContents3');
-    overview.addCard('[html]about.overview.randingCardTitle2',
-                     '[html]about.overview.randingCardContents2');
     overview.buildAbout($(".swiper_container_overview"));
     delete overview;
 };
 
 function buildPost(){
     var post = new About();
-    post.setParallax("url(about_2.gif)");
+    post.setParallax("url(./images/about_2.gif)");
     post.setPagination("post");
     post.addCard('[html]about.post.randingCardTitle1',
                  '[html]about.post.randingCardContents1');
@@ -81,7 +79,7 @@ function buildPost(){
 
 function buildUpload(){
     var upload = new About();
-    upload.setParallax("url(about_3.gif)");
+    upload.setParallax("url(./images/about_3.gif)");
     upload.setPagination("upload");
     upload.addCard('[html]about.upload.randingCardTitle1',
                    '[html]about.upload.randingCardContents1');
@@ -95,6 +93,7 @@ function buildUpload(){
                    '[html]about.upload.randingCardContents5');
     upload.addCard('[html]about.upload.randingCardTitle6',
                    '[html]about.upload.randingCardContents6');
+    upload.buildAbout($(".swiper_container_upload"));
     delete upload;
 };
 
@@ -160,6 +159,7 @@ function showAboutOverview(){	  // 4.3 수정
 				 }
 			}
 		});
+        exeTranslation(".swiper_container_overview", lang);
 	}
     setBox();
 }
@@ -186,7 +186,8 @@ function showAboutPost(){	   // 4.3 수정
 					 swiper.slideTo(0)
 				 }	
 			}
-		});				
+		});
+        exeTranslation(".swiper_container_post", lang);
 	}
     setBox();
 }
@@ -215,7 +216,8 @@ function showAboutUpload(){	 // 4.3 수정
 					 swiper.slideTo(0)
 				 }
 			}
-		});				
+		});
+        exeTranslation(".swiper_container_upload", lang);
 	}
     setBox();
 }
