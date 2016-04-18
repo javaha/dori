@@ -114,7 +114,7 @@
 			"rulePassword": "비밀번호는 최소 8자 최대 12자 의 문자와 숫자 조합으로 입력하셔야 합니다.(한)",
 			"confirmEmailPass": "이메일과 비밀번호를 확인하세요.(한)",
 			"existName": "이미 사용중인 이름 입니다.(한)",
-			"existEmail": "이미 사용중인 이름 입니다.(한)",
+			"existEmail": "이미 사용중인 이메일 입니다.(한)",
 			"differentPassword": "비밀번호와 비밀번화 확인 값이 일치하지 않습니다.(한)",
 			"delPainting": "삭제된 그림 입니다.(한)",
 			"processDelete": "삭제 처리되었습니다.(한)",
