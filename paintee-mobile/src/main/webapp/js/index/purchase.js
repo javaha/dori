@@ -480,7 +480,7 @@ PurchaseController.prototype = {
 		var controller = this;
 		var data = {
 			seq: listData.seq,
-			userId: listData.artistId,
+			artistId: listData.artistId,
 			paintingStatus: "D" // 삭제 요청
 		};
 		
