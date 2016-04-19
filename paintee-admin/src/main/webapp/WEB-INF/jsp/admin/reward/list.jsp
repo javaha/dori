@@ -73,7 +73,7 @@
 				"earmRequestedMoney": $("#earmRequestedMoney" + rewardId).html().replace("$", "")
 			};
 			$.ajax({
-					url: "/admin/reward/mod",
+					url: "${pageContext.request.contextPath}/admin/reward/mod",
 					type: "GET",
 					async: true,
 					cache: false,

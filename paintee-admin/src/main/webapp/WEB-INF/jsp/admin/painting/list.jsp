@@ -86,7 +86,7 @@
 				"artistId": $("#artistId" + seq).val()
 			};
 			$.ajax({
-					url: "/admin/painting/mod",
+					url: "${pageContext.request.contextPath}/admin/painting/mod",
 					type: "GET",
 					async: true,
 					cache: false,
