@@ -5,7 +5,7 @@ function DetailStructure(paintingId, paintingInfo){
     this.fileId         = paintingInfo.fileInfo.id;
     this.artistName     = paintingInfo.artistName;
     this.artistId       = paintingInfo.artistId;
-    this.artistSentence = paintingInfo.sentence;
+    this.artistSentence = convertToBr(paintingInfo.sentence);  
     this.uploadDate     = toDate(paintingInfo.uploadDate);
     this.postedNum      = paintingInfo.postedNum;
     // 히스토리 사용 부분 추가
@@ -140,14 +140,6 @@ DetailStructure.prototype = {
         } else if(!userInfo || this.artistId != userInfo.userId) {
         	this.detailArtistFollow.on('click', function() { detailController.artistFollow(picArtistId); });
         }
-
-        //소셜 공유 이벤트
-        /*
-        this.sociconFacebook    =$("<span>").addClass("social_btn").addClass("socicon-facebook");
-        this.sociconTwitter     =$("<span>").addClass("social_btn").addClass("socicon-twitter");
-        */
-//        this.sociconInstagram   =$("<span>").addClass("social_btn").addClass("socicon-instagram");
-//        this.sociconPinterest   =$("<span>").addClass("social_btn").addClass("socicon-pinterest");
         
         var paintingId = this.paintingId;
         var fileId = this.fileId;
@@ -312,8 +304,6 @@ function processDetailClose() {
 //디테일화면의 스크롤 잠금/열기
 function changeMode(swiper){            
     var translate = swiper.translate;
-    // console.log("translate ::: " + translate);
-    // console.log("postedLockBreakpoint ::: " + postedLockBreakpoint);
     if(translate>50){
         closeDetail();
     }else if(translate<postedLockBreakpoint){
@@ -334,8 +324,6 @@ function changeMode(swiper){
 //디테일화면의 스크롤 잠금
 function lockPosted(swiper){
 	
-	// console.log("aaaaa");
-	
     postedLock = true;
     hidePosted(swiper);
     swiper.params.freeMode = false;
@@ -346,7 +334,6 @@ function lockPosted(swiper){
 
 //디테일화면의 스크롤 열기
 function unlockPosted(swiper){
-	// console.log("unlockPosted ::: ");
     postedLock = false;
     swiper.params.freeMode = true;
 
@@ -412,9 +399,7 @@ PostedController.prototype = {
 			addPosted(this.swiper, postedInfo);
 		} else {
 			for (var index in result.list) {
-//				console.log("index ::: " + index);
 				addPosted(this.swiper, result.list[index]);
-//				console.log("this.swiper ::: " + this.swiper);
 			}
 		}
 
