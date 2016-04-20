@@ -17,24 +17,28 @@ var AjaxCall = {
 				}
 			},
 			error: function (jqXHR, textStatus, errorThrown) {
-
+				
 				if (jqXHR.responseText != null) {
 					try {
 						var object = JSON.parse(jqXHR.responseText);
-
+			
 						if (object.errorNo == 9999) {
 							clearUserInfoCookie();
-							
 						} 
+						
+						alert(object.errorMsg);
+						
 					} catch (e) {
+//						console.log("catch");
 					}
+				}else{
+					alert($.i18n.t('alert.common.unkownServerError'));
+					location.href = "/";
 				}
-
-				alert($.i18n.t('alert.common.unkownServerError'));
-				location.href = "/";
+				
 			}
 		};
-
+		
 		$.ajax(option);
 		return;
 	},

@@ -211,6 +211,7 @@ DetailController.prototype = {
  	},
 	artistFollow: function(artistId) {
 		var controller = this;
+		
 		// 개인페이지에서 사용하는 부분이 있어 selectedArtistId 이 없을 경우 artistId를 사용하도록 변경. 04-05
 		AjaxCall.call(apiUrl+"/user/"+(selectedArtistId ? selectedArtistId : artistId)+"/follow", null, "POST", function(result, status) { controller.artistFollowRes(result, status); });
 	},
@@ -388,7 +389,7 @@ PostedController.prototype = {
 		}
 	},
 	getPostedDataRes: function(result, status) {
-		console.log("getPostedDataRes ::: " + result.list.length);
+//		console.log("getPostedDataRes ::: " + result.list.length);
 		if(result.list && result.list.length == 0 && (this.swiper.slides.length - initPostedSlideCnt) == 0) {
 			var postedInfo = {
 				purchaseSeq: "",

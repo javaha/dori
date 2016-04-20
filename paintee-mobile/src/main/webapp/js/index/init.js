@@ -332,7 +332,8 @@ function addPainting(swiper, currentIndex, type, listData){
 	}
 	var newSlide = new Structure(data);
     newSlide.setSentence((listData.paintingStatus == "B") ? "It was blind by the administrator." : listData.sentence, listData.sentenceName ? listData.sentenceName : listData.artistName);
-    newSlide.setPostedNumber(listData.postedPeopleCnt);
+    //newSlide.setPostedNumber(listData.postedPeopleCnt);
+    newSlide.setPostedNumber(listData.postedNum);
     newSlide.setDate(toEngDateStr(listData.uploadDate));
     newSlide.setArtist(listData.artistName);
     newSlide.setPainting(listData.paintingId, listData.fileId, type);
