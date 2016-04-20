@@ -69,7 +69,7 @@ body{
 .home_title{
     position: relative;
     width: 100%;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Pacifico-Regular', 'Pacifico',  serif;
     font-size: 80px;
 }
 .home_contents{
@@ -130,11 +130,6 @@ body{
     border-color: rgba(255,255,255,1);
     color: rgba(255,255,255,0.5);
 }
-.home_count{
-    width: 100%;
-    font-size: 2em;
-    font-weight: 100;
-}
 .home_next{
     position: absolute;
     bottom: 0%;
@@ -186,10 +181,10 @@ body{
     text-align: left;
     margin-left: 5%;
     font-size: 1em;
-    font-weight: 200;
+    font-weight: 300;
 }
 .list_info_posted_num{
-    font-weight: 600;
+    font-weight: 700;
 }
 .list_info_date{
     float: left;
@@ -197,7 +192,7 @@ body{
     text-align: right;
     margin-right: 5%;
     font-size: 1em;
-    font-weight: 200;
+    font-weight: 300;
 }
 .list_painting{
     background-color: rgba(255,255,255,0.9);
@@ -311,7 +306,7 @@ body{
 .side_menu_lang{
     width: 100%;
     color: rgba(100,100,100,0.9);
-    font-weight: 200;
+    font-weight: 300;
     text-align: center;
 }
 .side_menu_lang_select{
@@ -871,7 +866,6 @@ body{
     text-align: right;
     padding: 10px;
     font-size: 0.9em;
-    font-weight: 400;
     cursor: pointer;
 }
 .people_list_add{
@@ -880,7 +874,6 @@ body{
     text-align: right;
     padding: 10px;
     font-size: 0.9em;
-    font-weight: 400;
     cursor: pointer;
 }
 .people_list_btn_text{
@@ -918,7 +911,7 @@ body{
     width: 80%;
     max-width: 648px;
     margin: auto;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Pacifico-Regular', 'Pacifico',  serif;
     font-size: 80px;
     text-align: center;
 }
@@ -1083,8 +1076,6 @@ body{
     font-family: 'Merriweather', serif;
     width: 100%;
     height: 50px;
-    font-size: 20px;
-    font-weight: bold;
     padding: 20px;
     font-size: 2em;
     font-weight: 700;
@@ -1223,7 +1214,7 @@ body{
 }
 .reward_list_required_btn{
     padding-top: 10px;
-    font-weight: 800;
+    font-weight: 700;
     color: rgb(80,80,80);
 }
 .reward_list_problem{
@@ -1232,12 +1223,12 @@ body{
     text-align: right;
     padding: 10px;
     font-size: 0.9em;
-    font-weight: 500;
+    font-weight: 400;
     color: rgb(180,0,0);           
 }
 .reward_list_problem_btn{
     padding-top: 10px;
-    font-weight: 800;
+    font-weight: 700;
     color: rgb(80,80,80);
 }
 .reward_list_finished{
@@ -1359,7 +1350,6 @@ body{
 }
 .swiper-pagination {
     top: 55px;
-    /*     4.3 수정: 추가. 기존 style.css에서 swiper-pagination, swiper-pagination-bullet, swiper-pagination-bullet-active 은 삭제       */
 }
 
 /* 목록 삭제 등 버튼 추가 :: 2016-03-31 */
@@ -1386,7 +1376,7 @@ body{
     padding: 5px;
     background-color: rgb(255,255,255);
     color: hsl(250,60%,20%);
-    font-weight: 900;
+    font-weight: 700;
     display: none;
     cursor: pointer;
     z-index: 5;
@@ -1403,7 +1393,7 @@ body{
     padding: 5px;
     background-color: rgb(255,255,255);
     color: hsl(250,60%,20%);
-    font-weight: 900;
+    font-weight: 700;
     display: none;
     cursor: pointer;
     z-index: 5;
@@ -1420,7 +1410,7 @@ body{
     padding: 5px;
     background-color: rgb(255,255,255);
     color: hsl(250,60%,20%);
-    font-weight: 900;
+    font-weight: 700;
     display: none;
     cursor: pointer;
     z-index: 5;
@@ -1437,7 +1427,7 @@ body{
     padding: 5px;
     background-color: rgb(255,255,255);
     color: hsl(250,60%,20%);
-    font-weight: 900;
+    font-weight: 700;
     display: none;
     cursor: pointer;
     z-index: 5;
@@ -1559,6 +1549,22 @@ screen and (-o-min-device-pixel-ratio: 1.5) {
         .account_title{
             font-size: 60px;
         }
+        .list_status_btn{
+            width: 100px;
+        }
+        .list_cancel_btn{
+            width: 100px;
+        }
+        .list_resend_btn{
+            width: 100px;
+            right: 120px;
+        }
+        .list_confirm_btn{
+            width: 100px;
+        }
+        .randing_card_title{
+            font-size: 30px;
+        }
 }
 @media  screen and (min-devicepixel-ratio: 2.5),
 screen and (-webkit-min-device-pixel-ratio: 2.5),
@@ -1626,6 +1632,22 @@ screen and (-o-min-device-pixel-ratio: 2.5) {
         .account_title{
             font-size: 50px;
         }
+        .list_status_btn{
+            width: 90px;
+        }
+        .list_cancel_btn{
+            width: 90px;
+        }
+        .list_resend_btn{
+            width: 90px;
+            right: 110px;
+        }
+        .list_confirm_btn{
+            width: 90px;
+        }
+        .randing_card_title{
+            font-size: 25px;
+        }
 }
 
 /*   PC화면   */
@@ -1642,61 +1664,5 @@ screen and (-o-min-device-pixel-ratio: 2.5) {
 @media screen and (min-height: 550px){
     .home_contents_add{
         display: block;
-    }
-}
-/*   고해상도 디스플레이   */
-@media  screen and (min-device-pixel-ratio: 1.5),
-screen and (-webkit-min-device-pixel-ratio: 1.5),
-screen and (min-moz-device-pixel-ratio: 1.5),
-screen and (-o-min-device-pixel-ratio: 1.5) {
-    .list_status_btn{
-        width: 100px;
-    }
-    .list_cancel_btn{
-        width: 100px;
-    }
-    .list_resend_btn{
-        width: 100px;
-        right: 120px;
-    }
-    .list_confirm_btn{
-        width: 100px;
-    }
-}
-@media  screen and (min-devicepixel-ratio: 2.5),
-screen and (-webkit-min-device-pixel-ratio: 2.5),
-screen and (min-moz-device-pixel-ratio: 2.5),
-screen and (-o-min-device-pixel-ratio: 2.5) {
-    .list_status_btn{
-        width: 90px;
-    }
-    .list_cancel_btn{
-        width: 90px;
-    }
-    .list_resend_btn{
-        width: 90px;
-        right: 110px;
-    }
-    .list_confirm_btn{
-        width: 90px;
-    }
-}
-
-/*   고해상도 디스플레이   */
-@media  screen and (min-device-pixel-ratio: 1.5),
-screen and (-webkit-min-device-pixel-ratio: 1.5),
-screen and (min-moz-device-pixel-ratio: 1.5),
-screen and (-o-min-device-pixel-ratio: 1.5) {
-    .randing_card_title{
-        font-size: 30px;
-    }
-}
-/*   고해상도 디스플레이   */
-@media  screen and (min-device-pixel-ratio: 2.5),
-screen and (-webkit-min-device-pixel-ratio: 2.5),
-screen and (min-moz-device-pixel-ratio: 2.5),
-screen and (-o-min-device-pixel-ratio: 2.5) {
-    .randing_card_title{
-        font-size: 25px;
     }
 }
