@@ -105,8 +105,8 @@ function setMyHome(result) {
     mySwiper.removeAllSlides();
     var myHome = new Home();
     myHome.setTitle("my");
-    var introduce = (result.my.introduce) ? result.my.introduce : "<span data-i18n='my.login-introduce'></span>";
-    myHome.setExplain("<span data-i18n='[html]my.loginexplain'></span><br>" + introduce + " <img class='icon' style='width: 14px; height: 14px' src='/ico/create_white.png' onclick='showProfile()'>");
+    var introduce = (result.my.introduce) ? result.my.introduce : "<span data-i18n='[html]my.loginexplain'></span><br><span data-i18n='my.login-introduce'></span>";
+    myHome.setExplain(introduce + " <img class='icon' style='width: 14px; height: 14px' src='/ico/create_white.png' onclick='showProfile()'>");
     var content1 =
         $("<div>").attr("id", "uploadBtn").addClass("home_btn_my").html("uploaded ").append($("<b>").html(" " + result.my.uploadCount))
     var content2 =
