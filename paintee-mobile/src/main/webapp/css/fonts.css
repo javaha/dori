@@ -9,10 +9,10 @@
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url('Merriweather-Bold.eot');
-  src: url('Merriweather-Bold.woff') format('woff'),
-       url('Merriweather-Bold.ttf') format('truetype'),
-       url('Merriweather-Bold.eot?#iefix') format('embedded-opentype');
+  src: url('../fonts/Merriweather-Bold.eot');
+  src: url('../fonts/Merriweather-Bold.woff') format('woff'),
+       url('../fonts/Merriweather-Bold.ttf') format('truetype'),
+       url('../fonts/Merriweather-Bold.eot?#iefix') format('embedded-opentype');
   font-weight: 700;
   font-style: normal;
 }
