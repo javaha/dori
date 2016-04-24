@@ -226,6 +226,7 @@ function showAboutPolicy(){
     boxStatus="about";
     $(".about_container").show();
     $(".about_card_policy").show();
+    setBox();
 }
 
 // 사이드메뉴 about 링크

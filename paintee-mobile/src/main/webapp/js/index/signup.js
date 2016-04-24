@@ -152,6 +152,10 @@ $('#social_username_signup_btn').on('click', function() {
 	checkSignupUsername();
 });
 
+$(".signup_terms").click(function(){
+	showAboutPolicy();
+});
+
 function checkSignupUsername() {
 	var accessToken = signupSocialAuthResponse.authResponse.accessToken;
 	var expireTime = signupSocialAuthResponse.authResponse.expiresIn;
