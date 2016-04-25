@@ -333,7 +333,7 @@ function toDate (timestamp, dateFormat) {
  */
 function getImageUrls(fileId, ratio) {
 	if (!ratio) {
-		return imageUrl + "/cmm/file/view/3/" + fileId;
+		return imageUrl + "/cmm/file/view/2/" + fileId;
 	}
 	if (ratio == 1) 
 		return imageUrl + "/cmm/file/view/2/" + fileId + " 729w, " + imageUrl + "/cmm/file/view/3/" + fileId + " 405w";
