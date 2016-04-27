@@ -262,10 +262,11 @@ body{
 }
 .side_menu_login{
     height: 15%;
-    max-height: 100px;
+    max-height: 150px;
     text-align: center;
-    margin-top: 50px;
-    cursor: pointer;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    box-sizing: border-box;
 }
 .side_menu_login_id{
     font-family: 'Merriweather', serif;

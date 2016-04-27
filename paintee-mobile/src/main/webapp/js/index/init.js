@@ -459,11 +459,9 @@ function initMenu(userID){
         sideLogin.append($("<div>").addClass("login_btn").html("Log in").css("border-color", "rgb(100,100,100)").click(function(){showLogin()}));
     }else{
         sideLogin.empty()
-        sideLogin.append($("<div>").addClass("side_menu_login_id").html(userID)).on("click", function(){showProfile()});
+        sideLogin.append($("<div>").addClass("side_menu_login_id").html(userInfo.name)).on("click", function(){showProfile()});
 
-        var editBtn = $("<a>").html("edit");
-        var logoutBtn = $("<a>").html("logout");
-        var btnGroup = $("<div>").append(editBtn).append(" | ").append(logoutBtn).on("click", function(){showProfile()});
+        var editBtn = $("<a>").html(userID).on("click", function(){showProfile()});
 
         sideLogin.append(btnGroup);
     }
