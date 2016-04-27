@@ -533,7 +533,7 @@ function completePayment(result){
     $(".payment_box").empty();
     var payment = new Payment();
     payment.setTitle("Thanks!");
-    payment.setContents("<span data-i18n='[html]purchasePop2.contents'></span>");
+    payment.setContents("<span data-i18n='[html]purchasePop2.contents'></span><br>");
     payment.contents.append(payment.sociconFacebook.css("color", "rgb(80,80,80)"));
     payment.contents.append(payment.sociconTwitter.css("color", "rgb(80,80,80)"));
     payment.contents.append(payment.sociconUrl.css("color", "rgb(80,80,80)"));
