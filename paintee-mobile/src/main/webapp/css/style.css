@@ -384,7 +384,7 @@ body{
 .detail_bg_container img{
     display: block;
     height: 100%;
-    margin: auto;
+    position: absolute;
 }
 .detail_bg_bottom{
     position: absolute;

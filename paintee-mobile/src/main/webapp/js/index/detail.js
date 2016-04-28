@@ -268,6 +268,7 @@ function setDetailLayout(){
     mainHeight = $(window).height();
     $(".detail_bg_container").css("height", mainHeight-50);
     $(".detail_bg_container").find("img").css("height", "100%");
+    $(".detail_bg_img").css("left", (mainWidth-(mainHeight-50)*0.72)/2);
     $(".detail_margin").css("height", mainHeight-50);
     $(".detail_artist_sentence").css("width", mainWidth);
     $(".detail_artist_sentence").css("height", $(".detail_artist").height()-100);
