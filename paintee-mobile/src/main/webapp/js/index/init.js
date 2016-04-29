@@ -352,50 +352,75 @@ function addPainting(swiper, currentIndex, type, listData){
     delete newSlide;    
 }
 
+var targetTimer;
+function startTimer(clicked) {
+    if(targetTimer != undefined){
+        hideCancel(targetTimer);
+    }
+    var self = this;
+    targetTimer = clicked;
+    this.timer = setTimeout(function() {
+        hideCancel(clicked);
+        delete self.timer;
+    }, 5000)
+}
+
+function deleteTimer() {
+    if( typeof this.timer != 'undefined') {
+        clearTimeout(this.timer);
+        delete this.timer;
+        targetTimer = undefined;
+    }
+}
+function hideCancel(clicked){
+    if($(clicked).html()=="preparing"){
+        $(clicked).parent().find(".list_cancel_btn").fadeOut();
+        $(clicked).parent().find(".list_status_sentence").fadeOut();
+        deleteTimer();
+    }else if($(clicked).html()=="refund"){
+        $(clicked).parent().find(".list_refund_btn").fadeOut();
+	    $(clicked).parent().find(".list_status_sentence").fadeOut();
+        deleteTimer();
+    }else if($(clicked).html()=="sended"){
+        $(clicked).parent().find(".list_resend_btn").fadeOut();
+        $(clicked).parent().find(".list_confirm_btn").fadeOut();
+        $(clicked).parent().find(".list_status_sentence").fadeOut();
+        deleteTimer();
+    }
+}
+
 function showCancel(clicked, listData){
     $(clicked).parent().find(".list_cancel_btn").fadeIn().one("click", function () { 
    		new PurchaseController().cancelPurchase(listData); 
    		hideCancel(this);
     });
     $(clicked).parent().find(".list_status_sentence").empty().html("<span data-i18n='[html]my.cancelStatusPurchase'></span>").fadeIn().click(function(){hideCancel(this)});
-    setTimeout(function(){hideCancel(clicked)}, 5000);
+    startTimer(clicked);
     exeTranslation('.main_container', lang);
-}
-function hideCancel(clicked){
-    $(clicked).parent().find(".list_cancel_btn").fadeOut();
-    $(clicked).parent().find(".list_status_sentence").fadeOut();
 }
 
 function showRefund(clicked, listData){
 	$(clicked).parent().find(".list_refund_btn").fadeIn().one("click", function () { 
 		new PurchaseController().cancelRefundPurchase(listData); 
-		hideRefund(this);
+		hideCancel(this);
 	});
-	$(clicked).parent().find(".list_status_sentence").empty().html("<span data-i18n='[html]my.refundStatusPurchase'></span>").fadeIn().click(function(){hideRefund(this)});
-	setTimeout(function(){hideRefund(clicked)}, 5000);
+	$(clicked).parent().find(".list_status_sentence").empty().html("<span data-i18n='[html]my.refundStatusPurchase'></span>").fadeIn().click(function(){hideCancel(this)});
+	startTimer(clicked);
 	exeTranslation('.main_container', lang);
 }
-function hideRefund(clicked){
-	$(clicked).parent().find(".list_refund_btn").fadeOut();
-	$(clicked).parent().find(".list_status_sentence").fadeOut();
-}
+
 function showResend(clicked, listData){
     $(clicked).parent().find(".list_resend_btn").fadeIn().one("click", function () { 
    		new PurchaseController().resendPurchase(listData); 
-   		hideResend(this);
+   		hideCancel(this);
     });
     $(clicked).parent().find(".list_confirm_btn").fadeIn().click(function(){
     	new PurchaseController().completePurchase(listData); 
-    	hideResend(this)
+    	hideCancel(this)
     });
-    $(clicked).parent().find(".list_status_sentence").empty().html("<span data-i18n='[html]my.sendStatusPurchase'></span>").fadeIn().click(function(){hideResend(this)});
-    setTimeout(function(){hideResend(clicked)}, 5000);
+    $(clicked).parent().find(".list_status_sentence").empty().html("<span data-i18n='[html]my.sendStatusPurchase'></span>").fadeIn().click(function(){hideCancel(this)});
+    startTimer(clicked);
     exeTranslation('.main_container', lang);
-}
-function hideResend(clicked){
-    $(clicked).parent().find(".list_resend_btn").fadeOut();
-    $(clicked).parent().find(".list_confirm_btn").fadeOut();
-    $(clicked).parent().find(".list_status_sentence").fadeOut();
 }
 
 // 최초 5개 미리 생성
