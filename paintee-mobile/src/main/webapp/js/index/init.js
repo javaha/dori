@@ -84,7 +84,7 @@ function setSideMenu() {
 	}
 }
 
-//var imageUrl="http://localhost:8090";
+//var imageUrl="http://localhost/paintee-admin";
 var imageUrl="http://paintee.me/paintee-admin";
 var apiUrl = imageUrl + "/api";
 
@@ -463,7 +463,7 @@ function initMenu(userID){
 
         var editBtn = $("<a>").html(userID).on("click", function(){showProfile()});
 
-        sideLogin.append(btnGroup);
+        //sideLogin.append(btnGroup);
     }
 }
 

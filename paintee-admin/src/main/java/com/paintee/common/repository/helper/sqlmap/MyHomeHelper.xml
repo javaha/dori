@@ -9,6 +9,7 @@
   	
 	<!-- 로그인 사용자가 구매한 그림과 업로드한 그림의 목록을 가져오기 -->
   	<select id="selectMyHomePaintingList" resultMap="BaseResultMap">
+  	   
 		select a.seq,
 		       a.artist_id, 
 			   (select name from TB_USER where user_id = a.artist_id) artist_name, 
@@ -71,7 +72,7 @@
 		   and b.user_id = #{userId}
 		   and b.user_id = a.artist_id
 		    -->
-		 order by seq desc
+		 order by posted_num asc
 		 limit #{startRow}, #{rowPerPage}
   	</select>  	
   	
