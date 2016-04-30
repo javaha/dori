@@ -487,8 +487,7 @@ function initMenu(userID){
         sideLogin.append($("<div>").addClass("side_menu_login_id").html(userInfo.name)).on("click", function(){showProfile()});
 
         var editBtn = $("<a>").html(userID).on("click", function(){showProfile()});
-
-        //sideLogin.append(btnGroup);
+        sideLogin.append(editBtn);
     }
 }
 
