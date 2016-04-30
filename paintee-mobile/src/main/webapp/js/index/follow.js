@@ -172,8 +172,10 @@ FollowController.prototype = {
 function initFollow() {
 	if (userID == "") {
 		var welcome = new Home();
+        var logInBtn = $("<div>").addClass("login_btn").html("Log in").click(function(){showLogin()});
 		welcome.setTitle("Welcome!");
 		welcome.setExplain("<span data-i18n='[html]follow.notloginexplain'></span>");
+        welcome.setContents(logInBtn);
 		welcome.hidePrev();
 		followSwiper.appendSlide(welcome.buildStructure());
 		$("#menu_follow").addClass("side_menu_major_inactive");
