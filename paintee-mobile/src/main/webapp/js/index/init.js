@@ -642,6 +642,17 @@ $(".popup_container").click(function(){
     popName = "";  // 다시 초기화
 });
 
+// 로그인 닫기
+$(".account_close_btn").on('click', function(){
+    if($(this).parent().hasClass("login_container")){
+        history.back();
+    }else if($(this).parent().hasClass("signup_container")){
+        history.go(-2);
+    }else if($(this).parent().hasClass("loginhelp_container")){
+       history.go(-2);
+    }
+})
+
 var openedAboutUploadPopup = false;
 
 function closePopup() {
