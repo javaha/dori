@@ -651,6 +651,7 @@ $(".account_close_btn").on('click', function(){
     }else if($(this).parent().hasClass("loginhelp_container")){
        history.go(-2);
     }
+    $(".account_container").hide();
 })
 
 var openedAboutUploadPopup = false;

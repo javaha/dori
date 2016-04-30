@@ -226,6 +226,7 @@ function showAboutPolicy(){
     boxStatus="about";
     $(".about_container").show();
     $(".about_card_policy").show();
+    $(".about_guide").hide();
     setBox();
 }
 
