@@ -314,20 +314,19 @@ function changeMode(swiper){
         }
         callPosted(swiper);
     }
-    /*
     else if(translate>=postedLockBreakpoint){
         if(!postedLock){
             lockPosted(swiper);
         }
     }
-    */
+
 }
 
 //디테일화면의 스크롤 잠금
 function lockPosted(swiper){
 	
     postedLock = true;
-    hidePosted(swiper);
+    // hidePosted(swiper);
     swiper.params.freeMode = false;
 
     $(".swiper-scrollbar-detail").hide();
