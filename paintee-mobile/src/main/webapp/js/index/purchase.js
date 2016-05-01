@@ -301,11 +301,13 @@ function initPayment(serviceCnt){
     	// ---------------------------------------
     	// 서비스 카운트가 없을 경우 결재모드 태워야함
     	if (serviceCnt <= 0) {
-    		
+    		alert("Service Count: 0");
+    	}else{
+    		purchaseController.addPurchase(serviceCnt);
+            showPurchaseSpinner();
     	}
     	// ---------------------------------------
-        purchaseController.addPurchase(serviceCnt);
-        showPurchaseSpinner();
+        
     })
     delete payment;
     
