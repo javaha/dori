@@ -174,7 +174,7 @@ function initFollow() {
 		var welcome = new Home();
         var logInBtn = $("<div>").addClass("login_btn").html("Log in").click(function(){showLogin()});
 		welcome.setTitle("Welcome!");
-		welcome.setExplain("<span data-i18n='[html]follow.notloginexplain'></span>");
+		welcome.setExplain("<span data-i18n='[html]follow.notloginexplain'></span><br><br><br>");
         welcome.setContents(logInBtn);
 		welcome.hidePrev();
 		followSwiper.appendSlide(welcome.buildStructure());

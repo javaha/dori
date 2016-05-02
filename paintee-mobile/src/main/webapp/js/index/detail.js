@@ -247,7 +247,7 @@ function initDetail(paintingId, paintingInfo){
 	     direction: 'vertical',
 	     slidesPerView: 'auto',
 	     centeredSlides: false,
-	     freeMode: false,
+	     freeMode: true,
 	     freeModeMomentumRatio: 0.4,
 	     freeModeMomentumBounceRatio: 0.5,
 	     mousewheelControl : true,
@@ -327,7 +327,7 @@ function lockPosted(swiper){
 	
     postedLock = true;
     // hidePosted(swiper);
-    swiper.params.freeMode = false;
+    // swiper.params.freeMode = false;
 
     $(".swiper-scrollbar-detail").hide();
     $(".detail_post_btn").appendTo($(".swiper_container_detail"))
@@ -336,7 +336,7 @@ function lockPosted(swiper){
 //디테일화면의 스크롤 열기
 function unlockPosted(swiper){
     postedLock = false;
-    swiper.params.freeMode = true;
+    // swiper.params.freeMode = true;
 
     callPosted(swiper);
 
