@@ -21,7 +21,14 @@ function DetailStructure(paintingId, paintingInfo){
     this.detailContainer    =$("<div>").addClass("detail_container").addClass("swiper_container_detail");
     this.wrapper            =$("<div>").addClass("swiper-wrapper");
 
-    this.detailMargin       =$("<div>").addClass("detail_margin").addClass("swiper-slide");
+    this.detailMargin       =$("<div>").addClass("detail_margin").addClass("swiper-slide").swipe({
+                                swipeUp:function(){
+                                    detailSwiper.wrapper.css("transition-duration", "300ms");
+                                    detailSwiper.setWrapperTranslate(postedLockBreakpoint);
+                                    detailSwiper.unlockSwipes();
+                                },
+                                threshold:10
+                            });
     this.detailCloseIcon    =$("<img src='/ico/close.png'>").addClass("icon").addClass("detail_margin_close");
     this.detailMarginIcon   =$("<img src='/ico/keyboard_arrow_up_black.png'>").addClass("icon").addClass("detail_margin_guide");
 
@@ -50,7 +57,7 @@ function DetailStructure(paintingId, paintingInfo){
     this.detailPostbarPostedNum=$("<span>").addClass("list_info_posted_num");
 
     this.detailPostBtn      =$("<div>").addClass("detail_post_btn").html("post it").click(function(){purchase(paintingId)});
-    this.detailScroll       =$("<div>").addClass("swiper-scrollbar").addClass("swiper-scrollbar-detail");
+    // this.detailScroll       =$("<div>").addClass("swiper-scrollbar").addClass("swiper-scrollbar-detail");
     this.returnBtn          =$("<div>").addClass("return_btn").html("<img class='icon' src='/ico/keyboard_backspace.png' />");
 }
 
@@ -127,7 +134,7 @@ DetailStructure.prototype = {
         this.detail.append(this.detailBgBottom);
         this.detail.append(this.detailContainer);
         this.detail.append(this.detailPostBtn);
-        this.detail.append(this.detailScroll);
+        // this.detail.append(this.detailScroll);
 
         var detailController = new DetailController();
 
@@ -200,6 +207,7 @@ DetailController.prototype = {
 		$(".detail_postbar").css("background-color", "hsla("+colorDark+", 1)");
 
 		lockPosted(detailSwiper);
+        detailSwiper.lockSwipes();
 		
 		// 소셜공유에서 직접 호출한 경우
 		if (call == 'personal') {
@@ -251,8 +259,8 @@ function initDetail(paintingId, paintingInfo){
 	     freeModeMomentumRatio: 0.4,
 	     freeModeMomentumBounceRatio: 0.5,
 	     mousewheelControl : true,
-	     scrollbar: '.swiper-scrollbar-detail',
-	     scrollbarHide: true
+	     //scrollbar: '.swiper-scrollbar-detail',
+	     //scrollbarHide: true
 	});
 	this.detailSwiper.on("onSliderMove", function(swiper){
 	     changeMode(swiper);
@@ -329,7 +337,7 @@ function lockPosted(swiper){
     // hidePosted(swiper);
     // swiper.params.freeMode = false;
 
-    $(".swiper-scrollbar-detail").hide();
+    // $(".swiper-scrollbar-detail").hide();
     $(".detail_post_btn").appendTo($(".swiper_container_detail"))
 }
 
@@ -340,7 +348,7 @@ function unlockPosted(swiper){
 
     callPosted(swiper);
 
-    $(".swiper-scrollbar-detail").show();
+    // $(".swiper-scrollbar-detail").show();
     $(".detail_post_btn").appendTo($(".detail_postbar"))
 }
 

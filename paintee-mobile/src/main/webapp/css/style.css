@@ -461,6 +461,7 @@ body{
     font-family: 'Merriweather', serif;
     font-style: italic;
     font-size: 1.2em;
+    margin-top: 15px;
 }
 .detail_artist_bottom{
     width: 100%;
