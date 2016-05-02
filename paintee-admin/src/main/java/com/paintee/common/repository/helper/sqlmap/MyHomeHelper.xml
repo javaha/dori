@@ -72,7 +72,7 @@
 		   and b.user_id = #{userId}
 		   and b.user_id = a.artist_id
 		    -->
-		 order by dateOrder asc
+		 order by dateOrder desc
 		 limit #{startRow}, #{rowPerPage}
   	</select>  	
   	
