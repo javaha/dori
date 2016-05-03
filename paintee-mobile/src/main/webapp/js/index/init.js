@@ -611,7 +611,7 @@ function toggleFullScreen() {
 
 // 업로드/리워드가 표시되는 팝업창 사이즈 설정
 function setBox(){
-    if(boxStatus=="upload"){
+    if(boxStatus=="upload" || boxStatus=="uploadPop"){
         if(mainHeight>=400 && mainWidth >= 288){
             $(".popup_box").height(mainHeight*0.8);
             $(".popup_box").width($(".popup_box").height()*0.72);
