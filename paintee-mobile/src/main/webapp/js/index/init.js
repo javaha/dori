@@ -179,7 +179,7 @@ function Structure(data) {
 }
 Structure.prototype = {
         setSentence:        function(sentence, wrighter){
-                                this.listInfoSentence.html(convertToBr(sentence)+"<br> <span class='list_info_sentence_wrighter'> by <b>"+wrighter+"</b></span>");
+                                this.listInfoSentence.html(convertToBr(sentence)+"<br><br> <span class='list_info_sentence_wrighter'> by <b>"+wrighter+"</b></span>");
                             },
         setPostedNumber:    function(postedByPeople){
                                 this.listInfoPosted.html("<span class='list_info_posted_num'>"+postedByPeople+"</span> people already posted it")

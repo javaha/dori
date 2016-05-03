@@ -27,6 +27,11 @@ function DetailStructure(paintingId, paintingInfo){
                                     detailSwiper.setWrapperTranslate(postedLockBreakpoint);
                                     detailSwiper.unlockSwipes();
                                 },
+                                tap:function(){
+                                    detailSwiper.wrapper.css("transition-duration", "300ms");
+                                    detailSwiper.setWrapperTranslate(postedLockBreakpoint);
+                                    detailSwiper.unlockSwipes();
+                                },
                                 swipeDown:function(){
                                     closeDetail();
                                 },
