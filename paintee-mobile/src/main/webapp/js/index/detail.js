@@ -27,6 +27,9 @@ function DetailStructure(paintingId, paintingInfo){
                                     detailSwiper.setWrapperTranslate(postedLockBreakpoint);
                                     detailSwiper.unlockSwipes();
                                 },
+                                swipeDown:function(){
+                                    closeDetail();
+                                },
                                 threshold:10
                             });
     this.detailCloseIcon    =$("<img src='/ico/close.png'>").addClass("icon").addClass("detail_margin_close");
