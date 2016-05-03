@@ -33,7 +33,7 @@ function DetailStructure(paintingId, paintingInfo){
                                     detailSwiper.unlockSwipes();
                                 },
                                 swipeDown:function(){
-                                    closeDetail();
+                                    if(postedLock) closeDetail();
                                 },
                                 threshold:10
                             });
