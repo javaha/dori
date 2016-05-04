@@ -40,18 +40,18 @@
 	},
 	"follow": 
 	{
-		"loginexplain": "Images of the author you are following.",
+		"loginexplain": "Images of the artist you are following.",
 		"notloginexplain": "Welcome.<br>Send or receive a beautiful image as a postcard."
 	},
 	"popular": 
 	{
 		"explain": "This is the most popular image.",
-		"content": "people like in Paintee is searched."
+		"content": " people like in Paintee is searched."
 	},
 	"new": 
 	{
 		"explain": "This image is newly uploaded.",
-		"content": "images are in Paintee."
+		"content": " images are in Paintee."
 	},
 	"my": 
 	{
@@ -60,12 +60,12 @@
 		"login-introduce": "Please introduce yourself.",
 		"cancelStatusPurchase": "Please wait, the postcard is in preparation. If you want to cancel your purchase, please click 'Cancel' button.",	
 		"refundStatusPurchase": "Your refund requirement has been submitted. Please wait.",	
-		"sendStatusPurchase": "Your postcard is being sent. If you received the postcard, check please."	
+		"sendStatusPurchase": "Your postcard is being sent. If you received the postcard, 'confirm' please."	
 	},
 	"rewardPop": 
 	{
 		"content1": "You can collect rewards every time you post your artworks.<br> Until now, ",	
-		"content2": "times posting. Your total Rewards is ",	
+		"content2": " times posting. Your total Rewards is ",	
 		"content3": "<br><br><br>",
 		"content4": "If you apply for Rewards now, you can payback ",	
 		"content5": "excluding the commission fee $5 USD.",	
@@ -84,11 +84,11 @@
 	{
 		"contents": "Now is the beta test period. We will begin service shortly.<br><br><br><b>Send 3 free postcards till beta test period over.</b><br>Only $2 USD, you can have any images since commercial service.<br><br>Please click ‘Payment’ button to continue.",
 		"sender": "sender",
-		"address": "address"
+		"address": "addresses"
 	},	
 	"purchasePop2": 
 	{
-		"contents": "The postcard will be sent soon.<br>But, please wait, it will take a while.<br>All purchased postcards will be delivered through regular mail. We won't be able to guarantee specific delivery date.<br><br><br><b>Please share with your friends."
+		"contents": "The postcard will be sent soon.<br>But, please wait, it will take a while.<br>All purchased postcards will be delivered through regular mail. We won't be able to guarantee specific delivery date.<br><br><br><b>Please share with your friends.<br>"
 	},	
 	"personal": 
 	{
@@ -99,13 +99,13 @@
 		"successContent": "Image has been uploaded successfully.<br>Please share us your thoughts and feelings regarding this image.",
 		"failContent": "Larger size is required for high quality printing.<br><b>W: 1080px H: 1500px</b><br>",
 		"content1": "As many as you post your artworks,<br>the maximum number of uploading images will be increased.<br>You have posted",
-		"content2": "times. Your maximum number of posting is",
+		"content2": " times. Your maximum number of posting is ",
 		"content3": " <br> You are able to upload",
-		"content4": "more images.<br><br><br>The image should be larger than<br> W: <b>1080px</b> H: <b>1500px</b><br> <br><br><br><br><span style='color:rgb(150,0,0)'>If the unauthorized uploading of copyrighted works of others, you receive a sanction for the post. For more information, please check our <b>Terms & Policy</b> </span>"
+		"content4": " more images.<br><br><br>The image should be larger than<br> W: <b>1080px</b> H: <b>1500px</b><br> <br><br><br><br><span style='color:rgb(150,0,0)'>If the unauthorized uploading of copyrighted works of others, you receive a sanction for the post. For more information, please check our <b>Terms & Policy</b> </span>"
 	},
 	"detailPop":
 	{
-		"noData": "No data."
+		"noData": "Message does not exist about this picture.<br>Please leave your message by pressing 'post it' button."
 	},
 	"alert": 
 	{
