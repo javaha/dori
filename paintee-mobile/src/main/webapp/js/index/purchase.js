@@ -265,9 +265,9 @@ function Payment(){
     this.contents   = $("<div>").addClass("payment_contents").addClass("popup_contents");
     this.bottomMargin    = $("<div>").addClass("popup_margin_bottom");
     this.bottom     = $("<div>").addClass("payment_bottom").addClass("popup_bottom");
-    this.sociconFacebook =$("<img id='fac_share' src='/ico/social_facebook.png'>").addClass("icon").addClass("social_img");
-    this.sociconTwitter  =$("<img id='twi_share' src='/ico/social_twitter.png'>").addClass("icon").addClass("social_img");
-    this.sociconUrl      =$("<img id='url_share' src='/ico/social_url.png'>").addClass("icon").addClass("social_img");
+    this.sociconFacebook =$("<img id='fac_share' src='ico/social_facebook.png'>").addClass("icon").addClass("social_img");
+    this.sociconTwitter  =$("<img id='twi_share' src='ico/social_twitter.png'>").addClass("icon").addClass("social_img");
+    this.sociconUrl      =$("<img id='url_share' src='ico/social_url.png'>").addClass("icon").addClass("social_img");
 }
 
 Payment.prototype = {

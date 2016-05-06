@@ -99,11 +99,11 @@ var mainSwiper = new Swiper('.swiper_container', {
 // 각각의 home 화면 (follow/popular/new/my)
 function Home(){
         this.container  =$("<div>").addClass("home_container swiper-slide");
-        this.prev       =$("<div>").addClass("home_prev").html('<img class="icon" src="/ico/keyboard_arrow_down.png">').click(function(){mainSwiper.slidePrev()});
+        this.prev       =$("<div>").addClass("home_prev").html('<img class="icon" src="ico/keyboard_arrow_down.png">').click(function(){mainSwiper.slidePrev()});
         this.title      =$("<div>").addClass("home_title");
         this.contents   =$("<div>").addClass("home_contents");
         this.add        =$("<div>").addClass("home_contents_add");
-        this.next       =$("<div>").addClass("home_next").html('<img class="icon" src="/ico/keyboard_arrow_up.png">').click(function(){mainSwiper.slideNext()});
+        this.next       =$("<div>").addClass("home_next").html('<img class="icon" src="ico/keyboard_arrow_up.png">').click(function(){mainSwiper.slideNext()});
 }
 
 Home.prototype = {

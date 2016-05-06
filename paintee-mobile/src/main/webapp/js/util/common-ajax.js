@@ -33,7 +33,8 @@ var AjaxCall = {
 					}
 				}else{
 					alert($.i18n.t('alert.common.unkownServerError'));
-					location.href = "/";
+//					location.href = "/";
+					location.reload();
 				}
 				
 			}
@@ -73,7 +74,8 @@ var AjaxCall = {
 				}
 
 				alert($.i18n.t('alert.common.unkownServerError'));
-				location.href = "/";
+//				location.href = "/";
+				location.reload();
 			}
 		});
 	}

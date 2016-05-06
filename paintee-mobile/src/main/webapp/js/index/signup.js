@@ -34,7 +34,8 @@ SignupController.prototype = {
 //				alert('회원가입이 정상적으로 처리되었습니다.');
 			}
 
-			location.href = "/";
+//			location.href = "/";
+			location.reload();
 		} else if(result.errorNo != 0) {
 			alert($.i18n.t('alert.common.confirmEmailPass'));
 //			alert('이메일과 비밀번호를 확인하세요.');

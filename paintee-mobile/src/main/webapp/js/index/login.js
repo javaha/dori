@@ -19,9 +19,12 @@ LogInController.prototype = {
 		if(result.errorNo == 0) {
 			// console.log(result);
 			setUserInfoCookie(result);
-
+			
+			var userAgent = navigator.userAgent;
+			
+			location.reload();
 			//login 후 cookie 를 페이지에 적용하기 위하여 새로고침해야함.
-			location.href = "/";
+			//location.href = "/";
 		} else if(result.errorNo == 401 || result.errorNo == 402 || result.errorNo == 404) {
 //			alert('이메일과 비밀번호를 확인하세요.');
 			alert($.i18n.t('alert.login.confirmEmailPass'));
@@ -87,7 +90,8 @@ function logout() {
 
     clearUserInfoCookie();
     
-    location.href="/";
+    //location.href="/";
+    location.reload();
 }
 
 //로그인 화면
@@ -135,10 +139,11 @@ function loginSocialUser(response, providerId) {
 	var expireTime = response.authResponse.expiresIn;
 	var userId = response.authResponse.userID;
 	var providerId = providerId;
-
+	
+	
 	if (response.status === 'connected') {
 		FB.api('/me', {fields: 'email,name'}, function(response) {
-
+			
 			// Logged into your app and Facebook.
 			new LogInController().doSocialLogin(response.email, response.name, accessToken, expireTime, userId, providerId);
 		});
@@ -154,6 +159,7 @@ function loginSocialUser(response, providerId) {
 
 $('#login_facebook_btn').on('click', function() {
 	FB.login(function(response) {
+		
 		loginSocialUser(response, "FACEBOOK")
 	}, {scope: 'email,user_likes'});
 });

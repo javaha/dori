@@ -22,8 +22,8 @@ function DetailStructure(paintingId, paintingInfo){
     this.wrapper            =$("<div>").addClass("swiper-wrapper");
 
     this.detailMargin       =$("<div>").addClass("detail_margin").addClass("swiper-slide");
-    this.detailCloseIcon    =$("<img src='/ico/close.png'>").addClass("icon").addClass("detail_margin_close");
-    this.detailMarginIcon   =$("<img src='/ico/keyboard_arrow_up.png'>").addClass("icon").addClass("detail_margin_guide");
+    this.detailCloseIcon    =$("<img src='ico/close.png'>").addClass("icon").addClass("detail_margin_close");
+    this.detailMarginIcon   =$("<img src='ico/keyboard_arrow_up.png'>").addClass("icon").addClass("detail_margin_guide");
 
     this.detailArtist       =$("<div>").addClass("detail_artist").addClass("swiper-slide");
     this.detailArtistTop    =$("<div>").addClass("detail_artist_top");
@@ -41,9 +41,9 @@ function DetailStructure(paintingId, paintingInfo){
     this.detailArtistDate   =$("<div>").addClass("detail_artist_date");
     this.detailArtistBottom =$("<div>").addClass("detail_artist_bottom").html("Share to ");
 
-    this.sociconFacebook =$("<img id='detail_fac_share' src='/ico/social_facebook_white.png'>").addClass("icon").addClass("social_img");
-    this.sociconTwitter  =$("<img id='detail_twi_share' src='/ico/social_twitter_white.png'>").addClass("icon").addClass("social_img");
-    this.urlCopyIcon     =$("<img id='detail_url_copy' src='/ico/social_url_white.png'>").addClass("icon").addClass("social_img");
+    this.sociconFacebook =$("<img id='detail_fac_share' src='ico/social_facebook_white.png'>").addClass("icon").addClass("social_img");
+    this.sociconTwitter  =$("<img id='detail_twi_share' src='ico/social_twitter_white.png'>").addClass("icon").addClass("social_img");
+    this.urlCopyIcon     =$("<img id='detail_url_copy' src='ico/social_url_white.png'>").addClass("icon").addClass("social_img");
 
     this.detailPostbar      =$("<div>").addClass("detail_postbar").addClass("swiper-slide");
     this.detailPostbarPostnum=$("<div>").addClass("detail_postbar_postnum");
@@ -51,7 +51,7 @@ function DetailStructure(paintingId, paintingInfo){
 
     this.detailPostBtn      =$("<div>").addClass("detail_post_btn").html("post it").click(function(){purchase(paintingId)});
     this.detailScroll       =$("<div>").addClass("swiper-scrollbar").addClass("swiper-scrollbar-detail");
-    this.returnBtn          =$("<div>").addClass("return_btn").html("<img class='icon' src='/ico/keyboard_backspace.png' />");
+    this.returnBtn          =$("<div>").addClass("return_btn").html("<img class='icon' src='ico/keyboard_backspace.png' />");
 }
 
 DetailStructure.prototype = {
