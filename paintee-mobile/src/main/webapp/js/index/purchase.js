@@ -292,23 +292,23 @@ function initPayment(serviceCnt){
     $(".payment_box").empty();
     var payment = new Payment();
     payment.setTitle("Payment");
-    var contents = "<span class='reward_money'>" + serviceCnt + "/3</span><br>" 
-    	         + "<span data-i18n='[html]purchasePop1.contents'></span>"
-    payment.setContents(contents);
-    payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><img class='icon' src='/ico/create.png'><div class='purchase_btn_text' onclick='history.back();'>edit address</div></div><div class='popup_btn payment_btn'><div class='purchase_btn_text'>Payment </div><img class='icon' src='/ico/payment.png'></div>");
-    payment.buildPayment();
-    $(".payment_btn").click(function(){
-    	// ---------------------------------------
-    	// 서비스 카운트가 없을 경우 결재모드 태워야함
-    	if (serviceCnt <= 0) {
-    		alert("Service Count: 0");
-    	}else{
-    		purchaseController.addPurchase(serviceCnt);
-            showPurchaseSpinner();
-    	}
-    	// ---------------------------------------
-        
-    })
+    if (serviceCnt <= 0) {
+         var contents = "<span class='reward_money'>" + serviceCnt + "/3</span><br>"
+                     + "<span data-i18n='[html]purchasePop1.alert'></span>"
+        payment.setContents(contents);
+        payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><img class='icon' src='/ico/create.png'><div class='purchase_btn_text' onclick='history.back();'>edit address</div></div>");
+        payment.buildPayment();
+    }else{
+        var contents = "<span class='reward_money'>" + serviceCnt + "/3</span><br>"
+                     + "<span data-i18n='[html]purchasePop1.contents'></span>"
+        payment.setContents(contents);
+        payment.setBottom("<div class='popup_cancle_btn payment_cancle_btn'><img class='icon' src='/ico/create.png'><div class='purchase_btn_text' onclick='history.back();'>edit address</div></div><div class='popup_btn payment_btn'><div class='purchase_btn_text'>Payment </div><img class='icon' src='/ico/payment.png'></div>");
+        payment.buildPayment();
+        $(".payment_btn").click(function(){
+                purchaseController.addPurchase(serviceCnt);
+                showPurchaseSpinner();
+        })
+    }
     delete payment;
     
     // 다국어 처리

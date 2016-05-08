@@ -83,6 +83,7 @@
 	"purchasePop1": 
 	{
 		"contents": "Now is the beta test period. We will begin service shortly.<br><br><br><b>Send 3 free postcards till beta test period over.</b><br>Only $2 USD, you can have any images since commercial service.<br><br>Please click ‘Payment’ button to continue.",
+        "alert": "Now is the beta test period. We will begin service shortly.<br><br><br>Only $2 USD, you can have any images since commercial service.<br><br>Please, wait commercial service.",
 		"sender": "sender",
 		"address": "addresses"
 	},	
@@ -105,7 +106,7 @@
 	},
 	"detailPop":
 	{
-		"noData": "Message does not exist about this picture.<br>Please leave your message by pressing 'post it' button."
+		"noData": "Message does not exist about this image.<br>Please leave your message by pressing 'post it' button."
 	},
 	"alert": 
 	{
