@@ -89,7 +89,7 @@
 			<td class="tcenter">
 				<fmt:formatDate value="${data.purchaseDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 			</td>
-			<td class="tcenter"><a href="/cmm/file/download/${data.fileInfo.id}">다운</a></td>
+			<td class="tcenter"><a href="${pageContext.request.contextPath}/cmm/file/download/${data.fileInfo.id}">다운</a></td>
 			<td class="tcenter">
 				<select id="purchaseSel${data.seq}" name="purchaseSel">
 				<c:forEach var="status" items="${statusList}">
