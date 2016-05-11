@@ -729,7 +729,16 @@ body{
     line-height: 1.25em;
     background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#f2f2f2));
 }
-
+#layer{
+    position: absolute;
+    overflow: hidden;
+    z-index: 1;
+    width: 47%;
+    height: 95%;
+    border: 5px solid rgb(51, 68, 85);
+    right: 10px;
+    top: 5px;
+}
 .purchase_select{
     box-sizing: border-box;
     width: 100%;
