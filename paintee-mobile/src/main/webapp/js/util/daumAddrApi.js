@@ -67,13 +67,6 @@ function execDaumPostcode(searchModule, zipcodeFieldName, basicAddrFieldName) {
 
     // iframe을 넣은 element를 보이게 한다.
     openLayer.style.display = 'block';
-
-    if(searchModule == 'purchase') {
-    	// iframe을 넣은 element의 위치를 화면의 가운데로 이동시킨다.
-    	initLayerPositionForPurchase();
-    } else if(searchModule == 'profile') {
-    	initLayerPositionForProfile();
-    }
 }
 
 // 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
