@@ -347,6 +347,7 @@ PurchaseController.prototype = {
 	purchasePopInfoRes: function (result) {
 		if (result.count == 0 && onceAboutPost == true) {
 			showAboutPost();
+			onceAboutPost = false;
 		}
 		initPurchasePop(result);
 	},
