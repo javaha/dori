@@ -357,9 +357,9 @@ function getImageUrls(fileId, ratio) {
 	if (ratio == 1) 
 		return imageUrl + "/cmm/file/view/2/" + fileId + " 729w, " + imageUrl + "/cmm/file/view/3/" + fileId + " 405w";
 	if (ratio == 2) 
-		return imageUrl + "/cmm/file/view/1/" + fileId + " 675w, " + imageUrl + "/cmm/file/view/2/" + fileId + " 405w, " + imageUrl + "/cmm/file/view/3/" + fileId + " 225w";
+		return imageUrl + "/cmm/file/view/2/" + fileId + " 405w, " + imageUrl + "/cmm/file/view/3/" + fileId + " 225w";
 	if (ratio == 3) 
-		return imageUrl + "/cmm/file/view/1/" + fileId + " 450w, " + imageUrl + "/cmm/file/view/2/" + fileId + " 270w, " + imageUrl + "/cmm/file/view/3/" + fileId + " 150w";
+		return imageUrl + "/cmm/file/view/2/" + fileId + " 270w, " + imageUrl + "/cmm/file/view/3/" + fileId + " 150w";
 }
 
 function convertToBr(str) {
