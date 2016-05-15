@@ -211,7 +211,7 @@ function failUpload(){
 
 	var uploadFail = new Upload();
 	uploadFail.setTitle("Upload Painting");
-	uploadFail.setContents('<span data-i18n="[html]uploadPop.failContent" style='color:rgb(150,0,0)></span>');
+	uploadFail.setContents('<span data-i18n="[html]uploadPop.failContent" style="color:rgb(150,0,0)"></span>');
 	uploadFail.setBottom("<div class='popup_btn upload_btn uploadFileBox'><label for='painteeFile' class='upload_btn_text'>Select image file </label><img class='icon' src='ico/folder.png'><input type='file' id='painteeFile' name='painteeFile' title='' class='upload-input-hidden' /></div>");
 	uploadFail.buildUpload();
 
