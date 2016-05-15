@@ -545,8 +545,8 @@ body{
 }
 .account_close_btn{
     position: fixed;
-    left: 0;
-    top: 0;
+    left: 0px;
+    top: 0px;
     padding: 5px;
     color: white;
     font-size: 24px;
