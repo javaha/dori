@@ -1303,7 +1303,7 @@ body{
 .about_wrapper{
     position: relative;
     height: 100%;
-    transition: left 300ms;
+    //transition: left 300ms;
 }
 .about_card{
     position: relative;

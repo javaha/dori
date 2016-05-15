@@ -119,6 +119,9 @@ function slideAboutNavi(index){
 	$(".about_navi_tab").eq(index).addClass("about_navi_selected");
 	$(".about_navi").css("left", (mainWidth/2)-(aboutIndex*140)-70);
 	$(".about_wrapper").css("left", -(aboutIndex*mainWidth));
+    if(overviewSwiper) overviewSwiper.slideTo(0);
+    if(postSwiper) postSwiper.slideTo(0);
+    if(uploadSwiper) uploadSwiper.slideTo(0);
 }
 
 $(".return_btn").click(function(){
@@ -155,7 +158,6 @@ function showAboutOverview(){	  // 4.3 수정
 			if($(".about_navi").css("display")=="block"){
 				if(translate < -(mainWidth*2.25)){
 					 slideAboutNavi(1)
-					 swiper.slideTo(0)
 				 }
 			}
 		});
@@ -180,10 +182,8 @@ function showAboutPost(){	   // 4.3 수정
 			if($(".about_navi").css("display")=="block"){
 				if(translate>(mainWidth/4)){
 					 slideAboutNavi(0)
-					 swiper.slideTo(0)
 				 }else if(translate < -(mainWidth*5.25)){
 					 slideAboutNavi(2)
-					 swiper.slideTo(0)
 				 }	
 			}
 		});
@@ -210,10 +210,8 @@ function showAboutUpload(){	 // 4.3 수정
 			if($(".about_navi").css("display")=="block"){
 				if(translate>(mainWidth/4)){
 					 slideAboutNavi(1)
-					 swiper.slideTo(0)
 				 }else if(translate < -(mainWidth*5.25)){
 					 slideAboutNavi(3)
-					 swiper.slideTo(0)
 				 }
 			}
 		});
@@ -253,7 +251,6 @@ $(".about_card_contact").swipe({	// 4.3 수정
 	},
 	swipeRight:function(){
 		slideAboutNavi(2);
-		uploadSwiper.slideTo(0);
 	},
 	threshold:10
 });
