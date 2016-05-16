@@ -742,9 +742,10 @@ $(".side_menu_lang_select").change(function(event) {
  */
 $(".stopper").show();
 var imgChecher = setInterval(function(){
-    if($(".list_painting").last()[0].complete){
+    $(".list_painting").each(function(){
+        if(!this.complete) return false;
         $(".stopper").hide();
         $(".splash").fadeOut(3000);
         clearInterval(imgChecher);
-    }
+    })
 }, 500)
