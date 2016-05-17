@@ -45,7 +45,7 @@ About.prototype = {
 }
 function buildOverview(){
     var overview = new About();
-    overview.setParallax("url(./images/about_1.gif)");
+    overview.setParallax("url(./images/overview.jpg)");
     overview.setPagination("overview");
     overview.addCard('[html]about.overview.randingCardTitle',
                      '[html]about.overview.randingCardContents');
@@ -53,13 +53,15 @@ function buildOverview(){
                      '[html]about.overview.randingCardContents2');
     overview.addCard('[html]about.overview.randingCardTitle3',
                      '[html]about.overview.randingCardContents3');
+    overview.addCard('[html]about.overview.randingCardTitle4',
+                     '[html]about.overview.randingCardContents4');
     overview.buildAbout($(".swiper_container_overview"));
     delete overview;
 };
 
 function buildPost(){
     var post = new About();
-    post.setParallax("url(./images/about_2.gif)");
+    //post.setParallax("url(./images/about_2.gif)");
     post.setPagination("post");
     post.addCard('[html]about.post.randingCardTitle1',
                  '[html]about.post.randingCardContents1');
@@ -69,17 +71,13 @@ function buildPost(){
                  '[html]about.post.randingCardContents3');
     post.addCard('[html]about.post.randingCardTitle4',
                  '[html]about.post.randingCardContents4');
-    post.addCard('[html]about.post.randingCardTitle5',
-                 '[html]about.post.randingCardContents5');
-    post.addCard('[html]about.post.randingCardTitle6',
-                 '[html]about.post.randingCardContents6');
     post.buildAbout($(".swiper_container_post"));
     delete post;
 };
 
 function buildUpload(){
     var upload = new About();
-    upload.setParallax("url(./images/about_3.gif)");
+    //upload.setParallax("url(./images/about_3.gif)");
     upload.setPagination("upload");
     upload.addCard('[html]about.upload.randingCardTitle1',
                    '[html]about.upload.randingCardContents1');
@@ -89,10 +87,6 @@ function buildUpload(){
                    '[html]about.upload.randingCardContents3');
     upload.addCard('[html]about.upload.randingCardTitle4',
                    '[html]about.upload.randingCardContents4');
-    upload.addCard('[html]about.upload.randingCardTitle5',
-                   '[html]about.upload.randingCardContents5');
-    upload.addCard('[html]about.upload.randingCardTitle6',
-                   '[html]about.upload.randingCardContents6');
     upload.buildAbout($(".swiper_container_upload"));
     delete upload;
 };
@@ -156,7 +150,7 @@ function showAboutOverview(){	  // 4.3 수정
 		});
 		overviewSwiper.on("onSetTranslate", function(swiper, translate){
 			if($(".about_navi").css("display")=="block"){
-				if(translate < -(mainWidth*2.25)){
+				if(translate < -(mainWidth*3.25)){
 					 slideAboutNavi(1)
 				 }
 			}
@@ -182,7 +176,7 @@ function showAboutPost(){	   // 4.3 수정
 			if($(".about_navi").css("display")=="block"){
 				if(translate>(mainWidth/4)){
 					 slideAboutNavi(0)
-				 }else if(translate < -(mainWidth*5.25)){
+				 }else if(translate < -(mainWidth*3.25)){
 					 slideAboutNavi(2)
 				 }	
 			}
@@ -210,7 +204,7 @@ function showAboutUpload(){	 // 4.3 수정
 			if($(".about_navi").css("display")=="block"){
 				if(translate>(mainWidth/4)){
 					 slideAboutNavi(1)
-				 }else if(translate < -(mainWidth*5.25)){
+				 }else if(translate < -(mainWidth*3.25)){
 					 slideAboutNavi(3)
 				 }
 			}

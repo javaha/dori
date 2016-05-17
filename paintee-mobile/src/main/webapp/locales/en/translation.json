@@ -1,41 +1,35 @@
 {
 	"about": 
 	{
-		"overview": {
-			"randingCardTitle": "You can see images in Paintee.<br>Paintee is not difficult to use.",
-			"randingCardContents": "Paintee is full of images,<br>where you can be an author, and it is easy to have those as well.<br>We all had a lovely moment spending time with pictures.<br>Here today, you can recall the moment by having an image that makes you happy.",
-			"randingCardTitle2": "You can have any image at $2 USD.",
-			"randingCardContents2": "No matter where you are, where you send. You don’t need to spend more than $2 USD.<br>What you need is spending $2 USD only to send an image to anyone you want with a short message.<br>That image with a message from you is surely more valuable than anything.",
-			"randingCardTitle3": "Be an author and talk to others.",
-			"randingCardContents3": "How about becoming an author? Isn’t it super exciting to have someone like your image?<br>Upload your image, then people can have a personalized postcard with your image.<br>We help you do all these things, and pay you back a percentage for your image sold."
+        "overview": {
+			"randingCardTitle": "You can see paintings in Paintee.",
+			"randingCardContents": "Paintee is full of paintings,<br>where you can be an artist,<br>and it is easy to have those as well.",
+			"randingCardTitle2": "You can get any painting you want.",
+			"randingCardContents2": "You can get all paintings in Paintee as a postcard form.<br>Just click 'Post it' button.",
+			"randingCardTitle3": "$2 USD is all you have to pay.",
+			"randingCardContents3": "No additional shipping fee is required.<br>You can send anywhere with $2 USD only.",
+            "randingCardTitle4": "Your painting will become a postcard.",
+			"randingCardContents4": "It will be a real postcard.<br>Only enough size of image is needed"
 		},
 		"post": {
-			"randingCardTitle1": "You can get any image you want.",
-			"randingCardContents1": "You can get all images in Paintee as a postcard form. Just click 'Post it' button. It is simple to have images. Purchase history will be saved in My History.",
-			"randingCardTitle2": "Keep it, or share it",
-			"randingCardContents2": "You can send the postcard to yourself, or it can be other person. Please enter the exact address and doublecheck it.",
-			"randingCardTitle3": "What do you think? What message do you want to share?",
-			"randingCardContents3": "What does this image mean to you? Please share your message. Your message will be delivered with the image.",
-			"randingCardTitle4": "$2 USD is all you have to pay.",
-			"randingCardContents4": "No additional shipping fee is required. You can send anywhere with $2 USD only.",
-			"randingCardTitle5": "Please wait, it takes a while.",
-			"randingCardContents5": "All purchased postcards will be delivered through regular mail. We won't be able to guarantee specific delivery date. Please wait a while. If it is not delivered even within 30 days, please let us know.",
-			"randingCardTitle6": "Your support will be a lot to the authors.",
-			"randingCardContents6": "Part of your $2 USD support will be contributed to the authors for the sponsorship. It will be a great encouragement to the author of your postcard."
+			"randingCardTitle1": "eep it, or share it",
+			"randingCardContents1": "You can send the postcard to yourself,<br>or it can be other person.<br>Please enter the exact address and doublecheck it.",
+			"randingCardTitle2": "Share your message.",
+			"randingCardContents2": "Your message will be delivered with the painting.",
+			"randingCardTitle3": "Please wait, it takes a while",
+			"randingCardContents3": "All purchased postcards will be delivered through regular mail.",
+			"randingCardTitle4": "Your support will be a lot to the artists.",
+			"randingCardContents4": "Part of your $2 USD support will be contributed to the artists for the sponsorship."
 		}, 
 		"upload": {
 			"randingCardTitle1": "Your image will become a postcard.",
-			"randingCardContents1": "It will truly be a postcard, which delivers a message to the people in the world with your artwork printed.",
+			"randingCardContents1": "It will truly be a postcard,<br>which delivers a message to the people in the world<br>with your artwork printed.",
 			"randingCardTitle2": "You can upload only one image for now.",
-			"randingCardContents2": "We are managing the maximum number of upload images. For now, you may upload one image.",
-			"randingCardTitle3": "Your image needs to be sold for five times <br>in order to upload one more image.",
-			"randingCardContents3": "Your image needs to be sold for five times in order to upload one more image. If your image gets many likes, you can upload more images.",
-			"randingCardTitle4": "Enough size of image is needed.",
-			"randingCardContents4": "Enough size of image is needed to make a real postcard. Please prepare an image larger than 1080 x 1920 pixel.",
-			"randingCardTitle5": "All postcards have same price",
-			"randingCardContents5": "We offer all of postcards at $2 USD.We set the lowest price pictures for everyone to experience more images",
-			"randingCardTitle6": "25% of selling price will be paid back to you.",
-			"randingCardContents6": "You can get $0.5 USD of rewards per one postcard sold. Collect your reward to get the actual money back. You can share your artworks with people all over the world."
+			"randingCardContents2": "Your image needs to be sold for five times<br>in order to upload one more image.<br>If your image gets many likes,<br>you can upload more images",
+			"randingCardTitle3": "Enough size of image is needed.",
+			"randingCardContents3": "Enough size of image is needed to make a real postcard.<br>Please prepare an image larger than 1080 x 1920 pixel.",
+			"randingCardTitle4": "25% of selling price will be paid back to you.",
+			"randingCardContents4": "You can get $0.5 USD of rewards per one postcard sold.<br>Collect your reward to get the actual money back."
 		}
 	},
 	"follow": 
