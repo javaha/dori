@@ -45,7 +45,7 @@ About.prototype = {
 }
 function buildOverview(){
     var overview = new About();
-    //overview.setParallax("url(./images/about_1.gif)");
+    overview.setParallax("url(./images/overview.jpg)");
     overview.setPagination("overview");
     overview.addCard('[html]about.overview.randingCardTitle',
                      '[html]about.overview.randingCardContents');
