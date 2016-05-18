@@ -61,7 +61,7 @@ function buildOverview(){
 
 function buildPost(){
     var post = new About();
-    //post.setParallax("url(./images/about_2.gif)");
+    post.setParallax("url(./images/post.jpg)");
     post.setPagination("post");
     post.addCard('[html]about.post.randingCardTitle1',
                  '[html]about.post.randingCardContents1');
@@ -77,7 +77,7 @@ function buildPost(){
 
 function buildUpload(){
     var upload = new About();
-    //upload.setParallax("url(./images/about_3.gif)");
+    upload.setParallax("url(./images/upload.jpg)");
     upload.setPagination("upload");
     upload.addCard('[html]about.upload.randingCardTitle1',
                    '[html]about.upload.randingCardContents1');
