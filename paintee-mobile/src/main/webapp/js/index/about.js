@@ -228,6 +228,14 @@ $('#menu_about').on('click', function(){
     sideOff();
 });
 
+$(".about_guide").click(function(){
+		$(".about_container").hide();
+		$(".about_navi").hide();
+		$(".about_card").hide();
+		slideAboutNavi(0);
+		boxStatus="";
+});
+
 $(".about_card:lt(3)").swipe({	// 4.3 수정
 	swipeUp:function(){
 		$(".about_container").hide();
