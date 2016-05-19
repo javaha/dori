@@ -435,8 +435,7 @@ function showResend(clicked, listData){
 
 function showDelete(clicked, listData){
     $(clicked).parent().find(".list_delete_btn").fadeIn().one("click", function () {
-        alert("delete!")
-        //new PurchaseController().delStatusPurchase(listData);
+        new PurchaseController().delStatusPurchase(listData);
    		hideCancel(this);
     });
     // 텍스트 문구 수정 sendStatus 블라블라
