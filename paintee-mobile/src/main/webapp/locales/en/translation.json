@@ -54,7 +54,8 @@
 		"login-introduce": "Please introduce yourself.",
 		"cancelStatusPurchase": "Please wait, the postcard is in preparation. If you want to cancel your purchase, please click 'Cancel' button.",	
 		"refundStatusPurchase": "Your refund requirement has been submitted. Please wait.",	
-		"sendStatusPurchase": "Your postcard is being sent. If you received the postcard, 'confirm' please."	
+		"sendStatusPurchase": "Your postcard is being sent. If you received the postcard, 'confirm' please.",
+        "deleteStatusPurchase": "Are you sure want to delete this image?"
 	},
 	"rewardPop": 
 	{

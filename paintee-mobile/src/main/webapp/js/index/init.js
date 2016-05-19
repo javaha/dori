@@ -175,7 +175,8 @@ function Structure(data) {
         this.listCancelBtn      =$("<div>").addClass("list_cancel_btn").html("Cancel");  
         this.listRefundBtn      =$("<div>").addClass("list_refund_btn").html("Cancel Refund");  
         this.listResendBtn      =$("<div>").addClass("list_resend_btn").html("Resend");  
-        this.listConfirmBtn     =$("<div>").addClass("list_confirm_btn").html("Confirm"); 
+        this.listConfirmBtn     =$("<div>").addClass("list_confirm_btn").html("Confirm");
+        this.listDeleteBtn      =$("<div>").addClass("list_delete_btn").html("Delete");
 }
 Structure.prototype = {
         setSentence:        function(sentence, wrighter){
@@ -187,7 +188,6 @@ Structure.prototype = {
         setDate:            function(date){
                                 this.listInfoDate.html(date)
                             },
-//        setPainting:        function(paintingId, imageUrl){
        	setPainting:        function(paintingId, fileId, type){
                                 if(mainWidth<729){
                                     this.listPainting.css({"width": mainWidth*0.8, "height": mainWidth*10/9});
@@ -209,8 +209,6 @@ Structure.prototype = {
 	                                	}
                                 	}
                                 } else {
-                                	// image lazy loading을 사용할 경우, 아래 코드 이용 + swiper 초기화시 lazyLoading: true 선언 필요
-//                                	this.listPainting.attr("src", getImageUrls(fileId));
                                 	this.listPainting.addClass("swiper-lazy");
                                 	this.listPainting.attr("data-src", getImageUrls(fileId));
                                 	if (window.devicePixelRatio) {
@@ -252,7 +250,7 @@ Structure.prototype = {
                                                       .html("preparing")
                                                       .attr("id", "exeBtn" + listData.seq)
                                                       .click(function(){
-                                                    	  		showCancel(this, listData);
+                                                            showCancel(this, listData);
                                                       });
                                 } else if(listData.paintingStatus == "2"){                                                     
                                     this.listStatusBtn.addClass("list_status_sended")
@@ -271,15 +269,22 @@ Structure.prototype = {
                                 } else if(listData.paintingStatus == "99"){                                                       
                                     this.listStatusBtn.addClass("list_status_done")
                                     				  .html("delete")
-                                    				  .click(function () {
+                                                      .attr("id", "exeBtn" + listData.seq)
+					                                  .click(function(){
+							                              showDelete(this, listData);
+							                          });
+/*                                    				  .click(function () {
                                     					  new PurchaseController().delStatusPurchase(listData); 
-                                    				  });             
+                                    				  }); */
                                 } else if (listData.paintingStatus == "N"){                                                       
                                 	this.listStatusBtn.addClass("list_status_done")
 					                  				  .html("delete")
-					                  				  .click(function () {
+                                                      .click(function(){
+							                              showDelete(this, listData);
+							                          });
+/*					                  				  .click(function () {
 					                  					  new PurchaseController().delStatusPainting(listData); 
-					                  				  });                          
+					                  				  });  */
                                 }
                                 
         },                            
@@ -306,7 +311,8 @@ Structure.prototype = {
                                 		this.container.append(this.listCancelBtn);  
                                 		this.container.append(this.listRefundBtn);  
                                 		this.container.append(this.listResendBtn);  
-                                		this.container.append(this.listConfirmBtn); 
+                                		this.container.append(this.listConfirmBtn);
+                                        this.container.append(this.listDeleteBtn);
                                 		this.container.append(this.listStatusStc);
                                 		break;
                                 	}
@@ -386,6 +392,10 @@ function hideCancel(clicked){
         $(clicked).parent().find(".list_confirm_btn").fadeOut();
         $(clicked).parent().find(".list_status_sentence").fadeOut();
         deleteTimer();
+    }else if($(clicked).html()=="delete"){
+        $(clicked).parent().find(".list_delete_btn").fadeOut();
+        $(clicked).parent().find(".list_status_sentence").fadeOut();
+        deleteTimer();
     }
 }
 
@@ -421,6 +431,18 @@ function showResend(clicked, listData){
     $(clicked).parent().find(".list_status_sentence").empty().html("<span data-i18n='[html]my.sendStatusPurchase'></span>").fadeIn().click(function(){hideCancel(this)});
     startTimer(clicked);
     exeTranslation('.main_container', lang);
+}
+
+function showDelete(clicked, listData){
+    $(clicked).parent().find(".list_delete_btn").fadeIn().one("click", function () {
+        alert("delete!")
+        //new PurchaseController().delStatusPurchase(listData);
+   		hideCancel(this);
+    });
+    // 텍스트 문구 수정 sendStatus 블라블라
+    $(clicked).parent().find(".list_status_sentence").empty().html("<span data-i18n='[html]my.deleteStatusPurchase'></span>").fadeIn().click(function(){hideCancel(this)});
+    startTimer(clicked);
+    exeTranslation('#my', lang);
 }
 
 // 최초 5개 미리 생성
@@ -564,10 +586,25 @@ function setWidth() {
     }
     setBox();
     if($(".list_artist_btn").position()){
-        if($(".list_artist_btn").position().top>($(".list_painting").position().top+$(".list_painting").height())){
+        var fullBreakpoint = mainHeight-$(".list_painting").position().top-$(".list_painting").height()
+        if(fullBreakpoint > 50){
             fullImage = true;
+            $(".list_status_btn").css("bottom", fullBreakpoint+10);
+            $(".list_cancel_btn").css("bottom", fullBreakpoint+10);
+            $(".list_refund_btn").css("bottom", fullBreakpoint+10);
+            $(".list_resend_btn").css("bottom", fullBreakpoint+10);
+            $(".list_confirm_btn").css("bottom", fullBreakpoint+10);
+            $(".list_delete_btn").css("bottom", fullBreakpoint+10);
+            $(".list_status_sentence").css("bottom", fullBreakpoint);
         }else{
             fullImage = false;
+            $(".list_status_btn").removeAttr("style");
+            $(".list_cancel_btn").removeAttr("style");
+            $(".list_refund_btn").removeAttr("style");
+            $(".list_resend_btn").removeAttr("style");
+            $(".list_confirm_btn").removeAttr("style");
+            $(".list_delete_btn").removeAttr("style");
+            $(".list_status_sentence").removeAttr("style");
         }
     }
 }
@@ -745,7 +782,11 @@ var imgChecher = setInterval(function(){
     $(".list_painting").each(function(){
         if(!this.complete) return false;
         $(".stopper").hide();
-        $(".splash").fadeOut(3000);
+        if(userID==""){
+            $(".splash").fadeOut(3000);
+        }else{
+            $(".splash").fadeOut(1000);
+        }
         clearInterval(imgChecher);
     })
 }, 500)

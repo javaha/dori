@@ -54,7 +54,8 @@
 		"login-introduce": "여기에 자신을 소개할 문구를 넣어주세요.",
 		"cancelStatusPurchase": "조금만 기다려주세요, 엽서가 배송준비중입니다. 구매를 취소하려면 Cancel버튼을 이용하세요.",	
 		"refundStatusPurchase": "환불요청이 접수되었습니다. 잠시만 기다려주세요",		
-		"sendStatusPurchase": "엽서가 배송되었습니다. 엽서가 도착하면 확인해주세요."	
+		"sendStatusPurchase": "엽서가 배송되었습니다. 엽서가 도착하면 확인해주세요.",
+        "deleteStatusPurchase": "정말로 삭제하시겠습니까?"
 	},
 	"rewardPop": 
 	{
