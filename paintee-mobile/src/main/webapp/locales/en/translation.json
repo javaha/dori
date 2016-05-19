@@ -12,7 +12,7 @@
 			"randingCardContents4": "It will be a real postcard.<br>Only enough size of image is needed"
 		},
 		"post": {
-			"randingCardTitle1": "eep it, or share it",
+			"randingCardTitle1": "Keep it, or share it",
 			"randingCardContents1": "You can send the postcard to yourself,<br>or it can be other person.<br>Please enter the exact address and doublecheck it.",
 			"randingCardTitle2": "Share your message.",
 			"randingCardContents2": "Your message will be delivered with the painting.",
@@ -92,7 +92,7 @@
 	"uploadPop":
 	{
 		"successContent": "Image has been uploaded successfully.<br>Please share us your thoughts and feelings regarding this image.",
-		"failContent": "Larger size is required for high quality printing.<br><b>W: 1080px H: 1500px</b><br>",
+		"failContent": "<b>Upload Failed!</b><br>Larger size is required for high quality printing.<br><b>W: 1080px H: 1500px</b><br>",
 		"content1": "As many as you post your artworks,<br>the maximum number of uploading images will be increased.<br>You have posted",
 		"content2": " times. Your maximum number of posting is ",
 		"content3": " <br> You are able to upload",
