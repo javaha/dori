@@ -174,7 +174,7 @@ function Structure(data) {
         this.listStatusStc      =$("<div>").addClass("list_status_sentence");            
         this.listCancelBtn      =$("<div>").addClass("list_cancel_btn").html("Cancel");  
         this.listRefundBtn      =$("<div>").addClass("list_refund_btn").html("Cancel Refund");  
-        this.listResendBtn      =$("<div>").addClass("list_resend_btn").html("Resend");  
+        //this.listResendBtn      =$("<div>").addClass("list_resend_btn").html("Resend");
         this.listConfirmBtn     =$("<div>").addClass("list_confirm_btn").html("Confirm");
         this.listDeleteBtn      =$("<div>").addClass("list_delete_btn").html("Delete");
 }
@@ -310,7 +310,7 @@ Structure.prototype = {
                                 		this.container.append(this.listStatusBtn);  
                                 		this.container.append(this.listCancelBtn);  
                                 		this.container.append(this.listRefundBtn);  
-                                		this.container.append(this.listResendBtn);  
+                                		//this.container.append(this.listResendBtn);
                                 		this.container.append(this.listConfirmBtn);
                                         this.container.append(this.listDeleteBtn);
                                 		this.container.append(this.listStatusStc);
@@ -388,7 +388,7 @@ function hideCancel(clicked){
 	    $(clicked).parent().find(".list_status_sentence").fadeOut();
         deleteTimer();
     }else if($(clicked).html()=="sended"){
-        $(clicked).parent().find(".list_resend_btn").fadeOut();
+        //$(clicked).parent().find(".list_resend_btn").fadeOut();
         $(clicked).parent().find(".list_confirm_btn").fadeOut();
         $(clicked).parent().find(".list_status_sentence").fadeOut();
         deleteTimer();
@@ -420,10 +420,10 @@ function showRefund(clicked, listData){
 }
 
 function showResend(clicked, listData){
-    $(clicked).parent().find(".list_resend_btn").fadeIn().one("click", function () { 
+/*    $(clicked).parent().find(".list_resend_btn").fadeIn().one("click", function () {
    		new PurchaseController().resendPurchase(listData); 
    		hideCancel(this);
-    });
+    });*/
     $(clicked).parent().find(".list_confirm_btn").fadeIn().click(function(){
     	new PurchaseController().completePurchase(listData); 
     	hideCancel(this)
