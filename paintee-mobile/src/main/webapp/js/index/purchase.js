@@ -25,6 +25,7 @@ function initPurchasePop(result) {
 	$(".purchase_container").show();
     
     // 주소설정...
+    $("[name=senderName]").val(userInfo.name);
     $("[name=location]").val(result.user.location ? result.user.location : 'Korea');
     $("[name=receiverBasicAddr]").val(result.user.basicAddr);
     $("[name=receiverDetailAddr]").val(result.user.detailAddr);
