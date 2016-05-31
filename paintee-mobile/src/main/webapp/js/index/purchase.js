@@ -136,6 +136,24 @@ $("[name=location]").change(function(e){
 	e.stopPropagation();
 });
 
+
+function callback(searchModule){
+	replaceHistory({"call": "purchasePop"});
+    addHistory({"call": "purchaseStep1"});
+    
+    if($(".detail").css("display") == "block") {
+        replaceHistory({"call": "detailPop"});
+        addHistory({"call": "dummy"});
+    }
+    if(searchModule == 'purchase') {
+        // 구매정보 히스트리
+    	replaceHistory({"call": "purchasePop"});
+        addHistory({"call": "purchaseStep1"});
+    } else if(searchModule == 'profile') {
+
+    }
+};
+
 function setPostUI(type) {
 	if (type == 'Korea') {
 		// 기본 주소 선택시 
@@ -144,8 +162,10 @@ function setPostUI(type) {
 		$("[name=receiverZipcode]").attr("readOnly", "readOnly");
 		$("[name=receiverBasicAddr]").attr("readOnly", "readOnly");
 		$("[name=receiverBasicAddr]").focus(function () {
-			execDaumPostcode('purchase', 'receiverZipcode', 'receiverBasicAddr')
-		});
+			
+			$(function() { $("[name=receiverBasicAddr]").postcodifyPopUp(); });
+//			execDaumPostcode('purchase', 'receiverZipcode', 'receiverBasicAddr')
+			});
 	} else {
 		// 주소에 설정된 이벤트 삭제
 		$("[name=receiverBasicAddr]").off();

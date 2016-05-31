@@ -34,9 +34,9 @@ ProfileController.prototype = {
 			if(userInfo.location) {
 				$('#profileLocation').val(userInfo.location);
 			}
-
+			
 			setProfilePostUI($("[name=profileLocation]").val());
-
+			
 			//사용자 정보 set
 		    boxStatus = "profile";
 		    setBox();
@@ -129,18 +129,23 @@ function showProfile() {
 }
 
 $("[name=profileLocation]").change(function(e){
+	
 	setProfilePostUI($("[name=profileLocation]").val());
 	e.stopPropagation();
 });
 
 function setProfilePostUI(type) {
+	
 	if (type == 'Korea') {
 		// 기본 주소 선택시 
+		console.log('test');
 		$("[name=profileCity]").attr("disabled", "disabled");
         $("[name=profileCity]").addClass("input_disable")
 		$("[name=profileBasicAddr]").attr("readOnly", "readOnly");
-		$("[name=profileBasicAddr]").focus(function () {
-			execDaumPostcode('profile', 'profileZipcode', 'profileBasicAddr')
+		$("#profileBasicAddr").focus(function () {
+
+			$(function() { $("#profileBasicAddr").postcodifyPopUp(); });
+//			execDaumPostcode('profile', 'profileZipcode', 'profileBasicAddr')
 		});
 	} else {
 		// 주소에 설정된 이벤트 삭제

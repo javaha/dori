@@ -15,6 +15,8 @@
     <!-- CSS  -->
     <link href="css/swiper.css" type="text/css" rel="stylesheet"/>
     <link href="css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="css/popup.css" type="text/css" rel="stylesheet"/>
+    <link href="css/search.css" type="text/css" rel="stylesheet"/>
     <link rel="shortcut icon" href="icon/favicon.ico" /> 
 </head>
 <body>
@@ -125,10 +127,10 @@
                         <input type="text" id="receiverName" name="receiverName" class="purchase_input" placeholder="name">
                     </div>
                     <div class="purchase_col_input">
-                        <input type="text" name="receiverBasicAddr" class="purchase_input" placeholder="address 1">
+                        <input type="text" name="receiverBasicAddr" class="purchase_input postcodify_address" placeholder="address 1">
                         <input type="text" name="receiverDetailAddr" class="purchase_input" placeholder="address 2">
                         <input type="text" name="receiverCity" class="purchase_input" placeholder="city" style="width: 30%">
-                        <input type="text" name="receiverZipcode" class="purchase_input" placeholder="zip code" style="width: 30%">
+                        <input type="text" name="receiverZipcode" class="purchase_input postcodify_postcode" placeholder="zip code" style="width: 30%">
                         <select name="location" class="purchase_select" style="width: 30%">
                             <option value="Korea" selected="selected">Korea</option>
                             <option value="USA">USA</option>
@@ -196,10 +198,10 @@
             </div>
             <div class="profile_section">address</div>
             <div class="profile_form">
-                <input type="text" id="profileBasicAddr" name="profileBasicAddr" class="account_form" placeholder="address 1">
+                <input type="text" id="profileBasicAddr" name="profileBasicAddr " class="account_form postcodify_address"  placeholder="address 1">
                 <input type="text" id="profileDetailAddr" name="profileDetailAddr" class="account_form" placeholder="address 2">
                 <input type="text" id="profileCity" name="profileCity" class="account_form" placeholder="city" style="width: 30%">
-                <input type="text" id="profileZipcode" name="profileZipcode" class="account_form" placeholder="zip code" style="width: 30%">
+                <input type="text" id="profileZipcode" name="profileZipcode" class="account_form postcodify_postcode" placeholder="zip code" style="width: 30%">
                 <select id="profileLocation" name="profileLocation" class="profile_select" style="width: 30%">
                         <option value="Korea">Korea</option>
                         <option value="USA">USA</option>
@@ -413,10 +415,9 @@
     <script src="js/index/profile.js"></script>
     <script src="js/index/upload.js"></script>
 	<script src="js/index/about.js"></script>
-
-	<!-- 다음 주소 -->
-	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?1"></script>
-    <script src="js/util/daumAddrApi.js"></script>
+	
+	 <!-- postcodify -->
+    <script src="js/util/search.js"></script>
 
 	<script>
 		$(function () {

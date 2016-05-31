@@ -14,9 +14,11 @@ function exeTranslation(area, lang) {
         }
     }
 	
+    
 	$.i18n.init({
+		
 		lng: lang,
-		debug: true,
+		debug: false,
 		useLocalStorage: false,
 		localStorageExpirationTime: 86400000, 
 		resGetPath: 'locales/__lng__/translation.json'

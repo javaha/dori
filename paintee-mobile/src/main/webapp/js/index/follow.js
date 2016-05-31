@@ -267,9 +267,9 @@ function Follows() {
 	this.follows = $("<div>").addClass("people_list");
 	this.name = $("<div>").addClass("people_list_name");
 	this.btn = $("<div>").addClass("people_list_add")
-			             .html("<div class='people_list_btn_text'> </div><img class='icon' src='/ico/add_black.png'>");
+			             .html("<div class='people_list_btn_text'> </div><img class='icon' src='ico/add_black.png'>");
 	this.freind = $("<div>").addClass("people_list_add")
-			                .html("<div class='people_list_btn_text'> </div><img class='icon img_transparent' src='/ico/done.png'>");
+			                .html("<div class='people_list_btn_text'> </div><img class='icon img_transparent' src='ico/done.png'>");
 	this.build = function(name, isfriend) {
 		$(this.name).html(name).click(function () {
 			history.back();
@@ -319,7 +319,7 @@ function Following() {
 	this.following = $("<div>").addClass("people_list");
 	this.name = $("<div>").addClass("people_list_name");
 	this.btn = $("<div>").addClass("people_list_remove")
-			             .html("<div class='people_list_btn_text'></div><img class='icon' src='/ico/clear_black.png'>");
+			             .html("<div class='people_list_btn_text'></div><img class='icon' src='ico/clear_black.png'>");
 	this.build = function(name) {
 		$(this.name).html(name).click(function () {
 			history.back();

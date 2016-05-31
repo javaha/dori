@@ -86,8 +86,8 @@ function setPersonal(result) {
     personalHome.setTitle(personal.username);
     var introduce = (result.personal.introduce) ? result.personal.introduce : personal.username+"<span data-i18n='personal.contents'>님이 업로드한 그림들입니다.</span>";
     personalHome.setExplain(introduce);
-    var contents1 = $("<div>").addClass("follow_artist").html("<br><br><img style='width:12px; height: 12px' class='icon' src='/ico/star_white.png'> <span id='personalFollow'>follow artist</span>");
-    var contents2 = $("<div>").addClass("detail_artist_bottom").html("Share to <img class='icon social_img' id='personal-facebook' src='/ico/social_facebook_white.png'><img class='icon social_img' id='personal-twitter' src='/ico/social_twitter_white.png'><img class='icon social_img' id='personal-url' src='/ico/social_url_white.png'>");  // 수정부분
+    var contents1 = $("<div>").addClass("follow_artist").html("<br><br><img style='width:12px; height: 12px' class='icon' src='ico/star_white.png'> <span id='personalFollow'>follow artist</span>");
+    var contents2 = $("<div>").addClass("detail_artist_bottom").html("Share to <img class='icon social_img' id='personal-facebook' src='ico/social_facebook_white.png'><img class='icon social_img' id='personal-twitter' src='ico/social_twitter_white.png'><img class='icon social_img' id='personal-url' src='ico/social_url_white.png'>");  // 수정부분
     
     personalHome.hideNext();
     personalHome.setContents(contents1);
@@ -148,7 +148,8 @@ PersonalController.prototype = {
 				// 에러코드 100 번일 경우 사용자 작가 개인 페이지 호출 시 작가가 존재하지 않는 경우
 				if (result.errorNo == 100) {
 					alert($.i18n.t('alert.common.notExistArtist'));
-					location.href = "/";
+//					location.href = "/";
+					location.reload();
 				}  	
 				controller.getPersonInfoRes(result);
 			}

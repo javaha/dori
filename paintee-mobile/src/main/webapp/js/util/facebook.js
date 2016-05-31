@@ -1,6 +1,9 @@
 
 ////////////////////////////////////////facebook api
 
+
+
+
 window.fbAsyncInit = function() {
 	FB.init({
 		appId      : '235488130138448',
@@ -21,11 +24,13 @@ window.fbAsyncInit = function() {
 	//    your app or not.
 	//
 	// These three cases are handled in the callback function.
-/*
-	FB.getLoginStatus(function(response) {
-		statusChangeCallback(response);
-	});*/
+
+//	FB.getLoginStatus(function(response) {
+//		statusChangeCallback(response);
+//	});
 };
+
+
 
 // Load the SDK asynchronously
 (function(d, s, id) {

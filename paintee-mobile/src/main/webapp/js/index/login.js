@@ -140,7 +140,6 @@ function loginSocialUser(response, providerId) {
 	var userId = response.authResponse.userID;
 	var providerId = providerId;
 	
-	
 	if (response.status === 'connected') {
 		FB.api('/me', {fields: 'email,name'}, function(response) {
 			
@@ -159,7 +158,6 @@ function loginSocialUser(response, providerId) {
 
 $('#login_facebook_btn').on('click', function() {
 	FB.login(function(response) {
-		
 		loginSocialUser(response, "FACEBOOK")
 	}, {scope: 'email,user_likes'});
 });

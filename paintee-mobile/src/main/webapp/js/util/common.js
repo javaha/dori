@@ -62,9 +62,9 @@ var setUserInfoCookie = function(userInfo) {
 	if(typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
 	
 	
-	window.localStorage.setItem('cookie', cookies);
+	//window.localStorage.setItem('cookie', cookies);
 //	window.sessionStorage.setItem('cookie', cookies);
-//	document.cookie = cookies;
+	document.cookie = cookies;
 	
 };
 var clearUserInfoCookie = function() {
@@ -77,45 +77,37 @@ var clearUserInfoCookie = function() {
 	// console.log(cookies);
 	if(typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
 	
-	window.localStorage.setItem('cookie', cookies);
+//	window.localStorage.setItem('cookie', cookies);
 //	window.sessionStorage.setItem('cookie', cookies);
-//	document.cookie = cookies;
+	document.cookie = cookies;
 	
 	
 };
 var getUserInfoCookie = function() {
 	var cName = 'userInfo=';
+	var cookieData = document.cookie;
+	var start = cookieData.indexOf(cName);
+	var cValue = '';
 	
-	var cookieDataOrigin = document.cookie;
-	var cookieData = window.localStorage.getItem('cookie');
-	//var cookieData = window.sessionStroage.getItem('cookie');
-	// sessionStroage
-	
-	if(cookieData){
-		var start = cookieData.indexOf(cName);
-		var cValue = '';
+	if(start != -1) {
+		start += cName.length;
 
-		if(start != -1) {
-			start += cName.length;
+		var end = cookieData.indexOf(';', start);
 
-			var end = cookieData.indexOf(';', start);
-
-			if(end == -1) {
-				end = cookieData.length;
-			}
-
-			cValue = cookieData.substring(start, end);
+		if(end == -1) {
+			end = cookieData.length;
 		}
 
-		var userInfo = null;
-
-		if(cValue != null && cValue != '') {
-			userInfo = JSON.parse(unescape(cValue));
-		}
-		// console.log(userInfo);
-		return userInfo;
+		cValue = cookieData.substring(start, end);
 	}
-	
+
+	var userInfo = null;
+
+	if(cValue != null && cValue != '') {
+		userInfo = JSON.parse(unescape(cValue));
+	}
+	// console.log(userInfo);
+	return userInfo;
 };
 
 Date.prototype.timestampToDate = function () {
