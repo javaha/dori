@@ -498,7 +498,7 @@ PurchaseController.prototype = {
 				                      .click(function () {
 					       				  new PurchaseController().delStatusPurchase(listData); 
 					       			  }); 
-		alert($.i18n.t('alert.purchase.processComplete'));
+		//alert($.i18n.t('alert.purchase.processComplete'));
 	},
 	delStatusPainting: function (listData) {
 		var controller = this;

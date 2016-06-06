@@ -244,7 +244,7 @@ Structure.prototype = {
         setArtist:          function(name){
                                 this.listArtist.html(name);
                             },
-        setStatus:          function(listData){                                                                   
+        setStatus:          function(listData){
                                 if(listData.paintingStatus == "1"){                                                        
                                     this.listStatusBtn.addClass("list_status_preparing")
                                                       .html("preparing")
@@ -273,18 +273,13 @@ Structure.prototype = {
 					                                  .click(function(){
 							                              showDelete(this, listData);
 							                          });
-/*                                    				  .click(function () {
-                                    					  new PurchaseController().delStatusPurchase(listData); 
-                                    				  }); */
-                                } else if (listData.paintingStatus == "N"){                                                       
+                                } else if(listData.paintingStatus == "N"){
                                 	this.listStatusBtn.addClass("list_status_done")
 					                  				  .html("delete")
+                                                      .attr("id", "exeBtn" + listData.seq)
                                                       .click(function(){
 							                              showDelete(this, listData);
 							                          });
-/*					                  				  .click(function () {
-					                  					  new PurchaseController().delStatusPainting(listData); 
-					                  				  });  */
                                 }
                                 
         },                            
