@@ -434,6 +434,7 @@ PurchaseController.prototype = {
 				                	   showRefund(this, listData);
 					       		   }); 
 		alert($.i18n.t('alert.purchase.processCancel'));
+        initMy();
 	},
 	resendPurchase: function (listData) {
 		var controller = this;
@@ -452,6 +453,7 @@ PurchaseController.prototype = {
 	resendPurchaseRes: function (result, seq) {
 		$("#exeBtn" + seq).remove();
 		alert($.i18n.t('alert.purchase.processResend'));
+        initMy();
 	},
 	cancelRefundPurchase: function (listData) {
 		var controller = this;
@@ -475,6 +477,7 @@ PurchaseController.prototype = {
 				                	   showCancel(this, listData);
 					       		   }); 
 		alert($.i18n.t('alert.purchase.processCancelRefund'));
+        initMy();
 	},
 	completePurchase: function (listData) {
 		var controller = this;
@@ -499,6 +502,7 @@ PurchaseController.prototype = {
 					       				  new PurchaseController().delStatusPurchase(listData); 
 					       			  }); 
 		//alert($.i18n.t('alert.purchase.processComplete'));
+        initMy();
 	},
 	delStatusPainting: function (listData) {
 		var controller = this;
