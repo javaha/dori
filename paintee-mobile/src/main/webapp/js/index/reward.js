@@ -12,7 +12,7 @@ function reward(){
 function Reward(){
     this.title      = $("<div>").addClass("reward_title").addClass("popup_title");
     this.contents   = $("<div>").addClass("reward_contents").addClass("popup_contents");
-    this.bottomMargin    = $("<div>").addClzass("popup_margin_bottom");
+    this.bottomMargin    = $("<div>").addClass("popup_margin_bottom");
     this.bottom     = $("<div>").addClass("reward_bottom").addClass("popup_bottom");
 }
 
