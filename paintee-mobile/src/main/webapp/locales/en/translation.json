@@ -106,7 +106,7 @@
 	"alert": 
 	{
 		"common" : {
-			"ruleName": "Name should be 4 to 12 characters, including letters and numbers.",
+			"ruleName": "Name should be 4 to 14 characters, including letters and numbers.",
 			"rulePassword": "Password should be 8 to 12 characters, including letters and numbers.",
 			"confirmEmailPass": "Please check your email address and password.",
 			"existName": "This name is already in use.",

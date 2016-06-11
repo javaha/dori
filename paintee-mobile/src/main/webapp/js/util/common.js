@@ -231,7 +231,7 @@ function chkPassword(str){
 }
 
 function chkAlphaNum(str){
-	var regAlphaNum = /^[A-Za-z0-9+]{4,12}$/;
+	var regAlphaNum = /^[A-Za-z0-9+]{4,14}$/;
 
 	if(!regAlphaNum.test(str)) {
 		return false;
