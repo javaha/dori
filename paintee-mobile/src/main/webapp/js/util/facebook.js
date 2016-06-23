@@ -9,7 +9,7 @@ window.fbAsyncInit = function() {
 		version    : 'v2.5' // use graph api version 2.5
 	});
 
-openFB.init({appId: '235488130138448'});
+	openFB.init({appId: '235488130138448'});
 
 	FB.getLoginStatus(function(response) {
 		
