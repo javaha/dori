@@ -16,12 +16,15 @@ LogInController.prototype = {
 		AjaxCall.call(apiUrl+"/login", param, "POST", function(result, status) { controller.doLoginRes(result, status); });
 	},
 	doLoginRes: function(result, status) {
+
 		if(result.errorNo == 0) {
 			// console.log(result);
+
+
 			setUserInfoCookie(result);
-			
+
 			var userAgent = navigator.userAgent;
-			
+
 			location.reload();
 			//login 후 cookie 를 페이지에 적용하기 위하여 새로고침해야함.
 			//location.href = "/";
@@ -32,6 +35,7 @@ LogInController.prototype = {
 	},
 	doSocialLogin: function(email, name, accessToken, expireTime, userId, providerId) {
 		var param = {};
+
 		param.email = email;
 		param.accessToken = accessToken;
 		param.expireTime = expireTime;
@@ -61,7 +65,7 @@ LogInController.prototype = {
 //			alert('이메일을 확인하세요.');
 		}
 	}
-	
+
 }
 
 // 로그인과 함께 다시 side menu 초기화
@@ -89,18 +93,18 @@ function logout() {
     // console.log("log out!!!");
 
     clearUserInfoCookie();
-    
+
     //location.href="/";
     location.reload();
 }
 
 //로그인 화면
 function showLogin(){
-	
+
 	// 히스토리 설정
-	replaceHistory({"call": "login"});
+	  replaceHistory({"call": "login"});
     addHistory({"call": "dummy"});
-    
+
     $(".login_container").show();
 }
 
@@ -119,7 +123,7 @@ $(".signup_login_btn").click(function(){
 });
 $(".login_help").click(function(){
 	replaceHistory({"call": "loginHelpHide"});
-	addHistory({"call": "loginHelp"});	
+	addHistory({"call": "loginHelp"});
 	$(".loginhelp_container").show();
 });
 $(".help_login_btn").click(function(){
@@ -135,15 +139,15 @@ $('#resetPasswordBtn').on('click', function() {
 });
 
 function loginSocialUser(response, providerId) {
-	var accessToken = response.authResponse.accessToken;
-	var expireTime = response.authResponse.expiresIn;
-	var userId = response.authResponse.userID;
-	var providerId = providerId;
-	
+
+var accessToken = response.authResponse.accessToken;
+var expireTime = response.authResponse.expiresIn;
+var userId = response.authResponse.userID;
+var providerId = providerId;
+
+
 	if (response.status === 'connected') {
 		FB.api('/me', {fields: 'email,name'}, function(response) {
-			
-			// Logged into your app and Facebook.
 			new LogInController().doSocialLogin(response.email, response.name, accessToken, expireTime, userId, providerId);
 		});
 	} else if (response.status === 'not_authorized') {
@@ -157,7 +161,8 @@ function loginSocialUser(response, providerId) {
 }
 
 $('#login_facebook_btn').on('click', function() {
-	FB.login(function(response) {
+ 
+	 FB.login(function(response) {
 		loginSocialUser(response, "FACEBOOK")
 	}, {scope: 'email,user_likes'});
 });

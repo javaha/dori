@@ -132,13 +132,15 @@ function registSocialUser(response, providerId) {
 	var providerId = providerId;
 	signupSocialAuthResponse = response;
 	signupSocialProviderId = providerId;
-
+	var laccessToken = response.authResponse.accessToken;
+	
 	if (response.status === 'connected') {
+		
 		FB.api('/me', {fields: 'email,name'}, function(response) {
-			signupSocialAuthResponse.email = response.email;
-
-			showUsername();
-		});
+		
+		 	signupSocialAuthResponse.email = response.email;
+		 	showUsername();
+		 });
 	} else if (response.status === 'not_authorized') {
 		// The person is logged into Facebook, but not your app.
 		// console.log('Please log into this app.');
@@ -170,9 +172,10 @@ function checkSignupUsername() {
 $('#signup_btn').on("click", function() { new SignupController().doSignup(); });
 
 $('#signup_facebook_btn').on('click', function() {
-	FB.login(function(response) {
-		registSocialUser(response, "FACEBOOK")
-	}, {scope: 'email,user_likes'});
+	//openFB.login(function(response) {
+	  FB.login(function(response) {
+		 registSocialUser(response, "FACEBOOK")
+	 }, {scope: 'email,user_likes'});
 });
 
 /*  4.4 수정  */
