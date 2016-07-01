@@ -23,7 +23,7 @@ var boxWidth;
 var boxHeight;
 var boxStatus="";
 var popName="";
-var fullImage=false;
+var fullImage=true;
 
 //get 방식으로 user, painting 가져오기 
 function getRequest() {
@@ -582,16 +582,7 @@ function setWidth() {
     setBox();
     if($(".list_artist_btn").position()){
         var fullBreakpoint = mainHeight-$(".list_painting").position().top-$(".list_painting").height()
-        if(fullBreakpoint > 50){
-            fullImage = true;
-            $(".list_status_btn").css("bottom", fullBreakpoint+10);
-            $(".list_cancel_btn").css("bottom", fullBreakpoint+10);
-            $(".list_refund_btn").css("bottom", fullBreakpoint+10);
-            $(".list_resend_btn").css("bottom", fullBreakpoint+10);
-            $(".list_confirm_btn").css("bottom", fullBreakpoint+10);
-            $(".list_delete_btn").css("bottom", fullBreakpoint+10);
-            $(".list_status_sentence").css("bottom", fullBreakpoint);
-        }else{
+        if(fullBreakpoint <= 50){
             fullImage = false;
             $(".list_status_btn").removeAttr("style");
             $(".list_cancel_btn").removeAttr("style");
@@ -600,6 +591,15 @@ function setWidth() {
             $(".list_confirm_btn").removeAttr("style");
             $(".list_delete_btn").removeAttr("style");
             $(".list_status_sentence").removeAttr("style");
+        }else{
+            fullImage = true;
+            $(".list_status_btn").css("bottom", fullBreakpoint+10);
+            $(".list_cancel_btn").css("bottom", fullBreakpoint+10);
+            $(".list_refund_btn").css("bottom", fullBreakpoint+10);
+            $(".list_resend_btn").css("bottom", fullBreakpoint+10);
+            $(".list_confirm_btn").css("bottom", fullBreakpoint+10);
+            $(".list_delete_btn").css("bottom", fullBreakpoint+10);
+            $(".list_status_sentence").css("bottom", fullBreakpoint);
         }
     }
 }
